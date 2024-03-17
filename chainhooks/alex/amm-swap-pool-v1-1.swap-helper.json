@@ -1,0 +1,25 @@
+{
+  "chain": "stacks",
+  "uuid": "1",
+  "name": "amm-swap-pool-v1-1.swap-helper",
+  "version": 1,
+  "networks": {
+    "mainnet": {
+      "if_this": {
+        "scope": "contract_call",
+        "contract_identifier": "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.amm-swap-pool-v1-1",
+        "method": "swap-helper"
+      },
+      "then_that": {
+        "http_post": {
+          "url": "http://localhost:3000/api/chainhooks/swap",
+          "authorization_header": "Bearer dev-api-token"
+        }
+      },
+      "start_block": 104237,
+      "end_block": null,
+      "decode_clarity_values": false,
+      "expire_after_occurrence": null
+    }
+  }
+}

@@ -1,0 +1,31 @@
+# fly.toml app configuration file generated for stackspulse on 2024-03-16T00:38:55+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'stackspulse'
+primary_region = 'sjc'
+
+[build]
+
+[[mounts]]
+  source = 'data'
+  destination = '/data'
+  initial_size = '1gb'
+  # Extends the size of the volume by 1gb when it reaches 90% capacity.
+  # The volume extensions are limited to 5gb in total.
+  auto_extend_size_threshold = 90
+  auto_extend_size_increment = '1gb'
+  auto_extend_size_limit = '5gb'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '256mb'
