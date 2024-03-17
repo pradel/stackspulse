@@ -1,3 +1,6 @@
+import { TransactionRow } from "@/components/Transaction/TransactionRow";
+import { getTransactions, getTransactionsStats } from "@/db/transactions";
+import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import {
   Card,
   Container,
@@ -6,12 +9,9 @@ import {
   Separator,
   Text,
 } from "@radix-ui/themes";
-import { isProtocol, protocolsInfo } from "@/lib/protocols";
-import { notFound } from "next/navigation";
-import { TransactionRow } from "@/components/Transaction/TransactionRow";
-import { getTransactions, getTransactionsStats } from "@/db/transactions";
-import Image from "next/image";
 import { IconBrandX, IconWorld } from "@tabler/icons-react";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
 export const dynamic = "force-dynamic";
@@ -49,12 +49,12 @@ export default async function ProtocolPage({ params }: PageProps) {
           </Text>
           <div className="mt-2 space-x-2">
             <IconButton size="1" variant="ghost" color="gray" asChild>
-              <a href={protocolInfo.website} target="_blank">
+              <a href={protocolInfo.website} target="_blank" rel="noreferrer">
                 <IconWorld size={14} />
               </a>
             </IconButton>
             <IconButton size="1" variant="ghost" color="gray" asChild>
-              <a href={protocolInfo.x} target="_blank">
+              <a href={protocolInfo.x} target="_blank" rel="noreferrer">
                 <IconBrandX size={14} />
               </a>
             </IconButton>

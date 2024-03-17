@@ -1,15 +1,15 @@
-import { Protocol } from "@/lib/protocols";
+import type { Protocol } from "@/lib/protocols";
+import { count, countDistinct, desc, eq, inArray } from "drizzle-orm";
 import { db } from "./db";
 import {
-  SelectToken,
-  SelectTransactionActionAddLiquidityTyped,
-  SelectTransactionActionRemoveLiquidityTyped,
-  SelectTransactionActionSwapTyped,
-  SelectTransactionTyped,
+  type SelectToken,
+  type SelectTransactionActionAddLiquidityTyped,
+  type SelectTransactionActionRemoveLiquidityTyped,
+  type SelectTransactionActionSwapTyped,
+  type SelectTransactionTyped,
   tokenTable,
   transactionTable,
 } from "./schema";
-import { count, countDistinct, desc, eq, inArray } from "drizzle-orm";
 
 export type SelectTransactionActionSwap = SelectTransactionActionSwapTyped & {
   inToken: SelectToken;

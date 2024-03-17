@@ -1,8 +1,8 @@
+import { Header } from "@/components/Layout/Header";
+import { Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Theme } from "@radix-ui/themes";
-import { Header } from "@/components/Layout/Header";
 
 // TODO fly health check https://fly.io/docs/reference/configuration/#http_service-checks
 

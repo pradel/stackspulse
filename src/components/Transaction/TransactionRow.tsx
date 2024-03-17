@@ -1,12 +1,12 @@
+import type { SelectTransactionAction } from "@/db/transactions";
 import { Button, IconButton, Text, Tooltip } from "@radix-ui/themes";
+import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { TransactionActionSwap } from "./Action/Swap";
 import { TimeAgo } from "../Shared/TimeAgo";
-import { IconExternalLink } from "@tabler/icons-react";
 import { TransactionActionAddLiquidity } from "./Action/AddLiquidity";
-import { SelectTransactionAction } from "@/db/transactions";
 import { TransactionActionRemoveLiquidity } from "./Action/RemoveLiquidity";
+import { TransactionActionSwap } from "./Action/Swap";
 
 interface TransactionRowProps {
   transaction: SelectTransactionAction;
@@ -41,6 +41,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
             target="_blank"
             // Force the width to avoid content pushed on the right
             className="w-[108px]"
+            rel="noreferrer"
           >
             {transaction.sender.slice(0, 5)}...
             {transaction.sender.slice(-5)}
@@ -64,6 +65,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         <a
           href={`https://explorer.hiro.so/txid/${transaction.txId}`}
           target="_blank"
+          rel="noreferrer"
         >
           <IconExternalLink size={16} />
         </a>

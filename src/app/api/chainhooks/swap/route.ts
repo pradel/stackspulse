@@ -1,12 +1,12 @@
-import { InsertTransaction, transactionTable } from "@/db/schema";
 import { db } from "@/db/db";
-import { getOrInsertToken } from "@/lib/currencies";
-import {
+import { type InsertTransaction, transactionTable } from "@/db/schema";
+import type {
   ChainhookPayload,
   ChainhookReceiptEventFTTransferEvent,
   ChainhookReceiptEventSTXTransferEvent,
 } from "@/lib/chainhooks";
-import { Protocol } from "@/lib/protocols";
+import { getOrInsertToken } from "@/lib/currencies";
+import type { Protocol } from "@/lib/protocols";
 
 export const dynamic = "force-dynamic";
 
@@ -22,16 +22,16 @@ export async function POST(request: Request) {
         .sort((a, b) => a.position.index - b.position.index)
         .filter(
           (
-            event
+            event,
           ): event is
             | ChainhookReceiptEventSTXTransferEvent
             | ChainhookReceiptEventFTTransferEvent =>
             event.type === "STXTransferEvent" ||
-            event.type === "FTTransferEvent"
+            event.type === "FTTransferEvent",
         )
         .filter(
           (event) =>
-            event.data.sender === sender || event.data.recipient === sender
+            event.data.sender === sender || event.data.recipient === sender,
         );
       const firstTransferEvent = transferEvents[0];
       const lastTransferEvent = transferEvents[transferEvents.length - 1];

@@ -1,6 +1,6 @@
-import { Card, Container, Heading, Separator, Text } from "@radix-ui/themes";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
+import { Card, Container, Heading, Separator, Text } from "@radix-ui/themes";
 import { Fragment } from "react";
 
 export const dynamic = "force-dynamic";

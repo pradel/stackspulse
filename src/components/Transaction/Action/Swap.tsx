@@ -1,4 +1,4 @@
-import { SelectTransactionActionSwap } from "@/db/transactions";
+import type { SelectTransactionActionSwap } from "@/db/transactions";
 import { displayPrice } from "@/lib/currencies";
 import { Text } from "@radix-ui/themes";
 

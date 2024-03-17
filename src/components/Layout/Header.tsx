@@ -1,9 +1,9 @@
 "use client";
+import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import { Container, DropdownMenu, Link, Separator } from "@radix-ui/themes";
-import NextLink from "next/link";
 import { IconChevronDown } from "@tabler/icons-react";
 import Image from "next/image";
-import { Protocol, protocolsInfo } from "@/lib/protocols";
+import NextLink from "next/link";
 
 export const Header = () => {
   return (

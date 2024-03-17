@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { env } from "./env";
 
 export const config = {
@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
   if (scheme !== "Bearer" || token !== env.CHAINHOOKS_API_TOKEN) {
     return Response.json(
       { success: false, message: "authentication failed" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 

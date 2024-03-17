@@ -1,4 +1,4 @@
-import { SelectTransactionActionRemoveLiquidity } from "@/db/transactions";
+import type { SelectTransactionActionRemoveLiquidity } from "@/db/transactions";
 import { Text } from "@radix-ui/themes";
 
 interface TransactionActionRemoveLiquidityProps {

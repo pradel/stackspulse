@@ -1,7 +1,7 @@
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
-import * as schema from "./schema";
 import { env } from "@/env";
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import * as schema from "./schema";
 
 // Patch BigInt to be JSON serializable
 // for drizzle-orm to insert BigInts properly

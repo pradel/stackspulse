@@ -1,6 +1,6 @@
 import { db } from "@/db/db";
-import { InsertTransaction, transactionTable } from "@/db/schema";
-import {
+import { type InsertTransaction, transactionTable } from "@/db/schema";
+import type {
   ChainhookPayload,
   ChainhookReceiptEventFTTransferEvent,
   ChainhookReceiptEventSTXTransferEvent,
@@ -21,12 +21,12 @@ export async function POST(request: Request) {
         .sort((a, b) => a.position.index - b.position.index)
         .filter(
           (
-            event
+            event,
           ): event is
             | ChainhookReceiptEventSTXTransferEvent
             | ChainhookReceiptEventFTTransferEvent =>
             event.type === "STXTransferEvent" ||
-            event.type === "FTTransferEvent"
+            event.type === "FTTransferEvent",
         )
         .filter((event) => event.data.sender === sender);
       const tokenXTransferEvent = transferEvents[0];

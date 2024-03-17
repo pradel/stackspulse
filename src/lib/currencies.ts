@@ -1,13 +1,13 @@
 import { tokenTable } from "@/db/schema";
-import { db } from "../db/db";
-import { eq } from "drizzle-orm";
 import { callReadOnlyFunction, cvToValue } from "@stacks/transactions";
+import { eq } from "drizzle-orm";
+import { db } from "../db/db";
 
 export const displayPrice = (
   price: bigint | string,
-  decimals: number
+  decimals: number,
 ): string => {
-  const priceNumber = Number(price) / Math.pow(10, decimals);
+  const priceNumber = Number(price) / 10 ** decimals;
   // For accounts < 1 (eg: BTC) we want to display 6 decimal places
   // otherwise we want to display 2 decimal places
   const maximumFractionDigits = priceNumber < 1 ? 6 : 2;

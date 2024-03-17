@@ -1,13 +1,13 @@
-import { text, sqliteTable, blob, integer } from "drizzle-orm/sqlite-core";
-import { Protocol } from "@/lib/protocols";
-import { InferInsertModel, InferSelectModel } from "drizzle-orm";
-import {
+import type {
   Action,
   ActionData,
   ActionDataAddLiquidity,
   ActionDataRemoveLiquidity,
   ActionDataSwap,
 } from "@/lib/actions";
+import type { Protocol } from "@/lib/protocols";
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+import { blob, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const transactionTable = sqliteTable("transaction", {
   /**
