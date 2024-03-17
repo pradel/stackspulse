@@ -32,4 +32,4 @@ jobs:
         run: pnpm biome ci .
 
       - name: Build
-        run: pnpm build
+        run: cp .env.production.build .env.production.local && pnpm build
