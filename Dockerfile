@@ -11,8 +11,6 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
-# Set the database URL to a file before the build
-ENV DATABASE_PATH="/data/sqlite.db"
 
 # Install pnpm
 ARG PNPM_VERSION=8.15.2
@@ -33,14 +31,12 @@ RUN pnpm install --frozen-lockfile --prod=false
 # Copy application code
 COPY --link . .
 
-# Create temporary directory and db for the build to pass
-RUN mkdir -p /data
+# Add fake environment file for build to succeed
+COPY --link .env.production.build .env.production.local
 RUN pnpm db:migrate
 
 # Build application
-RUN --mount=type=secret,id=CHAINHOOKS_API_TOKEN \
-    CHAINHOOKS_API_TOKEN="$(cat /run/secrets/CHAINHOOKS_API_TOKEN)" \
-    pnpm run build
+RUN pnpm run build
 
 # Remove development dependencies
 RUN pnpm prune --prod
@@ -65,6 +61,7 @@ COPY --from=build /app/.next/static ./.next/static
 # Setup sqlite3 on a separate volume
 RUN mkdir -p /data
 VOLUME /data
+ENV DATABASE_PATH="/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
