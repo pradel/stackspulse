@@ -15,6 +15,9 @@ import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
 export const dynamic = "force-dynamic";
+// TODO
+// Cache the page for 60 seconds
+// export const revalidate = 60;
 
 interface PageProps {
   params: { protocol: string };

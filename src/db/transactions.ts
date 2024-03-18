@@ -1,5 +1,5 @@
 import type { Protocol } from "@/lib/protocols";
-import { count, countDistinct, desc, eq, inArray } from "drizzle-orm";
+import { asc, count, countDistinct, desc, eq, inArray, sql } from "drizzle-orm";
 import { db } from "./db";
 import {
   type SelectToken,
@@ -119,5 +119,20 @@ export const getTransactionsStats = async ({
 
   const transactions = await query;
   const stats = transactions[0];
+  return stats;
+};
+
+export const getTransactionsUniqueSendersByMonth = async () => {
+  const query = db
+    .select({
+      protocol: transactionTable.protocol,
+      month: sql<string>`strftime('%Y-%m', timestamp, 'unixepoch') as month`,
+      uniqueSenders: countDistinct(transactionTable.sender),
+    })
+    .from(transactionTable)
+    .groupBy(transactionTable.protocol, sql`month`)
+    .orderBy(asc(transactionTable.timestamp));
+
+  const stats = await query;
   return stats;
 };
