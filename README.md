@@ -2,6 +2,8 @@
 
 Real-Time Gateway to Stacks DeFi.
 
+This project aims to provide a real-time view of Stacks DeFi ecosystem by aggregating public blockchain data and making it accessible through a easy to use interface.
+
 ## Development
 
 First, install the dependencies:
