@@ -37,3 +37,6 @@ next-env.d.ts
 
 # Local Database
 sqlite.db
+
+# Chainhooks
+chainhooks.production.json

@@ -17,9 +17,7 @@
         }
       },
       "start_block": 104237,
-      "end_block": null,
-      "decode_clarity_values": false,
-      "expire_after_occurrence": null
+      "decode_clarity_values": false
     }
   }
 }
