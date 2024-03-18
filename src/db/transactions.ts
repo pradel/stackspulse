@@ -40,7 +40,7 @@ export const getTransactions = async ({
     .select()
     .from(transactionTable)
     .orderBy(desc(transactionTable.timestamp))
-    .limit(100);
+    .limit(50);
   if (protocol) {
     query.where(eq(transactionTable.protocol, protocol));
   }
