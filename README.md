@@ -2,12 +2,31 @@
 
 Real-Time Gateway to Stacks DeFi.
 
-## Getting Started
+## Development
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+pnpm install
+```
+
+Create and migrate the database:
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+```
+
+Then, run the development server:
 
 ```bash
 pnpm dev
+```
+
+Once the server is running you can run the predicates of your choice using chainhooks:
+
+```bash
+chainhook predicates scan /<path-to-stackspulse>/stacksfeed/chainhooks/arkadiko/arkadiko-swap-v2-1.swap-x-for-y.json --mainnet
 ```
 
 ## Deploy to production
