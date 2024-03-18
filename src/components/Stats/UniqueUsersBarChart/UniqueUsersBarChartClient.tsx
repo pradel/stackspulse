@@ -18,7 +18,9 @@ interface UniqueUsersBarChartProps {
   }[];
 }
 
-export const UniqueUsersBarChart = ({ data }: UniqueUsersBarChartProps) => {
+export const UniqueUsersBarChartClient = ({
+  data,
+}: UniqueUsersBarChartProps) => {
   // To format we need to group by month
   const formattedData: {
     date: string;
