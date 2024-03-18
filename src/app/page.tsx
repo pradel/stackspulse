@@ -1,13 +1,19 @@
+import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
 import { Card, Container, Heading, Separator, Text } from "@radix-ui/themes";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 
 export const dynamic = "force-dynamic";
+// TODO
+// Cache the page for 60 seconds
+// export const revalidate = 60;
 
 export default async function HomePage() {
-  const transactions = await getTransactions();
-  const stats = await getTransactionsStats();
+  const [transactions, stats] = await Promise.all([
+    getTransactions(),
+    getTransactionsStats(),
+  ]);
 
   return (
     <Container size="2" className="px-4 pb-10 pt-5">
@@ -29,6 +35,10 @@ export default async function HomePage() {
           </Text>
         </Card>
       </div>
+
+      <Suspense>
+        <UniqueUsersBarChart />
+      </Suspense>
 
       <div className="mt-10">
         <Heading as="h2" size="3" color="gray">

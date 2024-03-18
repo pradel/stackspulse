@@ -66,6 +66,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
           href={`https://explorer.hiro.so/txid/${transaction.txId}`}
           target="_blank"
           rel="noreferrer"
+          aria-label="View in Explorer"
         >
           <IconExternalLink size={16} />
         </a>
