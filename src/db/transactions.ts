@@ -1,5 +1,15 @@
+import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
-import { asc, count, countDistinct, desc, eq, inArray, sql } from "drizzle-orm";
+import {
+  and,
+  asc,
+  count,
+  countDistinct,
+  desc,
+  eq,
+  inArray,
+  sql,
+} from "drizzle-orm";
 import { db } from "./db";
 import {
   type SelectToken,
@@ -35,14 +45,23 @@ export type SelectTransactionAction =
 
 export const getTransactions = async ({
   protocol,
-}: { protocol?: Protocol } = {}): Promise<SelectTransactionAction[]> => {
+  action,
+}: { protocol?: Protocol; action?: Action } = {}): Promise<
+  SelectTransactionAction[]
+> => {
   const query = db
     .select()
     .from(transactionTable)
     .orderBy(desc(transactionTable.timestamp))
     .limit(50);
+
   if (protocol) {
-    query.where(eq(transactionTable.protocol, protocol));
+    query.where(
+      and(
+        eq(transactionTable.protocol, protocol),
+        action ? eq(transactionTable.action, action) : undefined,
+      ),
+    );
   }
   const transactions = (await query) as SelectTransactionTyped[];
 

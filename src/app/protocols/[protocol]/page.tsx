@@ -1,7 +1,14 @@
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
+import {
+  type Action,
+  actionInfo,
+  isAction,
+  protocolsActions,
+} from "@/lib/actions";
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import {
+  Button,
   Card,
   Container,
   Heading,
@@ -11,6 +18,7 @@ import {
 } from "@radix-ui/themes";
 import { IconBrandX, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
+import NextLink from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
@@ -21,16 +29,26 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { protocol: string };
+  searchParams: { action?: Action };
 }
 
-export default async function ProtocolPage({ params }: PageProps) {
+export default async function ProtocolPage({
+  params,
+  searchParams,
+}: PageProps) {
   const protocol = params.protocol;
-  if (!isProtocol(protocol)) {
+  if (
+    !isProtocol(protocol) ||
+    (searchParams.action && !isAction(searchParams.action))
+  ) {
     notFound();
   }
-  const transactions = await getTransactions({ protocol });
-  const stats = await getTransactionsStats({ protocol });
+  const [transactions, stats] = await Promise.all([
+    getTransactions({ protocol, action: searchParams.action }),
+    getTransactionsStats({ protocol }),
+  ]);
   const protocolInfo = protocolsInfo[protocol];
+  const protocolActions = protocolsActions[protocol];
 
   return (
     <Container size="2" className="px-4 py-10">
@@ -88,6 +106,37 @@ export default async function ProtocolPage({ params }: PageProps) {
         <Heading as="h2" size="3" color="gray">
           Transactions
         </Heading>
+        <div className="mt-2 flex gap-5 items-center">
+          <Button
+            size="1"
+            color="gray"
+            radius="full"
+            variant={searchParams.action ? "ghost" : "soft"}
+            highContrast={!searchParams.action}
+            asChild
+          >
+            <NextLink href={`/protocols/${protocol}`}>All</NextLink>
+          </Button>
+          {protocolActions.map((action) => {
+            const Icon = actionInfo[action].icon;
+            return (
+              <Button
+                key={action}
+                size="1"
+                color="gray"
+                radius="full"
+                variant={searchParams.action === action ? "soft" : "ghost"}
+                highContrast={searchParams.action === action}
+                asChild
+              >
+                <NextLink href={`/protocols/${protocol}?action=${action}`}>
+                  {Icon ? <Icon size={14} /> : null}
+                  {actionInfo[action].label}
+                </NextLink>
+              </Button>
+            );
+          })}
+        </div>
         <div className="mt-4 md:space-y-4">
           {transactions.map((transaction) => (
             <Fragment key={transaction.txId}>
