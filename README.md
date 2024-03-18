@@ -31,3 +31,11 @@ fly deploy --remote-only
 ```
 
 Finally upload the chainhooks predicates file `chainhooks.production.json` to the [Hiro platform](https://platform.hiro.so/) for your project.
+
+## Download the production database locally
+
+```bash
+flyctl ssh issue --agent
+flyctl proxy 10022:22
+scp -r -P 10022 root@localhost:/data  /your/local/path/where/to/copy/data
+```

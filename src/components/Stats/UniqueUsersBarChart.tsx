@@ -1,5 +1,5 @@
 "use client";
-import { Card, Heading, Separator, Text } from "@radix-ui/themes";
+import { Card, Separator, Text } from "@radix-ui/themes";
 import {
   Bar,
   BarChart,
