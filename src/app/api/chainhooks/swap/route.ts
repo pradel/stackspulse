@@ -47,6 +47,11 @@ export async function POST(request: Request) {
         "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1"
       ) {
         protocol = "arkadiko";
+      } else if (
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+        "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stackswap-swap-v5k"
+      ) {
+        protocol = "stackswap";
       } else {
         throw new Error("Unknown protocol");
       }
