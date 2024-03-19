@@ -28,13 +28,16 @@ export async function POST(request: Request) {
             | ChainhookReceiptEventFTTransferEvent =>
             event.type === "STXTransferEvent" ||
             event.type === "FTTransferEvent",
-        )
-        .filter(
-          (event) =>
-            event.data.sender === sender || event.data.recipient === sender,
         );
-      const firstTransferEvent = transferEvents[0];
-      const lastTransferEvent = transferEvents[transferEvents.length - 1];
+      const outgoingTransferEvents = transferEvents.filter(
+        (event) => event.data.sender === sender,
+      );
+      const incomingTransferEvents = transferEvents.filter(
+        (event) => event.data.recipient === sender,
+      );
+      const outgoingTransferEvent = outgoingTransferEvents[0];
+      const incomingTransferEvent =
+        incomingTransferEvents[incomingTransferEvents.length - 1];
 
       let protocol: Protocol;
       if (
@@ -66,16 +69,16 @@ export async function POST(request: Request) {
         sender,
         action: "swap",
         data: {
-          inAmount: BigInt(firstTransferEvent.data.amount),
+          inAmount: BigInt(outgoingTransferEvent.data.amount),
           inToken:
-            firstTransferEvent.type === "STXTransferEvent"
+            outgoingTransferEvent.type === "STXTransferEvent"
               ? "STX"
-              : firstTransferEvent.data.asset_identifier,
-          outAmount: BigInt(lastTransferEvent.data.amount),
+              : outgoingTransferEvent.data.asset_identifier,
+          outAmount: BigInt(incomingTransferEvent.data.amount),
           outToken:
-            lastTransferEvent.type === "STXTransferEvent"
+            incomingTransferEvent.type === "STXTransferEvent"
               ? "STX"
-              : lastTransferEvent.data.asset_identifier,
+              : incomingTransferEvent.data.asset_identifier,
         },
       } satisfies InsertTransaction;
     });
