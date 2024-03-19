@@ -9,12 +9,12 @@ export const Footer = () => {
         <div className="flex items-center justify-center">
           <div className="flex items-center gap-5">
             <IconButton size="2" color="gray" variant="ghost" asChild>
-              <a href={appConfig.twitter} target="_blank" rel="noreferrer">
+              <a href={appConfig.github} target="_blank" rel="noreferrer">
                 <IconBrandGithub size={16} />
               </a>
             </IconButton>
             <IconButton size="2" color="gray" variant="ghost" asChild>
-              <a href={appConfig.github} target="_blank" rel="noreferrer">
+              <a href={appConfig.twitter} target="_blank" rel="noreferrer">
                 <IconBrandX size={16} />
               </a>
             </IconButton>

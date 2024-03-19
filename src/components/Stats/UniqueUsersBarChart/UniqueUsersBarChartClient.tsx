@@ -1,6 +1,6 @@
 "use client";
 import type { Protocol } from "@/lib/protocols";
-import { Card, Separator, Text } from "@radix-ui/themes";
+import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 import {
   Bar,
   BarChart,
@@ -50,10 +50,16 @@ export const UniqueUsersBarChartClient = ({
 
   return (
     <Card size="2" className="mt-5">
-      <Text as="div" size="2" color="gray">
+      <Text as="div" size="2" weight="medium" color="gray" highContrast>
         Unique users
       </Text>
-      <div className="mt-6 h-[300px]">
+      <Text className="mt-1" as="div" size="1" color="gray">
+        Unique addresses interacting with the indexed protocols by month
+      </Text>
+      <Inset py="current" side="bottom">
+        <Separator size="4" />
+      </Inset>
+      <div className="mt-10 h-[300px] pr-3">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}
