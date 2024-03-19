@@ -39,7 +39,9 @@ export async function POST(request: Request) {
       let protocol: Protocol;
       if (
         transactionToProcess.metadata.kind.data.contract_identifier ===
-        "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.amm-swap-pool-v1-1"
+          "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.amm-swap-pool-v1-1" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-03"
       ) {
         protocol = "alex";
       } else if (
