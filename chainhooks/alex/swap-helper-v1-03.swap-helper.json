@@ -16,7 +16,7 @@
           "authorization_header": "Bearer dev-api-token"
         }
       },
-      "start_block": 104237,
+      "start_block": 63909,
       "decode_clarity_values": false
     }
   }
