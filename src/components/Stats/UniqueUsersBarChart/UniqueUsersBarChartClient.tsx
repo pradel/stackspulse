@@ -1,4 +1,5 @@
 "use client";
+import type { Protocol } from "@/lib/protocols";
 import { Card, Separator, Text } from "@radix-ui/themes";
 import {
   Bar,
@@ -12,7 +13,7 @@ import {
 
 interface UniqueUsersBarChartProps {
   data: {
-    protocol: "alex" | "arkadiko";
+    protocol: Protocol;
     month: string;
     uniqueSenders: number;
   }[];
@@ -26,6 +27,7 @@ export const UniqueUsersBarChartClient = ({
     date: string;
     arkadiko: number;
     alex: number;
+    stackswap: number;
   }[] = [];
 
   for (const item of data) {
@@ -41,6 +43,7 @@ export const UniqueUsersBarChartClient = ({
         date: month,
         arkadiko: protocol === "arkadiko" ? uniqueSenders : 0,
         alex: protocol === "alex" ? uniqueSenders : 0,
+        stackswap: protocol === "stackswap" ? uniqueSenders : 0,
       });
     }
   }
@@ -109,6 +112,7 @@ export const UniqueUsersBarChartClient = ({
                 </div>
               )}
             />
+            <Bar dataKey="stackswap" stackId="a" className="fill-cyan-9" />
             <Bar dataKey="arkadiko" stackId="a" className="fill-iris-9" />
             <Bar dataKey="alex" stackId="a" className="fill-blue-9" />
           </BarChart>

@@ -1,4 +1,4 @@
-export const protocols = ["alex", "arkadiko"] as const;
+export const protocols = ["alex", "arkadiko", "stackswap"] as const;
 
 export type Protocol = (typeof protocols)[number];
 
@@ -19,5 +19,12 @@ export const protocolsInfo = {
       "Arkadiko is a decentralized, non-custodial liquidity protocol where users can collateralize their assets and mint a stablecoin called USDA.",
     website: "https://arkadiko.finance/",
     x: "https://twitter.com/ArkadikoFinance",
+  },
+  stackswap: {
+    name: "StackSwap",
+    description:
+      "Stackswap is a combination of DEX and token launchpad on Stacks blockchain.",
+    website: "https://app.stackswap.org/",
+    x: "https://twitter.com/Stackswap_BTC",
   },
 } as const;
