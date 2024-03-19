@@ -49,7 +49,11 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         </Button>
       </div>
 
-      <Tooltip content={`Block ${transaction.blockHeight}`}>
+      <Tooltip
+        content={`Block ${
+          transaction.blockHeight
+        } - ${transaction.timestamp.toUTCString()}`}
+      >
         <Text className="order-3 md:order-4" size="2" color="gray">
           <TimeAgo date={transaction.timestamp} /> ago
         </Text>
