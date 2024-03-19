@@ -51,7 +51,7 @@ export default async function ProtocolPage({
   const protocolActions = protocolsActions[protocol];
 
   return (
-    <Container size="2" className="px-4 py-10">
+    <Container size="2" className="px-4 pt-10">
       <div className="flex items-start gap-5">
         <Image
           className="rounded-full"

@@ -16,8 +16,8 @@ export default async function HomePage() {
   ]);
 
   return (
-    <Container size="2" className="px-4 pb-10 pt-5">
-      <div className="mt-5 grid grid-cols-2 gap-5">
+    <Container size="2" className="px-4 pt-10">
+      <div className="grid grid-cols-2 gap-5">
         <Card size="2">
           <Text as="div" size="2" color="gray">
             Total Transactions

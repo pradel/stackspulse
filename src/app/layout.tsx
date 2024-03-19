@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Layout/Footer";
 import { Header } from "@/components/Layout/Header";
 import { Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Theme appearance="dark" accentColor="orange" grayColor="sand">
           <Header />
           {children}
+          <Footer />
         </Theme>
       </body>
     </html>
