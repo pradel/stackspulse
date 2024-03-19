@@ -49,7 +49,9 @@ export async function POST(request: Request) {
         protocol = "alex";
       } else if (
         transactionToProcess.metadata.kind.data.contract_identifier ===
-        "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1"
+          "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-multi-hop-swap-v1-1"
       ) {
         protocol = "arkadiko";
       } else if (
