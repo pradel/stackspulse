@@ -38,6 +38,9 @@ async function main() {
   const files = collectJsonFiles(chainhooksDirPath);
   const chainhooks = files.map((filePath) => {
     const chainhookFile = JSON.parse(readFileSync(filePath, "utf8"));
+    const protocolName = filePath.split("/")[filePath.split("/").length - 2];
+    // Prefix the chainhook name with the protocol name
+    chainhookFile.name = `${protocolName}.${chainhookFile.name}`;
     // Replace the correct params with production values
     chainhookFile.networks.mainnet.then_that.http_post.url =
       chainhookFile.networks.mainnet.then_that.http_post.url.replace(
