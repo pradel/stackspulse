@@ -1,5 +1,6 @@
 import { db } from "@/db/db";
 import { type InsertTransaction, transactionTable } from "@/db/schema";
+import { conflictUpdateSetAllColumns } from "@/db/utils";
 import type {
   ChainhookPayload,
   ChainhookReceiptEventFTTransferEvent,
@@ -98,7 +99,10 @@ export async function POST(request: Request) {
     await db
       .insert(transactionTable)
       .values(transactionsToInsert)
-      .onConflictDoNothing();
+      .onConflictDoUpdate({
+        target: transactionTable.txId,
+        set: conflictUpdateSetAllColumns(transactionTable),
+      });
   }
 
   return Response.json({ ok: true });
