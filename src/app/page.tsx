@@ -23,7 +23,7 @@ export default async function HomePage() {
             Total Transactions
           </Text>
           <Text as="div" mt="2" size="5" weight="medium">
-            {stats.count}
+            {stats.count.toLocaleString("en-US")}
           </Text>
         </Card>
         <Card size="2">
@@ -31,7 +31,7 @@ export default async function HomePage() {
             Unique addresses
           </Text>
           <Text as="div" mt="2" size="5" weight="medium">
-            {stats.uniqueSenders}
+            {stats.uniqueSenders.toLocaleString("en-US")}
           </Text>
         </Card>
       </div>

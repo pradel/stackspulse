@@ -89,7 +89,7 @@ export default async function ProtocolPage({
             Total Transactions
           </Text>
           <Text as="div" mt="2" size="5" weight="medium">
-            {stats.count}
+            {stats.count.toLocaleString("en-US")}
           </Text>
         </Card>
         <Card size="2">
@@ -97,7 +97,7 @@ export default async function ProtocolPage({
             Unique addresses
           </Text>
           <Text as="div" mt="2" size="5" weight="medium">
-            {stats.uniqueSenders}
+            {stats.uniqueSenders.toLocaleString("en-US")}
           </Text>
         </Card>
       </div>
@@ -106,7 +106,7 @@ export default async function ProtocolPage({
         <Heading as="h2" size="3" color="gray">
           Transactions
         </Heading>
-        <div className="mt-2 flex gap-5 items-center">
+        <div className="mt-2 flex items-center gap-5">
           <Button
             size="1"
             color="gray"

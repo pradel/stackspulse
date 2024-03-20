@@ -1,5 +1,5 @@
 "use client";
-import type { Protocol } from "@/lib/protocols";
+import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 import {
   Bar,
@@ -48,13 +48,35 @@ export const UniqueUsersBarChartClient = ({
     }
   }
 
+  const categories: {
+    name: Protocol;
+    fillColor: string;
+    bgColor: string;
+  }[] = [
+    {
+      name: "stackswap",
+      fillColor: "fill-cyan-9",
+      bgColor: "bg-cyan-9",
+    },
+    {
+      name: "arkadiko",
+      fillColor: "fill-iris-9",
+      bgColor: "bg-iris-9",
+    },
+    {
+      name: "alex",
+      fillColor: "fill-blue-9",
+      bgColor: "bg-blue-9",
+    },
+  ];
+
   return (
     <Card size="2" className="mt-5">
       <Text as="div" size="2" weight="medium" color="gray" highContrast>
         Unique users
       </Text>
       <Text className="mt-1" as="div" size="1" color="gray">
-        Unique addresses interacting with the indexed protocols by month
+        Total unique addresses per month per protocol
       </Text>
       <Inset py="current" side="bottom">
         <Separator size="4" />
@@ -106,21 +128,42 @@ export const UniqueUsersBarChartClient = ({
                   </div>
                   <Separator className="my-3" size="4" />
                   <div className="space-y-2 px-4">
-                    {payload?.map((p) => (
-                      <Text as="div" key={p.dataKey} size="2" color="gray">
-                        {p.dataKey}:{" "}
-                        <Text color="gray" highContrast>
-                          {p.value}
-                        </Text>
-                      </Text>
-                    ))}
+                    {payload
+                      ?.map((p) => {
+                        const category = categories.find(
+                          (c) => c.name === p.dataKey,
+                        );
+                        if (!category) return null;
+                        return (
+                          <div
+                            key={p.dataKey}
+                            className="flex items-center gap-2"
+                          >
+                            <div
+                              className={`size-2 ${category.bgColor} rounded-full`}
+                            />
+                            <Text as="div" size="2" color="gray">
+                              {protocolsInfo[category.name].name}:{" "}
+                              <Text color="gray" highContrast>
+                                {p.value?.toLocaleString("en-US")}
+                              </Text>
+                            </Text>
+                          </div>
+                        );
+                      })
+                      .reverse()}
                   </div>
                 </div>
               )}
             />
-            <Bar dataKey="stackswap" stackId="a" className="fill-cyan-9" />
-            <Bar dataKey="arkadiko" stackId="a" className="fill-iris-9" />
-            <Bar dataKey="alex" stackId="a" className="fill-blue-9" />
+            {categories.map((info) => (
+              <Bar
+                key={info.name}
+                dataKey={info.name}
+                stackId="a"
+                className={info.fillColor}
+              />
+            ))}
           </BarChart>
         </ResponsiveContainer>
       </div>
