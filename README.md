@@ -28,7 +28,7 @@ pnpm dev
 Once the server is running you can run the predicates of your choice using chainhooks:
 
 ```bash
-chainhook predicates scan /<path-to-stackspulse>/stacksfeed/chainhooks/arkadiko/arkadiko-swap-v2-1.swap-x-for-y.json --mainnet
+chainhook predicates scan /<path-to-stackspulse>/chainhooks/arkadiko/arkadiko-swap-v2-1.swap-x-for-y.json --mainnet
 ```
 
 ## Deploy to production
