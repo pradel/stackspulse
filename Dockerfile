@@ -13,9 +13,15 @@ WORKDIR /app
 ENV NODE_ENV="production"
 
 # Install pnpm
-ARG PNPM_VERSION=8.15.2
-RUN npm install -g pnpm@$PNPM_VERSION
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
+# Optimize the node_modules production folder
+FROM base AS prod-deps
+COPY --link . .
+RUN node scripts/docker-runtime-deps.mjs
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -26,7 +32,7 @@ RUN apk update && \
 
 # Install node modules
 COPY --link package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod=false
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod=false
 
 # Copy application code
 COPY --link . .
@@ -38,21 +44,16 @@ RUN pnpm db:migrate
 # Build application
 RUN pnpm run build
 
-# Remove development dependencies
-RUN pnpm prune --prod
-
-
 # Final stage for app image
 FROM base
 WORKDIR /app
 
 # Copy built application
-# TODO optimise this to not include the node_modules folder
+COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=build /app/drizzle ./drizzle
-COPY --from=build /app/node_modules ./node_modules
 
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
