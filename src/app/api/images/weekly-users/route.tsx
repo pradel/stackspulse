@@ -8,6 +8,8 @@ import { protocolsInfo } from "@/lib/protocols";
 import { countDistinct, gt } from "drizzle-orm";
 import { ImageResponse } from "next/og";
 
+// TODO make a cached version that is refreshed every 24 hours
+export const dynamic = "force-dynamic";
 const size = {
   width: 1012,
   height: 506,
