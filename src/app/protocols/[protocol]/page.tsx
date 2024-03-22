@@ -7,7 +7,7 @@ import {
   isAction,
   protocolsActions,
 } from "@/lib/actions";
-import { isProtocol, protocolsInfo } from "@/lib/protocols";
+import { type Protocol, isProtocol, protocolsInfo } from "@/lib/protocols";
 import {
   Button,
   Card,
@@ -18,6 +18,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { IconBrandX, IconWorld } from "@tabler/icons-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import NextLink from "next/link";
 import { notFound } from "next/navigation";
@@ -31,6 +32,15 @@ export const dynamic = "force-dynamic";
 interface PageProps {
   params: { protocol: string };
   searchParams: { action?: Action };
+}
+
+export function generateMetadata({ params }: PageProps): Metadata {
+  const protocol = params.protocol as Protocol;
+
+  return {
+    title: `stackspulse - ${protocolsInfo[protocol].name}`,
+    description: `Get the latest on-chain stats for ${protocolsInfo[protocol].name}. Explore real-time feed, unique users, transactions, and more..`,
+  };
 }
 
 export default async function ProtocolPage({
