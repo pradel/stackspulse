@@ -7,9 +7,11 @@ export const env = createEnv({
     CHAINHOOKS_API_TOKEN: z.string().min(1),
   },
   client: {
+    NEXT_PUBLIC_BASE_URL: z.string().min(1),
     NEXT_PUBLIC_FATHOM_ID: z.string().optional(),
   },
   experimental__runtimeEnv: {
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
     NEXT_PUBLIC_FATHOM_ID: process.env.NEXT_PUBLIC_FATHOM_ID,
   },
 });
