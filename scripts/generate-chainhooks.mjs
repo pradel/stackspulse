@@ -1,8 +1,8 @@
-import { readFileSync, readdirSync, statSync, writeFileSync } from "fs";
-import { dirname, extname, join } from "path";
 /**
  * Bundle all the chainhooks into a single file that can be uploaded to the Hiro platform dashboard.
  */
+import { readFileSync, readdirSync, statSync, writeFileSync } from "fs";
+import { dirname, extname, join } from "path";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
@@ -35,25 +35,33 @@ const __dirname = dirname(new URL(import.meta.url).pathname);
 const chainhooksDirPath = join(__dirname, "..", "chainhooks");
 
 async function main() {
+  const filterProtocol = process.argv[2];
+
   const files = collectJsonFiles(chainhooksDirPath);
-  const chainhooks = files.map((filePath) => {
-    const chainhookFile = JSON.parse(readFileSync(filePath, "utf8"));
-    const protocolName = filePath.split("/")[filePath.split("/").length - 2];
-    // Prefix the chainhook name with the protocol name
-    chainhookFile.name = `${protocolName}.${chainhookFile.name}`;
-    // Replace the correct params with production values
-    chainhookFile.networks.mainnet.then_that.http_post.url =
-      chainhookFile.networks.mainnet.then_that.http_post.url.replace(
-        "http://localhost:3000",
-        env.NEXT_PUBLIC_BASE_URL,
-      );
-    chainhookFile.networks.mainnet.then_that.http_post.authorization_header =
-      chainhookFile.networks.mainnet.then_that.http_post.authorization_header.replace(
-        "Bearer dev-api-token",
-        `Bearer ${env.CHAINHOOKS_API_TOKEN}`,
-      );
-    return chainhookFile;
-  });
+  const chainhooks = files
+    .map((filePath) => {
+      const chainhookFile = JSON.parse(readFileSync(filePath, "utf8"));
+      const protocolName = filePath.split("/")[filePath.split("/").length - 2];
+      if (filterProtocol && protocolName !== filterProtocol) {
+        return;
+      }
+      // Prefix the chainhook name with the protocol name
+      chainhookFile.name = `${protocolName}.${chainhookFile.name}`;
+      // Replace the correct params with production values
+      chainhookFile.networks.mainnet.then_that.http_post.url =
+        chainhookFile.networks.mainnet.then_that.http_post.url.replace(
+          "http://localhost:3000",
+          env.NEXT_PUBLIC_BASE_URL,
+        );
+      chainhookFile.networks.mainnet.then_that.http_post.authorization_header =
+        chainhookFile.networks.mainnet.then_that.http_post.authorization_header.replace(
+          "Bearer dev-api-token",
+          `Bearer ${env.CHAINHOOKS_API_TOKEN}`,
+        );
+      return chainhookFile;
+    })
+    .filter(Boolean);
+
   const chainhooksString = JSON.stringify(chainhooks, null, 2);
   writeFileSync(
     join(__dirname, "..", "chainhooks.production.json"),
