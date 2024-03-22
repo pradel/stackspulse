@@ -37,6 +37,7 @@
     "sharp": "0.33.2",
     "tailwind-merge": "2.2.2",
     "tailwindcss-animate": "1.0.7",
+    "twitter-api-v2": "1.16.1",
     "zod": "3.22.4"
   },
   "devDependencies": {
