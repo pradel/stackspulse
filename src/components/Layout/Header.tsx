@@ -15,13 +15,17 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
+import { IconLogo } from "../icons/IconLogo";
 
 export const Header = () => {
   return (
     <header>
-      <Container size="2" className="px-4 py-5">
+      <Container size="2" className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-5">
+            <NextLink href="/">
+              <IconLogo height={22} />
+            </NextLink>
             <Link color="gray" size="2" asChild>
               <NextLink href="/">Home</NextLink>
             </Link>
