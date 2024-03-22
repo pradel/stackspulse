@@ -9,31 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-interface Color {
-  fillColor: string;
-  bgColor: string;
-}
-
-const themeColors: {
-  [key: string]: Color;
-} = {
-  orange: {
-    fillColor: "fill-orange-9",
-    bgColor: "bg-orange-9",
-  },
-};
-
-const constructCategoryColors = (
-  categories: string[],
-  colors: string[],
-): Map<string, Color> => {
-  const categoryColors = new Map<string, Color>();
-  categories.forEach((category, idx) => {
-    categoryColors.set(category, themeColors[colors[idx]]);
-  });
-  return categoryColors;
-};
+import { constructCategoryColors } from "./utils";
 
 interface BarChartProps {
   className?: string;
