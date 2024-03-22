@@ -1,14 +1,11 @@
 import { getWidthsFromValues } from "@/components/ui/BarList";
-import { db } from "@/db/db";
-import { transactionTable } from "@/db/schema";
 import { env } from "@/env";
 import { cn } from "@/lib/cn";
-import { protocolsInfo } from "@/lib/protocols";
-import { countDistinct, gt } from "drizzle-orm";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 const size = {
@@ -18,13 +15,20 @@ const size = {
 
 const schema = z.object({
   title: z.string().min(1).max(50),
+  data: z.array(
+    z.object({
+      name: z.string().min(1).max(50),
+      value: z.number().int().min(0),
+    }),
+  ),
 });
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
-  console.log(url.searchParams);
+  const searchParamsData = JSON.parse(url.searchParams.get("data") || "[]");
   const params = schema.safeParse({
     title: url.searchParams.get("title"),
+    data: searchParamsData,
   });
 
   if (!params.success) {
@@ -33,24 +37,9 @@ export async function GET(req: NextRequest) {
       { status: 400 },
     );
   }
-  // Last 7 days
-  const dateBegin = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
-  const query = db
-    .select({
-      protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender),
-    })
-    .from(transactionTable)
-    .where(gt(transactionTable.timestamp, dateBegin))
-    .groupBy(transactionTable.protocol);
-  const stats = await query;
-
-  const data = stats.map((stat) => ({
-    name: protocolsInfo[stat.protocol].name,
-    value: stat.uniqueSenders,
-  }));
-
+  const title = params.data.title;
+  const data = params.data.data;
   const widths = getWidthsFromValues(data.map((item) => item.value));
   const orange = "#f76b15";
   const rowHeight = "h-[80px]";
@@ -74,7 +63,7 @@ export async function GET(req: NextRequest) {
       }}
     >
       <div tw="flex flex-col justify-between w-full h-full">
-        <div tw="flex justify-end -mt-6">{params.data.title}</div>
+        <div tw="flex justify-end -mt-6">{title}</div>
 
         <div tw="flex justify-between" style={{ gap: "40px" }}>
           <div tw="flex flex-1 flex-col" style={{ gap: rowGap }}>
