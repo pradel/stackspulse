@@ -64,6 +64,11 @@ export async function POST(request: Request) {
         "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stackswap-swap-v5k"
       ) {
         protocol = "stackswap";
+      } else if (
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+        "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router"
+      ) {
+        protocol = "velar";
       } else {
         throw new Error("Unknown protocol");
       }
