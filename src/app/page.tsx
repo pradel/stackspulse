@@ -24,7 +24,16 @@ export default async function HomePage() {
 
   return (
     <Container size="2" className="px-4 pt-10">
-      <div className="grid grid-cols-2 gap-5">
+      <div>
+        <Heading as="h1" size="4">
+          stackpulse
+        </Heading>
+        <Heading as="h2" size="2" color="gray" weight="regular">
+          Real-time on-chain Stats for Stacks DeFi.
+        </Heading>
+      </div>
+
+      <div className="mt-10 grid grid-cols-2 gap-5">
         <Card size="2">
           <Text as="div" size="2" color="gray">
             Total Transactions
