@@ -1,3 +1,4 @@
+import Fathom from "@/components/Layout/Fathom";
 import { Footer } from "@/components/Layout/Footer";
 import { Header } from "@/components/Layout/Header";
 import { Theme } from "@radix-ui/themes";
@@ -28,6 +29,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${font.variable} font-sans antialiased`}
       >
+        <Fathom />
         <Theme appearance="dark" accentColor="orange" grayColor="sand">
           <Header />
           {children}
