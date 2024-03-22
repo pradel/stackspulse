@@ -1,4 +1,10 @@
-export const protocols = ["alex", "arkadiko", "stackswap", "velar"] as const;
+export const protocols = [
+  "alex",
+  "arkadiko",
+  "stackswap",
+  "velar",
+  "bitflow",
+] as const;
 
 export type Protocol = (typeof protocols)[number];
 
@@ -19,6 +25,12 @@ export const protocolsInfo = {
       "Arkadiko is a decentralized, non-custodial liquidity protocol where users can collateralize their assets and mint a stablecoin called USDA.",
     website: "https://arkadiko.finance/",
     x: "https://twitter.com/ArkadikoFinance",
+  },
+  bitflow: {
+    name: "Bitflow",
+    description: "The Decentralized Exchange for Bitcoiners.",
+    website: "https://www.bitflow.finance/",
+    x: "https://twitter.com/Bitflow_Finance",
   },
   stackswap: {
     name: "StackSwap",
