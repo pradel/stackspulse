@@ -50,7 +50,7 @@ export const BarList = ({ className, data }: BarListProps) => {
               transition: "all 1s",
             }}
           >
-            <div className="absolute max-w-full flex left-2">
+            <div className="absolute left-2 flex max-w-full">
               <Text size="2" asChild>
                 <Link href={item.href}>{item.name}</Link>
               </Text>
@@ -58,7 +58,7 @@ export const BarList = ({ className, data }: BarListProps) => {
           </div>
         ))}
       </div>
-      <div className="text-right min-w-min">
+      <div className="min-w-min text-right">
         {data.map((item, idx) => (
           <div
             key={item.name}
