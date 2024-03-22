@@ -141,7 +141,11 @@ export const getTransactionsStats = async ({
   return stats;
 };
 
-export const getTransactionsUniqueSendersByMonth = async () => {
+export const getTransactionsUniqueSendersByMonth = async ({
+  protocol,
+}: {
+  protocol: Protocol;
+}) => {
   const query = db
     .select({
       protocol: transactionTable.protocol,
@@ -149,7 +153,8 @@ export const getTransactionsUniqueSendersByMonth = async () => {
       uniqueSenders: countDistinct(transactionTable.sender),
     })
     .from(transactionTable)
-    .groupBy(transactionTable.protocol, sql`month`)
+    .where(eq(transactionTable.protocol, protocol))
+    .groupBy(sql`month`)
     .orderBy(asc(transactionTable.timestamp));
 
   const stats = await query;

@@ -1,3 +1,4 @@
+import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
 import {
@@ -20,7 +21,7 @@ import { IconBrandX, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { notFound } from "next/navigation";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 // TODO
@@ -101,6 +102,10 @@ export default async function ProtocolPage({
           </Text>
         </Card>
       </div>
+
+      <Suspense>
+        <UniqueUsersBarChart protocol={protocol} />
+      </Suspense>
 
       <div className="mt-10">
         <Heading as="h2" size="3" color="gray">
