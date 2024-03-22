@@ -1,7 +1,14 @@
-import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
+import { TopProtocolsBarList } from "@/components/Stats/TopProtocolsBarList";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
-import { Card, Container, Heading, Separator, Text } from "@radix-ui/themes";
+import {
+  Card,
+  Container,
+  Heading,
+  Inset,
+  Separator,
+  Text,
+} from "@radix-ui/themes";
 import { Fragment, Suspense } from "react";
 
 export const dynamic = "force-dynamic";
@@ -37,7 +44,7 @@ export default async function HomePage() {
       </div>
 
       <Suspense>
-        <UniqueUsersBarChart />
+        <TopProtocolsBarList />
       </Suspense>
 
       <div className="mt-10">

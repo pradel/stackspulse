@@ -5,8 +5,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-// TODO fly health check https://fly.io/docs/reference/configuration/#http_service-checks
-
 const font = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
