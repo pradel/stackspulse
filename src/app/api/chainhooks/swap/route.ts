@@ -61,7 +61,9 @@ export async function POST(request: Request) {
         protocol = "arkadiko";
       } else if (
         transactionToProcess.metadata.kind.data.contract_identifier ===
-        "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-stx-ststx-v-1-2"
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-stx-ststx-v-1-2" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-susdt-v-1-2"
       ) {
         protocol = "bitflow";
       } else if (
