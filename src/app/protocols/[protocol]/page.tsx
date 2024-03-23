@@ -73,7 +73,7 @@ export default async function ProtocolPage({
           priority
         />
         <div>
-          <Heading as="h1" size="5" color="gray">
+          <Heading as="h1" size="5" color="gray" highContrast>
             {protocolInfo.name}
           </Heading>
           <Text className="mt-1" as="p" size="2" color="gray">
@@ -118,7 +118,7 @@ export default async function ProtocolPage({
       </Suspense>
 
       <div className="mt-10">
-        <Heading as="h2" size="3" color="gray">
+        <Heading as="h2" size="3" color="gray" highContrast>
           Transactions
         </Heading>
         <div className="mt-2 flex items-center gap-5">
