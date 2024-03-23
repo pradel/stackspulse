@@ -51,6 +51,7 @@ export const protocolsActions: {
 } = {
   alex: ["swap"],
   arkadiko: ["swap", "add-liquidity", "remove-liquidity"],
+  bitflow: ["swap"],
   stackswap: ["swap"],
   velar: ["swap"],
 } as const;
