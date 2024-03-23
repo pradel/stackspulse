@@ -42,17 +42,17 @@ export async function GET(req: NextRequest) {
   const data = params.data.data;
   const widths = getWidthsFromValues(data.map((item) => item.value));
   const orange = "#f76b15";
-  const rowHeight = "h-[80px]";
+  const rowHeight = "h-[50px]";
   const rowGap = "24px";
 
   return new ImageResponse(
     <div
       style={{
-        fontSize: 40,
+        fontSize: 34,
         width: "100%",
         height: "100%",
         display: "flex",
-        padding: "60px",
+        padding: "40px 60px",
         alignItems: "flex-start",
         justifyContent: "flex-start",
         background: `url("${env.NEXT_PUBLIC_BASE_URL}/api/weekly-bg.png")`,
@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
       }}
     >
       <div tw="flex flex-col justify-between w-full h-full">
-        <div tw="flex justify-end -mt-6">{title}</div>
+        <div tw="flex justify-end">{title}</div>
 
         <div tw="flex justify-between" style={{ gap: "40px" }}>
           <div tw="flex flex-1 flex-col" style={{ gap: rowGap }}>
