@@ -54,6 +54,7 @@ COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=build /app/drizzle ./drizzle
+COPY --from=build /app/.env.vault ./.env.vault
 
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
@@ -66,4 +67,4 @@ ENV DATABASE_PATH="/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD pnpm db:migrate && node server.js
+CMD pnpm db:migrate && pnpm dotenvx run -- node server.js

@@ -5,6 +5,11 @@ export const env = createEnv({
   server: {
     DATABASE_PATH: z.string().min(1),
     CHAINHOOKS_API_TOKEN: z.string().min(1),
+    CRON_API_TOKEN: z.string().min(1),
+    TWITTER_API_KEY: z.string().min(1),
+    TWITTER_API_SECRET_KEY: z.string().min(1),
+    TWITTER_ACCESS_TOKEN: z.string().min(1),
+    TWITTER_ACCESS_TOKEN_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_BASE_URL: z.string().min(1),

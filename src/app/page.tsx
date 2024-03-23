@@ -50,7 +50,7 @@ export default async function HomePage() {
       </Suspense>
 
       <div className="mt-10">
-        <Heading as="h2" size="3" color="gray">
+        <Heading as="h2" size="3" color="gray" highContrast>
           Transactions
         </Heading>
         <div className="mt-4 md:space-y-4">

@@ -4,7 +4,7 @@ import { Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { themeColors } from "./utils";
 
-const getWidthsFromValues = (dataValues: number[]) => {
+export const getWidthsFromValues = (dataValues: number[]) => {
   let maxValue = Number.NEGATIVE_INFINITY;
   dataValues.forEach((value) => {
     maxValue = Math.max(maxValue, value);
