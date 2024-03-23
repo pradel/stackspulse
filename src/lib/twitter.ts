@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { TwitterApi } from "twitter-api-v2";
+import { EUploadMimeType, TwitterApi } from "twitter-api-v2";
 
 const twitterClient = new TwitterApi({
   appKey: env.TWITTER_API_KEY,
@@ -25,7 +25,7 @@ export const sendTweet = async ({
         images.map(async (image) => {
           const img = await fetch(image).then((res) => res.arrayBuffer());
           return twitterClient.v1.uploadMedia(Buffer.from(img), {
-            type: "png",
+            mimeType: EUploadMimeType.Png,
           });
         }),
       )
