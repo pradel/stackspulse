@@ -20,11 +20,13 @@ const getData = async () => {
 export const TopProtocolsBarList = async () => {
   const stats = await getData();
 
-  const formattedData = stats.map((d) => ({
-    name: protocolsInfo[d.protocol].name,
-    value: d.uniqueSenders,
-    href: `/protocols/${d.protocol}`,
-  }));
+  const formattedData = stats
+    .map((d) => ({
+      name: protocolsInfo[d.protocol].name,
+      value: d.uniqueSenders,
+      href: `/protocols/${d.protocol}`,
+    }))
+    .sort((a, b) => b.value - a.value);
 
   return <TopProtocolsBarListClient data={formattedData} />;
 };

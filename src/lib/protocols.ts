@@ -1,4 +1,10 @@
-export const protocols = ["alex", "arkadiko", "stackswap"] as const;
+export const protocols = [
+  "alex",
+  "arkadiko",
+  "stackswap",
+  "velar",
+  "bitflow",
+] as const;
 
 export type Protocol = (typeof protocols)[number];
 
@@ -20,11 +26,23 @@ export const protocolsInfo = {
     website: "https://arkadiko.finance/",
     x: "https://twitter.com/ArkadikoFinance",
   },
+  bitflow: {
+    name: "Bitflow",
+    description: "The Decentralized Exchange for Bitcoiners.",
+    website: "https://www.bitflow.finance/",
+    x: "https://twitter.com/Bitflow_Finance",
+  },
   stackswap: {
     name: "StackSwap",
     description:
       "Stackswap is a combination of DEX and token launchpad on Stacks blockchain.",
     website: "https://app.stackswap.org/",
     x: "https://twitter.com/Stackswap_BTC",
+  },
+  velar: {
+    name: "Velar",
+    description: "DeFi Liquidity Protocol on Bitcoin.",
+    website: "https://www.velar.co/",
+    x: "https://twitter.com/VelarBTC",
   },
 } as const;

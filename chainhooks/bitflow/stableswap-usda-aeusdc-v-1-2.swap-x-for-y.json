@@ -1,0 +1,23 @@
+{
+  "chain": "stacks",
+  "uuid": "1",
+  "name": "stableswap-usda-aeusdc-v-1-2.swap-x-for-y",
+  "version": 1,
+  "networks": {
+    "mainnet": {
+      "if_this": {
+        "scope": "contract_call",
+        "contract_identifier": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-2",
+        "method": "swap-x-for-y"
+      },
+      "then_that": {
+        "http_post": {
+          "url": "http://localhost:3000/api/chainhooks/swap",
+          "authorization_header": "Bearer dev-api-token"
+        }
+      },
+      "start_block": 143388,
+      "decode_clarity_values": false
+    }
+  }
+}

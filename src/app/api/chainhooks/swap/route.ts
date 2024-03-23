@@ -61,9 +61,27 @@ export async function POST(request: Request) {
         protocol = "arkadiko";
       } else if (
         transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-stx-ststx-v-1-2" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-susdt-v-1-2" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-aeusdc-susdt-v-1-2" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-2" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-abtc-xbtc-v-1-2"
+      ) {
+        protocol = "bitflow";
+      } else if (
+        transactionToProcess.metadata.kind.data.contract_identifier ===
         "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stackswap-swap-v5k"
       ) {
         protocol = "stackswap";
+      } else if (
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+        "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router"
+      ) {
+        protocol = "velar";
       } else {
         throw new Error("Unknown protocol");
       }
