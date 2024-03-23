@@ -53,6 +53,14 @@ fly deploy --remote-only
 
 Finally upload the chainhooks predicates file `chainhooks.production.json` to the [Hiro platform](https://platform.hiro.so/) for your project.
 
+### Add new production environment variables
+
+Add the variable to the `.env.production.local` file and encrypt it using the `dotenvx` command:
+
+```bash
+pnpm dotenvx encrypt --env-file .env.production.local
+```
+
 ### Download the production database locally
 
 ```bash
