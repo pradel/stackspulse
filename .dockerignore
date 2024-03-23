@@ -47,6 +47,7 @@ next-env.d.ts
 # Local Database
 
 sqlite.db
+sqlite.db-\*
 
 # Project files
 
