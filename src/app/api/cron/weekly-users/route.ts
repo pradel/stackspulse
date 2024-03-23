@@ -34,7 +34,7 @@ export async function GET() {
     env.NEXT_PUBLIC_BASE_URL
   }/api/images/weekly-users?${params.toString()}`;
 
-  let message = `📈 Last 7 days unique users:\n`;
+  let message = `📈 Last 7 days unique users:\n\n`;
   for (const stat of stats) {
     message += `\n- @${protocolsInfo[stat.protocol].x.replace(
       "https://twitter.com/",
@@ -42,7 +42,7 @@ export async function GET() {
     )}: ${stat.uniqueSenders.toLocaleString("en-US")} users`;
   }
 
-  await sendTweet({ message, images: [imageUrl] });
+  const tweetId = await sendTweet({ message, images: [imageUrl] });
 
-  return Response.json({ ok: true, imageUrl });
+  return Response.json({ ok: true, tweetId });
 }

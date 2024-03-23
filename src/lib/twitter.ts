@@ -35,5 +35,6 @@ export const sendTweet = async ({
     text: message,
     media: { media_ids: mediaIds },
   });
-  console.log(`Tweet sent: id ${data.data.id}`);
+
+  return data.data.id;
 };
