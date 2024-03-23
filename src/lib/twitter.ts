@@ -8,11 +8,31 @@ const twitterClient = new TwitterApi({
   accessSecret: env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-export const sendTweet = async (tweet: string) => {
+export const sendTweet = async ({
+  message,
+  images,
+}: {
+  message: string;
+  images?: string[];
+}) => {
   if (env.TWITTER_API_KEY === "dev") {
-    console.log("Debug Send Tweet: ", tweet);
+    console.log("Debug Send Tweet:\n", message);
     return;
   }
 
-  await twitterClient.v2.tweet(tweet);
+  const mediaIds = images
+    ? await Promise.all(
+        images.map(async (image) => {
+          const img = await fetch(image).then((res) => res.arrayBuffer());
+          return twitterClient.v1.uploadMedia(Buffer.from(img), {
+            type: "png",
+          });
+        }),
+      )
+    : [];
+
+  await twitterClient.v2.tweet({
+    text: message,
+    media: { media_ids: mediaIds },
+  });
 };

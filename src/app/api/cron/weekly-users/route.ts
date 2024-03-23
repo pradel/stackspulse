@@ -2,6 +2,7 @@ import { db } from "@/db/db";
 import { transactionTable } from "@/db/schema";
 import { env } from "@/env";
 import { protocolsInfo } from "@/lib/protocols";
+import { sendTweet } from "@/lib/twitter";
 import { countDistinct, gt } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +33,16 @@ export async function GET() {
   const imageUrl = `${
     env.NEXT_PUBLIC_BASE_URL
   }/api/images/weekly-users?${params.toString()}`;
+
+  let message = `📈 Last 7 days unique users:\n`;
+  for (const stat of stats) {
+    message += `\n- @${protocolsInfo[stat.protocol].x.replace(
+      "https://twitter.com/",
+      "",
+    )}: ${stat.uniqueSenders.toLocaleString("en-US")} users`;
+  }
+
+  await sendTweet({ message, images: [imageUrl] });
 
   return Response.json({ ok: true, imageUrl });
 }
