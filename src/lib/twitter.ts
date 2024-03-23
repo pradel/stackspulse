@@ -31,8 +31,9 @@ export const sendTweet = async ({
       )
     : [];
 
-  await twitterClient.v2.tweet({
+  const data = await twitterClient.v2.tweet({
     text: message,
     media: { media_ids: mediaIds },
   });
+  console.log(`Tweet sent: id ${data.data.id}`);
 };

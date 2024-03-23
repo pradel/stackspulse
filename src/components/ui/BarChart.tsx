@@ -68,7 +68,7 @@ export const BarChart = ({
           <Tooltip
             cursor={{ fill: "var(--gray-11)", opacity: "0.10" }}
             content={({ label, payload }) => (
-              <div className="min-w-[150px] rounded-2 bg-[var(--color-page-background)] py-3">
+              <div className="min-w-[150px] rounded-2 bg-[var(--color-background)] py-3">
                 <div className="px-4">
                   <Text as="div" size="2" weight="medium">
                     {label}
