@@ -3,7 +3,7 @@ import { type InsertTransaction, transactionTable } from "@/db/schema";
 import { conflictUpdateSetAllColumns } from "@/db/utils";
 import type {
   ChainhookPayload,
-  ChainhookReceiptEventFTMintEvent,
+  ChainhookReceiptEventFTBurnEvent,
   ChainhookReceiptEventSTXTransferEvent,
 } from "@/lib/chainhooks";
 import { getOrInsertToken } from "@/lib/currencies";
@@ -25,16 +25,16 @@ export async function POST(request: Request) {
             event,
           ): event is
             | ChainhookReceiptEventSTXTransferEvent
-            | ChainhookReceiptEventFTMintEvent =>
-            event.type === "STXTransferEvent" || event.type === "FTMintEvent",
+            | ChainhookReceiptEventFTBurnEvent =>
+            event.type === "STXTransferEvent" || event.type === "FTBurnEvent",
         );
       const stxTransferEvent = transferEvents.filter(
         (event) =>
-          event.type === "STXTransferEvent" && event.data.sender === sender,
+          event.type === "STXTransferEvent" && event.data.recipient === sender,
       )[0];
-      const stStxMintEvent = transferEvents.filter(
-        (event): event is ChainhookReceiptEventFTMintEvent =>
-          event.type === "FTMintEvent" && event.data.recipient === sender,
+      const stStxBurnEvent = transferEvents.filter(
+        (event): event is ChainhookReceiptEventFTBurnEvent =>
+          event.type === "FTBurnEvent",
       )[0];
 
       return {
@@ -43,12 +43,12 @@ export async function POST(request: Request) {
         blockHeight: BigInt(data.apply[0].block_identifier.index),
         timestamp: new Date(data.apply[0].timestamp * 1000),
         sender,
-        action: "stackingdao-deposit",
+        action: "stackingdao-withdraw",
         data: {
-          outAmount: BigInt(stxTransferEvent.data.amount),
-          outToken: "STX",
-          inAmount: BigInt(stStxMintEvent.data.amount),
-          inToken: stStxMintEvent.data.asset_identifier,
+          inAmount: BigInt(stxTransferEvent.data.amount),
+          inToken: "STX",
+          outAmount: BigInt(stStxBurnEvent.data.amount),
+          outToken: stStxBurnEvent.data.asset_identifier,
         },
       } satisfies InsertTransaction;
     });

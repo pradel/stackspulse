@@ -6,7 +6,7 @@ import Link from "next/link";
 import { TimeAgo } from "../Shared/TimeAgo";
 import { TransactionActionAddLiquidity } from "./Action/AddLiquidity";
 import { TransactionActionRemoveLiquidity } from "./Action/RemoveLiquidity";
-import { TransactionActionStackingDAODeposit } from "./Action/StackingDAODeposit";
+import { TransactionActionStackingDAO } from "./Action/StackingDAO";
 import { TransactionActionSwap } from "./Action/Swap";
 
 interface TransactionRowProps {
@@ -87,8 +87,9 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         {transaction.action === "remove-liquidity" ? (
           <TransactionActionRemoveLiquidity transaction={transaction} />
         ) : null}
-        {transaction.action === "stackingdao-deposit" ? (
-          <TransactionActionStackingDAODeposit transaction={transaction} />
+        {transaction.action === "stackingdao-deposit" ||
+        transaction.action === "stackingdao-withdraw" ? (
+          <TransactionActionStackingDAO transaction={transaction} />
         ) : null}
       </Text>
     </div>
