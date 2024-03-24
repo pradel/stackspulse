@@ -61,21 +61,23 @@ export type SelectTransactionActionRemoveLiquidityTyped = SelectTransaction & {
 /**
  * StackingDAO
  */
-export type SelectTransactionActionStackingDAODeposit = SelectTransaction & {
-  action: "stackingdao-deposit";
-  data: ActionDataStackingDAODeposit;
-};
-export type SelectTransactionActionStackingDAOWithdraw = SelectTransaction & {
-  action: "stackingdao-withdraw";
-  data: ActionDataStackingDAOWithdraw;
-};
+export type SelectTransactionActionStackingDAODepositTyped =
+  SelectTransaction & {
+    action: "stackingdao-deposit";
+    data: ActionDataStackingDAODeposit;
+  };
+export type SelectTransactionActionStackingDAOWithdrawTyped =
+  SelectTransaction & {
+    action: "stackingdao-withdraw";
+    data: ActionDataStackingDAOWithdraw;
+  };
 
 export type SelectTransactionTyped =
   | SelectTransactionActionSwapTyped
   | SelectTransactionActionAddLiquidityTyped
   | SelectTransactionActionRemoveLiquidityTyped
-  | SelectTransactionActionStackingDAODeposit
-  | SelectTransactionActionStackingDAOWithdraw;
+  | SelectTransactionActionStackingDAODepositTyped
+  | SelectTransactionActionStackingDAOWithdrawTyped;
 
 export const tokenTable = sqliteTable("token", {
   /**

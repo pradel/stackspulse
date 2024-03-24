@@ -15,8 +15,8 @@ import {
   type SelectToken,
   type SelectTransactionActionAddLiquidityTyped,
   type SelectTransactionActionRemoveLiquidityTyped,
-  type SelectTransactionActionStackingDAODeposit,
-  type SelectTransactionActionStackingDAOWithdraw,
+  type SelectTransactionActionStackingDAODepositTyped,
+  type SelectTransactionActionStackingDAOWithdrawTyped,
   type SelectTransactionActionSwapTyped,
   type SelectTransactionTyped,
   tokenTable,
@@ -38,6 +38,18 @@ export type SelectTransactionActionRemoveLiquidity =
   SelectTransactionActionRemoveLiquidityTyped & {
     tokenX: SelectToken;
     tokenY: SelectToken;
+  };
+
+export type SelectTransactionActionStackingDAODeposit =
+  SelectTransactionActionStackingDAODepositTyped & {
+    inToken: SelectToken;
+    outToken: SelectToken;
+  };
+
+export type SelectTransactionActionStackingDAOWithdraw =
+  SelectTransactionActionStackingDAOWithdrawTyped & {
+    inToken: SelectToken;
+    outToken: SelectToken;
   };
 
 export type SelectTransactionAction =
@@ -78,6 +90,10 @@ export const getTransactions = async ({
       tokenIds.push(transaction.data.tokenX, transaction.data.tokenY);
     } else if (transaction.action === "remove-liquidity") {
       tokenIds.push(transaction.data.tokenX, transaction.data.tokenY);
+    } else if (transaction.action === "stackingdao-deposit") {
+      tokenIds.push(transaction.data.inToken, transaction.data.outToken);
+    } else if (transaction.action === "stackingdao-withdraw") {
+      tokenIds.push(transaction.data.inToken, transaction.data.outToken);
     }
   });
   const uniqueTokenIds = Array.from(new Set([...tokenIds]));
@@ -120,10 +136,14 @@ export const getTransactions = async ({
     } else if (transaction.action === "stackingdao-deposit") {
       return {
         ...transaction,
+        inToken: tokenMap[transaction.data.inToken],
+        outToken: tokenMap[transaction.data.outToken],
       };
     } else if (transaction.action === "stackingdao-withdraw") {
       return {
         ...transaction,
+        inToken: tokenMap[transaction.data.inToken],
+        outToken: tokenMap[transaction.data.outToken],
       };
     }
     return transaction;

@@ -38,13 +38,21 @@ export interface ActionDataRemoveLiquidity {
  */
 
 export interface ActionDataStackingDAODeposit {
-  amountSTX: string;
-  amountStSTX: string;
+  // in always STX
+  outAmount: bigint;
+  outToken: string;
+  // out always stSTX
+  inAmount: bigint;
+  inToken: string;
 }
 
 export interface ActionDataStackingDAOWithdraw {
-  amountSTX: string;
-  amountStSTX: string;
+  // out always stSTX
+  outAmount: bigint;
+  outToken: string;
+  // in always STX
+  inAmount: bigint;
+  inToken: string;
 }
 
 export type ActionData =

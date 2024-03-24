@@ -53,6 +53,7 @@ export interface ChainhookPayload {
 type ChainhookReceiptEvent =
   | ChainhookReceiptEventSTXTransferEvent
   | ChainhookReceiptEventFTTransferEvent
+  | ChainhookReceiptEventFTMintEvent
   | ChainhookReceiptEventSmartContractEvent;
 
 export interface ChainhookReceiptEventSTXTransferEvent {
@@ -78,6 +79,18 @@ export interface ChainhookReceiptEventFTTransferEvent {
     index: number;
   };
   type: "FTTransferEvent";
+}
+
+export interface ChainhookReceiptEventFTMintEvent {
+  data: {
+    amount: string;
+    asset_identifier: string;
+    recipient: string;
+  };
+  position: {
+    index: number;
+  };
+  type: "FTMintEvent";
 }
 
 export interface ChainhookReceiptEventSmartContractEvent {
