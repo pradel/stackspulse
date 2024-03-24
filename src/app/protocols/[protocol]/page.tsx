@@ -7,7 +7,7 @@ import {
   isAction,
   protocolsActions,
 } from "@/lib/actions";
-import { type Protocol, isProtocol, protocolsInfo } from "@/lib/protocols";
+import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import {
   Button,
   Card,
@@ -35,7 +35,10 @@ interface PageProps {
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const protocol = params.protocol as Protocol;
+  const protocol = params.protocol;
+  if (!isProtocol(protocol)) {
+    notFound();
+  }
 
   return {
     title: `stackspulse - ${protocolsInfo[protocol].name}`,
