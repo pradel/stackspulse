@@ -15,6 +15,8 @@ import {
   type SelectToken,
   type SelectTransactionActionAddLiquidityTyped,
   type SelectTransactionActionRemoveLiquidityTyped,
+  type SelectTransactionActionStackingDAODeposit,
+  type SelectTransactionActionStackingDAOWithdraw,
   type SelectTransactionActionSwapTyped,
   type SelectTransactionTyped,
   tokenTable,
@@ -41,7 +43,9 @@ export type SelectTransactionActionRemoveLiquidity =
 export type SelectTransactionAction =
   | SelectTransactionActionSwap
   | SelectTransactionActionAddLiquidity
-  | SelectTransactionActionRemoveLiquidity;
+  | SelectTransactionActionRemoveLiquidity
+  | SelectTransactionActionStackingDAODeposit
+  | SelectTransactionActionStackingDAOWithdraw;
 
 export const getTransactions = async ({
   protocol,
@@ -112,6 +116,14 @@ export const getTransactions = async ({
         ...transaction,
         tokenX: tokenMap[transaction.data.tokenX],
         tokenY: tokenMap[transaction.data.tokenY],
+      };
+    } else if (transaction.action === "stackingdao-deposit") {
+      return {
+        ...transaction,
+      };
+    } else if (transaction.action === "stackingdao-withdraw") {
+      return {
+        ...transaction,
       };
     }
     return transaction;
