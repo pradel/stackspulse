@@ -4,6 +4,7 @@ export const protocols = [
   "stackswap",
   "velar",
   "bitflow",
+  "stackingdao",
 ] as const;
 
 export type Protocol = (typeof protocols)[number];
@@ -31,6 +32,12 @@ export const protocolsInfo = {
     description: "The Decentralized Exchange for Bitcoiners.",
     website: "https://www.bitflow.finance/",
     x: "https://twitter.com/Bitflow_Finance",
+  },
+  stackingdao: {
+    name: "StackingDAO",
+    description: "Liquid stacking on Stacks.",
+    website: "https://www.stackingdao.com/",
+    x: "https://twitter.com/StackingDao",
   },
   stackswap: {
     name: "StackSwap",

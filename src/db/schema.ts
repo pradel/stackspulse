@@ -3,6 +3,8 @@ import type {
   ActionData,
   ActionDataAddLiquidity,
   ActionDataRemoveLiquidity,
+  ActionDataStackingDAODeposit,
+  ActionDataStackingDAOWithdraw,
   ActionDataSwap,
 } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
@@ -55,10 +57,27 @@ export type SelectTransactionActionRemoveLiquidityTyped = SelectTransaction & {
   action: "remove-liquidity";
   data: ActionDataRemoveLiquidity;
 };
+
+/**
+ * StackingDAO
+ */
+export type SelectTransactionActionStackingDAODepositTyped =
+  SelectTransaction & {
+    action: "stackingdao-deposit";
+    data: ActionDataStackingDAODeposit;
+  };
+export type SelectTransactionActionStackingDAOWithdrawTyped =
+  SelectTransaction & {
+    action: "stackingdao-withdraw";
+    data: ActionDataStackingDAOWithdraw;
+  };
+
 export type SelectTransactionTyped =
   | SelectTransactionActionSwapTyped
   | SelectTransactionActionAddLiquidityTyped
-  | SelectTransactionActionRemoveLiquidityTyped;
+  | SelectTransactionActionRemoveLiquidityTyped
+  | SelectTransactionActionStackingDAODepositTyped
+  | SelectTransactionActionStackingDAOWithdrawTyped;
 
 export const tokenTable = sqliteTable("token", {
   /**

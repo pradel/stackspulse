@@ -1,7 +1,15 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import type { Protocol } from "./protocols";
 
-export const actions = ["swap", "add-liquidity", "remove-liquidity"] as const;
+export const actions = [
+  // common
+  "swap",
+  "add-liquidity",
+  "remove-liquidity",
+  // StackingDAO
+  "stackingdao-deposit",
+  "stackingdao-withdraw",
+] as const;
 
 export type Action = (typeof actions)[number];
 
@@ -25,10 +33,34 @@ export interface ActionDataRemoveLiquidity {
   tokenY: string;
 }
 
+/**
+ * StackingDAO
+ */
+
+export interface ActionDataStackingDAODeposit {
+  // in always STX
+  outAmount: bigint;
+  outToken: string;
+  // out always stSTX
+  inAmount: bigint;
+  inToken: string;
+}
+
+export interface ActionDataStackingDAOWithdraw {
+  // out always stSTX
+  outAmount: bigint;
+  outToken: string;
+  // in always STX
+  inAmount: bigint;
+  inToken: string;
+}
+
 export type ActionData =
   | ActionDataSwap
   | ActionDataAddLiquidity
-  | ActionDataRemoveLiquidity;
+  | ActionDataRemoveLiquidity
+  | ActionDataStackingDAODeposit
+  | ActionDataStackingDAOWithdraw;
 
 export const actionInfo: {
   [key in Action]: { label: string; icon?: any };
@@ -44,6 +76,15 @@ export const actionInfo: {
     label: "Liquidity",
     icon: IconMinus,
   },
+  /**
+   * StackingDAO
+   */
+  "stackingdao-deposit": {
+    label: "Deposit",
+  },
+  "stackingdao-withdraw": {
+    label: "Withdraw",
+  },
 } as const;
 
 export const protocolsActions: {
@@ -52,6 +93,7 @@ export const protocolsActions: {
   alex: ["swap"],
   arkadiko: ["swap", "add-liquidity", "remove-liquidity"],
   bitflow: ["swap"],
+  stackingdao: ["stackingdao-deposit", "stackingdao-withdraw"],
   stackswap: ["swap"],
   velar: ["swap"],
 } as const;
