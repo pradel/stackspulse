@@ -1,15 +1,13 @@
 import { db } from "@/db/db";
 import { transactionTable } from "@/db/schema";
-import { countDistinct, eq, sql } from "drizzle-orm";
-import { UniqueUsersBarChartClient } from "./UniqueUsersBarChartClient";
+import { eq, sql } from "drizzle-orm";
+import { DepositWithdrawBarChartClient } from "./DepositWithdrawBarChartClient";
 
 const getData = async () => {
   const query = db
     .select({
       month: sql<string>`strftime('%Y-%m', timestamp, 'unixepoch') as month`,
-      deposits: sql<number>`sum(case when action = 'stackingdao-deposit' then 1 else 0 end) as deposits`,
       depositsAmount: sql<number>`sum(case when action = 'stackingdao-deposit' then json->>'outAmount' else 0 end) as depositsAmount`,
-      withdrawals: sql<number>`sum(case when action = 'stackingdao-withdraw' then 1 else 0 end) as withdrawals`,
       withdrawalsAmount: sql<number>`sum(case when action = 'stackingdao-withdraw' then json->>'inAmount' else 0 end) as withdrawalsAmount`,
     })
     .from(transactionTable)
@@ -22,9 +20,16 @@ const getData = async () => {
 
 export const DepositWithdrawBarChart = async () => {
   const stats = await getData();
-  console.log(stats);
 
-  return <div>toto</div>;
+  const formattedData: {
+    date: string;
+    withdrawals: number;
+    deposits: number;
+  }[] = stats.map((d) => ({
+    date: d.month,
+    withdrawals: d.withdrawalsAmount,
+    deposits: d.depositsAmount,
+  }));
 
-  // return <UniqueUsersBarChartClient protocol={protocol} data={stats} />;
+  return <DepositWithdrawBarChartClient data={formattedData} />;
 };

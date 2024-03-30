@@ -1,5 +1,6 @@
 "use client";
 import { BarChart } from "@/components/ui/BarChart";
+import { numberValueFormatter } from "@/components/ui/utils";
 import type { Protocol } from "@/lib/protocols";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 
@@ -39,6 +40,7 @@ export const UniqueUsersBarChartClient = ({
         index="date"
         categories={[protocol]}
         colors={["orange"]}
+        valueFormatter={numberValueFormatter}
       />
     </Card>
   );

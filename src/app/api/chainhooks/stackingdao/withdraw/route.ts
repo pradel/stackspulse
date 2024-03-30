@@ -1,12 +1,12 @@
 import { db } from "@/db/db";
 import { type InsertTransaction, transactionTable } from "@/db/schema";
+import { getOrInsertToken } from "@/db/token";
 import { conflictUpdateSetAllColumns } from "@/db/utils";
 import type {
   ChainhookPayload,
   ChainhookReceiptEventFTBurnEvent,
   ChainhookReceiptEventSTXTransferEvent,
 } from "@/lib/chainhooks";
-import { getOrInsertToken } from "@/lib/currencies";
 
 export const dynamic = "force-dynamic";
 

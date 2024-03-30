@@ -1,44 +1,37 @@
 "use client";
 import { BarChart } from "@/components/ui/BarChart";
-import type { Protocol } from "@/lib/protocols";
+import { displayPrice } from "@/lib/currencies";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 
-interface UniqueUsersBarChartProps {
-  protocol: Protocol;
+interface DepositWithdrawBarChartClientProps {
   data: {
-    month: string;
-    uniqueSenders: number;
+    date: string;
+    withdrawals: number;
+    deposits: number;
   }[];
 }
 
-export const UniqueUsersBarChartClient = ({
-  protocol,
+export const DepositWithdrawBarChartClient = ({
   data,
-}: UniqueUsersBarChartProps) => {
-  const formattedData: {
-    date: string;
-  }[] = data.map((d) => ({
-    date: d.month,
-    [protocol]: d.uniqueSenders,
-  }));
-
+}: DepositWithdrawBarChartClientProps) => {
   return (
     <Card size="2" className="mt-5">
       <Text as="div" size="2" weight="medium" color="gray" highContrast>
-        Unique users
+        Deposits and Withdrawals in STX
       </Text>
       <Text className="mt-1" as="div" size="1" color="gray">
-        Total unique addresses per month
+        Amount of deposits and withdrawals made by users per month
       </Text>
       <Inset py="current" side="bottom">
         <Separator size="4" />
       </Inset>
       <BarChart
         className="mt-6 pr-3"
-        data={formattedData}
+        data={data}
         index="date"
-        categories={[protocol]}
-        colors={["orange"]}
+        categories={["deposits", "withdrawals"]}
+        colors={["orange", "indigo"]}
+        valueFormatter={(value) => displayPrice(value, 6)}
       />
     </Card>
   );
