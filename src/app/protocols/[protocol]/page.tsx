@@ -1,4 +1,6 @@
+import { ProtocolInfo } from "@/components/Protocol/ProtocolInfo";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
+import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
 import {
@@ -13,13 +15,10 @@ import {
   Card,
   Container,
   Heading,
-  IconButton,
   Separator,
   Text,
 } from "@radix-ui/themes";
-import { IconBrandX, IconWorld } from "@tabler/icons-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import NextLink from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment, Suspense } from "react";
@@ -61,41 +60,11 @@ export default async function ProtocolPage({
     getTransactions({ protocol, action: searchParams.action }),
     getTransactionsStats({ protocol }),
   ]);
-  const protocolInfo = protocolsInfo[protocol];
   const protocolActions = protocolsActions[protocol];
 
   return (
     <Container size="2" className="px-4 pt-10">
-      <div className="flex items-start gap-5">
-        <Image
-          className="rounded-full"
-          src={`/protocols/${protocol}.png`}
-          alt={`${protocol} logo`}
-          width={50}
-          height={50}
-          priority
-        />
-        <div>
-          <Heading as="h1" size="5" color="gray" highContrast>
-            {protocolInfo.name}
-          </Heading>
-          <Text className="mt-1" as="p" size="2" color="gray">
-            {protocolInfo.description}
-          </Text>
-          <div className="mt-2 space-x-2">
-            <IconButton size="1" variant="ghost" color="gray" asChild>
-              <a href={protocolInfo.website} target="_blank" rel="noreferrer">
-                <IconWorld size={14} />
-              </a>
-            </IconButton>
-            <IconButton size="1" variant="ghost" color="gray" asChild>
-              <a href={protocolInfo.x} target="_blank" rel="noreferrer">
-                <IconBrandX size={14} />
-              </a>
-            </IconButton>
-          </div>
-        </div>
-      </div>
+      <ProtocolInfo protocol={protocol} />
 
       <div className="mt-5 grid grid-cols-2 gap-5">
         <Card size="2">
@@ -119,6 +88,12 @@ export default async function ProtocolPage({
       <Suspense>
         <UniqueUsersBarChart protocol={protocol} />
       </Suspense>
+
+      {protocol === "stackingdao" ? (
+        <Suspense>
+          <DepositWithdrawBarChart />
+        </Suspense>
+      ) : null}
 
       <div className="mt-10">
         <Heading as="h2" size="3" color="gray" highContrast>
