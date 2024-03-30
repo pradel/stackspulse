@@ -1,0 +1,23 @@
+{
+  "chain": "stacks",
+  "uuid": "1",
+  "name": "univ2-router.remove-liquidity",
+  "version": 1,
+  "networks": {
+    "mainnet": {
+      "if_this": {
+        "scope": "contract_call",
+        "contract_identifier": "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router",
+        "method": "remove-liquidity"
+      },
+      "then_that": {
+        "http_post": {
+          "url": "http://localhost:3000/api/chainhooks/velar/remove-liquidity",
+          "authorization_header": "Bearer dev-api-token"
+        }
+      },
+      "start_block": 138413,
+      "decode_clarity_values": false
+    }
+  }
+}
