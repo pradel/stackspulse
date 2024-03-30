@@ -18,7 +18,8 @@ export async function GET() {
     })
     .from(transactionTable)
     .where(gt(transactionTable.timestamp, dateBegin))
-    .groupBy(transactionTable.protocol);
+    .groupBy(transactionTable.protocol)
+    .limit(5);
   const stats = await query;
 
   const data = stats.map((stat) => ({
