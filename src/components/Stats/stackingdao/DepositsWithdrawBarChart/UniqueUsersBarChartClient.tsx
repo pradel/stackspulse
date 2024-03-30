@@ -1,0 +1,45 @@
+"use client";
+import { BarChart } from "@/components/ui/BarChart";
+import type { Protocol } from "@/lib/protocols";
+import { Card, Inset, Separator, Text } from "@radix-ui/themes";
+
+interface UniqueUsersBarChartProps {
+  protocol: Protocol;
+  data: {
+    month: string;
+    uniqueSenders: number;
+  }[];
+}
+
+export const UniqueUsersBarChartClient = ({
+  protocol,
+  data,
+}: UniqueUsersBarChartProps) => {
+  const formattedData: {
+    date: string;
+  }[] = data.map((d) => ({
+    date: d.month,
+    [protocol]: d.uniqueSenders,
+  }));
+
+  return (
+    <Card size="2" className="mt-5">
+      <Text as="div" size="2" weight="medium" color="gray" highContrast>
+        Unique users
+      </Text>
+      <Text className="mt-1" as="div" size="1" color="gray">
+        Total unique addresses per month
+      </Text>
+      <Inset py="current" side="bottom">
+        <Separator size="4" />
+      </Inset>
+      <BarChart
+        className="mt-6 pr-3"
+        data={formattedData}
+        index="date"
+        categories={[protocol]}
+        colors={["orange"]}
+      />
+    </Card>
+  );
+};

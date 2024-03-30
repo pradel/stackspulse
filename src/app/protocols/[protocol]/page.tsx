@@ -1,4 +1,5 @@
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
+import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
 import {
@@ -119,6 +120,12 @@ export default async function ProtocolPage({
       <Suspense>
         <UniqueUsersBarChart protocol={protocol} />
       </Suspense>
+
+      {protocol === "stackingdao" ? (
+        <Suspense>
+          <DepositWithdrawBarChart />
+        </Suspense>
+      ) : null}
 
       <div className="mt-10">
         <Heading as="h2" size="3" color="gray" highContrast>
