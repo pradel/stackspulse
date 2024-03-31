@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { constructCategoryColors } from "./utils";
+import { constructCategoryColors, defaultValueFormatter } from "./utils";
 
 interface BarChartProps {
   className?: string;
@@ -18,6 +18,7 @@ interface BarChartProps {
   categories: string[];
   stack?: boolean;
   colors: string[];
+  valueFormatter?: (value: number | string) => string;
 }
 
 export const BarChart = ({
@@ -27,6 +28,7 @@ export const BarChart = ({
   categories,
   stack,
   colors,
+  valueFormatter = defaultValueFormatter,
 }: BarChartProps) => {
   const categoryColors = constructCategoryColors(categories, colors);
 
@@ -64,8 +66,9 @@ export const BarChart = ({
             stroke=""
             className="fill-gray-11 text-1"
             tickMargin={8}
+            tickFormatter={valueFormatter}
           />
-          <Tooltip
+          <Tooltip<number, "unknown">
             cursor={{ fill: "var(--gray-11)", opacity: "0.10" }}
             content={({ label, payload }) => (
               <div className="min-w-[150px] rounded-2 bg-[var(--color-background)] py-3">
@@ -87,7 +90,7 @@ export const BarChart = ({
                         <Text as="div" size="2" color="gray">
                           {p.name}:{" "}
                           <Text color="gray" highContrast>
-                            {p.value?.toLocaleString("en-US")}
+                            {p.value ? valueFormatter(p.value) : ""}
                           </Text>
                         </Text>
                       </div>

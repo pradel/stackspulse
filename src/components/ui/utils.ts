@@ -10,6 +10,10 @@ export const themeColors: {
     fillColor: "fill-orange-9",
     bgColor: "bg-orange-9",
   },
+  indigo: {
+    fillColor: "fill-indigo-9",
+    bgColor: "bg-indigo-9",
+  },
 };
 
 export const constructCategoryColors = (
@@ -21,4 +25,12 @@ export const constructCategoryColors = (
     categoryColors.set(category, themeColors[colors[idx]]);
   });
   return categoryColors;
+};
+
+export const defaultValueFormatter = (value: number | string) => {
+  return value.toString();
+};
+
+export const numberValueFormatter = (value: number | string) => {
+  return value.toLocaleString("en-US");
 };

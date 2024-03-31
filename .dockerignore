@@ -52,4 +52,6 @@ sqlite.db-\*
 
 # Project files
 
+.vscode
+.github
 chainhooks
