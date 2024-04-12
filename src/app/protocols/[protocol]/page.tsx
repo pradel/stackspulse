@@ -12,12 +12,14 @@ import {
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import {
   Button,
+  Callout,
   Card,
   Container,
   Heading,
   Separator,
   Text,
 } from "@radix-ui/themes";
+import { IconInfoCircle } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import { notFound } from "next/navigation";
@@ -65,6 +67,28 @@ export default async function ProtocolPage({
   return (
     <Container size="2" className="px-4 pt-10">
       <ProtocolInfo protocol={protocol} />
+
+      {protocol === "stackingdao" ? (
+        <Callout.Root className="mt-5" color="gray" variant="soft">
+          <Callout.Icon>
+            <IconInfoCircle size={14} />
+          </Callout.Icon>
+          <Callout.Text>
+            Deposit STX for stSTX via Stacking DAO to earn ~6.35% APY on your
+            STX.
+          </Callout.Text>
+          <div>
+            <Button variant="outline" asChild>
+              <a
+                href="https://app.stackingdao.com/stack?referral=SP3VCX5NFQ8VCHFS9M6N40ZJNVTRT4HZ62WFH5C4Q"
+                target="_blank"
+              >
+                Deposit STX - referral link
+              </a>
+            </Button>
+          </div>
+        </Callout.Root>
+      ) : null}
 
       <div className="mt-5 grid grid-cols-2 gap-5">
         <Card size="2">
