@@ -14,7 +14,7 @@ export async function GET() {
   const query = db
     .select({
       protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender),
+      uniqueSenders: countDistinct(transactionTable.sender).as("uniqueSenders"),
     })
     .from(transactionTable)
     .where(gt(transactionTable.timestamp, dateBegin))
