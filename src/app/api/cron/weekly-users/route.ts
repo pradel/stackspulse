@@ -3,7 +3,7 @@ import { transactionTable } from "@/db/schema";
 import { env } from "@/env";
 import { protocolsInfo } from "@/lib/protocols";
 import { sendTweet } from "@/lib/twitter";
-import { countDistinct, gt } from "drizzle-orm";
+import { countDistinct, desc, gt, sql } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
@@ -14,11 +14,12 @@ export async function GET() {
   const query = db
     .select({
       protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender),
+      uniqueSenders: countDistinct(transactionTable.sender).as("uniqueSenders"),
     })
     .from(transactionTable)
     .where(gt(transactionTable.timestamp, dateBegin))
     .groupBy(transactionTable.protocol)
+    .orderBy(desc(sql`uniqueSenders`))
     .limit(5);
   const stats = await query;
 
