@@ -44,6 +44,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   return {
     title: `stackspulse - ${protocolsInfo[protocol].name}`,
     description: `Get the latest on-chain stats for ${protocolsInfo[protocol].name}. Explore real-time feed, unique users, transactions, and more..`,
+    alternates: {
+      canonical: `/protocols/${protocol}`,
+    },
   };
 }
 
