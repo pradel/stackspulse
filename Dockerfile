@@ -1,12 +1,6 @@
-# syntax = docker/dockerfile:1
-
-# Adjust NODE_VERSION as desired
 ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine as base
 
-LABEL fly_launch_runtime="Next.js"
-
-# Next.js app lives here
 WORKDIR /app
 
 # Set production environment
