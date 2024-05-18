@@ -1,5 +1,12 @@
 import { appConfig } from "@/appConfig";
 import { Container, Heading, Link, Text } from "@radix-ui/themes";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: `/about`,
+  },
+};
 
 export default async function AboutPage() {
   return (
