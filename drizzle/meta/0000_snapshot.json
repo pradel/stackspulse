@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "94a9cc65-28f3-4084-aa96-2a135359de0d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "token": {
       "name": "token",
@@ -95,8 +93,9 @@
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "94a9cc65-28f3-4084-aa96-2a135359de0d",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }

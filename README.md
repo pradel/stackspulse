@@ -58,7 +58,7 @@ Finally upload the chainhooks predicates file `chainhooks.production.json` to th
 Add the variable to the `.env.production.local` file and encrypt it using the `dotenvx` command:
 
 ```bash
-pnpm dotenvx encrypt --env-file .env.production.local
+pnpm dotenvx vault encrypt --env-file .env.production.local
 ```
 
 ### Download the production database locally
