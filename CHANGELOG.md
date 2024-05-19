@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.1.11
+
+### Patch Changes
+
+- da21fbc: Fix publish tag.
+
 ## 0.1.10
 
 ### Patch Changes
