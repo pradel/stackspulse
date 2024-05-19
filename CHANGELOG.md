@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.1.2
+
+### Patch Changes
+
+- 0e49bd1: Setup sentry monitoring.
+
 ## 0.1.1
 
 ### Patch Changes
