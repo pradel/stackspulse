@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
+    "@changesets/cli": "2.27.2",
     "@flydotio/dockerfile": "0.5.7",
     "@types/better-sqlite3": "7.6.10",
     "@types/node": "20.12.12",
