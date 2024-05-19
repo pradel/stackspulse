@@ -38,4 +38,10 @@ jobs:
           commit: 'chore: release'
           title: 'chore: create new release'
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Docker Publish
+        if: steps.changesets.outputs.published == 'true'
+        run: gh workflow run docker-publish --ref v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
