@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.1.12
+
+### Patch Changes
+
+- c04f801: Redirect from stackspulse.com to www.stackspulse.com.
+
 ## 0.1.11
 
 ### Patch Changes
