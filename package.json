@@ -13,7 +13,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "node ./scripts/drizzle-migrate.mjs",
-    "app:deploy": "fly deploy --remote-only",
+    "release": "node scripts/create-release.mjs && pnpm changeset publish",
+    "deploy": "fly deploy --remote-only",
     "prepare": "husky"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
+    "@changesets/cli": "2.27.2",
     "@flydotio/dockerfile": "0.5.7",
     "@types/better-sqlite3": "7.6.10",
     "@types/node": "20.12.12",

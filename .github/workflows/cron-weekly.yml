@@ -1,8 +1,10 @@
 name: cron-weekly
+
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 16 * * 0'
+
 jobs:
   cron:
     runs-on: ubuntu-latest
