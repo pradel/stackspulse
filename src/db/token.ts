@@ -51,7 +51,7 @@ export const getOrInsertToken = async (tokenId: string) => {
       symbol: cvToValue(resultSymbol).value,
       decimals: Number(cvToValue(resultDecimals).value),
     };
-    await db.insert(tokenTable).values(token);
+    await db.insert(tokenTable).values(token).onConflictDoNothing();
   }
   return token;
 };
