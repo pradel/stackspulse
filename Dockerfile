@@ -54,7 +54,7 @@ COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 
-# Setup sqlite3 on a separate volume
+# Setup sqlite on a separate volume
 RUN mkdir -p /data
 VOLUME /data
 ENV DATABASE_PATH="/data/sqlite.db"

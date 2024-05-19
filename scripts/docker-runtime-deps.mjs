@@ -12,7 +12,7 @@ const __dirname = dirname(new URL(import.meta.url).pathname);
 const packageJsonPath = join(__dirname, "..", "package.json");
 const dependenciesToInstall = [
   "husky",
-  "better-sqlite3",
+  "@libsql/client",
   "drizzle-orm",
   "@dotenvx/dotenvx",
 ];

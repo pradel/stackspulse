@@ -1,8 +1,10 @@
-import sqlite from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
+import { migrate } from "drizzle-orm/libsql/migrator";
 
-const client = sqlite(process.env.DATABASE_PATH);
+const client = createClient({
+  url: process.env.DATABASE_PATH,
+});
 
 const db = drizzle(client);
 
