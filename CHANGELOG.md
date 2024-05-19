@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.1.8
+
+### Patch Changes
+
+- be0fd03: Fix publish tag.
+
 ## 0.1.7
 
 ### Patch Changes
