@@ -44,4 +44,4 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         run: gh workflow run docker-publish.yml --ref v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
