@@ -13,7 +13,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "node ./scripts/drizzle-migrate.mjs",
-    "app:deploy": "fly deploy --remote-only",
+    "release": "pnpm changeset publish",
+    "deploy": "fly deploy --remote-only",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,12 +1,9 @@
-# fly.toml app configuration file generated for stackspulse on 2024-03-16T00:38:55+01:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'stackspulse'
 primary_region = 'sjc'
 
 [build]
+# Comment next line to deploy the app from source code
+image = "ghcr.io/pradel/stackspulse:0.0.0"
 
 [[mounts]]
   source = 'data'
