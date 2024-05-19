@@ -9,9 +9,8 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-# Removed the concurrency key to avoid conflicts with the release workflow.
-# concurrency:
-#   group: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   REGISTRY: ghcr.io
