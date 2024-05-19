@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.1.6
+
+### Patch Changes
+
+- 4450155: Fix publish tag.
+
 ## 0.1.5
 
 ### Patch Changes
