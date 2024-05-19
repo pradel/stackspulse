@@ -22,6 +22,10 @@ image = "ghcr.io/pradel/stackspulse:0.2.1"
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 400
+    hard_limit = 450
 
 [[vm]]
   size = 'shared-cpu-1x'
