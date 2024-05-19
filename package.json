@@ -17,7 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "0.39.0",
+    "@dotenvx/dotenvx": "0.40.0",
     "@radix-ui/themes": "3.0.5",
     "@stacks/transactions": "6.15.0",
     "@t3-oss/env-core": "0.10.1",
