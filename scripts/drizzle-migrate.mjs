@@ -9,7 +9,7 @@ const client = createClient({
 const db = drizzle(client);
 
 async function main() {
-  migrate(db, { migrationsFolder: "./drizzle" });
+  await migrate(db, { migrationsFolder: "./drizzle" });
   console.info("Migrated successfully");
   process.exit(0);
 }
