@@ -12,5 +12,5 @@ jobs:
       - name: hourly-cron-job
         run: |
           curl --request GET \
-          --url 'https://stackspulse.com/api/cron/weekly-users' \
+          --url 'https://www.stackspulse.com/api/cron/weekly-users' \
           --header 'Authorization: Bearer ${{ secrets.CRON_API_TOKEN }}'
