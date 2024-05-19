@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.2.1
+
+### Patch Changes
+
+- 77902cd: Fix await when running libsql migration.
+
 ## 0.2.0
 
 ### Minor Changes
