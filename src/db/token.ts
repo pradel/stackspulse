@@ -21,7 +21,7 @@ export const getOrInsertToken = async (tokenId: string) => {
         decimals: 6,
       };
       await db.insert(tokenTable).values(token);
-      return;
+      return token;
     }
 
     const smartContract = tokenId.split("::")[0];
