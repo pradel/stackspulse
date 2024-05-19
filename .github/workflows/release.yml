@@ -17,11 +17,11 @@ jobs:
       pull-requests: write
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
@@ -33,6 +33,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          version: pnpm run version
           publish: pnpm run release
           commit: 'chore: release'
           title: 'chore: create new release'
