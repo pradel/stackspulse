@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.2.0
+
+### Minor Changes
+
+- c251613: Migrate to libsql.
+
 ## 0.1.12
 
 ### Patch Changes
