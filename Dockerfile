@@ -33,7 +33,7 @@ COPY --link . .
 
 # Add fake environment file for build to succeed
 COPY --link .env.production.build .env.production.local
-RUN pnpm db:migrate
+RUN pnpm db:push
 
 # Build application
 RUN pnpm run build
@@ -54,10 +54,10 @@ COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 
-# Setup sqlite3 on a separate volume
+# Setup sqlite on a separate volume
 RUN mkdir -p /data
 VOLUME /data
-ENV DATABASE_PATH="/data/sqlite.db"
+ENV DATABASE_PATH="file:/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

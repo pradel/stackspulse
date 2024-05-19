@@ -1,6 +1,6 @@
 import { env } from "@/env";
-import Database from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
 // Patch BigInt to be JSON serializable
@@ -19,7 +19,7 @@ BigInt.prototype.toJSON = function () {
 //   }
 // }
 
-export const sqlite = new Database(env.DATABASE_PATH);
+export const sqlite = createClient({ url: env.DATABASE_PATH });
 export const db = drizzle(sqlite, {
   schema,
   // Enable to log all queries for debugging
