@@ -33,6 +33,7 @@ COPY --link . .
 
 # Add fake environment file for build to succeed
 COPY --link .env.production.build .env.production.local
+RUN pnpm db:push
 
 # Build application
 RUN pnpm run build
