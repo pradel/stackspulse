@@ -52,9 +52,13 @@ export async function POST(request: Request) {
       } satisfies InsertTransaction;
     });
 
+  const tokensToInsert = new Set<string>();
   for (const transaction of transactionsToInsert) {
-    await getOrInsertToken(transaction.data.tokenX);
-    await getOrInsertToken(transaction.data.tokenY);
+    tokensToInsert.add(transaction.data.tokenX);
+    tokensToInsert.add(transaction.data.tokenY);
+  }
+  for (const tokenId of tokensToInsert) {
+    await getOrInsertToken(tokenId);
   }
 
   if (transactionsToInsert.length > 0) {

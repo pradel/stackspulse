@@ -21,28 +21,30 @@ export const getOrInsertToken = async (tokenId: string) => {
         decimals: 6,
       };
       await db.insert(tokenTable).values(token);
-      return;
+      return token;
     }
 
     const smartContract = tokenId.split("::")[0];
     const [contractAddress, contractName] = smartContract.split(".");
-    const resultDecimals = await callReadOnlyFunction({
-      contractAddress,
-      contractName,
-      functionName: "get-decimals",
-      functionArgs: [],
-      network: "mainnet",
-      senderAddress: "SP2EVYKET55QH40RAZE5PVZ363QX0X6BSRP4C7H0W",
-    });
 
-    const resultSymbol = await callReadOnlyFunction({
-      contractAddress,
-      contractName,
-      functionName: "get-symbol",
-      functionArgs: [],
-      network: "mainnet",
-      senderAddress: "SP2EVYKET55QH40RAZE5PVZ363QX0X6BSRP4C7H0W",
-    });
+    const [resultDecimals, resultSymbol] = await Promise.all([
+      callReadOnlyFunction({
+        contractAddress,
+        contractName,
+        functionName: "get-decimals",
+        functionArgs: [],
+        network: "mainnet",
+        senderAddress: "SP2EVYKET55QH40RAZE5PVZ363QX0X6BSRP4C7H0W",
+      }),
+      callReadOnlyFunction({
+        contractAddress,
+        contractName,
+        functionName: "get-symbol",
+        functionArgs: [],
+        network: "mainnet",
+        senderAddress: "SP2EVYKET55QH40RAZE5PVZ363QX0X6BSRP4C7H0W",
+      }),
+    ]);
 
     token = {
       id: tokenId,

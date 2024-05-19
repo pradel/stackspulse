@@ -108,9 +108,13 @@ export async function POST(request: Request) {
       } satisfies InsertTransaction;
     });
 
+  const tokensToInsert = new Set<string>();
   for (const transaction of transactionsToInsert) {
-    await getOrInsertToken(transaction.data.inToken);
-    await getOrInsertToken(transaction.data.outToken);
+    tokensToInsert.add(transaction.data.inToken);
+    tokensToInsert.add(transaction.data.outToken);
+  }
+  for (const tokenId of tokensToInsert) {
+    await getOrInsertToken(tokenId);
   }
 
   if (transactionsToInsert.length > 0) {
