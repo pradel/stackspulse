@@ -42,6 +42,6 @@ jobs:
 
       - name: Trigger Docker Publish
         if: steps.changesets.outputs.published == 'true'
-        run: gh workflow run docker-publish --ref v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
+        run: gh workflow run docker-publish.yml --ref v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
