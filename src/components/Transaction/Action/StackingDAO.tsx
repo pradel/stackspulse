@@ -1,14 +1,14 @@
 import type {
-  SelectTransactionActionStackingDAODeposit,
-  SelectTransactionActionStackingDAOWithdraw,
+  SelectTransactionActionStackingDAODepositWithTokens,
+  SelectTransactionActionStackingDAOWithdrawWithTokens,
 } from "@/db/transactions";
 import { displayPrice } from "@/lib/currencies";
 import { Text } from "@radix-ui/themes";
 
 interface TransactionActionStackingDAOProps {
   transaction:
-    | SelectTransactionActionStackingDAODeposit
-    | SelectTransactionActionStackingDAOWithdraw;
+    | SelectTransactionActionStackingDAODepositWithTokens
+    | SelectTransactionActionStackingDAOWithdrawWithTokens;
 }
 
 export const TransactionActionStackingDAO = ({

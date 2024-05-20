@@ -11,53 +11,52 @@ import {
   sql,
 } from "drizzle-orm";
 import { db } from "./db";
+import { SelectTokenDrizzle, tokenTable, transactionTable } from "./schema";
 import {
-  type SelectToken,
-  type SelectTransactionActionAddLiquidityTyped,
-  type SelectTransactionActionRemoveLiquidityTyped,
-  type SelectTransactionActionStackingDAODepositTyped,
-  type SelectTransactionActionStackingDAOWithdrawTyped,
-  type SelectTransactionActionSwapTyped,
-  type SelectTransactionTyped,
-  tokenTable,
-  transactionTable,
-} from "./schema";
+  SelectTransaction,
+  SelectTransactionActionAddLiquidity,
+  SelectTransactionActionRemoveLiquidity,
+  SelectTransactionActionStackingDAODeposit,
+  SelectTransactionActionStackingDAOWithdraw,
+  SelectTransactionActionSwap,
+} from "./schema-types";
 
-export type SelectTransactionActionSwap = SelectTransactionActionSwapTyped & {
-  inToken: SelectToken;
-  outToken: SelectToken;
-};
-
-export type SelectTransactionActionAddLiquidity =
-  SelectTransactionActionAddLiquidityTyped & {
-    tokenX: SelectToken;
-    tokenY: SelectToken;
+export type SelectTransactionActionSwapWithTokens =
+  SelectTransactionActionSwap & {
+    inToken: SelectTokenDrizzle;
+    outToken: SelectTokenDrizzle;
   };
 
-export type SelectTransactionActionRemoveLiquidity =
-  SelectTransactionActionRemoveLiquidityTyped & {
-    tokenX: SelectToken;
-    tokenY: SelectToken;
+export type SelectTransactionActionAddLiquidityWithTokens =
+  SelectTransactionActionAddLiquidity & {
+    tokenX: SelectTokenDrizzle;
+    tokenY: SelectTokenDrizzle;
   };
 
-export type SelectTransactionActionStackingDAODeposit =
-  SelectTransactionActionStackingDAODepositTyped & {
-    inToken: SelectToken;
-    outToken: SelectToken;
+export type SelectTransactionActionRemoveLiquidityWithTokens =
+  SelectTransactionActionRemoveLiquidity & {
+    tokenX: SelectTokenDrizzle;
+    tokenY: SelectTokenDrizzle;
   };
 
-export type SelectTransactionActionStackingDAOWithdraw =
-  SelectTransactionActionStackingDAOWithdrawTyped & {
-    inToken: SelectToken;
-    outToken: SelectToken;
+export type SelectTransactionActionStackingDAODepositWithTokens =
+  SelectTransactionActionStackingDAODeposit & {
+    inToken: SelectTokenDrizzle;
+    outToken: SelectTokenDrizzle;
+  };
+
+export type SelectTransactionActionStackingDAOWithdrawWithTokens =
+  SelectTransactionActionStackingDAOWithdraw & {
+    inToken: SelectTokenDrizzle;
+    outToken: SelectTokenDrizzle;
   };
 
 export type SelectTransactionAction =
-  | SelectTransactionActionSwap
-  | SelectTransactionActionAddLiquidity
-  | SelectTransactionActionRemoveLiquidity
-  | SelectTransactionActionStackingDAODeposit
-  | SelectTransactionActionStackingDAOWithdraw;
+  | SelectTransactionActionSwapWithTokens
+  | SelectTransactionActionAddLiquidityWithTokens
+  | SelectTransactionActionRemoveLiquidityWithTokens
+  | SelectTransactionActionStackingDAODepositWithTokens
+  | SelectTransactionActionStackingDAOWithdrawWithTokens;
 
 export const getTransactions = async ({
   protocol,
@@ -79,7 +78,7 @@ export const getTransactions = async ({
       ),
     );
   }
-  const transactions = (await query) as SelectTransactionTyped[];
+  const transactions = (await query) as SelectTransaction[];
 
   // Extract unique token ids from transactions
   const tokenIds: string[] = [];
@@ -107,7 +106,7 @@ export const getTransactions = async ({
 
   // Map token ids to token objects for quick lookup
   const tokenMap = tokens.reduce<{
-    [id: string]: SelectToken;
+    [id: string]: SelectTokenDrizzle;
   }>((acc, token) => {
     acc[token.id] = token;
     return acc;

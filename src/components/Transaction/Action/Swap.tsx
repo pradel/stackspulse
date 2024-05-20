@@ -1,9 +1,9 @@
-import type { SelectTransactionActionSwap } from "@/db/transactions";
+import type { SelectTransactionActionSwapWithTokens } from "@/db/transactions";
 import { displayPrice } from "@/lib/currencies";
 import { Text } from "@radix-ui/themes";
 
 interface TransactionActionSwapProps {
-  transaction: SelectTransactionActionSwap;
+  transaction: SelectTransactionActionSwapWithTokens;
 }
 
 export const TransactionActionSwap = ({

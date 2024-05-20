@@ -1,15 +1,8 @@
-import type {
-  Action,
-  ActionData,
-  ActionDataAddLiquidity,
-  ActionDataRemoveLiquidity,
-  ActionDataStackingDAODeposit,
-  ActionDataStackingDAOWithdraw,
-  ActionDataSwap,
-} from "@/lib/actions";
+import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { blob, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import type { ActionData } from "./schema-types";
 
 export const transactionTable = sqliteTable("transaction", {
   /**
@@ -42,42 +35,12 @@ export const transactionTable = sqliteTable("transaction", {
   data: blob("json", { mode: "json" }).$type<ActionData>().notNull(),
 });
 
-export type InsertTransaction = InferInsertModel<typeof transactionTable>;
-export type SelectTransaction = InferSelectModel<typeof transactionTable>;
-
-export type SelectTransactionActionSwapTyped = SelectTransaction & {
-  action: "swap";
-  data: ActionDataSwap;
-};
-export type SelectTransactionActionAddLiquidityTyped = SelectTransaction & {
-  action: "add-liquidity";
-  data: ActionDataAddLiquidity;
-};
-export type SelectTransactionActionRemoveLiquidityTyped = SelectTransaction & {
-  action: "remove-liquidity";
-  data: ActionDataRemoveLiquidity;
-};
-
-/**
- * StackingDAO
- */
-export type SelectTransactionActionStackingDAODepositTyped =
-  SelectTransaction & {
-    action: "stackingdao-deposit";
-    data: ActionDataStackingDAODeposit;
-  };
-export type SelectTransactionActionStackingDAOWithdrawTyped =
-  SelectTransaction & {
-    action: "stackingdao-withdraw";
-    data: ActionDataStackingDAOWithdraw;
-  };
-
-export type SelectTransactionTyped =
-  | SelectTransactionActionSwapTyped
-  | SelectTransactionActionAddLiquidityTyped
-  | SelectTransactionActionRemoveLiquidityTyped
-  | SelectTransactionActionStackingDAODepositTyped
-  | SelectTransactionActionStackingDAOWithdrawTyped;
+export type InsertTransactionDrizzle = InferInsertModel<
+  typeof transactionTable
+>;
+export type SelectTransactionDrizzle = InferSelectModel<
+  typeof transactionTable
+>;
 
 export const tokenTable = sqliteTable("token", {
   /**
@@ -94,5 +57,5 @@ export const tokenTable = sqliteTable("token", {
   decimals: integer("decimals", { mode: "number" }).notNull(),
 });
 
-export type InsertToken = InferInsertModel<typeof tokenTable>;
-export type SelectToken = InferSelectModel<typeof tokenTable>;
+export type InsertTokenDrizzle = InferInsertModel<typeof tokenTable>;
+export type SelectTokenDrizzle = InferSelectModel<typeof tokenTable>;

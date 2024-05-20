@@ -1,5 +1,6 @@
 import { db } from "@/db/db";
-import { type InsertTransaction, transactionTable } from "@/db/schema";
+import { transactionTable } from "@/db/schema";
+import { InsertTransaction } from "@/db/schema-types";
 import { getOrInsertToken } from "@/db/token";
 import { conflictUpdateSetAllColumns } from "@/db/utils";
 import type {
