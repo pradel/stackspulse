@@ -1,8 +1,8 @@
-import type { SelectTransactionActionAddLiquidity } from "@/db/transactions";
+import type { SelectTransactionActionAddLiquidityWithTokens } from "@/db/transactions";
 import { Text } from "@radix-ui/themes";
 
 interface TransactionActionAddLiquidityProps {
-  transaction: SelectTransactionActionAddLiquidity;
+  transaction: SelectTransactionActionAddLiquidityWithTokens;
 }
 
 export const TransactionActionAddLiquidity = ({

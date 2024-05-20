@@ -16,52 +16,6 @@ export type Action = (typeof actions)[number];
 export const isAction = (value: string): value is Action =>
   actions.includes(value as Action);
 
-export interface ActionDataSwap {
-  inAmount: bigint;
-  inToken: string;
-  outAmount: bigint;
-  outToken: string;
-}
-
-export interface ActionDataAddLiquidity {
-  tokenX: string;
-  tokenY: string;
-}
-
-export interface ActionDataRemoveLiquidity {
-  tokenX: string;
-  tokenY: string;
-}
-
-/**
- * StackingDAO
- */
-
-export interface ActionDataStackingDAODeposit {
-  // in always STX
-  outAmount: bigint;
-  outToken: string;
-  // out always stSTX
-  inAmount: bigint;
-  inToken: string;
-}
-
-export interface ActionDataStackingDAOWithdraw {
-  // out always stSTX
-  outAmount: bigint;
-  outToken: string;
-  // in always STX
-  inAmount: bigint;
-  inToken: string;
-}
-
-export type ActionData =
-  | ActionDataSwap
-  | ActionDataAddLiquidity
-  | ActionDataRemoveLiquidity
-  | ActionDataStackingDAODeposit
-  | ActionDataStackingDAOWithdraw;
-
 export const actionInfo: {
   [key in Action]: { label: string; icon?: any };
 } = {
