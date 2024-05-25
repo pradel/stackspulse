@@ -1,5 +1,12 @@
 # stackspulse
 
+## 0.2.3
+
+### Patch Changes
+
+- 986a819: Refactor action types.
+- 6d746a6: Fix issue when processing chainhook without any apply event.
+
 ## 0.2.2
 
 ### Patch Changes
