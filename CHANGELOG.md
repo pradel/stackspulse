@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.2.4
+
+### Patch Changes
+
+- 51c2436: Fix issue when processing chainhook without any events to apply.
+
 ## 0.2.3
 
 ### Patch Changes
