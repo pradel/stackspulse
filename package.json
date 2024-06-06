@@ -1,6 +1,6 @@
 {
   "name": "stackspulse",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "packageManager": "pnpm@9.1.1",
   "scripts": {
