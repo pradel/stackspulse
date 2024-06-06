@@ -12,8 +12,9 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   const data: ChainhookPayload = await request.json();
+  const transactions = data.apply[0]?.transactions ?? [];
 
-  const transactionsToInsert = data.apply[0]?.transactions
+  const transactionsToInsert = transactions
     .filter((transactionToProcess) => transactionToProcess.metadata.success)
     .map((transactionToProcess) => {
       const sender = transactionToProcess.metadata.sender;
