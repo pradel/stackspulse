@@ -6,9 +6,9 @@ import { themeColors } from "./utils";
 
 export const getWidthsFromValues = (dataValues: number[]) => {
   let maxValue = Number.NEGATIVE_INFINITY;
-  dataValues.forEach((value) => {
+  for (const value of dataValues) {
     maxValue = Math.max(maxValue, value);
-  });
+  }
 
   return dataValues.map((value) => {
     if (value === 0) return 0;

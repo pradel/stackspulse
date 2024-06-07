@@ -1,4 +1,4 @@
-import { IconMinus, IconPlus } from "@tabler/icons-react";
+import { type Icon, IconMinus, IconPlus } from "@tabler/icons-react";
 import type { Protocol } from "./protocols";
 
 export const actions = [
@@ -17,7 +17,7 @@ export const isAction = (value: string): value is Action =>
   actions.includes(value as Action);
 
 export const actionInfo: {
-  [key in Action]: { label: string; icon?: any };
+  [key in Action]: { label: string; icon?: Icon };
 } = {
   swap: {
     label: "Swap",

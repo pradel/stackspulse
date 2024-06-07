@@ -1,10 +1,10 @@
 import { appConfig } from "@/appConfig";
 import { Container, Heading, Link, Text } from "@radix-ui/themes";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: `/about`,
+    canonical: "/about",
   },
 };
 
@@ -44,6 +44,7 @@ export default async function AboutPage() {
           Open Stats
         </Heading>
         <iframe
+          title="Fathom Analytics"
           className="mt-5 h-[800px] w-full"
           src="https://app.usefathom.com/share/lbvapcku/stackspulse"
         />

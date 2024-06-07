@@ -18,14 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  Object.keys(protocolsInfo).forEach((protocol) => {
+  for (const protocol of Object.keys(protocolsInfo)) {
     urls.push({
       url: `${env.NEXT_PUBLIC_BASE_URL}/protocols/${protocol}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
     });
-  });
+  }
 
   return urls;
 }

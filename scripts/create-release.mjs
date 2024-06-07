@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync } from "fs";
-import { dirname, join } from "path";
+import { readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
 const packageJsonPath = join(__dirname, "..", "package.json");

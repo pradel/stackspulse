@@ -1,8 +1,8 @@
 /**
  * Bundle all the chainhooks into a single file that can be uploaded to the Hiro platform dashboard.
  */
-import { readFileSync, readdirSync, statSync, writeFileSync } from "fs";
-import { dirname, extname, join } from "path";
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { dirname, extname, join } from "node:path";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
@@ -18,7 +18,7 @@ const env = createEnv({
 // Function to recursively traverse directories and collect JSON files
 function collectJsonFiles(dir, fileList = []) {
   const files = readdirSync(dir);
-  files.forEach((file) => {
+  for (const file of files) {
     const filePath = join(dir, file);
     const stats = statSync(filePath);
 
@@ -27,7 +27,7 @@ function collectJsonFiles(dir, fileList = []) {
     } else if (extname(file) === ".json") {
       fileList.push(filePath); // Add JSON files to the list
     }
-  });
+  }
   return fileList;
 }
 

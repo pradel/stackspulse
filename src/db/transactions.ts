@@ -11,8 +11,12 @@ import {
   sql,
 } from "drizzle-orm";
 import { db } from "./db";
-import { SelectTokenDrizzle, tokenTable, transactionTable } from "./schema";
 import {
+  type SelectTokenDrizzle,
+  tokenTable,
+  transactionTable,
+} from "./schema";
+import type {
   SelectTransaction,
   SelectTransactionActionAddLiquidity,
   SelectTransactionActionRemoveLiquidity,
@@ -82,7 +86,7 @@ export const getTransactions = async ({
 
   // Extract unique token ids from transactions
   const tokenIds: string[] = [];
-  transactions.forEach((transaction) => {
+  for (const transaction of transactions) {
     if (transaction.action === "swap") {
       tokenIds.push(transaction.data.inToken, transaction.data.outToken);
     } else if (transaction.action === "add-liquidity") {
@@ -94,7 +98,7 @@ export const getTransactions = async ({
     } else if (transaction.action === "stackingdao-withdraw") {
       tokenIds.push(transaction.data.inToken, transaction.data.outToken);
     }
-  });
+  }
   const uniqueTokenIds = Array.from(new Set([...tokenIds]));
   const tokens =
     uniqueTokenIds.length > 0

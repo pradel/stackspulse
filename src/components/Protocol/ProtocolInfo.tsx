@@ -1,4 +1,4 @@
-import { Protocol, protocolsInfo } from "@/lib/protocols";
+import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import { Heading, IconButton, Text } from "@radix-ui/themes";
 import { IconBrandX, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
