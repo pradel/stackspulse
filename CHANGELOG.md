@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.2.5
+
+### Patch Changes
+
+- a5e48bc: Upgrade deps and change the way secrets are handled.
+
 ## 0.2.4
 
 ### Patch Changes
