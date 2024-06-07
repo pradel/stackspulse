@@ -48,7 +48,7 @@ COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=build /app/drizzle ./drizzle
-COPY --from=build /app/.env.vault ./.env.vault
+COPY --from=build /app/.env.production.local ./.env.production.local
 
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
