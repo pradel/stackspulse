@@ -19,7 +19,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "0.40.0",
+    "@dotenvx/dotenvx": "0.44.1",
     "@libsql/client": "0.4.3",
     "@radix-ui/themes": "3.0.5",
     "@sentry/nextjs": "8.8.0",

@@ -55,10 +55,16 @@ Finally upload the chainhooks predicates file `chainhooks.production.json` to th
 
 ### Add new production environment variables
 
-Add the variable to the `.env.production.local` file and encrypt it using the `dotenvx` command:
+To add a new encrypted production environment variable (replace `MY_NAME` and `my-value` with your values) run the following command:
 
 ```bash
-pnpm dotenvx vault encrypt --env-file .env.production.local
+pnpm dotenvx set MY_NAME "my-value" -f .env.production.local --encrypt
+```
+
+If you need to read the value of an encrypted environment variable run the following command:
+
+```bash
+pnpm dotenvx get MY_NAME -f .env.production.local
 ```
 
 ### Download the production database locally
