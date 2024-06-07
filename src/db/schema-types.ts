@@ -1,6 +1,6 @@
-import {
-  type InsertTransactionDrizzle,
-  type SelectTransactionDrizzle,
+import type {
+  InsertTransactionDrizzle,
+  SelectTransactionDrizzle,
 } from "./schema";
 
 export type ActionData =

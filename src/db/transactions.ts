@@ -11,8 +11,12 @@ import {
   sql,
 } from "drizzle-orm";
 import { db } from "./db";
-import { SelectTokenDrizzle, tokenTable, transactionTable } from "./schema";
 import {
+  type SelectTokenDrizzle,
+  tokenTable,
+  transactionTable,
+} from "./schema";
+import type {
   SelectTransaction,
   SelectTransactionActionAddLiquidity,
   SelectTransactionActionRemoveLiquidity,

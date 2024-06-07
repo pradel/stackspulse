@@ -1,6 +1,6 @@
 import { appConfig } from "@/appConfig";
 import { Container, Heading, Link, Text } from "@radix-ui/themes";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {

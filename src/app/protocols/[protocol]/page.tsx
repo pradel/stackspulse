@@ -85,6 +85,7 @@ export default async function ProtocolPage({
               <a
                 href="https://app.stackingdao.com/stack?referral=SP3VCX5NFQ8VCHFS9M6N40ZJNVTRT4HZ62WFH5C4Q"
                 target="_blank"
+                rel="noreferrer"
               >
                 Deposit STX - referral link
               </a>
