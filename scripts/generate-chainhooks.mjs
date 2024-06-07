@@ -1,8 +1,8 @@
 /**
  * Bundle all the chainhooks into a single file that can be uploaded to the Hiro platform dashboard.
  */
-import { readFileSync, readdirSync, statSync, writeFileSync } from "fs";
-import { dirname, extname, join } from "path";
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { dirname, extname, join } from "node:path";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 

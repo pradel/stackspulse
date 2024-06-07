@@ -36,7 +36,7 @@ export async function GET() {
     env.NEXT_PUBLIC_BASE_URL
   }/api/images/weekly-users?${params.toString()}`;
 
-  let message = `📈 Last 7 days unique users:\n\n`;
+  let message = "📈 Last 7 days unique users:\n\n";
   for (const stat of stats) {
     message += `\n- @${protocolsInfo[stat.protocol].x.replace(
       "https://twitter.com/",

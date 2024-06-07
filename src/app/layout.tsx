@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Get the latest on-chain stats for the Stacks (STX) blockchain DeFi ecosystem. Real time feed, unique users, transactions, and more...",
   alternates: {
-    canonical: `/`,
+    canonical: "/",
   },
 };
 
