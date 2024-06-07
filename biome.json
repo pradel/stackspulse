@@ -12,9 +12,15 @@
     "ignore": [".next"]
   },
   "linter": {
-    "enabled": false,
+    "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
+      "style": {
+        "noUselessElse": "off"
+      }
     },
     "ignore": [".next"]
   }

@@ -13,6 +13,7 @@ import { constructCategoryColors, defaultValueFormatter } from "./utils";
 
 interface BarChartProps {
   className?: string;
+  // biome-ignore lint/suspicious/noExplicitAny: any required for recharts
   data: any[];
   index: string;
   categories: string[];
