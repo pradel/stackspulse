@@ -44,6 +44,7 @@ export default async function AboutPage() {
           Open Stats
         </Heading>
         <iframe
+          title="Fathom Analytics"
           className="mt-5 h-[800px] w-full"
           src="https://app.usefathom.com/share/lbvapcku/stackspulse"
         />
