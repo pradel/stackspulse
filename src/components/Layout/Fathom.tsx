@@ -23,7 +23,7 @@ function TrackPageView() {
     if (!pathname) return;
 
     trackPageview({
-      url: pathname + searchParams.toString(),
+      url: pathname + searchParams?.toString(),
       referrer: document.referrer,
     });
   }, [pathname, searchParams]);
