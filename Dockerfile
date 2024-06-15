@@ -10,6 +10,8 @@ ENV NODE_ENV="production"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+COPY --link ./package.json ./
+RUN corepack install
 
 # Optimize the node_modules production folder
 FROM base AS prod-deps
