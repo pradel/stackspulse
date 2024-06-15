@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.2.6
+
+### Patch Changes
+
+- 638b832: Install package manager in docker for faster cold start.
+
 ## 0.2.5
 
 ### Patch Changes
