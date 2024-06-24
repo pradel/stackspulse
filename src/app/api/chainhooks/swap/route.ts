@@ -51,7 +51,9 @@ export async function POST(request: Request) {
         transactionToProcess.metadata.kind.data.contract_identifier ===
           "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-02" ||
         transactionToProcess.metadata.kind.data.contract_identifier ===
-          "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-03"
+          "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-03" ||
+        transactionToProcess.metadata.kind.data.contract_identifier ===
+          "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01"
       ) {
         protocol = "alex";
       } else if (
