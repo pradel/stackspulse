@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.3.0
+
+### Minor Changes
+
+- 9149f93: Track new alex contracts.
+
 ## 0.2.6
 
 ### Patch Changes
