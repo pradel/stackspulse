@@ -1,0 +1,24 @@
+{
+  "chain": "stacks",
+  "uuid": "1",
+  "name": "borrow-helper-v1-2.borrow",
+  "version": 1,
+  "networks": {
+    "mainnet": {
+      "if_this": {
+        "scope": "contract_call",
+        "contract_identifier": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-2",
+        "method": "borrow"
+      },
+      "then_that": {
+        "http_post": {
+          "url": "http://localhost:3000/api/chainhooks/swap",
+          "authorization_header": "Bearer dev-api-token"
+        }
+      },
+      "start_block": 149391,
+      "end_block": 152248,
+      "decode_clarity_values": false
+    }
+  }
+}
