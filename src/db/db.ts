@@ -1,6 +1,7 @@
 import { env } from "@/env";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
+import postgres from "postgres";
 import * as schema from "./schema";
 
 // Patch BigInt to be JSON serializable
@@ -25,3 +26,12 @@ export const db = drizzle(sqlite, {
   // Enable to log all queries for debugging
   // logger: new QueryLogger()
 });
+
+const sql = postgres({
+  host: "TODO",
+  port: 5432,
+  username: "postgres",
+  password: "TODO",
+});
+
+export default sql;
