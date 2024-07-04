@@ -1,0 +1,40 @@
+---
+- name: Ensure the user directory exists
+  file:
+    path: /home/root/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Copy SSH key from local machine to the server
+  copy:
+    src: "{{ ssh_key_path }}"
+    dest: /home/root/.ssh/authorized_keys
+    mode: '0600'
+
+- name: Update SSH configuration to be more secure
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    validate: 'sshd -T -f %s'
+    mode: 0644
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication no"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin prohibit-password"
+    - regexp: "^Port"
+      line: "Port 22"
+    - regexp: "^UseDNS"
+      line: "UseDNS no"
+    - regexp: "^PermitEmptyPasswords"
+      line: "PermitEmptyPasswords no"
+    - regexp: "^ChallengeResponseAuthentication"
+      line: "ChallengeResponseAuthentication no"
+    - regexp: "^GSSAPIAuthentication"
+      line: "GSSAPIAuthentication no"
+    - regexp: "^X11Forwarding"
+      line: "X11Forwarding no"
+  notify:
+    - restart ssh

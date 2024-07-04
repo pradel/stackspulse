@@ -1,0 +1,12 @@
+---
+- name: Provisionning webservers group
+  hosts: webservers
+  strategy: free
+  vars:
+    ssh_key_path: "/path/to/your/local/id_rsa.pub"
+  roles:
+    - packages
+    - docker
+    - firewall
+    - ssh
+    - snap
