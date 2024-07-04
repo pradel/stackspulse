@@ -21,7 +21,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "0.44.2",
     "@libsql/client": "0.4.3",
-    "@radix-ui/themes": "3.1.1",
+    "@radix-ui/themes": "3.0.5",
     "@sentry/nextjs": "8.14.0",
     "@stacks/transactions": "6.15.0",
     "@t3-oss/env-core": "0.10.1",
