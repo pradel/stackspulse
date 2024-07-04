@@ -46,6 +46,3 @@ chainhooks.production.json
 
 # Sentry Config File
 .env.sentry-build-plugin
-
-# Ansible
-ansible/hosts.ini
