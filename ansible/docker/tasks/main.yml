@@ -30,3 +30,12 @@
     state: present
   notify:
     - restart docker
+
+# This is required for stacks-blockchain-docker to work, can be removed once they remove this requirement
+# and just use the `docker compose` command instead of `docker-compose`
+- name: Create alias for docker-compose to docker compose
+  file:
+    src: /usr/bin/docker
+    dest: /usr/local/bin/docker-compose
+    state: link
+    force: yes

@@ -1,3 +1,7 @@
+# Server Configuration
+
+Ansible playbook to configure the server.
+
 ## Getting Started
 
 Copy the inventory example file:
