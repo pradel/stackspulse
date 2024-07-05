@@ -4,7 +4,6 @@ import { useGetTransactions } from "@/hooks/api/useGetTransactions";
 import { type Action, actionInfo, protocolsActions } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
 import { Button, Heading, Separator } from "@radix-ui/themes";
-import NextLink from "next/link";
 import { Fragment, useState } from "react";
 import { TransactionRow } from "../Transaction/TransactionRow";
 

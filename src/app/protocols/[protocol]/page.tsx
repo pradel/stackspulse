@@ -4,16 +4,10 @@ import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { getTransactionsStats } from "@/db/transactions";
-import {
-  type Action,
-  actionInfo,
-  isAction,
-  protocolsActions,
-} from "@/lib/actions";
+import { type Action, isAction } from "@/lib/actions";
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
-import { Button, Card, Container, Heading, Text } from "@radix-ui/themes";
+import { Card, Container, Text } from "@radix-ui/themes";
 import type { Metadata } from "next";
-import NextLink from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 

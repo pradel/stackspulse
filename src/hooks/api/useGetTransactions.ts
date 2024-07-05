@@ -1,3 +1,4 @@
+import type { SelectTransactionAction } from "@/db/transactions";
 import { env } from "@/env";
 import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
@@ -12,7 +13,7 @@ export const useGetTransactions = (
     action?: Action;
   } = {},
 ) => {
-  return useSuspenseQuery({
+  return useSuspenseQuery<SelectTransactionAction[]>({
     // TODO params
     queryKey: ["get-transactions", params.protocol, params.action],
     queryFn: async () => {
