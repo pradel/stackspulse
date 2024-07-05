@@ -38,7 +38,8 @@ export const BarList = ({ className, data }: BarListProps) => {
       <div className="relative w-full">
         {data.map((item, idx) => (
           <div
-            key={item.name}
+            // biome-ignore lint/suspicious/noArrayIndexKey: For a better animation when the data changes we use index as key
+            key={idx}
             className={cn(
               "flex items-center rounded-2",
               rowHeight,

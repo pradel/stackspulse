@@ -1,32 +1,49 @@
-import { db } from "@/db/db";
-import { transactionTable } from "@/db/schema";
-import { protocolsInfo } from "@/lib/protocols";
-import { countDistinct } from "drizzle-orm";
+"use client";
+
+import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
+import { Card, TabNav, Text } from "@radix-ui/themes";
+import { useState } from "react";
 import { TopProtocolsBarListClient } from "./TopProtocolsBarListClient";
 
-const getData = async () => {
-  const query = db
-    .select({
-      protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender),
-    })
-    .from(transactionTable)
-    .groupBy(transactionTable.protocol);
+export const TopProtocolsBarList = () => {
+  const [dateFilter, setDateFilter] =
+    useState<ProtocolUsersRouteQuery["date"]>("all");
 
-  const stats = await query;
-  return stats;
-};
+  return (
+    <Card size="2" className="mt-5">
+      <div className="flex justify-between items-center -mt-2">
+        <Text as="div" size="2" weight="medium" color="gray" highContrast>
+          Top Stacks protocols
+        </Text>
+        <TabNav.Root size="2">
+          <TabNav.Link asChild active={dateFilter === "7d"}>
+            <button type="button" onClick={() => setDateFilter("7d")}>
+              7d
+            </button>
+          </TabNav.Link>
+          <TabNav.Link asChild active={dateFilter === "30d"}>
+            <button type="button" onClick={() => setDateFilter("30d")}>
+              30d
+            </button>
+          </TabNav.Link>
+          <TabNav.Link asChild active={dateFilter === "all"}>
+            <button type="button" onClick={() => setDateFilter("all")}>
+              all
+            </button>
+          </TabNav.Link>
+        </TabNav.Root>
+      </div>
 
-export const TopProtocolsBarList = async () => {
-  const stats = await getData();
+      <div className="mt-4 flex justify-between">
+        <Text as="p" size="1" color="gray" weight="medium">
+          protocol
+        </Text>
+        <Text as="p" size="1" color="gray" weight="medium">
+          users
+        </Text>
+      </div>
 
-  const formattedData = stats
-    .map((d) => ({
-      name: protocolsInfo[d.protocol].name,
-      value: d.uniqueSenders,
-      href: `/protocols/${d.protocol}`,
-    }))
-    .sort((a, b) => b.value - a.value);
-
-  return <TopProtocolsBarListClient data={formattedData} />;
+      <TopProtocolsBarListClient dateFilter={dateFilter} />
+    </Card>
+  );
 };

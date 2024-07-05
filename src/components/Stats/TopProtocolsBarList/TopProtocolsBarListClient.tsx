@@ -1,46 +1,26 @@
+import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
 import { BarList } from "@/components/ui/BarList";
-import { Card, TabNav, Text } from "@radix-ui/themes";
+import { useGetProtocolsUsers } from "@/hooks/api/useGetProtocolsUsers";
+import { protocolsInfo } from "@/lib/protocols";
 
 interface TopProtocolsBarListClientProps {
-  data: {
-    name: string;
-    value: number;
-    href: string;
-  }[];
+  dateFilter: ProtocolUsersRouteQuery["date"];
 }
 
 export const TopProtocolsBarListClient = ({
-  data,
+  dateFilter,
 }: TopProtocolsBarListClientProps) => {
-  return (
-    <Card size="2" className="mt-5">
-      <div className="flex justify-between items-center -mt-2">
-        <Text as="div" size="2" weight="medium" color="gray" highContrast>
-          Top Stacks protocols
-        </Text>
-        <TabNav.Root size="2">
-          <TabNav.Link asChild>
-            <button type="button">7d</button>
-          </TabNav.Link>
-          <TabNav.Link asChild>
-            <button type="button">30d</button>
-          </TabNav.Link>
-          <TabNav.Link active asChild>
-            <button type="button">all</button>
-          </TabNav.Link>
-        </TabNav.Root>
-      </div>
+  const { data: stats } = useGetProtocolsUsers({
+    date: dateFilter,
+  });
 
-      <div className="mt-4 flex justify-between">
-        <Text as="p" size="1" color="gray" weight="medium">
-          protocol
-        </Text>
-        <Text as="p" size="1" color="gray" weight="medium">
-          users
-        </Text>
-      </div>
+  const formattedData = stats
+    .map((d) => ({
+      name: protocolsInfo[d.protocol].name,
+      value: d.uniqueSenders,
+      href: `/protocols/${d.protocol}`,
+    }))
+    .sort((a, b) => b.value - a.value);
 
-      <BarList className="mt-2" data={data} />
-    </Card>
-  );
+  return <BarList className="mt-2" data={formattedData} />;
 };
