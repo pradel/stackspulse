@@ -3,7 +3,7 @@
 import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
 import { Card, TabNav, Text } from "@radix-ui/themes";
 import { useState } from "react";
-import { TopProtocolsBarListClient } from "./TopProtocolsBarListClient";
+import { TopProtocolsBarListQuery } from "./TopProtocolsBarListQuery";
 
 export const TopProtocolsBarList = () => {
   const [dateFilter, setDateFilter] =
@@ -43,7 +43,7 @@ export const TopProtocolsBarList = () => {
         </Text>
       </div>
 
-      <TopProtocolsBarListClient dateFilter={dateFilter} />
+      <TopProtocolsBarListQuery dateFilter={dateFilter} />
     </Card>
   );
 };

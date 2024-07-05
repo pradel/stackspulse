@@ -7,7 +7,7 @@ interface TopProtocolsBarListClientProps {
   dateFilter: ProtocolUsersRouteQuery["date"];
 }
 
-export const TopProtocolsBarListClient = ({
+export const TopProtocolsBarListQuery = ({
   dateFilter,
 }: TopProtocolsBarListClientProps) => {
   const { data: stats } = useGetProtocolsUsers({
