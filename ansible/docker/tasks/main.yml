@@ -34,10 +34,16 @@
 # This is required for stacks-blockchain-docker to work, can be removed once they remove this requirement
 # and just use the `docker compose` command instead of `docker-compose`
 # Issue https://github.com/stacks-network/stacks-blockchain-docker/issues/120
-# TODO this is not working
-- name: Create alias for docker-compose to docker compose
+- name: Create /usr/bin/docker-compose file
   file:
-    src: /usr/bin/docker
-    dest: /usr/local/bin/docker-compose
-    state: link
-    force: yes
+    path: /usr/bin/docker-compose
+    state: touch
+    mode: '0755'
+
+- name: Write docker compose alias to /usr/bin/docker-compose
+  copy:
+    dest: /usr/bin/docker-compose
+    content: |
+      #!/bin/bash
+      docker compose --compatibility "$@"
+

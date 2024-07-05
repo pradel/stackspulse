@@ -1,6 +1,6 @@
 {
   "name": "stackspulse",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "packageManager": "pnpm@9.3.0",
   "scripts": {
@@ -22,13 +22,15 @@
     "@dotenvx/dotenvx": "0.44.2",
     "@libsql/client": "0.4.3",
     "@radix-ui/themes": "3.0.5",
-    "@sentry/nextjs": "8.9.2",
+    "@sentry/nextjs": "8.14.0",
     "@stacks/transactions": "6.15.0",
     "@t3-oss/env-core": "0.10.1",
     "@t3-oss/env-nextjs": "0.10.1",
     "@tabler/icons-react": "3.6.0",
+    "@tanstack/react-query": "5.50.1",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
+    "date-fns": "3.6.0",
     "drizzle-orm": "0.31.2",
     "fathom-client": "3.7.0",
     "husky": "9.0.11",
@@ -37,7 +39,7 @@
     "postgres": "3.4.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "recharts": "2.12.7",
+    "recharts": "2.13.0-alpha.4",
     "sharp": "0.33.4",
     "tailwind-merge": "2.3.0",
     "tailwindcss-animate": "1.0.7",
@@ -45,22 +47,22 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.1",
-    "@changesets/cli": "2.27.5",
+    "@biomejs/biome": "1.8.3",
+    "@changesets/cli": "2.27.7",
     "@flydotio/dockerfile": "0.5.7",
-    "@types/node": "20.14.2",
+    "@types/node": "20.14.9",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
     "drizzle-kit": "0.22.7",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.4",
-    "eslint-plugin-tailwindcss": "3.17.3",
+    "eslint-plugin-tailwindcss": "3.17.4",
     "lint-staged": "15.2.7",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "radix-themes-tw": "0.2.3",
     "tailwindcss": "3.4.4",
-    "typescript": "5.4.5"
+    "typescript": "5.5.3"
   },
   "lint-staged": {
     "*": [

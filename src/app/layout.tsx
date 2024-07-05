@@ -6,6 +6,7 @@ import { Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./Providers";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -36,11 +37,13 @@ export default function RootLayout({
         className={`${font.variable} font-sans antialiased`}
       >
         <Fathom />
-        <Theme appearance="dark" accentColor="orange" grayColor="sand">
-          <Header />
-          {children}
-          <Footer />
-        </Theme>
+        <Providers>
+          <Theme appearance="dark" accentColor="orange" grayColor="sand">
+            <Header />
+            {children}
+            <Footer />
+          </Theme>
+        </Providers>
       </body>
     </html>
   );

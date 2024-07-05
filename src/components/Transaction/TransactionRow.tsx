@@ -14,6 +14,8 @@ interface TransactionRowProps {
 }
 
 export const TransactionRow = ({ transaction }: TransactionRowProps) => {
+  const timestamp = new Date(transaction.timestamp);
+
   return (
     <div className="flex flex-wrap items-center gap-3">
       <IconButton
@@ -53,10 +55,16 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       <Tooltip
         content={`Block ${
           transaction.blockHeight
-        } - ${transaction.timestamp.toUTCString()}`}
+        } - ${timestamp.toUTCString()}`}
+        suppressHydrationWarning
       >
-        <Text className="order-3 md:order-4" size="2" color="gray">
-          <TimeAgo date={transaction.timestamp} /> ago
+        <Text
+          className="order-3 md:order-4"
+          size="2"
+          color="gray"
+          suppressHydrationWarning
+        >
+          <TimeAgo date={timestamp} /> ago
         </Text>
       </Tooltip>
 

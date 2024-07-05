@@ -1,5 +1,19 @@
 # stackspulse
 
+## 0.4.0
+
+### Minor Changes
+
+- a1716c8: Use react-query to send requests to the API.
+- ec37e9e: Create ansible config for the stacks-node server.
+
+### Patch Changes
+
+- a1716c8: Create new `/api/transactions` route that returns the list of transactions for a given protocol.
+- b62e648: Create new `/api/protocols/users` route that returns the unique users by protocols.
+- b62e648: Filter top protocols by last 7 days, 30 days or all.
+- 2beddd7: Add info tooltips to give more context on numbers.
+
 ## 0.3.0
 
 ### Minor Changes
