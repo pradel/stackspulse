@@ -10,7 +10,7 @@ export const useGetProtocolsUsers = ({
   limit,
 }: ProtocolUsersRouteQuery) => {
   return useSuspenseQuery<ProtocolUsersRouteResponse>({
-    queryKey: ["get-protocols-users", date],
+    queryKey: ["get-protocols-users", date, limit],
     queryFn: async () => {
       const url = new URL(`${env.NEXT_PUBLIC_BASE_URL}/api/protocols/users`);
       url.searchParams.set("date", date);
