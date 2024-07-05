@@ -15,7 +15,7 @@ export const ProtocolTransactions = ({
   protocol,
 }: ProtocolTransactionsProps) => {
   const [filterAction, setFilterAction] = useState<Action | null>(null);
-  const { data } = useGetTransactions({
+  const { data: transactions } = useGetTransactions({
     protocol,
     action: filterAction ?? undefined,
   });
@@ -57,7 +57,7 @@ export const ProtocolTransactions = ({
         })}
       </div>
       <div className="mt-4 md:space-y-4">
-        {data.map((transaction) => (
+        {transactions.map((transaction) => (
           <Fragment key={transaction.txId}>
             <TransactionRow key={transaction.txId} transaction={transaction} />
             <Separator className="md:hidden" my="4" size="4" />

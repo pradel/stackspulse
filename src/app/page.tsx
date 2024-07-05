@@ -1,3 +1,4 @@
+import { HomeTransactions } from "@/components/Home/HomeTransactions";
 import { TopProtocolsBarList } from "@/components/Stats/TopProtocolsBarList";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
@@ -73,22 +74,9 @@ export default async function HomePage() {
         <TopProtocolsBarList />
       </Suspense>
 
-      <div className="mt-10">
-        <Heading as="h2" size="3" color="gray" highContrast>
-          Transactions
-        </Heading>
-        <div className="mt-4 md:space-y-4">
-          {transactions.map((transaction) => (
-            <Fragment key={transaction.txId}>
-              <TransactionRow
-                key={transaction.txId}
-                transaction={transaction}
-              />
-              <Separator className="md:hidden" my="4" size="4" />
-            </Fragment>
-          ))}
-        </div>
-      </div>
+      <Suspense>
+        <HomeTransactions />
+      </Suspense>
     </Container>
   );
 }
