@@ -76,7 +76,9 @@ export default async function ProtocolPage({ params }: PageProps) {
         </Suspense>
       ) : null}
 
-      <ProtocolTransactions protocol={protocol} />
+      <Suspense>
+        <ProtocolTransactions protocol={protocol} />
+      </Suspense>
     </Container>
   );
 }
