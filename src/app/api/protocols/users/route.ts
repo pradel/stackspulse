@@ -1,8 +1,5 @@
-import { db } from "@/db/db";
-import { transactionTable } from "@/db/schema";
-import type { Protocol } from "@/lib/protocols";
-import { subDays } from "date-fns";
-import { countDistinct, desc, gt, sql } from "drizzle-orm";
+import { sql as rawSql } from "@/db/db";
+import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -43,26 +40,71 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const query = db
-    .select({
-      protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender).as("uniqueSenders"),
-    })
-    .from(transactionTable)
-    .groupBy(transactionTable.protocol)
-    .orderBy(desc(sql`uniqueSenders`))
-    .limit(params.data.limit || 10);
-
+  let dateCondition = "";
   if (params.data.date !== "all") {
     const daysToSubtract = {
       "7d": 7,
       "30d": 30,
     };
-    const dateBegin = subDays(new Date(), daysToSubtract[params.data.date]);
-    query.where(gt(transactionTable.timestamp, dateBegin));
+    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
-  const stats = await query;
+  const stats = await rawSql`
+WITH recent_txs AS (
+    SELECT
+        txs.tx_id,
+        txs.sender_address,
+        txs.contract_call_contract_id as contract_id,
+        txs.block_time
+    FROM
+        txs
+    WHERE
+        txs.contract_call_contract_id IN (
+          ${rawSql.unsafe(
+            `${Object.keys(protocolsInfo).flatMap(
+              (protocol) =>
+                `'${protocolsInfo[protocol as Protocol].contracts
+                  .map((contract) => contract)
+                  .join("', '")}'`,
+            )}`,
+          )}
+        )
+        ${rawSql.unsafe(dateCondition)}
+),
+protocol_mapping AS (
+    SELECT
+        contract_id,
+        CASE
+        ${rawSql.unsafe(
+          `${Object.keys(protocolsInfo)
+            .map(
+              (protocol) =>
+                `WHEN contract_id IN ('${protocolsInfo[
+                  protocol as Protocol
+                ].contracts
+                  .map((contract) => contract)
+                  .join("', '")}') THEN '${protocol}'`,
+            )
+            .join("\n")}`,
+        )}
+            ELSE 'Other'
+        END AS protocol_name
+    FROM
+        recent_txs
+)
+SELECT
+    protocol_name,
+    COUNT(DISTINCT sender_address) AS unique_senders
+FROM
+    recent_txs
+JOIN
+    protocol_mapping ON recent_txs.contract_id = protocol_mapping.contract_id
+GROUP BY
+    protocol_name
+ORDER BY
+    unique_senders DESC
+LIMIT ${params.data.limit || 10}
+  `;
 
   return Response.json(stats);
 }
