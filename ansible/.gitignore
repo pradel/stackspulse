@@ -1,0 +1,3 @@
+# Local ansible files
+hosts.ini
+vars.yml
