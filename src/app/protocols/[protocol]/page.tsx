@@ -1,4 +1,6 @@
 import { ProtocolInfo } from "@/components/Protocol/ProtocolInfo";
+import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions";
+import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { TransactionRow } from "@/components/Transaction/TransactionRow";
@@ -71,28 +73,7 @@ export default async function ProtocolPage({
     <Container size="2" className="px-4 pt-10">
       <ProtocolInfo protocol={protocol} />
 
-      {protocol === "stackingdao" ? (
-        <Callout.Root className="mt-5" color="gray" variant="soft">
-          <Callout.Icon>
-            <IconInfoCircle size={14} />
-          </Callout.Icon>
-          <Callout.Text>
-            Deposit STX for stSTX via Stacking DAO to earn ~6.35% APY on your
-            STX.
-          </Callout.Text>
-          <div>
-            <Button variant="outline" asChild>
-              <a
-                href="https://app.stackingdao.com/stack?referral=SP3VCX5NFQ8VCHFS9M6N40ZJNVTRT4HZ62WFH5C4Q"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Deposit STX - referral link
-              </a>
-            </Button>
-          </div>
-        </Callout.Root>
-      ) : null}
+      {protocol === "stackingdao" ? <StackingDAORef /> : null}
 
       <div className="mt-5 grid grid-cols-2 gap-5">
         <Card size="2">
@@ -159,15 +140,7 @@ export default async function ProtocolPage({
           })}
         </div>
         <div className="mt-4 md:space-y-4">
-          {transactions.map((transaction) => (
-            <Fragment key={transaction.txId}>
-              <TransactionRow
-                key={transaction.txId}
-                transaction={transaction}
-              />
-              <Separator className="md:hidden" my="4" size="4" />
-            </Fragment>
-          ))}
+          <ProtocolTransactions protocol={protocol} />
         </div>
       </div>
     </Container>
