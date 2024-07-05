@@ -12,15 +12,14 @@ export const TopProtocolsBarListQuery = ({
 }: TopProtocolsBarListClientProps) => {
   const { data: stats } = useGetProtocolsUsers({
     date: dateFilter,
+    limit: 6,
   });
 
-  const formattedData = stats
-    .map((d) => ({
-      name: protocolsInfo[d.protocol].name,
-      value: d.uniqueSenders,
-      href: `/protocols/${d.protocol}`,
-    }))
-    .sort((a, b) => b.value - a.value);
+  const formattedData = stats.map((d) => ({
+    name: protocolsInfo[d.protocol].name,
+    value: d.uniqueSenders,
+    href: `/protocols/${d.protocol}`,
+  }));
 
   return <BarList className="mt-2" data={formattedData} />;
 };
