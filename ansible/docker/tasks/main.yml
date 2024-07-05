@@ -1,0 +1,43 @@
+---
+- name: Ensure old versions of Docker are not installed
+  package:
+    name:
+      - docker
+      - docker.io
+      - docker-engine
+    state: absent
+
+- name: Add Docker apt key
+  get_url:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    dest: /etc/apt/trusted.gpg.d/docker.asc
+    mode: 0644
+    force: false
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docker
+    update_cache: true
+
+- name: Install Docker packages
+  package:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+  notify:
+    - restart docker
+
+# This is required for stacks-blockchain-docker to work, can be removed once they remove this requirement
+# and just use the `docker compose` command instead of `docker-compose`
+# Issue https://github.com/stacks-network/stacks-blockchain-docker/issues/120
+# TODO this is not working
+- name: Create alias for docker-compose to docker compose
+  file:
+    src: /usr/bin/docker
+    dest: /usr/local/bin/docker-compose
+    state: link
+    force: yes
