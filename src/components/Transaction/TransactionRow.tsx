@@ -56,8 +56,14 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         content={`Block ${
           transaction.blockHeight
         } - ${timestamp.toUTCString()}`}
+        suppressHydrationWarning
       >
-        <Text className="order-3 md:order-4" size="2" color="gray">
+        <Text
+          className="order-3 md:order-4"
+          size="2"
+          color="gray"
+          suppressHydrationWarning
+        >
           <TimeAgo date={timestamp} /> ago
         </Text>
       </Tooltip>

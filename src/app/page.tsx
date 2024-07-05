@@ -70,9 +70,7 @@ export default async function HomePage() {
         </Card>
       </div>
 
-      <Suspense>
-        <TopProtocolsBarList />
-      </Suspense>
+      <TopProtocolsBarList />
 
       <Suspense>
         <HomeTransactions />
