@@ -34,6 +34,7 @@
 # This is required for stacks-blockchain-docker to work, can be removed once they remove this requirement
 # and just use the `docker compose` command instead of `docker-compose`
 # Issue https://github.com/stacks-network/stacks-blockchain-docker/issues/120
+# TODO this is not working
 - name: Create alias for docker-compose to docker compose
   file:
     src: /usr/bin/docker
