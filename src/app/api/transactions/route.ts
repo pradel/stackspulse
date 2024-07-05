@@ -5,7 +5,6 @@ import type { NextRequest } from "next/server";
 import { z } from "zod";
 
 export const dynamic = "force-dynamic";
-// TODO can we cache this?
 
 const transactionRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
