@@ -1,5 +1,5 @@
 import { BarList } from "@/components/ui/BarList";
-import { Card, Inset, Separator, Text } from "@radix-ui/themes";
+import { Card, TabNav, Text } from "@radix-ui/themes";
 
 interface TopProtocolsBarListClientProps {
   data: {
@@ -14,24 +14,33 @@ export const TopProtocolsBarListClient = ({
 }: TopProtocolsBarListClientProps) => {
   return (
     <Card size="2" className="mt-5">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center -mt-2">
         <Text as="div" size="2" weight="medium" color="gray" highContrast>
           Top Stacks protocols
         </Text>
-        <Text
-          className="mt-1 uppercase"
-          as="div"
-          size="1"
-          color="gray"
-          weight="medium"
-        >
-          Users
+        <TabNav.Root size="2">
+          <TabNav.Link asChild>
+            <button type="button">7d</button>
+          </TabNav.Link>
+          <TabNav.Link asChild>
+            <button type="button">30d</button>
+          </TabNav.Link>
+          <TabNav.Link active asChild>
+            <button type="button">all</button>
+          </TabNav.Link>
+        </TabNav.Root>
+      </div>
+
+      <div className="mt-4 flex justify-between">
+        <Text as="p" size="1" color="gray" weight="medium">
+          protocol
+        </Text>
+        <Text as="p" size="1" color="gray" weight="medium">
+          users
         </Text>
       </div>
-      <Inset py="current" side="x">
-        <Separator size="4" />
-      </Inset>
-      <BarList data={data} />
+
+      <BarList className="mt-2" data={data} />
     </Card>
   );
 };
