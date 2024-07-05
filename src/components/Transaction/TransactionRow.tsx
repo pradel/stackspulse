@@ -15,6 +15,7 @@ interface TransactionRowProps {
 
 export const TransactionRow = ({ transaction }: TransactionRowProps) => {
   const timestamp = new Date(transaction.timestamp);
+
   return (
     <div className="flex flex-wrap items-center gap-3">
       <IconButton

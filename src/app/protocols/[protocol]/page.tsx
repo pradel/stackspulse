@@ -3,7 +3,6 @@ import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions
 import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
-import { TransactionRow } from "@/components/Transaction/TransactionRow";
 import { getTransactions, getTransactionsStats } from "@/db/transactions";
 import {
   type Action,
@@ -12,15 +11,7 @@ import {
   protocolsActions,
 } from "@/lib/actions";
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
-import {
-  Button,
-  Callout,
-  Card,
-  Container,
-  Heading,
-  Separator,
-  Text,
-} from "@radix-ui/themes";
+import { Button, Card, Container, Heading, Text } from "@radix-ui/themes";
 import { IconInfoCircle } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
@@ -57,16 +48,11 @@ export default async function ProtocolPage({
   searchParams,
 }: PageProps) {
   const protocol = params.protocol;
-  if (
-    !isProtocol(protocol) ||
-    (searchParams.action && !isAction(searchParams.action))
-  ) {
+  const action = searchParams.action;
+  if (!isProtocol(protocol) || (action && !isAction(action))) {
     notFound();
   }
-  const [transactions, stats] = await Promise.all([
-    getTransactions({ protocol, action: searchParams.action }),
-    getTransactionsStats({ protocol }),
-  ]);
+  const stats = await getTransactionsStats({ protocol });
   const protocolActions = protocolsActions[protocol];
 
   return (
@@ -140,7 +126,7 @@ export default async function ProtocolPage({
           })}
         </div>
         <div className="mt-4 md:space-y-4">
-          <ProtocolTransactions protocol={protocol} />
+          <ProtocolTransactions protocol={protocol} action={action} />
         </div>
       </div>
     </Container>
