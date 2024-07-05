@@ -4,8 +4,6 @@ import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-// TODO setup https://tanstack.com/query/latest/docs/framework/react/guides/suspense#suspense-on-the-server-with-streaming
-
 export const useGetTransactions = (
   params: {
     protocol?: Protocol;
