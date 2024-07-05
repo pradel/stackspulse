@@ -4,7 +4,6 @@ import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { getTransactionsStats } from "@/db/transactions";
-import { type Action, isAction } from "@/lib/actions";
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import { Card, Container, Text } from "@radix-ui/themes";
 import type { Metadata } from "next";
@@ -18,7 +17,6 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { protocol: string };
-  searchParams: { action?: Action };
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
@@ -36,14 +34,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default async function ProtocolPage({
-  params,
-  searchParams,
-}: PageProps) {
+export default async function ProtocolPage({ params }: PageProps) {
   const protocol = params.protocol;
-  const action = searchParams.action;
-  // TODO verify that protocol supports action
-  if (!isProtocol(protocol) || (action && !isAction(action))) {
+  if (!isProtocol(protocol)) {
     notFound();
   }
   const stats = await getTransactionsStats({ protocol });
