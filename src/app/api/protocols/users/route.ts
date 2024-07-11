@@ -70,35 +70,26 @@ WITH recent_txs AS (
           )}
         )
         ${rawSql.unsafe(dateCondition)}
-),
-protocol_mapping AS (
-    SELECT
-        contract_id,
-        CASE
-        ${rawSql.unsafe(
-          `${Object.keys(protocolsInfo)
-            .map(
-              (protocol) =>
-                `WHEN contract_id IN ('${protocolsInfo[
-                  protocol as Protocol
-                ].contracts
-                  .map((contract) => contract)
-                  .join("', '")}') THEN '${protocol}'`,
-            )
-            .join("\n")}`,
-        )}
-            ELSE 'Other'
-        END AS protocol_name
-    FROM
-        recent_txs
 )
 SELECT
-    protocol_name,
+    CASE
+    ${rawSql.unsafe(
+      `${Object.keys(protocolsInfo)
+        .map(
+          (protocol) =>
+            `WHEN recent_txs.contract_id IN ('${protocolsInfo[
+              protocol as Protocol
+            ].contracts
+              .map((contract) => contract)
+              .join("', '")}') THEN '${protocol}'`,
+        )
+        .join("\n")}`,
+    )}
+        ELSE 'Other'
+    END AS protocol_name,
     COUNT(DISTINCT sender_address) AS unique_senders
 FROM
     recent_txs
-JOIN
-    protocol_mapping ON recent_txs.contract_id = protocol_mapping.contract_id
 GROUP BY
     protocol_name
 ORDER BY
