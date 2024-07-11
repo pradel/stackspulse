@@ -27,11 +27,9 @@ export const db = drizzle(sqlite, {
   // logger: new QueryLogger()
 });
 
-const sql = postgres({
+export const sql = postgres({
   host: "TODO",
   port: 5432,
   username: "postgres",
   password: "TODO",
 });
-
-export default sql;
