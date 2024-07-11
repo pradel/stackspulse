@@ -6,8 +6,8 @@ import { z } from "zod";
 export const dynamic = "force-dynamic";
 
 export type ProtocolUsersRouteResponse = {
-  protocol: Protocol;
-  uniqueSenders: number;
+  protocol_name: Protocol;
+  unique_senders: number;
 }[];
 export type ProtocolUsersRouteQuery = {
   /**
