@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
     dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
-  const stats = await rawSql`
+  const result = await rawSql`
 WITH recent_txs AS (
     SELECT
         txs.tx_id,
@@ -96,6 +96,11 @@ ORDER BY
     unique_senders DESC
 LIMIT ${params.data.limit || 10}
   `;
+
+  const stats: ProtocolUsersRouteResponse = result.map((stat) => ({
+    protocol_name: stat.protocol_name as Protocol,
+    unique_senders: Number.parseInt(stat.unique_senders),
+  }));
 
   return Response.json(stats);
 }
