@@ -44,12 +44,12 @@ export async function GET(request: NextRequest) {
   // ?, & and = are not allowed in cache keys
   const cacheKey =
     request.nextUrl.pathname + request.nextUrl.search.replace(/[?&=]/g, "_");
-  // const cachedData = await storage.getItem<{ expires: number; data: unknown }>(
-  //   cacheKey,
-  // );
-  // if (cachedData && cachedData.expires > Date.now()) {
-  //   return Response.json(cachedData.data, { status: 200 });
-  // }
+  const cachedData = await storage.getItem<{ expires: number; data: unknown }>(
+    cacheKey,
+  );
+  if (cachedData && cachedData.expires > Date.now()) {
+    return Response.json(cachedData.data, { status: 200 });
+  }
 
   let dateCondition = "";
   if (params.data.date !== "all") {
