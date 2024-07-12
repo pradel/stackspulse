@@ -17,6 +17,7 @@ FROM base AS prod-deps
 COPY --link . .
 RUN node scripts/docker-runtime-deps.mjs
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
+RUN pnpm prisma generate
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -37,6 +38,7 @@ COPY --link .env.production.build .env.production.local
 RUN pnpm db:push
 
 # Build application
+RUN pnpm prisma generate
 RUN pnpm run build
 
 # Final stage for app image
