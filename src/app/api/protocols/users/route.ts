@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       "7d": 7,
       "30d": 30,
     };
-    dateCondition = `txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
+    dateCondition = `WHERE txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
   const result = await sql`
@@ -68,8 +68,7 @@ FROM
     txs
 JOIN
     dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
-WHERE
-  ${sql.unsafe(dateCondition)}
+${sql.unsafe(dateCondition)}
 GROUP BY
     dapps.id
 ORDER BY
