@@ -57,55 +57,24 @@ export async function GET(request: NextRequest) {
       "7d": 7,
       "30d": 30,
     };
-    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
+    dateCondition = `txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
   const result = await sql`
-WITH recent_txs AS (
-    SELECT
-        txs.tx_id,
-        txs.sender_address,
-        txs.contract_call_contract_id as contract_id,
-        txs.block_time
-    FROM
-        txs
-    WHERE
-        txs.contract_call_contract_id IN (
-          ${sql.unsafe(
-            `${Object.keys(protocolsInfo).flatMap(
-              (protocol) =>
-                `'${protocolsInfo[protocol as Protocol].contracts
-                  .map((contract) => contract)
-                  .join("', '")}'`,
-            )}`,
-          )}
-        )
-        ${sql.unsafe(dateCondition)}
-)
 SELECT
-    CASE
-    ${sql.unsafe(
-      `${Object.keys(protocolsInfo)
-        .map(
-          (protocol) =>
-            `WHEN recent_txs.contract_id IN ('${protocolsInfo[
-              protocol as Protocol
-            ].contracts
-              .map((contract) => contract)
-              .join("', '")}') THEN '${protocol}'`,
-        )
-        .join("\n")}`,
-    )}
-        ELSE 'Other'
-    END AS protocol_name,
-    COUNT(DISTINCT sender_address) AS unique_senders
+    dapps.id as protocol_name,
+    COUNT(DISTINCT txs.sender_address) AS unique_senders
 FROM
-    recent_txs
+    txs
+JOIN
+    dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
+WHERE
+  ${sql.unsafe(dateCondition)}
 GROUP BY
-    protocol_name
+    dapps.id
 ORDER BY
     unique_senders DESC
-LIMIT ${params.data.limit || 10}
+LIMIT ${params.data.limit || 10};
   `;
 
   const stats: ProtocolUsersRouteResponse = result.map((stat) => ({
