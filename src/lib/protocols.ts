@@ -5,6 +5,7 @@ export const protocols = [
   "velar",
   "bitflow",
   "stackingdao",
+  "charisma",
 ] as const;
 
 export type Protocol = (typeof protocols)[number];
@@ -75,5 +76,25 @@ export const protocolsInfo = {
     website: "https://www.velar.co/",
     x: "https://twitter.com/VelarBTC",
     contracts: ["SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router"],
+  },
+  charisma: {
+    name: "Charisma",
+    description:
+      "Charisma is a gamified Defi platform pushing the limits of innovation on Stacks. It specializes in liquid staking, yield farming, and arbitrage.",
+    website: "https://charisma.rocks",
+    x: "https://twitter.com/CharismaBTC",
+    contracts: [
+      "SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master",
+      "SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dme001-proposal-voting",
+      "SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dme002-proposal-submission",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.dme005-token-faucet-v0",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.green-room",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.creatures",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.apple-orchard",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.arbitrage-w-s-sw-w-zf",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.charisma-stabilizer-v0",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.icc-arb-2",
+      "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.odins-raven",
+    ],
   },
 } as const;

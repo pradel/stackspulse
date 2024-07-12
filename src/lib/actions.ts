@@ -50,4 +50,5 @@ export const protocolsActions: {
   stackingdao: ["stackingdao-deposit", "stackingdao-withdraw"],
   stackswap: ["swap"],
   velar: ["swap"],
+  charisma: [],
 } as const;
