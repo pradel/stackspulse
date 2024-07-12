@@ -39,6 +39,7 @@
     "javascript-time-ago": "2.5.10",
     "next": "14.2.5",
     "postgres": "3.4.4",
+    "prisma": "5.16.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "recharts": "2.13.0-alpha.4",
@@ -63,7 +64,6 @@
     "eslint-plugin-tailwindcss": "3.17.4",
     "lint-staged": "15.2.7",
     "postcss": "8.4.39",
-    "prisma": "5.16.2",
     "radix-themes-tw": "0.2.3",
     "tailwindcss": "3.4.4",
     "typescript": "5.5.3"
