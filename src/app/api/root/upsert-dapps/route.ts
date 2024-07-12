@@ -1,4 +1,6 @@
-import { prisma } from "@/lib/prisma";
+import { dbPg } from "@/db/postgres/db";
+import { dapps } from "@/db/postgres/schema";
+import { conflictUpdateSetAllColumns } from "@/db/utils";
 import { protocols, protocolsInfo } from "@/lib/protocols";
 
 export const dynamic = "force-dynamic";
@@ -7,19 +9,21 @@ export const dynamic = "force-dynamic";
  * Keep the DB up to date with the latest protocols
  */
 export async function GET() {
-  for (const protocol of protocols) {
-    const protocolInfo = protocolsInfo[protocol];
-    await prisma.dapps.upsert({
-      where: { id: protocol },
-      update: {
-        contracts: [...protocolInfo.contracts],
-      },
-      create: {
-        id: protocol,
-        contracts: [...protocolInfo.contracts],
-      },
+  await dbPg
+    .insert(dapps)
+    .values(
+      protocols.map((protocol) => {
+        const protocolInfo = protocolsInfo[protocol];
+        return {
+          id: protocol,
+          contracts: [...protocolInfo.contracts],
+        };
+      }),
+    )
+    .onConflictDoUpdate({
+      target: dapps.id,
+      set: conflictUpdateSetAllColumns(dapps),
     });
-  }
 
   return Response.json({ ok: true });
 }

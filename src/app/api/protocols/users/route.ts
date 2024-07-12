@@ -1,5 +1,5 @@
-import { sql } from "@/db/db";
-import { type Protocol, protocolsInfo } from "@/lib/protocols";
+import { sql } from "@/db/postgres/db";
+import type { Protocol } from "@/lib/protocols";
 import { storage } from "@/lib/storage";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
