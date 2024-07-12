@@ -4,7 +4,7 @@ import { TopProtocolsBarList } from "@/components/Stats/TopProtocolsBarList";
 import { Container, Heading } from "@radix-ui/themes";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function HomePage() {
   return (
