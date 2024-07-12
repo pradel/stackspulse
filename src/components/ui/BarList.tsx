@@ -1,6 +1,6 @@
 // Inspired by https://github.com/tremorlabs/tremor/blob/bd6566b814d907e130b6827194def10b5bc3661f/src/components/vis-elements/BarList/BarList.tsx
 import { cn } from "@/lib/cn";
-import { Text } from "@radix-ui/themes";
+import { Spinner, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { themeColors } from "./utils";
 
@@ -19,7 +19,7 @@ export const getWidthsFromValues = (dataValues: number[]) => {
 interface Bar {
   value: number;
   name: string;
-  href: string;
+  href?: string;
 }
 
 interface BarListProps {
@@ -53,7 +53,11 @@ export const BarList = ({ className, data }: BarListProps) => {
           >
             <div className="absolute left-2 flex max-w-full">
               <Text size="2" asChild>
-                <Link href={item.href}>{item.name}</Link>
+                {item.href ? (
+                  <Link href={item.href}>{item.name}</Link>
+                ) : (
+                  item.name
+                )}
               </Text>
             </div>
           </div>
@@ -75,6 +79,17 @@ export const BarList = ({ className, data }: BarListProps) => {
           </div>
         ))}
       </div>
+    </div>
+  );
+};
+
+export const BarListSkeleton = ({ data, className }: BarListProps) => {
+  return (
+    <div className="relative">
+      <div className="blur-sm">
+        <BarList className={className} data={data} />
+      </div>
+      <Spinner className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
     </div>
   );
 };

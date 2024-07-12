@@ -1,8 +1,9 @@
 "use client";
 
 import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
+import { BarListSkeleton } from "@/components/ui/BarList";
 import { Card, TabNav, Text } from "@radix-ui/themes";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { TopProtocolsBarListQuery } from "./TopProtocolsBarListQuery";
 
 export const TopProtocolsBarList = () => {
@@ -43,7 +44,41 @@ export const TopProtocolsBarList = () => {
         </Text>
       </div>
 
-      <TopProtocolsBarListQuery dateFilter={dateFilter} />
+      <Suspense
+        fallback={
+          <BarListSkeleton
+            className="mt-2"
+            data={[
+              {
+                name: "alex",
+                value: "3415",
+              },
+              {
+                name: "velar",
+                value: "2169",
+              },
+              {
+                name: "stackingdao",
+                value: "1432",
+              },
+              {
+                name: "bitflow",
+                value: "1358",
+              },
+              {
+                name: "stackswap",
+                value: "352",
+              },
+              {
+                name: "arkadiko",
+                value: "283",
+              },
+            ]}
+          />
+        }
+      >
+        <TopProtocolsBarListQuery dateFilter={dateFilter} />
+      </Suspense>
     </Card>
   );
 };
