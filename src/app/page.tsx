@@ -1,18 +1,12 @@
+import { HomeStats } from "@/components/Home/HomeStats";
 import { HomeTransactions } from "@/components/Home/HomeTransactions";
 import { TopProtocolsBarList } from "@/components/Stats/TopProtocolsBarList";
-import { env } from "@/env";
-import { Card, Container, Heading, Text, Tooltip } from "@radix-ui/themes";
-import { IconInfoCircle } from "@tabler/icons-react";
+import { Container, Heading } from "@radix-ui/themes";
 import { Suspense } from "react";
-import type { TransactionStatsRouteResponse } from "./api/transactions/stats/route";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const stats: TransactionStatsRouteResponse = await fetch(
-    `${env.NEXT_PUBLIC_BASE_URL}/api/transactions/stats`,
-  ).then((res) => res.json());
-
   return (
     <Container size="2" className="px-4 pt-10">
       <div>
@@ -24,40 +18,9 @@ export default async function HomePage() {
         </Heading>
       </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-5">
-        <Card size="2">
-          <Text
-            className="flex items-center gap-1"
-            as="div"
-            size="2"
-            color="gray"
-          >
-            Total Transactions
-            <Tooltip content="Total number of transactions that interacted with the protocols supported by stackspulse">
-              <IconInfoCircle size={14} />
-            </Tooltip>
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            {stats.count.toLocaleString("en-US")}
-          </Text>
-        </Card>
-        <Card size="2">
-          <Text
-            className="flex items-center gap-1"
-            as="div"
-            size="2"
-            color="gray"
-          >
-            Unique addresses
-            <Tooltip content="Total number of unique addresses that interacted with the protocols supported by stackspulse">
-              <IconInfoCircle size={14} />
-            </Tooltip>
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            {stats.unique_senders.toLocaleString("en-US")}
-          </Text>
-        </Card>
-      </div>
+      <Suspense>
+        <HomeStats />
+      </Suspense>
 
       <TopProtocolsBarList />
 
