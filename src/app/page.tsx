@@ -19,10 +19,7 @@ export const dynamic = "force-dynamic";
 // export const revalidate = 60;
 
 export default async function HomePage() {
-  const [transactions, stats] = await Promise.all([
-    getTransactions(),
-    getTransactionsStats(),
-  ]);
+  const [stats] = await Promise.all([getTransactionsStats()]);
 
   return (
     <Container size="2" className="px-4 pt-10">
