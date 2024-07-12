@@ -44,12 +44,12 @@ export async function GET(request: NextRequest) {
   // ?, & and = are not allowed in cache keys
   const cacheKey =
     request.nextUrl.pathname + request.nextUrl.search.replace(/[?&=]/g, "_");
-  const cachedData = await storage.getItem<{ expires: number; data: unknown }>(
-    cacheKey,
-  );
-  if (cachedData && cachedData.expires > Date.now()) {
-    return Response.json(cachedData.data, { status: 200 });
-  }
+  // const cachedData = await storage.getItem<{ expires: number; data: unknown }>(
+  //   cacheKey,
+  // );
+  // if (cachedData && cachedData.expires > Date.now()) {
+  //   return Response.json(cachedData.data, { status: 200 });
+  // }
 
   let dateCondition = "";
   if (params.data.date !== "all") {
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       "7d": 7,
       "30d": 30,
     };
-    dateCondition = `WHERE txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
+    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
   const result = await sql`
@@ -68,7 +68,9 @@ FROM
     txs
 JOIN
     dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
-${sql.unsafe(dateCondition)}
+WHERE
+  txs.type_id = 2
+  ${sql.unsafe(dateCondition)}
 GROUP BY
     dapps.id
 ORDER BY
