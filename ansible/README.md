@@ -59,6 +59,20 @@ To attach to the tmux session run:
 tmux attach -t seed-chainstate
 ```
 
+## Database management
+
+To sync the prisma migrations with the db run:
+
+```bash
+pnpm dotenvx run --env-file=.env.production.local --env-file=.env.production -- pnpm prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
+```
+
+To mark the first migration as applied (will not be executed) run:
+
+```bash
+pnpm dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma migrate resolve --applied 0_init
+```
+
 ## Credits
 
 Config adapted from https://github.com/guillaumebriday/kamal-ansible-manager.
