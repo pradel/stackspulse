@@ -785,3 +785,8 @@ model zonefiles {
   @@unique([name, zonefile_hash, tx_id, index_block_hash], map: "unique_name_zonefile_hash_tx_id_index_block_hash")
   @@index([zonefile_hash], map: "zonefiles_zonefile_hash_index")
 }
+
+model dapps {
+  id        String   @id
+  contracts String[]
+}
