@@ -3,6 +3,9 @@ import { protocols, protocolsInfo } from "@/lib/protocols";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Keep the DB up to date with the latest protocols
+ */
 export async function GET() {
   for (const protocol of protocols) {
     const protocolInfo = protocolsInfo[protocol];
