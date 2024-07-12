@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.5.1
+
+### Patch Changes
+
+- 98795c3: Remove sqlite db migration in docker.
+
 ## 0.5.0
 
 ### Minor Changes
