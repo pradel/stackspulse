@@ -1,4 +1,4 @@
-import { sql as rawSql } from "@/db/db";
+import { sql } from "@/db/db";
 import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
     dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[params.data.date]} days'))`;
   }
 
-  const result = await rawSql`
+  const result = await sql`
 WITH recent_txs AS (
     SELECT
         txs.tx_id,
@@ -60,7 +60,7 @@ WITH recent_txs AS (
         txs
     WHERE
         txs.contract_call_contract_id IN (
-          ${rawSql.unsafe(
+          ${sql.unsafe(
             `${Object.keys(protocolsInfo).flatMap(
               (protocol) =>
                 `'${protocolsInfo[protocol as Protocol].contracts
@@ -69,11 +69,11 @@ WITH recent_txs AS (
             )}`,
           )}
         )
-        ${rawSql.unsafe(dateCondition)}
+        ${sql.unsafe(dateCondition)}
 )
 SELECT
     CASE
-    ${rawSql.unsafe(
+    ${sql.unsafe(
       `${Object.keys(protocolsInfo)
         .map(
           (protocol) =>
