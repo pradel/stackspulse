@@ -6,6 +6,11 @@ import { z } from "zod";
 
 export const dynamic = "force-dynamic";
 
+export type TransactionStatsRouteResponse = {
+  count: number;
+  unique_senders: number;
+};
+
 const transactionStatsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
 });
@@ -39,5 +44,10 @@ WHERE
   ${sql.unsafe(protocolCondition)}
   `;
 
-  return Response.json(result);
+  const stats: TransactionStatsRouteResponse = {
+    count: Number.parseInt(result[0].count),
+    unique_senders: Number.parseInt(result[0].unique_senders),
+  };
+
+  return Response.json(stats);
 }
