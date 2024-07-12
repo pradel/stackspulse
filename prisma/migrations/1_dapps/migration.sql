@@ -5,3 +5,6 @@ CREATE TABLE "dapps" (
 
     CONSTRAINT "dapps_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE INDEX dapps_contracts_index ON dapps USING gin (contracts);
