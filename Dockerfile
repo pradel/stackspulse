@@ -62,4 +62,4 @@ ENV DATABASE_PATH="file:/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD pnpm db:migrate && pnpm dotenvx run -- node server.js
+CMD pnpm dotenvx run -- node server.js
