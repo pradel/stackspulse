@@ -1,5 +1,6 @@
 import { sql } from "@/db/db";
 import { type Protocol, protocolsInfo } from "@/lib/protocols";
+import { storage } from "@/lib/storage";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -38,6 +39,16 @@ export async function GET(request: NextRequest) {
       { success: false, message: "Invalid parameters" },
       { status: 400 },
     );
+  }
+
+  // ?, & and = are not allowed in cache keys
+  const cacheKey =
+    request.nextUrl.pathname + request.nextUrl.search.replace(/[?&=]/g, "_");
+  const cachedData = await storage.getItem<{ expires: number; data: unknown }>(
+    cacheKey,
+  );
+  if (cachedData && cachedData.expires > Date.now()) {
+    return Response.json(cachedData.data, { status: 200 });
   }
 
   let dateCondition = "";
@@ -101,6 +112,12 @@ LIMIT ${params.data.limit || 10}
     protocol_name: stat.protocol_name as Protocol,
     unique_senders: Number.parseInt(stat.unique_senders),
   }));
+
+  await storage.setItem(cacheKey, {
+    data: stats,
+    // Cache for 5 mins
+    expires: Date.now() + 1000 * 60 * 5,
+  });
 
   return Response.json(stats);
 }
