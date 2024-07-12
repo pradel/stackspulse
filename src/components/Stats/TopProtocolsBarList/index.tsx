@@ -51,27 +51,27 @@ export const TopProtocolsBarList = () => {
             data={[
               {
                 name: "alex",
-                value: "3415",
+                value: 3415,
               },
               {
                 name: "velar",
-                value: "2169",
+                value: 2169,
               },
               {
                 name: "stackingdao",
-                value: "1432",
+                value: 1432,
               },
               {
                 name: "bitflow",
-                value: "1358",
+                value: 1358,
               },
               {
                 name: "stackswap",
-                value: "352",
+                value: 352,
               },
               {
                 name: "arkadiko",
-                value: "283",
+                value: 283,
               },
             ]}
           />
