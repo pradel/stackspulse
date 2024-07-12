@@ -13,6 +13,7 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "node ./scripts/drizzle-migrate.mjs",
+    "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
     "version": "pnpm changeset version && node scripts/create-release.mjs",
     "release": "pnpm changeset publish",
     "deploy": "fly deploy --remote-only",
