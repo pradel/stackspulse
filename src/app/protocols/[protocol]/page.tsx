@@ -1,11 +1,11 @@
 import { ProtocolInfo } from "@/components/Protocol/ProtocolInfo";
+import { ProtocolStats } from "@/components/Protocol/ProtocolStats";
 import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions";
 import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
-import { getTransactionsStats } from "@/db/transactions";
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
-import { Card, Container, Text } from "@radix-ui/themes";
+import { Container } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -39,7 +39,6 @@ export default async function ProtocolPage({ params }: PageProps) {
   if (!isProtocol(protocol)) {
     notFound();
   }
-  const stats = await getTransactionsStats({ protocol });
 
   return (
     <Container size="2" className="px-4 pt-10">
@@ -47,24 +46,9 @@ export default async function ProtocolPage({ params }: PageProps) {
 
       {protocol === "stackingdao" ? <StackingDAORef /> : null}
 
-      <div className="mt-5 grid grid-cols-2 gap-5">
-        <Card size="2">
-          <Text as="div" size="2" color="gray">
-            Total Transactions
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            {stats.count.toLocaleString("en-US")}
-          </Text>
-        </Card>
-        <Card size="2">
-          <Text as="div" size="2" color="gray">
-            Unique addresses
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            {stats.uniqueSenders.toLocaleString("en-US")}
-          </Text>
-        </Card>
-      </div>
+      <Suspense>
+        <ProtocolStats protocol={protocol} />
+      </Suspense>
 
       <Suspense>
         <UniqueUsersBarChart protocol={protocol} />

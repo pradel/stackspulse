@@ -1,6 +1,5 @@
 import { sql } from "@/db/postgres/db";
-import { getTransactions } from "@/db/transactions";
-import { protocols } from "@/lib/protocols";
+import { type Protocol, protocols } from "@/lib/protocols";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -9,6 +8,12 @@ export const dynamic = "force-dynamic";
 export type TransactionStatsRouteResponse = {
   count: number;
   unique_senders: number;
+};
+export type TransactionStatsRouteQuery = {
+  /**
+   * Protocol to filter by
+   */
+  protocol?: Protocol;
 };
 
 const transactionStatsRouteSchema = z.object({
@@ -26,6 +31,7 @@ export async function GET(request: NextRequest) {
       { status: 400 },
     );
   }
+
   let protocolCondition = "";
   if (params.data.protocol) {
     protocolCondition = `AND dapps.id = '${params.data.protocol}'`;

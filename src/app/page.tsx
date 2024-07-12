@@ -1,25 +1,17 @@
 import { HomeTransactions } from "@/components/Home/HomeTransactions";
 import { TopProtocolsBarList } from "@/components/Stats/TopProtocolsBarList";
-import { TransactionRow } from "@/components/Transaction/TransactionRow";
-import { getTransactions, getTransactionsStats } from "@/db/transactions";
-import {
-  Card,
-  Container,
-  Heading,
-  Separator,
-  Text,
-  Tooltip,
-} from "@radix-ui/themes";
+import { env } from "@/env";
+import { Card, Container, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
+import type { TransactionStatsRouteResponse } from "./api/transactions/stats/route";
 
 export const dynamic = "force-dynamic";
-// TODO
-// Cache the page for 60 seconds
-// export const revalidate = 60;
 
 export default async function HomePage() {
-  const [stats] = await Promise.all([getTransactionsStats()]);
+  const stats: TransactionStatsRouteResponse = await fetch(
+    `${env.NEXT_PUBLIC_BASE_URL}/api/transactions/stats`,
+  ).then((res) => res.json());
 
   return (
     <Container size="2" className="px-4 pt-10">
@@ -62,7 +54,7 @@ export default async function HomePage() {
             </Tooltip>
           </Text>
           <Text as="div" mt="2" size="5" weight="medium">
-            {stats.uniqueSenders.toLocaleString("en-US")}
+            {stats.unique_senders.toLocaleString("en-US")}
           </Text>
         </Card>
       </div>
