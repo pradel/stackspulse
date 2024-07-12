@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
   }
   let protocolCondition = "";
   if (params.data.protocol) {
-    protocolCondition = `AND dapps.id = ${params.data.protocol}`;
+    protocolCondition = `AND dapps.id = '${params.data.protocol}'`;
   }
 
   const result = await sql`
@@ -38,22 +38,6 @@ WHERE
   txs.type_id = 2
   ${sql.unsafe(protocolCondition)}
   `;
-
-  //   const query = db
-  //   .select({
-  //     count: count(transactionTable.txId),
-  //     uniqueSenders: countDistinct(transactionTable.sender),
-  //   })
-  //   .from(transactionTable);
-  // if (protocol) {
-  //   query.where(eq(transactionTable.protocol, protocol));
-  // }
-
-  // const transactions = await query;
-  // const stats = transactions[0];
-  // return stats;
-
-  console.log(result);
 
   return Response.json(result);
 }
