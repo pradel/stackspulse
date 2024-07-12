@@ -1,31 +1,21 @@
-import { db } from "@/db/db";
-import { transactionTable } from "@/db/schema";
 import { env } from "@/env";
 import { protocolsInfo } from "@/lib/protocols";
 import { sendTweet } from "@/lib/twitter";
-import { countDistinct, desc, gt, sql } from "drizzle-orm";
+import type { ProtocolUsersRouteResponse } from "../../protocols/users/route";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Send a tweet with the top 5 protocols by unique users in the last 7 days
+ */
 export async function GET() {
-  // Last 7 days
-  const dateBegin = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
-  const query = db
-    .select({
-      protocol: transactionTable.protocol,
-      uniqueSenders: countDistinct(transactionTable.sender).as("uniqueSenders"),
-    })
-    .from(transactionTable)
-    .where(gt(transactionTable.timestamp, dateBegin))
-    .groupBy(transactionTable.protocol)
-    .orderBy(desc(sql`uniqueSenders`))
-    .limit(5);
-  const stats = await query;
+  const stats: ProtocolUsersRouteResponse = await fetch(
+    `${env.NEXT_PUBLIC_BASE_URL}/api/protocols/users?date=7d&limit=5`,
+  ).then((res) => res.json());
 
   const data = stats.map((stat) => ({
-    name: protocolsInfo[stat.protocol].name,
-    value: stat.uniqueSenders,
+    name: protocolsInfo[stat.protocol_name].name,
+    value: stat.unique_senders,
   }));
 
   const params = new URLSearchParams();
@@ -38,10 +28,10 @@ export async function GET() {
 
   let message = "📈 Last 7 days unique users:\n\n";
   for (const stat of stats) {
-    message += `\n- @${protocolsInfo[stat.protocol].x.replace(
+    message += `\n- @${protocolsInfo[stat.protocol_name].x.replace(
       "https://twitter.com/",
       "",
-    )}: ${stat.uniqueSenders.toLocaleString("en-US")} users`;
+    )}: ${stat.unique_senders.toLocaleString("en-US")} users`;
   }
 
   const tweetId = await sendTweet({ message, images: [imageUrl] });
