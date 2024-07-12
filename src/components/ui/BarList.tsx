@@ -89,7 +89,7 @@ export const BarListSkeleton = ({ data, className }: BarListProps) => {
       <div className="blur-sm">
         <BarList className={className} data={data} />
       </div>
-      <Spinner className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+      <Spinner className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const TopProtocolsBarList = () => {
 
   return (
     <Card size="2" className="mt-5">
-      <div className="flex justify-between items-center -mt-2">
+      <div className="-mt-2 flex items-center justify-between">
         <Text as="div" size="2" weight="medium" color="gray" highContrast>
           Top Stacks protocols
         </Text>
