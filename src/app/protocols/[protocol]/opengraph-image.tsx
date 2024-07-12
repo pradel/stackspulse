@@ -37,6 +37,7 @@ export default async function Image({ params }: PageProps) {
       }}
     >
       <div tw="flex items-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           tw="mr-4"
           src={`${env.NEXT_PUBLIC_BASE_URL}/protocols/${protocol}.png`}
