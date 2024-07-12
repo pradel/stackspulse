@@ -27,9 +27,7 @@ export const db = drizzle(sqlite, {
   // logger: new QueryLogger()
 });
 
-export const sql = postgres({
-  host: "TODO",
-  port: 5432,
-  username: "postgres",
-  password: "TODO",
-});
+// Postgres.js doesn't support the schema public parameter
+const databaseUrl = env.DATABASE_URL.replace("?schema=public", "");
+
+export const sql = postgres(databaseUrl);
