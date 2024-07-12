@@ -1,5 +1,15 @@
 # stackspulse
 
+## 0.5.0
+
+### Minor Changes
+
+- 2e50688: Migrate the Top protocol query to use the stacks-blockchain-api database. It is now required to have a stacks node and API running for Stackspulse.
+
+### Patch Changes
+
+- 2e50688: Make weekly users cron job route use the new protocol users API.
+
 ## 0.4.0
 
 ### Minor Changes
