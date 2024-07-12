@@ -2,9 +2,12 @@ import { type NextRequest, NextResponse } from "next/server";
 import { env } from "./env";
 
 export const config = {
-  // Protect the entire /api/chainhooks/* with a bearer token
-  // Protect the entire /api/cron/* with a bearer token
-  matcher: ["/api/chainhooks/:function*", "/api/cron/:function*"],
+  matcher: [
+    // Protect the entire /api/chainhooks/* with a bearer token
+    "/api/chainhooks/:function*",
+    // Protect the entire /api/cron/* with a bearer token
+    "/api/cron/:function*",
+  ],
 };
 
 export function middleware(request: NextRequest) {

@@ -1,6 +1,7 @@
 import { env } from "@/env";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
+import postgres from "postgres";
 import * as schema from "./schema";
 
 // Patch BigInt to be JSON serializable
@@ -25,3 +26,8 @@ export const db = drizzle(sqlite, {
   // Enable to log all queries for debugging
   // logger: new QueryLogger()
 });
+
+// Postgres.js doesn't support the schema public parameter
+const databaseUrl = env.DATABASE_URL.replace("?schema=public", "");
+
+export const sql = postgres(databaseUrl);

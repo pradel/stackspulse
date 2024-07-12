@@ -16,9 +16,9 @@ export const TopProtocolsBarListQuery = ({
   });
 
   const formattedData = stats.map((d) => ({
-    name: protocolsInfo[d.protocol].name,
-    value: d.uniqueSenders,
-    href: `/protocols/${d.protocol}`,
+    name: protocolsInfo[d.protocol_name].name,
+    value: d.unique_senders,
+    href: `/protocols/${d.protocol_name}`,
   }));
 
   return <BarList className="mt-2" data={formattedData} />;

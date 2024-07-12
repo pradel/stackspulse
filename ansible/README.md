@@ -34,6 +34,31 @@ Run the playbook:
 $ ansible-playbook -i hosts.ini -e @vars.yml playbook.yml
 ```
 
+## Stacks node setup
+
+Git clone the stacks-blockchain-docker repository and copy the sample.env file:
+
+```bash
+git clone https://github.com/stacks-network/stacks-blockchain-docker && cd stacks-blockchain-docker
+cp sample.env .env
+```
+
+Now edit the .env file and set the values to your needs.
+
+To run the long running seed script run:
+
+```bash
+tmux new -s seed-chainstate
+
+./scripts/seed-chainstate.sh
+```
+
+To attach to the tmux session run:
+
+```bash
+tmux attach -t seed-chainstate
+```
+
 ## Credits
 
 Config adapted from https://github.com/guillaumebriday/kamal-ansible-manager.
