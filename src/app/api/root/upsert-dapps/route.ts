@@ -1,10 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { protocols, protocolsInfo } from "@/lib/protocols";
-import type { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   for (const protocol of protocols) {
     const protocolInfo = protocolsInfo[protocol];
     await prisma.dapps.upsert({
@@ -17,7 +16,6 @@ export async function GET(request: NextRequest) {
         contracts: [...protocolInfo.contracts],
       },
     });
-    console.log(`Upserted ${protocol} contracts`);
   }
 
   return Response.json({ ok: true });
