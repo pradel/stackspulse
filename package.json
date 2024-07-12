@@ -17,7 +17,7 @@
     "version": "pnpm changeset version && node scripts/create-release.mjs",
     "release": "pnpm changeset publish",
     "deploy": "fly deploy --remote-only",
-    "prepare": "husky"
+    "prepare": "husky && prisma generate"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.6.1",
