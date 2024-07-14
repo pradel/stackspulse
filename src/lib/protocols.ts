@@ -74,6 +74,9 @@ export const protocolsInfo = {
     description: "DeFi Liquidity Protocol on Bitcoin.",
     website: "https://www.velar.co/",
     x: "https://twitter.com/VelarBTC",
-    contracts: ["SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router"],
+    contracts: [
+      "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router",
+      "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2",
+    ],
   },
 } as const;
