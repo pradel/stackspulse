@@ -51,6 +51,4 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run:
-          cp ./apps/web/.env.production.build ./apps/web/.env.production.local
-          pnpm build
+        run: cp ./apps/web/.env.production.build ./apps/web/.env.production.local && pnpm build
