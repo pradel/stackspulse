@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.0
+
+### Minor Changes
+
+- 5d1e41f: Move stackspulse to a monorepo.
+
 ## 0.5.2
 
 ### Patch Changes
