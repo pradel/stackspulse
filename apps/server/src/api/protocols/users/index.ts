@@ -14,7 +14,6 @@ type ProtocolUsersRouteResponse = {
   unique_senders: number;
 }[];
 
-// TODO cache swr test
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, protocolUsersRouteSchema);
   const limit = query.limit || 10;
