@@ -51,7 +51,7 @@ COPY --from=builder /app/out/full/ .
 WORKDIR /app/apps/$APP_NAME
 
 # Add fake environment file for build to succeed
-COPY .env.production.build .env.production.local
+# COPY .env.production.build .env.production.local
 RUN pnpm db:push
 
 # Build application
