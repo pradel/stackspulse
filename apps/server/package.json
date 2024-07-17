@@ -1,0 +1,14 @@
+{
+  "name": "stackspulse-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "nitro build",
+    "dev": "nitro dev",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs"
+  },
+  "devDependencies": {
+    "nitropack": "2.9.7"
+  }
+}
