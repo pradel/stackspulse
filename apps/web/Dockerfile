@@ -42,9 +42,6 @@ RUN apk update && \
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
-# TODO remove
-RUN ls -la
-COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod=false
 
 COPY --from=builder /app/out/full/ .
