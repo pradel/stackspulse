@@ -5,12 +5,25 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
+ENV APP_NAME="stackspulse"
 
 # Install pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 COPY --link ./package.json ./
 RUN corepack enable && corepack install
+RUN pnpm install turbo@^2 --global
+
+# --- Turbo stage ---
+
+FROM base AS builder
+WORKDIR /app
+RUN apk update && \
+    apk add --no-cache libc6-compat
+COPY . .
+RUN turbo prune $APP_NAME --docker
+
+# --- Prod deps stage ---
 
 # Optimize the node_modules production folder
 FROM base AS prod-deps
@@ -18,29 +31,35 @@ COPY --link . .
 RUN node scripts/docker-runtime-deps.mjs
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# --- Build stage ---
 
-# Install packages needed to build node modules
+FROM base as installer
+WORKDIR /app
+
 RUN apk update && \
-    apk add build-base gyp pkgconfig python3
+    apk add --no-cache libc6-compat build-base gyp pkgconfig python3
 
-# Install node modules
-COPY --link package.json pnpm-lock.yaml ./
+# First install the dependencies (as they change less often)
+COPY .gitignore .gitignore
+COPY --from=builder /app/out/json/ .
+RUN ls -la
+COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod=false
 
-# Copy application code
-COPY --link . .
+COPY --from=builder /app/out/full/ .
+
+WORKDIR /app/apps/$APP_NAME
 
 # Add fake environment file for build to succeed
-COPY --link .env.production.build .env.production.local
+COPY .env.production.build .env.production.local
 RUN pnpm db:push
 
 # Build application
-RUN pnpm run build
+RUN pnpm turbo run build --filter=$APP_NAME...
 
-# Final stage for app image
-FROM base
+# --- Runner stage ---
+
+FROM base AS runner
 WORKDIR /app
 
 # Copy built application
