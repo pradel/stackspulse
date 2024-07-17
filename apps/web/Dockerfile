@@ -28,7 +28,7 @@ RUN turbo prune $APP_NAME --docker
 # Optimize the node_modules production folder
 FROM base AS prod-deps
 COPY --link . .
-RUN node scripts/docker-runtime-deps.mjs
+# RUN node scripts/docker-runtime-deps.mjs
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
 
 # --- Build stage ---
@@ -42,13 +42,14 @@ RUN apk update && \
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
+# TODO remove
 RUN ls -la
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod=false
 
 COPY --from=builder /app/out/full/ .
 
-WORKDIR /app/apps/$APP_NAME
+WORKDIR /app/apps/web
 
 # Add fake environment file for build to succeed
 # COPY .env.production.build .env.production.local
