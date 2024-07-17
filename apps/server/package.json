@@ -9,6 +9,8 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@t3-oss/env-core": "0.10.1",
+    "postgres": "3.4.4",
     "zod": "3.23.8",
     "zod-validation-error": "3.3.0"
   },
