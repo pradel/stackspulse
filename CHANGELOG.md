@@ -1,5 +1,12 @@
 # stackspulse
 
+## 0.5.2
+
+### Patch Changes
+
+- e391e45: Create new dapps table to improve the queries.
+- f2070cd: Add SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2 to velar.
+
 ## 0.5.1
 
 ### Patch Changes
