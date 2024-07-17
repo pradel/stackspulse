@@ -63,16 +63,16 @@ FROM base AS runner
 WORKDIR /app
 
 # Copy built application
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/scripts ./scripts
-COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
-COPY --from=build /app/drizzle ./drizzle
-COPY --from=prod-deps /app/.env.production.local ./.env.production.local
+COPY --from=prod-deps /app/apps/web/node_modules ./node_modules
+COPY --from=installer /app/apps/web/package.json ./package.json
+COPY --from=installer /app/apps/web/scripts ./scripts
+COPY --from=installer /app/apps/web/drizzle.config.ts ./drizzle.config.ts
+COPY --from=installer /app/apps/web/drizzle ./drizzle
+COPY --from=prod-deps /app/apps/web/.env.production.local ./.env.production.local
 
-COPY --from=build /app/public ./public
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
+COPY --from=installer /app/apps/web/.next/standalone ./
+COPY --from=installer /app/apps/web/.next/static ./.next/static
+COPY --from=installer /app/apps/web/public ./public
 
 # Setup sqlite on a separate volume
 RUN mkdir -p /data
