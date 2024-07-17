@@ -5,3 +5,8 @@ dist
 .cache
 .output
 .env
+
+# local env files
+.env*.local
+.env.keys
+!.env.production.local

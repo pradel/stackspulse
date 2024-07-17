@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "build": "nitro build",
-    "dev": "nitro dev --port 3001",
+    "dev": "dotenvx run --env-file=.env.development.local -- nitro dev --port 3001",
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "1.6.1",
     "@t3-oss/env-core": "0.10.1",
     "postgres": "3.4.4",
     "zod": "3.23.8",
