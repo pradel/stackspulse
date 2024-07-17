@@ -8,6 +8,10 @@
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs"
   },
+  "dependencies": {
+    "zod": "3.23.8",
+    "zod-validation-error": "3.3.0"
+  },
   "devDependencies": {
     "nitropack": "2.9.7"
   }
