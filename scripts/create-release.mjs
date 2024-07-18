@@ -3,7 +3,8 @@ import { dirname, join } from "node:path";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
 const packageJsonPath = join(__dirname, "..", "apps", "web", "package.json");
-const flyTomlPath = join(__dirname, "..", "apps", "web", "fly.toml");
+const flyTomlWebPath = join(__dirname, "..", "apps", "web", "fly.toml");
+const flyTomlServerPath = join(__dirname, "..", "apps", "server", "fly.toml");
 
 /**
  * Take the current version from package.json and replace the version in the
@@ -11,14 +12,22 @@ const flyTomlPath = join(__dirname, "..", "apps", "web", "fly.toml");
  */
 async function main() {
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  const flyToml = readFileSync(flyTomlPath, "utf8");
+  const flyTomlWeb = readFileSync(flyTomlWebPath, "utf8");
 
-  const updatedFlyToml = flyToml.replace(
+  let updatedFlyToml = flyTomlWeb.replace(
     /"ghcr.io\/pradel\/stackspulse:.*/,
     `"ghcr.io/pradel/stackspulse:${packageJson.version}"`,
   );
+  writeFileSync(flyTomlWebPath, updatedFlyToml);
 
-  writeFileSync(flyTomlPath, updatedFlyToml);
+  const flyTomlServer = readFileSync(flyTomlServerPath, "utf8");
+
+  updatedFlyToml = flyTomlServer.replace(
+    /"ghcr.io\/pradel\/stackspulse\/server:.*/,
+    `"ghcr.io/pradel/stackspulse/server:${packageJson.version}"`,
+  );
+  writeFileSync(flyTomlServerPath, updatedFlyToml);
+
   console.info(`Updated fly.toml version to ${packageJson.version}`);
   process.exit(0);
 }
