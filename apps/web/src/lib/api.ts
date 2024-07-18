@@ -1,5 +1,9 @@
 import type { Protocol } from "./protocols";
 
+/**
+ * `/api/protocols/users`
+ */
+
 export type ProtocolUsersRouteResponse = {
   protocol_name: Protocol;
   unique_senders: number;
@@ -16,4 +20,17 @@ export type ProtocolUsersRouteQuery = {
    * Maximum: 100
    */
   limit?: number;
+};
+
+/**
+ * `/api/transactions/stats`
+ */
+
+export type TransactionStatsRouteResponse = {
+  count: number;
+  unique_senders: number;
+};
+
+export type TransactionStatsRouteQuery = {
+  protocol?: Protocol;
 };

@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { sql } from "~/lib/db";
 import { getValidatedQueryZod } from "~/lib/nitro";
-
-type Protocol = "TODO";
+import type { Protocol } from "~/lib/protocols";
 
 const protocolUsersRouteSchema = z.object({
   date: z.enum(["7d", "30d", "all"]),

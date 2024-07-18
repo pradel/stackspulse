@@ -155,27 +155,6 @@ export const getTransactions = async ({
   return transactionsWithTokens;
 };
 
-export const getTransactionsStats = async ({
-  protocol,
-}: { protocol?: Protocol } = {}): Promise<{
-  count: number;
-  uniqueSenders: number;
-}> => {
-  const query = db
-    .select({
-      count: count(transactionTable.txId),
-      uniqueSenders: countDistinct(transactionTable.sender),
-    })
-    .from(transactionTable);
-  if (protocol) {
-    query.where(eq(transactionTable.protocol, protocol));
-  }
-
-  const transactions = await query;
-  const stats = transactions[0];
-  return stats;
-};
-
 export const getTransactionsUniqueSendersByMonth = async ({
   protocol,
 }: {
