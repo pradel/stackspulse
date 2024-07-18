@@ -50,7 +50,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=match,pattern=\d.\d.\d
+            type=match,pattern=stackspulse@\d.\d.\d
 
       - name: Build and push Docker image
         id: build-and-push
@@ -97,7 +97,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=match,pattern=\d.\d.\d
+            type=match,pattern=@stackspulse/server@\d.\d.\d
 
       - name: Build and push Docker image
         id: build-and-push
