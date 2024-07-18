@@ -1,5 +1,15 @@
 # stackspulse
 
+## 0.8.0
+
+### Minor Changes
+
+- cc29346: Take protocols stats from API.
+
+### Patch Changes
+
+- f0129c3: Use new API /api/protocols/users endpoint.
+
 ## 0.7.2
 
 ## 0.7.1
