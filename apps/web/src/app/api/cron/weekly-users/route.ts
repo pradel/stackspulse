@@ -1,7 +1,7 @@
 import { env } from "@/env";
+import type { ProtocolUsersRouteResponse } from "@/lib/api";
 import { protocolsInfo } from "@/lib/protocols";
 import { sendTweet } from "@/lib/twitter";
-import type { ProtocolUsersRouteResponse } from "../../protocols/users/route";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
  */
 export async function GET() {
   const stats: ProtocolUsersRouteResponse = await fetch(
-    `${env.NEXT_PUBLIC_BASE_URL}/api/protocols/users?date=7d&limit=5`,
+    `${env.NEXT_PUBLIC_API_URL}/api/protocols/users?date=7d&limit=5`,
   ).then((res) => res.json());
 
   const data = stats.map((stat) => ({
