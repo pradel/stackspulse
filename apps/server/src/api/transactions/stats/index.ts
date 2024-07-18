@@ -1,9 +1,7 @@
 import { z } from "zod";
 import { sql } from "~/lib/db";
 import { getValidatedQueryZod } from "~/lib/nitro";
-
-type Protocol = "TODO";
-const protocols = ["TODO"] as const;
+import { protocols } from "~/lib/protocols";
 
 const transactionStatsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
