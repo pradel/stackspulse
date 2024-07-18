@@ -1,8 +1,8 @@
+import { env } from "@/env";
 import type {
   ProtocolUsersRouteQuery,
   ProtocolUsersRouteResponse,
-} from "@/app/api/protocols/users/route";
-import { env } from "@/env";
+} from "@/lib/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useGetProtocolsUsers = ({

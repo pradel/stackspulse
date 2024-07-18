@@ -1,6 +1,6 @@
-import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
 import { BarList } from "@/components/ui/BarList";
 import { useGetProtocolsUsers } from "@/hooks/api/useGetProtocolsUsers";
+import type { ProtocolUsersRouteQuery } from "@/lib/api";
 import { protocolsInfo } from "@/lib/protocols";
 
 interface TopProtocolsBarListClientProps {

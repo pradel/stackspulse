@@ -1,7 +1,7 @@
 "use client";
 
-import type { ProtocolUsersRouteQuery } from "@/app/api/protocols/users/route";
 import { BarListSkeleton } from "@/components/ui/BarList";
+import type { ProtocolUsersRouteQuery } from "@/lib/api";
 import { Card, TabNav, Text } from "@radix-ui/themes";
 import { Suspense, useState } from "react";
 import { TopProtocolsBarListQuery } from "./TopProtocolsBarListQuery";
