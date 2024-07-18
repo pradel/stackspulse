@@ -24,14 +24,6 @@ RUN apk update && \
 COPY . .
 RUN turbo prune $APP_NAME --docker
 
-# --- Prod deps stage ---
-
-# Optimize the node_modules production folder
-FROM base AS prod-deps
-COPY --link . .
-# RUN node scripts/docker-runtime-deps.mjs
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
-
 # --- Build stage ---
 
 FROM base as installer
@@ -62,16 +54,10 @@ FROM base AS runner
 WORKDIR /app
 
 # Copy built application
-COPY --from=prod-deps /app/apps/web/node_modules ./node_modules
-COPY --from=installer /app/apps/web/package.json ./package.json
-COPY --from=installer /app/apps/web/scripts ./scripts
-COPY --from=installer /app/apps/web/drizzle.config.ts ./drizzle.config.ts
-COPY --from=installer /app/apps/web/drizzle ./drizzle
-COPY --from=prod-deps /app/apps/web/.env.production.local ./.env.production.local
-
 COPY --from=installer /app/apps/web/.next/standalone ./
-COPY --from=installer /app/apps/web/.next/static ./.next/static
-COPY --from=installer /app/apps/web/public ./public
+COPY --from=installer /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=installer /app/apps/web/public ./apps/web/public
+COPY --from=builder /app/apps/web/.env.production.local ./apps/web/.env.production.local
 
 # Setup sqlite on a separate volume
 RUN mkdir -p /data
@@ -80,4 +66,4 @@ ENV DATABASE_PATH="file:/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD dotenvx run -- node server.js
+CMD dotenvx run -- node apps/web/server.js
