@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.2
+
+### Patch Changes
+
+- 20c932a: Fix docker build.
+
 ## 0.6.1
 
 ### Patch Changes
