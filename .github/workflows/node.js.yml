@@ -34,12 +34,12 @@ jobs:
       - uses: pnpm/action-setup@v3
 
       - name: Cache turbo build setup
-          uses: actions/cache@v4
-          with: 
-            path: .turbo
-            key: ${{ runner.os }}-turbo-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-turbo-
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -51,4 +51,4 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: cp .env.production.build .env.production.local && pnpm build
+        run: cp ./apps/web/.env.production.build ./apps/web/.env.production.local && pnpm build

@@ -11,7 +11,6 @@ import { dirname, join } from "node:path";
 const __dirname = dirname(new URL(import.meta.url).pathname);
 const packageJsonPath = join(__dirname, "..", "package.json");
 const dependenciesToInstall = [
-  "husky",
   "@libsql/client",
   "drizzle-orm",
   "@dotenvx/dotenvx",

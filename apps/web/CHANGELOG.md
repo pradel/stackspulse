@@ -1,5 +1,54 @@
 # stackspulse
 
+## 0.6.6
+
+### Patch Changes
+
+- ba45486: Downgrade @libsql/client to 0.3.3 for docker.
+
+## 0.6.5
+
+### Patch Changes
+
+- 797962e: Fix docker build.
+
+## 0.6.4
+
+### Patch Changes
+
+- 32b1a60: Fix docker dotenvx command.
+
+## 0.6.3
+
+### Patch Changes
+
+- b32c337: Fix docker dotenvx command.
+
+## 0.6.2
+
+### Patch Changes
+
+- 20c932a: Fix docker build.
+
+## 0.6.1
+
+### Patch Changes
+
+- 002e3c1: Fix docker build.
+
+## 0.6.0
+
+### Minor Changes
+
+- 5d1e41f: Move stackspulse to a monorepo.
+
+## 0.5.2
+
+### Patch Changes
+
+- e391e45: Create new dapps table to improve the queries.
+- f2070cd: Add SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2 to velar.
+
 ## 0.5.1
 
 ### Patch Changes

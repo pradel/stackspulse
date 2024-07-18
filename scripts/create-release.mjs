@@ -2,8 +2,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
-const packageJsonPath = join(__dirname, "..", "package.json");
-const flyTomlPath = join(__dirname, "..", "fly.toml");
+const packageJsonPath = join(__dirname, "..", "apps", "web", "package.json");
+const flyTomlPath = join(__dirname, "..", "apps", "web", "fly.toml");
 
 /**
  * Take the current version from package.json and replace the version in the
