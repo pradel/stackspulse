@@ -1,0 +1,12 @@
+node_modules
+dist
+.data
+.nitro
+.cache
+.output
+.env
+
+# local env files
+.env*.local
+.env.keys
+!.env.production.local
