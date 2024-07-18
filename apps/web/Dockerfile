@@ -13,6 +13,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 COPY --link ./package.json ./
 RUN corepack enable && corepack install
 RUN pnpm install turbo@^2 --global
+RUN curl -sfS https://dotenvx.sh/install.sh?version=1.6.1 | sh
 
 # --- Turbo stage ---
 
@@ -79,4 +80,4 @@ ENV DATABASE_PATH="file:/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD pnpm dotenvx run -- node server.js
+CMD dotenvx run -- node server.js
