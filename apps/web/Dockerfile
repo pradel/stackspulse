@@ -13,7 +13,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 COPY --link ./package.json ./
 RUN corepack enable && corepack install
 RUN pnpm install turbo@^2 --global
-RUN curl -sfS https://dotenvx.sh/install.sh?version=1.6.1 | sh
+RUN pnpm install @dotenvx/dotenvx@^1 --global
 
 # --- Turbo stage ---
 
