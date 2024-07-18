@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.6.1",
-    "@libsql/client": "0.4.3",
+    "@libsql/client": "0.3.3",
     "@radix-ui/themes": "3.0.5",
     "@sentry/nextjs": "8.17.0",
     "@stacks/transactions": "6.16.1",
