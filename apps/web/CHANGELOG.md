@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.6
+
+### Patch Changes
+
+- ba45486: Downgrade @libsql/client to 0.3.3 for docker.
+
 ## 0.6.5
 
 ### Patch Changes
