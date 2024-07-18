@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.5
+
+### Patch Changes
+
+- 797962e: Fix docker build.
+
 ## 0.6.4
 
 ### Patch Changes
