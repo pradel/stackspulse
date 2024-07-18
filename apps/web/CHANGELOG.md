@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.4
+
+### Patch Changes
+
+- 32b1a60: Fix docker dotenvx command.
+
 ## 0.6.3
 
 ### Patch Changes
