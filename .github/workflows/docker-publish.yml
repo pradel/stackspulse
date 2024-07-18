@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    tags: [ 'stackspulse@*.*.*' ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -50,7 +50,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
+            type=match,pattern=\d.\d.\d
 
       - name: Build and push Docker image
         id: build-and-push
