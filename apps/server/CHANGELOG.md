@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.7.2
+
+### Patch Changes
+
+- c077e5e: Fix docker build.
+
 ## 0.7.1
 
 ### Patch Changes

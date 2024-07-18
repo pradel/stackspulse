@@ -1,6 +1,6 @@
 {
   "name": "@stackspulse/server",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
   "scripts": {
     "build": "nitro build",
