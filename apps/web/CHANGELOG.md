@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.6.3
+
+### Patch Changes
+
+- b32c337: Fix docker dotenvx command.
+
 ## 0.6.2
 
 ### Patch Changes
