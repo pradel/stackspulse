@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.9.1
+
+### Patch Changes
+
+- 20bbd85: Fix docker build.
+
 ## 0.9.0
 
 ### Minor Changes
