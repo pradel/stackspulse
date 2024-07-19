@@ -35,7 +35,7 @@ importers:
         version: 0.10.1(typescript@5.5.3)(zod@3.23.8)
       drizzle-orm:
         specifier: 0.32.0
-        version: 0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)
+        version: 0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)
       h3:
         specifier: 1.12.0
         version: 1.12.0
@@ -54,7 +54,10 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.9.7
-        version: 2.9.7(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(react@18.3.1))
+        version: 2.9.7(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1))
+      prisma:
+        specifier: 5.16.2
+        version: 5.16.2
 
   apps/web:
     dependencies:
@@ -96,7 +99,7 @@ importers:
         version: 3.6.0
       drizzle-orm:
         specifier: 0.32.0
-        version: 0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)
+        version: 0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(react@18.3.1)
       fathom-client:
         specifier: 3.7.2
         version: 3.7.2
@@ -167,9 +170,6 @@ importers:
       postcss:
         specifier: 8.4.39
         version: 8.4.39
-      prisma:
-        specifier: 5.16.2
-        version: 5.16.2
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -9237,9 +9237,9 @@ snapshots:
 
   date-fns@3.6.0: {}
 
-  db0@0.1.4(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(react@18.3.1)):
+  db0@0.1.4(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)):
     optionalDependencies:
-      drizzle-orm: 0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)
+      drizzle-orm: 0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)
 
   debounce-fn@4.0.0:
     dependencies:
@@ -9367,7 +9367,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1):
+  drizzle-orm@0.32.0(@libsql/client@0.3.3)(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(better-sqlite3@11.1.2)(postgres@3.4.4)(react@18.3.1):
     optionalDependencies:
       '@libsql/client': 0.3.3
       '@opentelemetry/api': 1.9.0
@@ -9376,6 +9376,16 @@ snapshots:
       '@types/pg': 8.11.6
       '@types/react': 18.3.3
       better-sqlite3: 11.1.2
+      postgres: 3.4.4
+      react: 18.3.1
+
+  drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1):
+    optionalDependencies:
+      '@opentelemetry/api': 1.9.0
+      '@prisma/client': 5.16.2(prisma@5.16.2)
+      '@types/better-sqlite3': 7.6.11
+      '@types/pg': 8.11.6
+      '@types/react': 18.3.3
       postgres: 3.4.4
       prisma: 5.16.2
       react: 18.3.1
@@ -9632,7 +9642,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.3(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -9656,7 +9666,7 @@ snapshots:
       enhanced-resolve: 5.17.0
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
       is-core-module: 2.14.0
@@ -9678,7 +9688,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
@@ -10860,7 +10870,7 @@ snapshots:
     transitivePeerDependencies:
       - uWebSockets.js
 
-  nitropack@2.9.7(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(react@18.3.1)):
+  nitropack@2.9.7(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1)):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.1
@@ -10883,7 +10893,7 @@ snapshots:
       cookie-es: 1.1.0
       croner: 8.1.0
       crossws: 0.2.4
-      db0: 0.1.4(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2)(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(react@18.3.1))
+      db0: 0.1.4(drizzle-orm@0.32.0(@opentelemetry/api@1.9.0)(@prisma/client@5.16.2(prisma@5.16.2))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.6)(@types/react@18.3.3)(postgres@3.4.4)(prisma@5.16.2)(react@18.3.1))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 8.0.2

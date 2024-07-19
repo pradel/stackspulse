@@ -11,7 +11,6 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "node ./scripts/drizzle-migrate.mjs",
-    "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
@@ -53,7 +52,6 @@
     "eslint-config-next": "14.2.5",
     "eslint-plugin-tailwindcss": "3.17.4",
     "postcss": "8.4.39",
-    "prisma": "5.16.2",
     "radix-themes-tw": "0.2.3",
     "tailwindcss": "3.4.4",
     "typescript": "5.5.3"
