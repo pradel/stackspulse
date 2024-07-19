@@ -1,4 +1,4 @@
-import { sql } from "~/lib/db";
+import { sql } from "~/db/db";
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hookOnce("close", async () => {
