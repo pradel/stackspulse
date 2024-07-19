@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.9.0
+
+### Patch Changes
+
+- d0f542a: Move /api/root/upsert-dapps to api server.
+
 ## 0.8.0
 
 ### Minor Changes
