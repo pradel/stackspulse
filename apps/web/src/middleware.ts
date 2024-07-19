@@ -7,8 +7,6 @@ export const config = {
     "/api/chainhooks/:function*",
     // Protect the entire /api/cron/* with a bearer token
     "/api/cron/:function*",
-    // Protect the entire /api/root/* with a bearer token
-    "/api/root/:function*",
   ],
 };
 
@@ -34,7 +32,7 @@ export function middleware(request: NextRequest) {
         { status: 401 },
       );
     }
-  } else if (endpoint[1] === "cron" || endpoint[1] === "root") {
+  } else if (endpoint[1] === "cron") {
     if (scheme !== "Bearer" || token !== env.CRON_API_TOKEN) {
       return Response.json(
         { success: false, message: "authentication failed" },
