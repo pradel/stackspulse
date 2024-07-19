@@ -57,7 +57,7 @@ WORKDIR /app
 COPY --from=installer /app/apps/web/.next/standalone ./
 COPY --from=installer /app/apps/web/.next/static ./apps/web/.next/static
 COPY --from=installer /app/apps/web/public ./apps/web/public
-COPY --from=builder /app/apps/web/.env.production.local ./apps/web/.env.production.local
+COPY ./apps/web/.env.production.local ./.env.production.local
 
 # Setup sqlite on a separate volume
 RUN mkdir -p /data
