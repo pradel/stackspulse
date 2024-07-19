@@ -1,5 +1,16 @@
 # @stackspulse/server
 
+## 0.8.0
+
+### Minor Changes
+
+- cc29346: Create new `/transactions/stats` route.
+
+### Patch Changes
+
+- 20d47b2: Add Fly config.
+- f0129c3: Add cors config.
+
 ## 0.7.2
 
 ### Patch Changes
