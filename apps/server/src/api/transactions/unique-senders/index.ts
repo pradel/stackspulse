@@ -1,8 +1,3 @@
-/**
-select "protocol", strftime('%Y-%m', timestamp, 'unixepoch') as month, count(distinct "sender")
-order by "transaction"."timestamp" asc
-**/
-
 import { z } from "zod";
 import { sql } from "~/lib/db";
 import { getValidatedQueryZod } from "~/lib/nitro";
@@ -26,7 +21,7 @@ export default defineEventHandler(async (event) => {
   const result = await sql`
 SELECT
   COUNT(DISTINCT sender_address) AS unique_senders,
-  to_char(to_timestamp(txs.block_time), 'YYYY-MM') as month
+  date_trunc('month', to_timestamp(txs.block_time)) as month
 FROM
   txs
 JOIN
@@ -35,7 +30,7 @@ WHERE
   txs.type_id = 2
   AND dapps.id = ${query.protocol}
 GROUP BY
-  to_char(to_timestamp(txs.block_time), 'YYYY-MM')
+  month
 ORDER BY
   month ASC
   `;
