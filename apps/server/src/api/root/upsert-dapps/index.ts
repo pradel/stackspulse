@@ -6,7 +6,7 @@ import { protocols, protocolsInfo } from "~/lib/protocols";
 /**
  * Keep the DB up to date with the latest protocols
  */
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
   await db
     .insert(dapps)
     .values(
