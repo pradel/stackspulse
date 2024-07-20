@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.9.2
+
+### Patch Changes
+
+- 6e4b72c: Add /health route.
+
 ## 0.9.1
 
 ## 0.9.0
