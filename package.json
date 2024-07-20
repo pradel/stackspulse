@@ -10,7 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "husky": "9.1.0"
+    "husky": "9.1.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

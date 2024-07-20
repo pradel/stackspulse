@@ -10,7 +10,7 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.6.1",
+    "@dotenvx/dotenvx": "1.6.4",
     "@t3-oss/env-core": "0.10.1",
     "drizzle-orm": "0.32.0",
     "h3": "1.12.0",
