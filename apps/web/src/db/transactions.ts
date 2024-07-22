@@ -1,15 +1,6 @@
 import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
-import {
-  and,
-  asc,
-  count,
-  countDistinct,
-  desc,
-  eq,
-  inArray,
-  sql,
-} from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { db } from "./db";
 import {
   type SelectTokenDrizzle,
@@ -153,24 +144,4 @@ export const getTransactions = async ({
   });
 
   return transactionsWithTokens;
-};
-
-export const getTransactionsUniqueSendersByMonth = async ({
-  protocol,
-}: {
-  protocol: Protocol;
-}) => {
-  const query = db
-    .select({
-      protocol: transactionTable.protocol,
-      month: sql<string>`strftime('%Y-%m', timestamp, 'unixepoch') as month`,
-      uniqueSenders: countDistinct(transactionTable.sender),
-    })
-    .from(transactionTable)
-    .where(eq(transactionTable.protocol, protocol))
-    .groupBy(sql`month`)
-    .orderBy(asc(transactionTable.timestamp));
-
-  const stats = await query;
-  return stats;
 };

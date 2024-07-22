@@ -49,7 +49,9 @@ ORDER BY
   `;
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
-    month: row.month.replace(" 00:00:00+00", ""),
+    // format of the month is "2021-08-01 00:00:00+00"
+    // we want to output "2021-08"
+    month: row.month.slice(0, 7),
     unique_senders: Number.parseInt(row.unique_senders),
   }));
 
