@@ -19,24 +19,37 @@ export default defineEventHandler(async (event) => {
   );
 
   const result = await sql`
+WITH monthly_blocks AS (
+    SELECT 
+        DATE_TRUNC('month', TO_TIMESTAMP(burn_block_time)) AS month,
+        MIN(block_height) AS min_block_height,
+        MAX(block_height) AS max_block_height
+    FROM 
+        blocks
+    GROUP BY 
+        DATE_TRUNC('month', TO_TIMESTAMP(burn_block_time))
+)
+
 SELECT
-  COUNT(DISTINCT sender_address) AS unique_senders,
-  date_trunc('month', to_timestamp(txs.block_time)) as month
-FROM
-  txs
+  mb.month,
+  COUNT(DISTINCT txs.sender_address) AS unique_senders
+FROM 
+  monthly_blocks mb
+JOIN
+  txs ON txs.block_height BETWEEN mb.min_block_height AND mb.max_block_height
 JOIN
   dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
 WHERE
   txs.type_id = 2
   AND dapps.id = ${query.protocol}
 GROUP BY
-  month
+  mb.month
 ORDER BY
-  month ASC
+  mb.month ASC
   `;
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
-    month: row.month,
+    month: row.month.replace(" 00:00:00+00", ""),
     unique_senders: Number.parseInt(row.unique_senders),
   }));
 
