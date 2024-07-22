@@ -7,7 +7,7 @@ const transactionStatsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
 });
 
-export type TransactionStatsRouteResponse = {
+type TransactionStatsRouteResponse = {
   count: number;
   unique_senders: number;
 };
