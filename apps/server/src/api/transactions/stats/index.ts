@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { sql } from "~/lib/db";
+import { sql } from "~/db/db";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { protocols } from "~/lib/protocols";
 

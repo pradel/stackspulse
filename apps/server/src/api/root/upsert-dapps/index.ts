@@ -1,15 +1,13 @@
-import { dbPg } from "@/db/postgres/db";
-import { dapps } from "@/db/postgres/schema";
-import { conflictUpdateSetAllColumns } from "@/db/utils";
-import { protocols, protocolsInfo } from "@/lib/protocols";
-
-export const dynamic = "force-dynamic";
+import { db } from "~/db/db";
+import { dapps } from "~/db/schema";
+import { conflictUpdateSetAllColumns } from "~/db/utils";
+import { protocols, protocolsInfo } from "~/lib/protocols";
 
 /**
  * Keep the DB up to date with the latest protocols
  */
-export async function GET() {
-  await dbPg
+export default defineEventHandler(async () => {
+  await db
     .insert(dapps)
     .values(
       protocols.map((protocol) => {
@@ -25,5 +23,5 @@ export async function GET() {
       set: conflictUpdateSetAllColumns(dapps),
     });
 
-  return Response.json({ ok: true });
-}
+  return { ok: true };
+});

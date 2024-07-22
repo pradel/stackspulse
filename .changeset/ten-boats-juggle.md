@@ -2,4 +2,4 @@
 "@stackspulse/server": patch
 ---
 
-Add cors config.
+Add fly server health check.

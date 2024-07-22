@@ -1,5 +1,33 @@
 # stackspulse
 
+## 0.9.2
+
+## 0.9.1
+
+### Patch Changes
+
+- 20bbd85: Fix docker build.
+
+## 0.9.0
+
+### Minor Changes
+
+- d0f542a: Remove connection to postgres.
+
+### Patch Changes
+
+- d0f542a: Move /api/root/upsert-dapps to api server.
+
+## 0.8.0
+
+### Minor Changes
+
+- cc29346: Take protocols stats from API.
+
+### Patch Changes
+
+- f0129c3: Use new API /api/protocols/users endpoint.
+
 ## 0.7.2
 
 ## 0.7.1
