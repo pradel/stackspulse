@@ -14,15 +14,15 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.6.1",
+    "@dotenvx/dotenvx": "1.6.4",
     "@libsql/client": "0.3.3",
     "@radix-ui/themes": "3.0.5",
-    "@sentry/nextjs": "8.17.0",
+    "@sentry/nextjs": "8.19.0",
     "@stacks/transactions": "6.16.1",
     "@t3-oss/env-core": "0.10.1",
     "@t3-oss/env-nextjs": "0.10.1",
-    "@tabler/icons-react": "3.10.0",
-    "@tanstack/react-query": "5.51.1",
+    "@tabler/icons-react": "3.11.0",
+    "@tanstack/react-query": "5.51.9",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "date-fns": "3.6.0",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "0.5.8",
-    "@types/node": "20.14.10",
+    "@types/node": "20.14.11",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
