@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.10.1
+
+### Patch Changes
+
+- ab867c8: Fix docker release script.
+
 ## 0.10.0
 
 ### Patch Changes
