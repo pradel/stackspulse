@@ -1,5 +1,12 @@
 # @stackspulse/server
 
+## 0.10.3
+
+### Patch Changes
+
+- 9fadf8a: Setup sentry error reporting.
+- 524bb57: Fix turso usage in local dev.
+
 ## 0.10.2
 
 ### Patch Changes
