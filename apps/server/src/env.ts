@@ -8,6 +8,7 @@ export const env = createEnv({
     ADMIN_API_TOKEN: z.string(),
     TURSO_DATABASE_URL: z.string().url(),
     TURSO_AUTH_TOKEN: z.string().optional(),
+    SENTRY_DSN: z.string().url().optional(),
   },
 
   runtimeEnv: process.env,
