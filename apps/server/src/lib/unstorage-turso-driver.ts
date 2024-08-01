@@ -1,5 +1,7 @@
-import { type Config, createClient } from "@libsql/client/web";
+import { createClient as createNodeDevClient } from "@libsql/client";
+import { type Client, type Config, createClient } from "@libsql/client/web";
 import { defineDriver } from "unstorage";
+import { env } from "~/env";
 
 export interface TursoDriverOptions {
   config: Config;
@@ -10,7 +12,12 @@ export const unstorageTursoDriver = defineDriver(
   (options: TursoDriverOptions) => {
     options.table = options.table || "storage";
 
-    const turso = createClient(options.config);
+    let turso: Client;
+    if (env.NODE_ENV === "development") {
+      turso = createNodeDevClient(options.config);
+    } else {
+      turso = createClient(options.config);
+    }
 
     return {
       name: "turso-driver",
