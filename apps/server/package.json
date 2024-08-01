@@ -4,20 +4,22 @@
   "private": true,
   "scripts": {
     "build": "nitro build",
-    "dev": "dotenvx run --env-file=.env.development.local -- nitro dev --port 3001",
+    "dev": "dotenvx run --env-file=.env.development.local --env-file=.env.development -- nitro dev --port 3001",
     "prepare": "nitro prepare",
     "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.6.1",
-    "@t3-oss/env-core": "0.10.1",
-    "drizzle-orm": "0.32.0",
+    "@dotenvx/dotenvx": "1.6.4",
+    "@libsql/client": "0.8.0",
+    "@t3-oss/env-core": "0.11.0",
+    "drizzle-orm": "0.32.1",
     "h3": "1.12.0",
     "nitro-cors": "0.7.1",
     "postgres": "3.4.4",
+    "unstorage": "1.10.2",
     "zod": "3.23.8",
-    "zod-validation-error": "3.3.0"
+    "zod-validation-error": "3.3.1"
   },
   "devDependencies": {
     "nitropack": "2.9.7",

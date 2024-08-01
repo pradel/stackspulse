@@ -10,13 +10,13 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "husky": "9.1.0"
+    "husky": "9.1.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@changesets/cli": "2.27.7",
     "lint-staged": "15.2.7",
-    "turbo": "2.0.7"
+    "turbo": "2.0.11"
   },
   "lint-staged": {
     "*": [
