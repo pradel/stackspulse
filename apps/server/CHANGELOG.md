@@ -1,5 +1,16 @@
 # @stackspulse/server
 
+## 0.10.0
+
+### Minor Changes
+
+- e7b2dea: Add turso unstorage driver for faster boot time when going out of sleep.
+
+### Patch Changes
+
+- 2ff77fb: Migrate `/api/transactions/unique-senders` route.
+- 6eb1cbb: Add fly server health check.
+
 ## 0.9.2
 
 ### Patch Changes

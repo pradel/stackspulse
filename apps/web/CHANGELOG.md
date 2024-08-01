@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.10.0
+
+### Patch Changes
+
+- 2ff77fb: Use new `/api/transactions/unique-senders` route from API.
+
 ## 0.9.2
 
 ## 0.9.1
