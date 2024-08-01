@@ -25,7 +25,7 @@ export const unstorageTursoDriver = defineDriver(
       },
       async getItem(key) {
         const res = await turso.execute({
-          sql: `SELECT value from ${options.table} WHERE id=?;`,
+          sql: `SELECT value FROM ${options.table} WHERE id=?;`,
           args: [key],
         });
         return res.rows[0]?.value ?? null;
