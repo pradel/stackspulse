@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.10.4
+
+### Patch Changes
+
+- 9305fa0: Fix turso usage in local dev.
+
 ## 0.10.3
 
 ### Patch Changes
