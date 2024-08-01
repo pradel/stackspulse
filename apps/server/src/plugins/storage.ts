@@ -6,7 +6,8 @@ export default defineNitroPlugin(() => {
 
   const driver = unstorageTursoDriver({
     config: {
-      url: "file:sqlite.db",
+      url: env.TURSO_DATABASE_URL,
+      authToken: env.TURSO_AUTH_TOKEN,
     },
   });
 
