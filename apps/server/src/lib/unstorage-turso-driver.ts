@@ -12,14 +12,17 @@ export const unstorageTursoDriver = defineDriver(
 
     const turso = createClient(options.config);
 
-    // TODO remove this or find another way to do it
-    turso.execute(
-      `CREATE TABLE IF NOT EXISTS ${options.table} (id TEXT NOT NULL PRIMARY KEY, value TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`,
-    );
-
     return {
       name: "turso-driver",
       options,
+      /**
+       * ! This function should run only once and not be called every time the server starts
+       */
+      async init() {
+        await turso.execute(
+          `CREATE TABLE IF NOT EXISTS ${options.table} (id TEXT NOT NULL PRIMARY KEY, value TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`,
+        );
+      },
       async hasItem() {
         throw new Error("Method not implemented.");
       },
