@@ -5,6 +5,7 @@ dist
 .cache
 .output
 .env
+sqlite.db
 
 # local env files
 .env*.local
