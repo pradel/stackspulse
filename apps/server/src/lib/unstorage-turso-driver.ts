@@ -1,4 +1,4 @@
-import { type Config, createClient } from "@libsql/client";
+import { type Config, createClient } from "@libsql/client/web";
 import { defineDriver } from "unstorage";
 
 export interface TursoDriverOptions {
