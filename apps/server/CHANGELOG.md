@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.10.2
+
+### Patch Changes
+
+- d71c5bb: Fix turso package not working in docker.
+
 ## 0.10.1
 
 ### Patch Changes
