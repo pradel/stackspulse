@@ -9,6 +9,17 @@ export const actions = [
   // StackingDAO
   "stackingdao-deposit",
   "stackingdao-withdraw",
+  // Zest
+  "withdraw",
+  "supply",
+  "repay",
+  "borrow",
+  "set-user-use-reserve-as-collateral",
+  "borrow-call",
+  "repay-call",
+  "supply-call",
+  "withdraw-call",
+  "set-user-use-reserve-as-collateral-call",
 ] as const;
 
 export type Action = (typeof actions)[number];
@@ -39,6 +50,39 @@ export const actionInfo: {
   "stackingdao-withdraw": {
     label: "Withdraw",
   },
+  /**
+   * Zest
+   */
+  withdraw: {
+    label: "Withdraw",
+  },
+  supply: {
+    label: "Supply",
+  },
+  repay: {
+    label: "Repay",
+  },
+  borrow: {
+    label: "Borrow",
+  },
+  "set-user-use-reserve-as-collateral": {
+    label: "Flag Collateral",
+  },
+  "borrow-call": {
+    label: "Borrow",
+  },
+  "repay-call": {
+    label: "Repay",
+  },
+  "supply-call": {
+    label: "Supply",
+  },
+  "withdraw-call": {
+    label: "Withdraw",
+  },
+  "set-user-use-reserve-as-collateral-call": {
+    label: "Flag Collateral",
+  },
 } as const;
 
 export const protocolsActions: {
@@ -50,4 +94,16 @@ export const protocolsActions: {
   stackingdao: ["stackingdao-deposit", "stackingdao-withdraw"],
   stackswap: ["swap"],
   velar: ["swap"],
+  zest: [
+    "withdraw",
+    "supply",
+    "repay",
+    "borrow",
+    "set-user-use-reserve-as-collateral",
+    "borrow-call",
+    "repay-call",
+    "supply-call",
+    "withdraw-call",
+    "set-user-use-reserve-as-collateral-call",
+  ],
 } as const;
