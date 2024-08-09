@@ -25,9 +25,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
     notFound();
   }
 
+  const protocolInfo = protocolsInfo[protocol];
+
   return {
-    title: `stackspulse - ${protocolsInfo[protocol].name}`,
-    description: `Get the latest on-chain stats for ${protocolsInfo[protocol].name}. Explore real-time feed, unique users, transactions, and more..`,
+    title: `stackspulse - ${protocolInfo.name}`,
+    description: `Get the latest on-chain stats for ${protocolInfo.name}. Explore real-time feed, unique users, transactions, and more..`,
     alternates: {
       canonical: `/protocols/${protocol}`,
     },
@@ -39,6 +41,8 @@ export default async function ProtocolPage({ params }: PageProps) {
   if (!isProtocol(protocol)) {
     notFound();
   }
+
+  const protocolInfo = protocolsInfo[protocol];
 
   return (
     <Container size="2" className="px-4 pt-10">
@@ -60,9 +64,11 @@ export default async function ProtocolPage({ params }: PageProps) {
         </Suspense>
       ) : null}
 
-      <Suspense>
-        <ProtocolTransactions protocol={protocol} />
-      </Suspense>
+      {protocolInfo.transactions ? (
+        <Suspense>
+          <ProtocolTransactions protocol={protocol} />
+        </Suspense>
+      ) : null}
     </Container>
   );
 }
