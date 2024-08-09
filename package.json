@@ -1,79 +1,26 @@
 {
-  "name": "stackspulse",
-  "version": "0.5.1",
+  "name": "root",
   "private": true,
   "packageManager": "pnpm@9.5.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "build": "pnpm turbo run build",
     "format": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true",
-    "chainhooks:generate": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- node ./scripts/generate-chainhooks.mjs",
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:migrate": "node ./scripts/drizzle-migrate.mjs",
-    "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
     "version": "pnpm changeset version && node scripts/create-release.mjs",
     "release": "pnpm changeset publish",
-    "deploy": "fly deploy --remote-only",
     "prepare": "husky"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.6.1",
-    "@libsql/client": "0.4.3",
-    "@radix-ui/themes": "3.0.5",
-    "@sentry/nextjs": "8.17.0",
-    "@stacks/transactions": "6.16.1",
-    "@t3-oss/env-core": "0.10.1",
-    "@t3-oss/env-nextjs": "0.10.1",
-    "@tabler/icons-react": "3.10.0",
-    "@tanstack/react-query": "5.51.1",
-    "class-variance-authority": "0.7.0",
-    "clsx": "2.1.1",
-    "date-fns": "3.6.0",
-    "drizzle-orm": "0.32.0",
-    "fathom-client": "3.7.2",
-    "husky": "9.0.11",
-    "javascript-time-ago": "2.5.10",
-    "next": "14.2.5",
-    "postgres": "3.4.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "recharts": "2.13.0-alpha.4",
-    "sharp": "0.33.4",
-    "tailwind-merge": "2.4.0",
-    "tailwindcss-animate": "1.0.7",
-    "twitter-api-v2": "1.17.1",
-    "unstorage": "1.10.2",
-    "zod": "3.23.8"
+    "husky": "9.1.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@changesets/cli": "2.27.7",
-    "@flydotio/dockerfile": "0.5.8",
-    "@types/node": "20.14.10",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
-    "drizzle-kit": "0.23.0",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.5",
-    "eslint-plugin-tailwindcss": "3.17.4",
     "lint-staged": "15.2.7",
-    "postcss": "8.4.39",
-    "prisma": "5.16.2",
-    "radix-themes-tw": "0.2.3",
-    "tailwindcss": "3.4.4",
-    "typescript": "5.5.3"
+    "turbo": "2.0.11"
   },
   "lint-staged": {
     "*": [
       "biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
-  },
-  "dockerfile": {
-    "alpine": true,
-    "secrets": ["CHAINHOOKS_API_TOKEN"]
   }
 }
