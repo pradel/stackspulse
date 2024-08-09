@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { sql } from "~/db/db";
+import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { protocols } from "~/lib/protocols";
 
@@ -12,7 +13,7 @@ type TransactionUniqueSendersRouteResponse = {
   unique_senders: number;
 }[];
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(
     event,
     transactionUniqueSendersRouteSchema,
@@ -56,4 +57,4 @@ ORDER BY
   }));
 
   return stats;
-});
+}, apiCacheConfig);
