@@ -5,6 +5,7 @@ export const protocols = [
   "velar",
   "bitflow",
   "stackingdao",
+  "zest",
 ] as const;
 
 export type Protocol = (typeof protocols)[number];
@@ -77,6 +78,21 @@ export const protocolsInfo = {
     contracts: [
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router",
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2",
+    ],
+  },
+  zest: {
+    name: "Zest",
+    description: "Zest Protocol is a BTC and Bitcoin L2 lending protocol.",
+    website: "https://www.zestprotocol.com/",
+    x: "https://x.com/ZestProtocol",
+    contracts: [
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-0",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-1",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v2-1",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v2-2",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-2",
+      "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-3",
     ],
   },
 } as const;
