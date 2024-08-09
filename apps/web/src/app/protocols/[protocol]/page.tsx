@@ -1,4 +1,5 @@
 import { ProtocolInfo } from "@/components/Protocol/ProtocolInfo";
+import { ProtocolMenu } from "@/components/Protocol/ProtocolMenu";
 import { ProtocolStats } from "@/components/Protocol/ProtocolStats";
 import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions";
 import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
@@ -44,6 +45,8 @@ export default async function ProtocolPage({ params }: PageProps) {
   return (
     <Container size="2" className="px-4 pt-10">
       <ProtocolInfo protocol={protocol} />
+
+      <ProtocolMenu />
 
       {protocol === "stackingdao" ? <StackingDAORef /> : null}
 
