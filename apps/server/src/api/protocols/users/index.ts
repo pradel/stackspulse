@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { sql } from "~/db/db";
+import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import type { Protocol } from "~/lib/protocols";
 
@@ -13,7 +14,7 @@ type ProtocolUsersRouteResponse = {
   unique_senders: number;
 }[];
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, protocolUsersRouteSchema);
   const limit = query.limit || 10;
 
@@ -50,4 +51,4 @@ LIMIT ${limit};
   }));
 
   return stats;
-});
+}, apiCacheConfig);
