@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { sql } from "~/db/db";
+import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { protocols } from "~/lib/protocols";
 
@@ -12,14 +13,13 @@ type TransactionUniqueSendersRouteResponse = {
   unique_senders: number;
 }[];
 
-export default defineCachedEventHandler(
-  async (event) => {
-    const query = await getValidatedQueryZod(
-      event,
-      transactionUniqueSendersRouteSchema,
-    );
+export default defineCachedEventHandler(async (event) => {
+  const query = await getValidatedQueryZod(
+    event,
+    transactionUniqueSendersRouteSchema,
+  );
 
-    const result = await sql`
+  const result = await sql`
 WITH monthly_blocks AS (
     SELECT 
         DATE_TRUNC('month', TO_TIMESTAMP(burn_block_time)) AS month,
@@ -49,22 +49,12 @@ ORDER BY
   mb.month ASC
   `;
 
-    const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
-      // format of the month is "2021-08-01 00:00:00+00"
-      // we want to output "2021-08"
-      month: row.month.slice(0, 7),
-      unique_senders: Number.parseInt(row.unique_senders),
-    }));
+  const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
+    // format of the month is "2021-08-01 00:00:00+00"
+    // we want to output "2021-08"
+    month: row.month.slice(0, 7),
+    unique_senders: Number.parseInt(row.unique_senders),
+  }));
 
-    return stats;
-  },
-  {
-    shouldBypassCache(event) {
-      const query = getQuery(event);
-      if (query.cache === "true") {
-        return true;
-      }
-      return false;
-    },
-  },
-);
+  return stats;
+}, apiCacheConfig);

@@ -19,6 +19,7 @@ export async function GET() {
   }));
 
   const params = new URLSearchParams();
+  params.append("noCache", "true");
   params.append("title", "Last 7 Days Unique Users");
   params.append("data", JSON.stringify(data));
 
