@@ -51,4 +51,5 @@ export const protocolsActions: {
   stackswap: ["swap"],
   velar: ["swap"],
   zest: [],
+  charisma: [],
 } as const;
