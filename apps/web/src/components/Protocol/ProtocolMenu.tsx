@@ -25,7 +25,7 @@ export const ProtocolMenu = () => {
       {protocolMenu.map(({ label, href }) => (
         <Button
           key={href}
-          size="1"
+          size="2"
           color="gray"
           radius="full"
           variant={pathname === href ? "soft" : "ghost"}
