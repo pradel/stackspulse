@@ -1,6 +1,5 @@
 import { isProtocol, protocolsInfo } from "@/lib/protocols";
 import { Link, Table } from "@radix-ui/themes";
-import { IconExternalLink } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
