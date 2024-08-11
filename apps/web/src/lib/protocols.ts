@@ -28,7 +28,6 @@ export const protocolsInfo = {
       "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-02",
       "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-03",
     ],
-    transactions: true,
   },
   arkadiko: {
     name: "Arkadiko",
@@ -40,7 +39,6 @@ export const protocolsInfo = {
       "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1",
       "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-multi-hop-swap-v1-1",
     ],
-    transactions: true,
   },
   bitflow: {
     name: "Bitflow",
@@ -54,7 +52,6 @@ export const protocolsInfo = {
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-2",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-susdt-v-1-2",
     ],
-    transactions: true,
   },
   stackingdao: {
     name: "StackingDAO",
@@ -64,7 +61,6 @@ export const protocolsInfo = {
     contracts: [
       "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v1",
     ],
-    transactions: true,
   },
   stackswap: {
     name: "StackSwap",
@@ -73,7 +69,6 @@ export const protocolsInfo = {
     website: "https://app.stackswap.org/",
     x: "https://twitter.com/Stackswap_BTC",
     contracts: ["SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stackswap-swap-v5k"],
-    transactions: true,
   },
   velar: {
     name: "Velar",
@@ -84,13 +79,12 @@ export const protocolsInfo = {
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router",
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2",
     ],
-    transactions: true,
   },
   zest: {
     name: "Zest",
     description: "Zest Protocol is a BTC and Bitcoin L2 lending protocol.",
     website: "https://www.zestprotocol.com/",
-    x: "https://x.com/ZestProtocol",
+    x: "https://twitter.com/ZestProtocol",
     contracts: [
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow",
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-0",
@@ -100,6 +94,5 @@ export const protocolsInfo = {
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-2",
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-3",
     ],
-    transactions: false,
   },
 } as const;

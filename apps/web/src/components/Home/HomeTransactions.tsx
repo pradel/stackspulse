@@ -15,8 +15,8 @@ export const HomeTransactions = () => {
       </Heading>
       <div className="mt-4 md:space-y-4">
         {transactions.map((transaction) => (
-          <Fragment key={transaction.txId}>
-            <TransactionRow key={transaction.txId} transaction={transaction} />
+          <Fragment key={transaction.tx_id}>
+            <TransactionRow key={transaction.tx_id} transaction={transaction} />
             <Separator className="md:hidden" my="4" size="4" />
           </Fragment>
         ))}
