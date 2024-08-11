@@ -7,6 +7,7 @@ import { TimeAgo } from "../Shared/TimeAgo";
 import { TransactionActionAlex } from "./Action/Alex";
 import { DefaultTransactionAction } from "./Action/DefaultTransactionAction";
 import { TransactionActionStackingDAO } from "./Action/StackingDAO";
+import { TransactionActionVelar } from "./Action/Velar";
 
 interface TransactionRowProps {
   transaction: TransactionsRouteResponse[number];
@@ -89,6 +90,8 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
           <TransactionActionStackingDAO transaction={transaction} />
         ) : transaction.protocol === "alex" ? (
           <TransactionActionAlex transaction={transaction} />
+        ) : transaction.protocol === "velar" ? (
+          <TransactionActionVelar transaction={transaction} />
         ) : (
           <DefaultTransactionAction transaction={transaction} />
         )}
