@@ -84,7 +84,7 @@ export const protocolsInfo = {
     name: "Zest",
     description: "Zest Protocol is a BTC and Bitcoin L2 lending protocol.",
     website: "https://www.zestprotocol.com/",
-    x: "https://x.com/ZestProtocol",
+    x: "https://twitter.com/ZestProtocol",
     contracts: [
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow",
       "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v1-0",
