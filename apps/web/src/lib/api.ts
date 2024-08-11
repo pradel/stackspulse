@@ -43,3 +43,13 @@ export type TransactionStatsRouteResponse = {
 export type TransactionStatsRouteQuery = {
   protocol?: Protocol;
 };
+
+/**
+ * `/api/protocols/stackingdao`
+ */
+
+export type StackingDAOProtocolStatsResponse = {
+  month: string;
+  deposits: number;
+  withdrawals: number;
+}[];
