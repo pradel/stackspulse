@@ -1,4 +1,3 @@
-import type { Action } from "@/lib/actions";
 import type { Protocol } from "@/lib/protocols";
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { blob, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
@@ -16,7 +15,7 @@ export const transactionTable = sqliteTable("transaction", {
   /**
    * The action that the transaction is performing.
    */
-  action: text("action").$type<Action>().notNull(),
+  action: text("action").$type<{ type: string }>().notNull(),
   /**
    * The Stacks height of the block that the transaction is in.
    */
