@@ -52,6 +52,8 @@ JOIN
 WHERE
     txs.type_id = 2
     ${sql.unsafe(protocolCondition)}
+    AND canonical = TRUE
+    AND microblock_canonical = TRUE
 ORDER BY
     block_height DESC,
     tx_index DESC
