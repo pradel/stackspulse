@@ -4,6 +4,7 @@ import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TimeAgo } from "../Shared/TimeAgo";
+import { TransactionActionAlex } from "./Action/Alex";
 import { DefaultTransactionAction } from "./Action/DefaultTransactionAction";
 import { TransactionActionStackingDAO } from "./Action/StackingDAO";
 
@@ -86,6 +87,8 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       <Text className="order-5 md:order-3 md:flex-1 truncate" as="div" size="2">
         {transaction.protocol === "stackingdao" ? (
           <TransactionActionStackingDAO transaction={transaction} />
+        ) : transaction.protocol === "alex" ? (
+          <TransactionActionAlex transaction={transaction} />
         ) : (
           <DefaultTransactionAction transaction={transaction} />
         )}
