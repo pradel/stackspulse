@@ -1,14 +1,9 @@
-import type { SelectTransactionAction } from "@/db/transactions";
 import type { TransactionsRouteResponse } from "@/lib/api";
 import { Button, IconButton, Text, Tooltip } from "@radix-ui/themes";
 import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TimeAgo } from "../Shared/TimeAgo";
-import { TransactionActionAddLiquidity } from "./Action/AddLiquidity";
-import { TransactionActionRemoveLiquidity } from "./Action/RemoveLiquidity";
-import { TransactionActionStackingDAO } from "./Action/StackingDAO";
-import { TransactionActionSwap } from "./Action/Swap";
 
 interface TransactionRowProps {
   transaction: TransactionsRouteResponse[number];
@@ -86,21 +81,9 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         </a>
       </IconButton>
 
-      {/* <Text className="order-5 md:order-3 md:flex-1" as="div" size="2">
-        {transaction.action === "swap" ? (
-          <TransactionActionSwap transaction={transaction} />
-        ) : null}
-        {transaction.action === "add-liquidity" ? (
-          <TransactionActionAddLiquidity transaction={transaction} />
-        ) : null}
-        {transaction.action === "remove-liquidity" ? (
-          <TransactionActionRemoveLiquidity transaction={transaction} />
-        ) : null}
-        {transaction.action === "stackingdao-deposit" ||
-        transaction.action === "stackingdao-withdraw" ? (
-          <TransactionActionStackingDAO transaction={transaction} />
-        ) : null}
-      </Text> */}
+      <Text className="order-5 md:order-3 md:flex-1 truncate" as="div" size="2">
+        <Text color="gray">Call</Text> {transaction.contract_call_function_name}
+      </Text>
     </div>
   );
 };
