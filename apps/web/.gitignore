@@ -37,12 +37,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Local Database
-sqlite.db
-sqlite.db-*
-
-# Chainhooks
-chainhooks.production.json
-
 # Sentry Config File
 .env.sentry-build-plugin
