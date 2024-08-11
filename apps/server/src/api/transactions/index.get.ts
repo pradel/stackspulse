@@ -1,8 +1,10 @@
+import type { TransactionStatus } from "@stacks/stacks-blockchain-api-types";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { protocols } from "~/lib/protocols";
+import { parseDbTx } from "~/lib/transactions";
 
 const transactionsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
@@ -12,6 +14,7 @@ type TransactionsRouteResponse = {
   protocol: string;
   tx_id: string;
   sender_address: string;
+  tx_status: TransactionStatus;
   contract_call_contract_id: string;
   contract_call_function_name: string;
   block_height: number;
@@ -30,6 +33,7 @@ export default defineCachedEventHandler(async (event) => {
     {
       protocol: string;
       tx_id: Buffer;
+      status: number;
       sender_address: string;
       contract_call_contract_id: string;
       contract_call_function_name: string;
@@ -40,6 +44,7 @@ export default defineCachedEventHandler(async (event) => {
 SELECT
     dapps.id as protocol,
     tx_id,
+    status,
     sender_address,
     contract_call_contract_id,
     contract_call_function_name,
@@ -60,15 +65,7 @@ ORDER BY
 LIMIT 50
   `;
 
-  const formattedResult: TransactionsRouteResponse = result.map((row) => ({
-    protocol: row.protocol,
-    tx_id: `0x${row.tx_id.toString("hex")}`,
-    sender_address: row.sender_address,
-    contract_call_contract_id: row.contract_call_contract_id,
-    contract_call_function_name: row.contract_call_function_name,
-    block_height: row.block_height,
-    block_time: row.block_time,
-  }));
+  const formattedResult: TransactionsRouteResponse = result.map(parseDbTx);
 
   return formattedResult;
 }, apiCacheConfig);

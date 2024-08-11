@@ -51,13 +51,13 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       <Tooltip
         content={`Block ${
           transaction.block_height
-        } - ${timestamp.toUTCString()}`}
+        } - ${timestamp.toUTCString()}${transaction.tx_status === "success" ? "" : " (failed)"}`}
         suppressHydrationWarning
       >
         <Text
           className="order-3 md:order-4"
           size="2"
-          color="gray"
+          color={transaction.tx_status === "success" ? "gray" : "red"}
           suppressHydrationWarning
         >
           <TimeAgo date={timestamp} /> ago
