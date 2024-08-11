@@ -1,5 +1,12 @@
 # stackspulse
 
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Use new generic transactions API.
+- 59e9878: Add a smart contract page for dapps.
+
 ## 0.11.0
 
 ### Minor Changes
