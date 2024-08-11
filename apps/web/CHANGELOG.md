@@ -1,5 +1,15 @@
 # stackspulse
 
+## 0.13.0
+
+### Minor Changes
+
+- d269854: Remove sqlite and chainhooks.
+
+### Patch Changes
+
+- f856fd5: Migrate `/api/protocols/stackingdao` route.
+
 ## 0.12.0
 
 ### Minor Changes
