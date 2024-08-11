@@ -36,7 +36,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       <div className="order-2 flex-1 md:flex-none">
         <Button variant="soft" size="1" color="gray" asChild>
           <a
-            href={`https://explorer.hiro.so/address/${transaction.sender_address}`}
+            href={`https://explorer.hiro.so/address/${transaction.sender_address}?chain=mainnet`}
             target="_blank"
             // Force the width to avoid content pushed on the right
             className="w-[108px]"
@@ -72,7 +72,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         asChild
       >
         <a
-          href={`https://explorer.hiro.so/txid/${transaction.tx_id}`}
+          href={`https://explorer.hiro.so/txid/${transaction.tx_id}?chain=mainnet`}
           target="_blank"
           rel="noreferrer"
           aria-label="View in Explorer"
