@@ -3,7 +3,6 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    DATABASE_PATH: z.string().min(1),
     CRON_API_TOKEN: z.string().min(1),
     TWITTER_API_KEY: z.string().min(1),
     TWITTER_API_SECRET_KEY: z.string().min(1),
