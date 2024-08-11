@@ -16,6 +16,8 @@ WITH monthly_blocks AS (
         MAX(block_height) AS max_block_height
     FROM
         blocks
+    WHERE
+        block_height >= 132118
     GROUP BY
         DATE_TRUNC('month', TO_TIMESTAMP(burn_block_time))
 ),
@@ -36,6 +38,7 @@ deposits AS (
     GROUP BY 
         mb.month
 ),
+
 withdrawals AS (
     SELECT
         mb.month,
@@ -52,18 +55,19 @@ withdrawals AS (
     GROUP BY
         mb.month
 )
+
 SELECT
-    mb.month,
+    COALESCE(d.month, w.month) AS month,
     COALESCE(d.deposits, 0) AS deposits,
     COALESCE(w.withdrawals, 0) AS withdrawals
 FROM
-    monthly_blocks mb
-LEFT JOIN
-    deposits d ON mb.month = d.month
-LEFT JOIN
-    withdrawals w ON mb.month = w.month
+    deposits d
+FULL OUTER JOIN
+    withdrawals w ON d.month = w.month
+WHERE
+    COALESCE(d.deposits, 0) > 0 OR COALESCE(w.withdrawals, 0) > 0
 ORDER BY
-    mb.month ASC
+    month ASC
   `;
 
   const stats: StackingDAOProtocolStatsResponse = result.map((row) => ({
