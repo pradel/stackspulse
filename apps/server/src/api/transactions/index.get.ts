@@ -65,4 +65,4 @@ LIMIT 50
     .filter((tx) => tx !== null);
 
   return transactionsWithDetails;
-});
+}, apiCacheConfig);
