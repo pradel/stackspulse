@@ -1,5 +1,59 @@
 # @stackspulse/server
 
+## 0.13.0
+
+### Patch Changes
+
+- f856fd5: Migrate `/api/protocols/stackingdao` route.
+
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Add /api/transactions route.
+
+## 0.11.0
+
+### Minor Changes
+
+- 923e4ea: Add flag to API routes to bypass the cache.
+
+## 0.10.4
+
+### Patch Changes
+
+- 9305fa0: Fix turso usage in local dev.
+
+## 0.10.3
+
+### Patch Changes
+
+- 9fadf8a: Setup sentry error reporting.
+- 524bb57: Fix turso usage in local dev.
+
+## 0.10.2
+
+### Patch Changes
+
+- d71c5bb: Fix turso package not working in docker.
+
+## 0.10.1
+
+### Patch Changes
+
+- ab867c8: Fix docker release script.
+
+## 0.10.0
+
+### Minor Changes
+
+- e7b2dea: Add turso unstorage driver for faster boot time when going out of sleep.
+
+### Patch Changes
+
+- 2ff77fb: Migrate `/api/transactions/unique-senders` route.
+- 6eb1cbb: Add fly server health check.
+
 ## 0.9.2
 
 ### Patch Changes

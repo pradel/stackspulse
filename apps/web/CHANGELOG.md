@@ -1,5 +1,46 @@
 # stackspulse
 
+## 0.13.0
+
+### Minor Changes
+
+- d269854: Remove sqlite and chainhooks.
+
+### Patch Changes
+
+- f856fd5: Migrate `/api/protocols/stackingdao` route.
+
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Use new generic transactions API.
+- 59e9878: Add a smart contract page for dapps.
+
+## 0.11.0
+
+### Minor Changes
+
+- 64c3df4: Add Zest protocol.
+
+## 0.10.4
+
+## 0.10.3
+
+## 0.10.2
+
+## 0.10.1
+
+### Patch Changes
+
+- ab867c8: Fix docker release script.
+
+## 0.10.0
+
+### Patch Changes
+
+- 2ff77fb: Use new `/api/transactions/unique-senders` route from API.
+
 ## 0.9.2
 
 ## 0.9.1

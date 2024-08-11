@@ -43,7 +43,6 @@ WORKDIR /app/apps/web
 
 # Add fake environment file for build to succeed
 COPY ./apps/web/.env.production.build .env.production.local
-RUN pnpm db:push
 
 # Build application
 RUN pnpm turbo run build --filter=$APP_NAME...
@@ -58,11 +57,6 @@ COPY --from=installer /app/apps/web/.next/standalone ./
 COPY --from=installer /app/apps/web/.next/static ./apps/web/.next/static
 COPY --from=installer /app/apps/web/public ./apps/web/public
 COPY ./apps/web/.env.production.local ./.env.production.local
-
-# Setup sqlite on a separate volume
-RUN mkdir -p /data
-VOLUME /data
-ENV DATABASE_PATH="file:/data/sqlite.db"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

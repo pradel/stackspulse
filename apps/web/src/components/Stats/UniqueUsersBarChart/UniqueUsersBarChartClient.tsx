@@ -8,7 +8,7 @@ interface UniqueUsersBarChartProps {
   protocol: Protocol;
   data: {
     month: string;
-    uniqueSenders: number;
+    unique_senders: number;
   }[];
 }
 
@@ -20,7 +20,7 @@ export const UniqueUsersBarChartClient = ({
     date: string;
   }[] = data.map((d) => ({
     date: d.month,
-    [protocol]: d.uniqueSenders,
+    [protocol]: d.unique_senders,
   }));
 
   return (
