@@ -1,7 +1,6 @@
 import type { Protocol } from "@/lib/protocols";
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { blob, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import type { ActionData } from "./schema-types";
 
 export const transactionTable = sqliteTable("transaction", {
   /**
@@ -31,7 +30,7 @@ export const transactionTable = sqliteTable("transaction", {
   /**
    * The JSON normalized transaction data.
    */
-  data: blob("json", { mode: "json" }).$type<ActionData>().notNull(),
+  data: blob("json", { mode: "json" }).$type<{ type: string }>().notNull(),
 });
 
 export type InsertTransactionDrizzle = InferInsertModel<
