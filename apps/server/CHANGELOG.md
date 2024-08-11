@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Add /api/transactions route.
+
 ## 0.11.0
 
 ### Minor Changes
