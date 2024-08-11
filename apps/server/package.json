@@ -1,6 +1,6 @@
 {
   "name": "@stackspulse/server",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "private": true,
   "scripts": {
     "build": "nitro build",
@@ -10,11 +10,13 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.6.4",
+    "@dotenvx/dotenvx": "1.7.0",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.22.0",
+    "@sentry/node": "8.25.0",
+    "@stacks/blockchain-api-client": "7.13.2",
+    "@stacks/stacks-blockchain-api-types": "7.13.2",
     "@t3-oss/env-core": "0.11.0",
-    "drizzle-orm": "0.32.1",
+    "drizzle-orm": "0.33.0",
     "h3": "1.12.0",
     "nitro-cors": "0.7.1",
     "postgres": "3.4.4",

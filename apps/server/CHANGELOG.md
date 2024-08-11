@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.11.0
+
+### Minor Changes
+
+- 923e4ea: Add flag to API routes to bypass the cache.
+
 ## 0.10.4
 
 ### Patch Changes

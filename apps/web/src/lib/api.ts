@@ -1,3 +1,4 @@
+import type { ContractCallTransaction } from "@stacks/stacks-blockchain-api-types";
 import type { Protocol } from "./protocols";
 
 /**
@@ -21,6 +22,14 @@ export type ProtocolUsersRouteQuery = {
    */
   limit?: number;
 };
+
+/**
+ * `/api/transactions`
+ */
+
+export type TransactionsRouteResponse = (ContractCallTransaction & {
+  protocol: Protocol;
+})[];
 
 /**
  * `/api/transactions/stats`
