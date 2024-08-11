@@ -1,4 +1,5 @@
 import type { SelectTransactionAction } from "@/db/transactions";
+import type { TransactionsRouteResponse } from "@/lib/api";
 import { Button, IconButton, Text, Tooltip } from "@radix-ui/themes";
 import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
@@ -10,11 +11,11 @@ import { TransactionActionStackingDAO } from "./Action/StackingDAO";
 import { TransactionActionSwap } from "./Action/Swap";
 
 interface TransactionRowProps {
-  transaction: SelectTransactionAction;
+  transaction: TransactionsRouteResponse[number];
 }
 
 export const TransactionRow = ({ transaction }: TransactionRowProps) => {
-  const timestamp = new Date(transaction.timestamp);
+  const timestamp = new Date(transaction.block_time * 1000);
 
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -40,21 +41,21 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       <div className="order-2 flex-1 md:flex-none">
         <Button variant="soft" size="1" color="gray" asChild>
           <a
-            href={`https://explorer.hiro.so/address/${transaction.sender}`}
+            href={`https://explorer.hiro.so/address/${transaction.sender_address}`}
             target="_blank"
             // Force the width to avoid content pushed on the right
             className="w-[108px]"
             rel="noreferrer"
           >
-            {transaction.sender.slice(0, 5)}...
-            {transaction.sender.slice(-5)}
+            {transaction.sender_address.slice(0, 5)}...
+            {transaction.sender_address.slice(-5)}
           </a>
         </Button>
       </div>
 
       <Tooltip
         content={`Block ${
-          transaction.blockHeight
+          transaction.block_height
         } - ${timestamp.toUTCString()}`}
         suppressHydrationWarning
       >
@@ -76,7 +77,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         asChild
       >
         <a
-          href={`https://explorer.hiro.so/txid/${transaction.txId}`}
+          href={`https://explorer.hiro.so/txid/${transaction.tx_id}`}
           target="_blank"
           rel="noreferrer"
           aria-label="View in Explorer"
@@ -85,7 +86,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         </a>
       </IconButton>
 
-      <Text className="order-5 md:order-3 md:flex-1" as="div" size="2">
+      {/* <Text className="order-5 md:order-3 md:flex-1" as="div" size="2">
         {transaction.action === "swap" ? (
           <TransactionActionSwap transaction={transaction} />
         ) : null}
@@ -99,7 +100,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         transaction.action === "stackingdao-withdraw" ? (
           <TransactionActionStackingDAO transaction={transaction} />
         ) : null}
-      </Text>
+      </Text> */}
     </div>
   );
 };

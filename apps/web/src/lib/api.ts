@@ -23,6 +23,20 @@ export type ProtocolUsersRouteQuery = {
 };
 
 /**
+ * `/api/transactions`
+ */
+
+export type TransactionsRouteResponse = {
+  protocol: string;
+  tx_id: string;
+  sender_address: string;
+  contract_call_contract_id: string;
+  contract_call_function_name: string;
+  block_height: number;
+  block_time: number;
+}[];
+
+/**
  * `/api/transactions/stats`
  */
 

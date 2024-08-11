@@ -11,6 +11,7 @@ const transactionsRouteSchema = z.object({
 type TransactionsRouteResponse = {
   protocol: string;
   tx_id: string;
+  sender_address: string;
   contract_call_contract_id: string;
   contract_call_function_name: string;
   block_height: number;
@@ -29,6 +30,7 @@ export default defineCachedEventHandler(async (event) => {
     {
       protocol: string;
       tx_id: Buffer;
+      sender_address: string;
       contract_call_contract_id: string;
       contract_call_function_name: string;
       block_height: number;
@@ -38,6 +40,7 @@ export default defineCachedEventHandler(async (event) => {
 SELECT
     dapps.id as protocol,
     tx_id,
+    sender_address,
     contract_call_contract_id,
     contract_call_function_name,
     block_height,
@@ -58,6 +61,7 @@ LIMIT 50
   const formattedResult: TransactionsRouteResponse = result.map((row) => ({
     protocol: row.protocol,
     tx_id: `0x${row.tx_id.toString("hex")}`,
+    sender_address: row.sender_address,
     contract_call_contract_id: row.contract_call_contract_id,
     contract_call_function_name: row.contract_call_function_name,
     block_height: row.block_height,
