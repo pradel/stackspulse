@@ -1,4 +1,5 @@
 import type { TransactionsRouteResponse } from "@/lib/api";
+import type { TransactionEventSmartContractLog } from "@stacks/stacks-blockchain-api-types";
 import { cvToJSON, hexToCV } from "@stacks/transactions";
 import { DefaultTransactionAction } from "./DefaultTransactionAction";
 import { DefaultTransactionSwap } from "./DefaultTransactionSwap";
@@ -15,13 +16,12 @@ export const TransactionActionAlex = ({
     transaction.tx_status === "success"
   ) {
     const eventLog = transaction.events.find(
-      (event) => event.event_type === "smart_contract_log",
-    );
-    if (
-      eventLog &&
-      eventLog.contract_log.contract_id ===
-        "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01"
-    ) {
+      (event) =>
+        event.event_type === "smart_contract_log" &&
+        event.contract_log.contract_id ===
+          "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01",
+    ) as TransactionEventSmartContractLog;
+    if (eventLog) {
       const data = cvToJSON(hexToCV(eventLog.contract_log.value.hex)).value;
 
       return (
