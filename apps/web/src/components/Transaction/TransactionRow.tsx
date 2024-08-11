@@ -82,7 +82,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
       </IconButton>
 
       <Text className="order-5 md:order-3 md:flex-1 truncate" as="div" size="2">
-        <Text color="gray">Call</Text> {transaction.contract_call_function_name}
+        <Text color="gray">Call</Text> {transaction.contract_call.function_name}
       </Text>
     </div>
   );
