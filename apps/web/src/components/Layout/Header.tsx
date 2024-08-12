@@ -1,6 +1,5 @@
 "use client";
 import { appConfig } from "@/appConfig";
-import { type Protocol, protocolsInfo } from "@/lib/protocols";
 import {
   Container,
   DropdownMenu,
@@ -8,6 +7,7 @@ import {
   Link,
   Separator,
 } from "@radix-ui/themes";
+import { type Protocol, protocolsInfo } from "@stackspulse/protocols";
 import {
   IconBrandGithub,
   IconBrandX,

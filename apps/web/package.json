@@ -16,6 +16,7 @@
     "@sentry/nextjs": "8.25.0",
     "@stacks/stacks-blockchain-api-types": "7.13.2",
     "@stacks/transactions": "6.16.1",
+    "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.11.0",
     "@t3-oss/env-nextjs": "0.11.0",
     "@tabler/icons-react": "3.12.0",

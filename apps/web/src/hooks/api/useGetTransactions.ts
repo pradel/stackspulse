@@ -1,6 +1,6 @@
 import { env } from "@/env";
 import type { TransactionsRouteResponse } from "@/lib/api";
-import type { Protocol } from "@/lib/protocols";
+import type { Protocol } from "@stackspulse/protocols";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useGetTransactions = (

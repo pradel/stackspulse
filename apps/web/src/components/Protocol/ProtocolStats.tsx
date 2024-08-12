@@ -1,7 +1,7 @@
 import { env } from "@/env";
 import type { TransactionStatsRouteResponse } from "@/lib/api";
-import type { Protocol } from "@/lib/protocols";
 import { Card, Text } from "@radix-ui/themes";
+import type { Protocol } from "@stackspulse/protocols";
 
 interface ProtocolStatsProps {
   protocol: Protocol;

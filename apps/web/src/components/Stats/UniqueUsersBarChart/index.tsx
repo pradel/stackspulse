@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import type { Protocol } from "@/lib/protocols";
+import type { Protocol } from "@stackspulse/protocols";
 import { UniqueUsersBarChartClient } from "./UniqueUsersBarChartClient";
 
 export const UniqueUsersBarChart = async ({

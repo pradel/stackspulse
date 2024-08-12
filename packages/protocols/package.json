@@ -2,6 +2,9 @@
   "name": "@stackspulse/protocols",
   "version": "0.0.0",
   "private": true,
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
