@@ -189,6 +189,15 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
 
+  packages/protocols:
+    devDependencies:
+      '@tsconfig/node22':
+        specifier: 22.0.0
+        version: 22.0.0
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
@@ -2167,6 +2176,9 @@ packages:
     resolution: {integrity: sha512-CfJCfX45nnVIZjQBRYYtvVMIsGgWLKLYC4xcUiYEey671n1alvTZoCBaU9B85O8mF/tx9LPyrI04A6Bs2THv4A==}
     peerDependencies:
       react: ^18.0.0
+
+  '@tsconfig/node22@22.0.0':
+    resolution: {integrity: sha512-twLQ77zevtxobBOD4ToAtVmuYrpeYUh3qh+TEp+08IWhpsrIflVHqQ1F1CiPxQGL7doCdBIOOCF+1Tm833faNg==}
 
   '@types/better-sqlite3@7.6.11':
     resolution: {integrity: sha512-i8KcD3PgGtGBLl3+mMYA8PdKkButvPyARxA7IQAd6qeslht13qxb1zzO8dRCtE7U3IoJS782zDBAeoKiM695kg==}
@@ -7939,6 +7951,8 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.51.21
       react: 18.3.1
+
+  '@tsconfig/node22@22.0.0': {}
 
   '@types/better-sqlite3@7.6.11':
     dependencies:
