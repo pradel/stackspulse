@@ -13,7 +13,15 @@ export type Protocol = (typeof protocols)[number];
 export const isProtocol = (value: string): value is Protocol =>
   protocols.includes(value as Protocol);
 
-export const protocolsInfo = {
+export const protocolsInfo: {
+  [key in Protocol]: {
+    name: string;
+    description: string;
+    website: string;
+    x: string;
+    contracts: string[];
+  };
+} = {
   alex: {
     name: "Alex",
     description:
