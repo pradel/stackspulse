@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { protocolsInfo } from "@/lib/protocols";
+import { protocolsInfo } from "@stackspulse/protocols";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {

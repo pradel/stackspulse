@@ -1,7 +1,7 @@
 import { env } from "@/env";
 import type { ProtocolUsersRouteResponse } from "@/lib/api";
-import { protocolsInfo } from "@/lib/protocols";
 import { sendTweet } from "@/lib/twitter";
+import { protocolsInfo } from "@stackspulse/protocols";
 
 export const dynamic = "force-dynamic";
 

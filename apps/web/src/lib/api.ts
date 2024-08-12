@@ -1,5 +1,5 @@
 import type { ContractCallTransaction } from "@stacks/stacks-blockchain-api-types";
-import type { Protocol } from "./protocols";
+import type { Protocol } from "@stackspulse/protocols";
 
 /**
  * `/api/protocols/users`

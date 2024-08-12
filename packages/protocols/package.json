@@ -1,0 +1,15 @@
+{
+  "name": "@stackspulse/protocols",
+  "version": "0.0.0",
+  "private": true,
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "22.0.0",
+    "typescript": "5.5.4"
+  }
+}

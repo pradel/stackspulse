@@ -1,8 +1,8 @@
+import type { Protocol } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
-import type { Protocol } from "~/lib/protocols";
 
 const protocolUsersRouteSchema = z.object({
   date: z.enum(["7d", "30d", "all"]),

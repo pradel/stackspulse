@@ -1,7 +1,7 @@
 "use client";
 
-import type { Protocol } from "@/lib/protocols";
 import { Button } from "@radix-ui/themes";
+import type { Protocol } from "@stackspulse/protocols";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
