@@ -42,6 +42,9 @@ importers:
       '@stacks/stacks-blockchain-api-types':
         specifier: 7.13.2
         version: 7.13.2
+      '@stackspulse/protocols':
+        specifier: workspace:*
+        version: link:../../packages/protocols
       '@t3-oss/env-core':
         specifier: 0.11.0
         version: 0.11.0(typescript@5.5.4)(zod@3.23.8)

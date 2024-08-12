@@ -1,9 +1,9 @@
 import type { ContractCallTransaction } from "@stacks/stacks-blockchain-api-types";
+import { type Protocol, protocols } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
-import { type Protocol, protocols } from "~/lib/protocols";
 import { stacksApi } from "~/lib/stacks-api";
 
 const transactionsRouteSchema = z.object({
