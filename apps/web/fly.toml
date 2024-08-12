@@ -3,17 +3,7 @@ primary_region = 'sjc'
 
 [build]
 # Comment next line to deploy the app from source code
-image = "ghcr.io/pradel/stackspulse:0.11.0"
-
-[[mounts]]
-  source = 'data'
-  destination = '/data'
-  initial_size = '1gb'
-  # Extends the size of the volume by 1gb when it reaches 90% capacity.
-  # The volume extensions are limited to 5gb in total.
-  auto_extend_size_threshold = 90
-  auto_extend_size_increment = '1gb'
-  auto_extend_size_limit = '5gb'
+image = "ghcr.io/pradel/stackspulse:0.13.0"
 
 [http_service]
   internal_port = 3000

@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { type Protocol, protocolsInfo } from "@/lib/protocols";
+import { type Protocol, protocolsInfo } from "@stackspulse/protocols";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";

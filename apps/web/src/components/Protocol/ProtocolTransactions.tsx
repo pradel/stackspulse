@@ -1,8 +1,8 @@
 "use client";
 
 import { useGetTransactions } from "@/hooks/api/useGetTransactions";
-import type { Protocol } from "@/lib/protocols";
 import { Heading, Separator } from "@radix-ui/themes";
+import type { Protocol } from "@stackspulse/protocols";
 import { Fragment } from "react";
 import { TransactionRow } from "../Transaction/TransactionRow";
 

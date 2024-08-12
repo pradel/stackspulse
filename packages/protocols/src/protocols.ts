@@ -14,7 +14,15 @@ export type Protocol = (typeof protocols)[number];
 export const isProtocol = (value: string): value is Protocol =>
   protocols.includes(value as Protocol);
 
-export const protocolsInfo = {
+export const protocolsInfo: {
+  [key in Protocol]: {
+    name: string;
+    description: string;
+    website: string;
+    x: string;
+    contracts: string[];
+  };
+} = {
   alex: {
     name: "Alex",
     description:
@@ -23,7 +31,6 @@ export const protocolsInfo = {
     x: "https://twitter.com/ALEXLabBTC",
     contracts: [
       "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01",
-      // Contracts before hack
       "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.amm-swap-pool-v1-1",
       "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-01",
       "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-02",

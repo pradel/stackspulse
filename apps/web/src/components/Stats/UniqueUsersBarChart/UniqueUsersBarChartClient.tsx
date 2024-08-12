@@ -1,8 +1,8 @@
 "use client";
 import { BarChart } from "@/components/ui/BarChart";
 import { numberValueFormatter } from "@/components/ui/utils";
-import type { Protocol } from "@/lib/protocols";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
+import type { Protocol } from "@stackspulse/protocols";
 
 interface UniqueUsersBarChartProps {
   protocol: Protocol;

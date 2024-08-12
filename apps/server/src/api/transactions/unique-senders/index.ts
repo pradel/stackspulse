@@ -1,8 +1,8 @@
+import { protocols } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
-import { protocols } from "~/lib/protocols";
 
 const transactionUniqueSendersRouteSchema = z.object({
   protocol: z.enum(protocols),

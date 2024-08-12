@@ -1,5 +1,17 @@
 # @stackspulse/server
 
+## 0.13.0
+
+### Patch Changes
+
+- f856fd5: Migrate `/api/protocols/stackingdao` route.
+
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Add /api/transactions route.
+
 ## 0.11.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
+import { protocols, protocolsInfo } from "@stackspulse/protocols";
 import { db } from "~/db/db";
 import { dapps } from "~/db/schema";
 import { conflictUpdateSetAllColumns } from "~/db/utils";
-import { protocols, protocolsInfo } from "~/lib/protocols";
 
 /**
  * Keep the DB up to date with the latest protocols

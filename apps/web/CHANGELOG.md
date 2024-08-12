@@ -1,5 +1,22 @@
 # stackspulse
 
+## 0.13.0
+
+### Minor Changes
+
+- d269854: Remove sqlite and chainhooks.
+
+### Patch Changes
+
+- f856fd5: Migrate `/api/protocols/stackingdao` route.
+
+## 0.12.0
+
+### Minor Changes
+
+- f6899ee: Use new generic transactions API.
+- 59e9878: Add a smart contract page for dapps.
+
 ## 0.11.0
 
 ### Minor Changes

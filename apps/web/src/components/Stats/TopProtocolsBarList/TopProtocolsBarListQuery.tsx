@@ -1,7 +1,7 @@
 import { BarList } from "@/components/ui/BarList";
 import { useGetProtocolsUsers } from "@/hooks/api/useGetProtocolsUsers";
 import type { ProtocolUsersRouteQuery } from "@/lib/api";
-import { protocolsInfo } from "@/lib/protocols";
+import { protocolsInfo } from "@stackspulse/protocols";
 
 interface TopProtocolsBarListClientProps {
   dateFilter: ProtocolUsersRouteQuery["date"];

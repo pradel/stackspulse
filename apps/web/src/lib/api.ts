@@ -1,5 +1,5 @@
 import type { ContractCallTransaction } from "@stacks/stacks-blockchain-api-types";
-import type { Protocol } from "./protocols";
+import type { Protocol } from "@stackspulse/protocols";
 
 /**
  * `/api/protocols/users`
@@ -43,3 +43,13 @@ export type TransactionStatsRouteResponse = {
 export type TransactionStatsRouteQuery = {
   protocol?: Protocol;
 };
+
+/**
+ * `/api/protocols/stackingdao`
+ */
+
+export type StackingDAOProtocolStatsResponse = {
+  month: string;
+  deposits: number;
+  withdrawals: number;
+}[];
