@@ -8,7 +8,7 @@ export const StackingDAORef = () => {
         <IconInfoCircle size={14} />
       </Callout.Icon>
       <Callout.Text>
-        Deposit STX for stSTX via Stacking DAO to earn ~6.35% APY on your STX.
+        Deposit STX for stSTX via Stacking DAO to earn ~10% APY on your STX.
       </Callout.Text>
       <div>
         <Button variant="outline" asChild>

@@ -83,7 +83,8 @@ export const protocolsInfo: {
   },
   stackingdao: {
     name: "StackingDAO",
-    description: "Liquid stacking on Stacks.",
+    description:
+      "Liquid stacking on Stacks. Earn 10% APY on STX with instant liquidity 📈",
     website: "https://www.stackingdao.com/",
     x: "https://twitter.com/StackingDao",
     contracts: [
