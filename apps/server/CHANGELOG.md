@@ -1,5 +1,15 @@
 # @stackspulse/server
 
+## 0.14.0
+
+### Minor Changes
+
+- ed604c9: Upgrade image to node v22.
+
+### Patch Changes
+
+- 8629586: Migrate protocols list to a separate package.
+
 ## 0.13.0
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # stackspulse
 
+## 0.14.0
+
+### Minor Changes
+
+- ed604c9: Upgrade image to node v22.
+- fc4df18: Add Charisma dapp.
+
+### Patch Changes
+
+- deedbb1: Add edit button to the contract page.
+- f350875: Latest StackingDAO contracts.
+- 8629586: Migrate protocols list to a separate package.
+- 1b81f51: Latest bitflow assets and contracts.
+
 ## 0.13.0
 
 ### Minor Changes
