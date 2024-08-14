@@ -53,21 +53,44 @@ export const protocolsInfo: {
     description: "The Decentralized Exchange for Bitcoiners.",
     website: "https://www.bitflow.finance/",
     x: "https://twitter.com/Bitflow_Finance",
+    // List of contract https://docs.bitflow.finance/bitflow-documentation/developers/deployed-contracts/stacks
     contracts: [
-      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-abtc-xbtc-v-1-2",
-      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-aeusdc-susdt-v-1-2",
+      // StableSwap Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-stx-ststx-v-1-2",
-      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-2",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-susdt-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-aeusdc-susdt-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-4",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-abtc-xbtc-v-1-2",
+      // Earn Contracts
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-stx-ststx-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-usda-susdt-v-1-3",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-aeusdc-susdt-v-1-3",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-usda-aeusdc-v-1-3",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-usda-aeusdc-v-1-5",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-abtc-xbtc-v-1-3",
+      // Router Contracts
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-ststx-bitflow-arkadiko-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-ststx-bitflow-velar-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-ststx-bitflow-alex-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-ststx-bitflow-alex-v-2-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-ststx-bitflow-xyk-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stx-usda-arkadiko-alex-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-xyk-arkadiko-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-xyk-velar-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-xyk-alex-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-velar-alex-v-1-1",
     ],
   },
   stackingdao: {
     name: "StackingDAO",
-    description: "Liquid stacking on Stacks.",
+    description:
+      "Liquid stacking on Stacks. Earn 10% APY on STX with instant liquidity 📈",
     website: "https://www.stackingdao.com/",
     x: "https://twitter.com/StackingDao",
     contracts: [
       "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v1",
+      "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v2",
     ],
   },
   stackswap: {
