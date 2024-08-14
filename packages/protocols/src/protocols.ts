@@ -88,6 +88,7 @@ export const protocolsInfo: {
     x: "https://twitter.com/StackingDao",
     contracts: [
       "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v1",
+      "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v2",
     ],
   },
   stackswap: {
