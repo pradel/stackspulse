@@ -7,6 +7,7 @@ export const protocols = [
   "stackingdao",
   "zest",
   "charisma",
+  "lisa",
 ] as const;
 
 export type Protocol = (typeof protocols)[number];
@@ -145,5 +146,12 @@ export const protocolsInfo: {
       "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.icc-arb-2",
       "SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.odins-raven",
     ],
+  },
+  lisa: {
+    name: "Lisa",
+    description: "Liquid Stacking Protocol on Stacks.",
+    website: "https://www.lisalab.io/",
+    x: "https://twitter.com/LisaLab_BTC",
+    contracts: [],
   },
 } as const;
