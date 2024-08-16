@@ -152,6 +152,8 @@ export const protocolsInfo: {
     description: "Liquid Stacking Protocol on Stacks.",
     website: "https://www.lisalab.io/",
     x: "https://twitter.com/LisaLab_BTC",
-    contracts: [],
+    contracts: [
+      "SM3KNVZS30WM7F89SXKVVFY4SN9RMPZZ9FX929N0V.lqstx-mint-endpoint-v2-01",
+    ],
   },
 } as const;
