@@ -129,7 +129,7 @@ export const protocolsInfo: {
   charisma: {
     name: "Charisma",
     description:
-      "Charisma is a gamified Defi platform pushing the limits of innovation on Stacks. It specializes in memecoin liquid staking, yield farming and launchpads.",
+      "Charisma is a gamified Defi platform pushing the limits of innovation on Stacks. It specializes in memecoin liquid staking, yield farming and community governance.",
     website: "https://charisma.rocks",
     x: "https://twitter.com/CharismaBTC",
     contracts: [
