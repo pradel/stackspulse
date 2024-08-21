@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.14.2
+
+### Patch Changes
+
+- b6ad032: Fix weekly post not using non cached data.
+
 ## 0.14.1
 
 ### Patch Changes
