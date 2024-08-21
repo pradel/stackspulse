@@ -10,11 +10,11 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.7.0",
+    "@dotenvx/dotenvx": "1.8.0",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.25.0",
-    "@stacks/blockchain-api-client": "7.13.2",
-    "@stacks/stacks-blockchain-api-types": "7.13.2",
+    "@sentry/node": "8.26.0",
+    "@stacks/blockchain-api-client": "7.14.1",
+    "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.11.0",
     "drizzle-orm": "0.33.0",
