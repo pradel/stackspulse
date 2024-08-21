@@ -9,8 +9,13 @@ export const dynamic = "force-dynamic";
  * Send a tweet with the top 5 protocols by unique users in the last 7 days
  */
 export async function GET() {
+  const apiParams = new URLSearchParams();
+  apiParams.append("noCache", "true");
+  apiParams.append("date", "7d");
+  apiParams.append("limit", "5");
+
   const stats: ProtocolUsersRouteResponse = await fetch(
-    `${env.NEXT_PUBLIC_API_URL}/api/protocols/users?date=7d&limit=5`,
+    `${env.NEXT_PUBLIC_API_URL}/api/protocols/users?${apiParams.toString()}`,
   ).then((res) => res.json());
 
   const data = stats.map((stat) => ({
@@ -19,7 +24,6 @@ export async function GET() {
   }));
 
   const params = new URLSearchParams();
-  params.append("noCache", "true");
   params.append("title", "Last 7 Days Unique Users");
   params.append("data", JSON.stringify(data));
 
