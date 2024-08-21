@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.14.2
+
+### Patch Changes
+
+- e1d39e4: Latest charisma contracts.
+
 ## 0.14.1
 
 ## 0.14.0
