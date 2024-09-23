@@ -9,7 +9,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80,
-    "ignore": [".next"]
+    "ignore": [".next", "dist"]
   },
   "linter": {
     "enabled": true,
@@ -22,6 +22,6 @@
         "noUselessElse": "off"
       }
     },
-    "ignore": [".next"]
+    "ignore": [".next", "dist"]
   }
 }
