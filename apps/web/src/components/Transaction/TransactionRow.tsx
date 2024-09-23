@@ -85,7 +85,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         </a>
       </IconButton>
 
-      <Text className="order-5 md:order-3 md:flex-1 truncate" as="div" size="2">
+      <Text className="order-5 truncate md:order-3 md:flex-1" as="div" size="2">
         {transaction.protocol === "stackingdao" ? (
           <TransactionActionStackingDAO transaction={transaction} />
         ) : transaction.protocol === "alex" ? (
