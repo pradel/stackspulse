@@ -1,5 +1,12 @@
 # stackspulse
 
+## 0.14.3
+
+### Patch Changes
+
+- e19d6e7: Upgrade deps.
+- e19d6e7: Latest bitflow contracts.
+
 ## 0.14.2
 
 ### Patch Changes
