@@ -23,7 +23,7 @@
     "@tanstack/react-query": "5.56.2",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
-    "date-fns": "3.6.0",
+    "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
     "javascript-time-ago": "2.5.11",
     "next": "14.2.13",
