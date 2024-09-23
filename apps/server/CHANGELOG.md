@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.14.3
+
+### Patch Changes
+
+- e19d6e7: Upgrade deps.
+
 ## 0.14.2
 
 ### Patch Changes
