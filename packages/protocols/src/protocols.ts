@@ -93,6 +93,7 @@ export const protocolsInfo: {
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-velar-alex-v-1-2",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-aeusdc-ststx-v-2-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-susdt-ststx-v-1-1",
+      // Wrapper Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.wrapper-velar-v-1-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.wrapper-alex-v-2-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.wrapper-velar-multihop-v-1-1",
