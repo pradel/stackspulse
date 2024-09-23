@@ -10,20 +10,20 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.8.0",
+    "@dotenvx/dotenvx": "1.14.1",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.26.0",
+    "@sentry/node": "8.31.0",
     "@stacks/blockchain-api-client": "7.14.1",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
-    "@t3-oss/env-core": "0.11.0",
+    "@t3-oss/env-core": "0.11.1",
     "drizzle-orm": "0.33.0",
     "h3": "1.12.0",
     "nitro-cors": "0.7.1",
     "postgres": "3.4.4",
-    "unstorage": "1.10.2",
+    "unstorage": "1.12.0",
     "zod": "3.23.8",
-    "zod-validation-error": "3.3.1"
+    "zod-validation-error": "3.4.0"
   },
   "devDependencies": {
     "nitropack": "2.9.7",
