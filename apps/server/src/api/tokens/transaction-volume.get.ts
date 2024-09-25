@@ -23,9 +23,6 @@ ORDER BY
     date: row.date.slice(0, 10),
     daily_volume: row.daily_volume,
   }));
-  console.log(result);
 
   return stats;
-  // TODO
-  // }, apiCacheConfig);
-});
+}, apiCacheConfig);
