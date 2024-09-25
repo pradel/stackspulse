@@ -1,7 +1,18 @@
+import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { getValidatedQueryZod } from "~/lib/nitro";
+
+const tokensTransactionVolumeRouteSchema = z.object({
+  token: z.string(),
+});
 
 export default defineCachedEventHandler(async (event) => {
+  const query = await getValidatedQueryZod(
+    event,
+    tokensTransactionVolumeRouteSchema,
+  );
+
   const result = await sql`
 SELECT
     DATE_TRUNC('day', TO_TIMESTAMP(blocks.burn_block_time)) AS date,
@@ -11,7 +22,7 @@ FROM
 JOIN
     blocks ON ft_events.index_block_hash = blocks.index_block_hash
 WHERE
-    ft_events.asset_identifier = 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token::welshcorgicoin'
+    ft_events.asset_identifier = ${query.token}
     AND ft_events.canonical = true
 GROUP BY
     DATE_TRUNC('day', TO_TIMESTAMP(blocks.burn_block_time))
