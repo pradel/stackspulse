@@ -14,8 +14,7 @@ WHERE
     ft_events.asset_identifier = 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token::welshcorgicoin'
     AND ft_events.canonical = true
 GROUP BY
-    DATE_TRUNC('day', TO_TIMESTAMP(blocks.burn_block_time)),
-    ft_events.asset_identifier
+    DATE_TRUNC('day', TO_TIMESTAMP(blocks.burn_block_time))
 ORDER BY
     date;
   `;
