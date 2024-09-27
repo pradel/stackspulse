@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "nitropack": "2.9.7",
-    "prisma": "5.16.2"
+    "prisma": "5.20.0"
   }
 }
