@@ -1,7 +1,9 @@
 import { TokenInfo } from "@/components/Token/TokenInfo";
+import { TokenStats } from "@/components/Token/TokenStats";
 import { stacksTokensApi } from "@/lib/stacks";
-import { Card, Container, Text } from "@radix-ui/themes";
+import { Container } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -10,9 +12,9 @@ interface PageProps {
 }
 
 export default async function ProtocolPage({ params }: PageProps) {
-  const token = params.token.split("%3A%3A")[0];
+  const token = decodeURIComponent(params.token);
   const tokenInfo = await stacksTokensApi
-    .getFtMetadata(token)
+    .getFtMetadata(token.split("::")[0])
     .catch((error) => {
       if (error.status === 404) {
         return null;
@@ -27,24 +29,9 @@ export default async function ProtocolPage({ params }: PageProps) {
     <Container size="2" className="px-4 pt-10">
       <TokenInfo tokenInfo={tokenInfo} />
 
-      <div className="mt-5 grid grid-cols-2 gap-5">
-        <Card size="2">
-          <Text as="div" size="2" color="gray">
-            Supply
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            TODO
-          </Text>
-        </Card>
-        <Card size="2">
-          <Text as="div" size="2" color="gray">
-            Holders
-          </Text>
-          <Text as="div" mt="2" size="5" weight="medium">
-            TODO
-          </Text>
-        </Card>
-      </div>
+      <Suspense>
+        <TokenStats token={token} />
+      </Suspense>
     </Container>
   );
 }
