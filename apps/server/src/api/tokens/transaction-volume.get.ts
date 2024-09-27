@@ -7,6 +7,11 @@ const tokensTransactionVolumeRouteSchema = z.object({
   token: z.string(),
 });
 
+type TokensTransactionVolumeRouteResponse = {
+  date: string;
+  daily_volume: string;
+}[];
+
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(
     event,
@@ -30,7 +35,7 @@ ORDER BY
     date;
   `;
 
-  const stats = result.map((row) => ({
+  const stats: TokensTransactionVolumeRouteResponse = result.map((row) => ({
     date: row.date.slice(0, 10),
     daily_volume: row.daily_volume,
   }));
