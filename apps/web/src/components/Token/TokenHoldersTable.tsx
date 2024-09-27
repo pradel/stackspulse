@@ -8,7 +8,7 @@ interface TokenHoldersTableProps {
 }
 
 export const TokenHoldersTable = ({ token }: TokenHoldersTableProps) => {
-  const { data } = useGetTokenHolders({ token });
+  const { data } = useGetTokenHolders({ token, limit: 10 });
 
   const calculatePercentage = (balance: string) => {
     const holderBalance = Number.parseFloat(balance);

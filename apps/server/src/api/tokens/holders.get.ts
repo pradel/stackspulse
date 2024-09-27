@@ -5,8 +5,8 @@ import { stacksClient } from "~/lib/stacks";
 
 const tokensHoldersRouteSchema = z.object({
   token: z.string(),
-  limit: z.number().min(1).max(100).optional(),
-  offset: z.number().min(0).optional(),
+  limit: z.coerce.number().min(1).max(100).optional(),
+  offset: z.coerce.number().min(0).optional(),
 });
 
 type TokensHoldersRouteResponse = {

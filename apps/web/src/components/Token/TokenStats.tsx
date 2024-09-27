@@ -8,7 +8,7 @@ interface TokenStatsProps {
 }
 
 export const TokenStats = ({ token }: TokenStatsProps) => {
-  const { data } = useGetTokenHolders({ token });
+  const { data } = useGetTokenHolders({ token, limit: 1 });
 
   return (
     <div className="mt-5 grid grid-cols-2 gap-5">
