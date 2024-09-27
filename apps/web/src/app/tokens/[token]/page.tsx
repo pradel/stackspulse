@@ -1,14 +1,7 @@
-import { ProtocolStats } from "@/components/Protocol/ProtocolStats";
-import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions";
-import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
-import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
-import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
 import { TokenInfo } from "@/components/Token/TokenInfo";
 import { stacksTokensApi } from "@/lib/stacks";
-import { Container } from "@radix-ui/themes";
-import { isProtocol, protocolsInfo } from "@stackspulse/protocols";
+import { Card, Container, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -29,11 +22,29 @@ export default async function ProtocolPage({ params }: PageProps) {
   if (!tokenInfo) {
     notFound();
   }
-  console.log(tokenInfo);
 
   return (
     <Container size="2" className="px-4 pt-10">
       <TokenInfo tokenInfo={tokenInfo} />
+
+      <div className="mt-5 grid grid-cols-2 gap-5">
+        <Card size="2">
+          <Text as="div" size="2" color="gray">
+            Supply
+          </Text>
+          <Text as="div" mt="2" size="5" weight="medium">
+            TODO
+          </Text>
+        </Card>
+        <Card size="2">
+          <Text as="div" size="2" color="gray">
+            Holders
+          </Text>
+          <Text as="div" mt="2" size="5" weight="medium">
+            TODO
+          </Text>
+        </Card>
+      </div>
     </Container>
   );
 }
