@@ -1,3 +1,4 @@
+import { TokenHoldersTable } from "@/components/Token/TokenHoldersTable";
 import { TokenInfo } from "@/components/Token/TokenInfo";
 import { TokenStats } from "@/components/Token/TokenStats";
 import { stacksTokensApi } from "@/lib/stacks";
@@ -31,6 +32,10 @@ export default async function ProtocolPage({ params }: PageProps) {
 
       <Suspense>
         <TokenStats token={token} />
+      </Suspense>
+
+      <Suspense>
+        <TokenHoldersTable token={token} />
       </Suspense>
     </Container>
   );

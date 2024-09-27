@@ -8,7 +8,7 @@ interface TokenStatsProps {
 }
 
 export const TokenStats = ({ token }: TokenStatsProps) => {
-  const data = useGetTokenHolders({ token });
+  const { data } = useGetTokenHolders({ token });
 
   return (
     <div className="mt-5 grid grid-cols-2 gap-5">
@@ -17,7 +17,7 @@ export const TokenStats = ({ token }: TokenStatsProps) => {
           Supply
         </Text>
         <Text as="div" mt="2" size="5" weight="medium">
-          {Number(data.data.total_supply).toLocaleString("en-US")}
+          {Number(data.total_supply).toLocaleString("en-US")}
         </Text>
       </Card>
       <Card size="2">
@@ -25,7 +25,7 @@ export const TokenStats = ({ token }: TokenStatsProps) => {
           Holders
         </Text>
         <Text as="div" mt="2" size="5" weight="medium">
-          {data.data.total.toLocaleString("en-US")}
+          {data.total.toLocaleString("en-US")}
         </Text>
       </Card>
     </div>
