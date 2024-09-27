@@ -4,7 +4,7 @@ import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
-import { stacksApi } from "~/lib/stacks-api";
+import { stacksClient } from "~/lib/stacks";
 
 const transactionsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
@@ -51,11 +51,16 @@ LIMIT 50
     tx_id: `0x${r.tx_id.toString("hex")}`,
   }));
 
-  const data = (await stacksApi.transactions.getTxListDetails({
-    txId: formattedResult.map((r) => r.tx_id),
-  })) as {
+  const data: {
     [txId: string]: { found: boolean; result: ContractCallTransaction };
-  };
+  } = (
+    await stacksClient.GET("/extended/v1/tx/multiple", {
+      params: {
+        query: { tx_id: formattedResult.map((r) => r.tx_id) },
+      },
+    })
+  ).data;
+
   const transactionsWithDetails: TransactionsRouteResponse = formattedResult
     .map((r) =>
       data[r.tx_id].found === true
