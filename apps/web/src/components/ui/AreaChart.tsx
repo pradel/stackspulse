@@ -14,6 +14,7 @@ import {
   hasOnlyOneValueForKey,
 } from "@/lib/chartUtils";
 import { cn as cx } from "@/lib/cn";
+import { Text } from "@radix-ui/themes";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import React from "react";
 import {
@@ -72,9 +73,9 @@ const LegendItem = ({
       <p
         className={cx(
           // base
-          "truncate whitespace-nowrap text-xs",
+          "truncate whitespace-nowrap text-1",
           // text color
-          "text-gray-700 dark:text-gray-300",
+          "text-gray-11",
           hasOnValueChange &&
             "group-hover:text-gray-900 dark:group-hover:text-gray-50",
           activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
@@ -393,24 +394,15 @@ const ChartTooltip = ({
       <div
         className={cx(
           // base
-          "rounded-md border text-1 shadow-md",
+          "rounded-2 border text-1 shadow-md",
           // border color
-          "border-gray-200 dark:border-gray-800",
+          "border-gray-11",
           // background color
-          "bg-white dark:bg-gray-950",
+          "bg-[var(--color-background)]",
         )}
       >
-        <div className={cx("border-b border-inherit px-4 py-2")}>
-          <p
-            className={cx(
-              // base
-              "font-medium",
-              // text color
-              "text-gray-900 dark:text-gray-50",
-            )}
-          >
-            {label}
-          </p>
+        <div className={cx("border-b border-gray-11 border-inherit px-4 py-2")}>
+          <Text as="p">{label}</Text>
         </div>
         <div className={cx("space-y-1 px-4 py-2")}>
           {payload.map(({ value, category, color }, index) => (
@@ -431,7 +423,7 @@ const ChartTooltip = ({
                     // base
                     "whitespace-nowrap text-right",
                     // text color
-                    "text-gray-700 dark:text-gray-300",
+                    "text-gray-11",
                   )}
                 >
                   {category}
@@ -442,7 +434,7 @@ const ChartTooltip = ({
                   // base
                   "whitespace-nowrap text-right font-medium tabular-nums",
                   // text color
-                  "text-gray-900 dark:text-gray-50",
+                  "text-gray-12",
                 )}
               >
                 {valueFormatter(value)}
