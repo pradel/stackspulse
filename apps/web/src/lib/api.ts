@@ -53,3 +53,25 @@ export type StackingDAOProtocolStatsResponse = {
   deposits: number;
   withdrawals: number;
 }[];
+
+/**
+ * `/api/tokens/holders`
+ */
+
+export type TokensHoldersRouteResponse = {
+  total_supply: string;
+  total: number;
+  results: {
+    address: string;
+    balance: string;
+  }[];
+};
+
+/**
+ * `/api/tokens/transaction-volume`
+ */
+
+export type TokensTransactionVolumeRouteResponse = {
+  date: string;
+  daily_volume: string;
+}[];
