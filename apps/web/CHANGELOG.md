@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.15.0
+
+### Minor Changes
+
+- 7a7d7f2: Create new token page.
+
 ## 0.14.3
 
 ### Patch Changes
