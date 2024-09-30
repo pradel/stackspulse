@@ -1,13 +1,15 @@
 "use client";
 
 import { useGetTokenHolders } from "@/hooks/api/useGetTokenHolders";
+import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
 import { Card, Text } from "@radix-ui/themes";
 
 interface TokenStatsProps {
   token: string;
+  tokenInfo: FtMetadataResponse;
 }
 
-export const TokenStats = ({ token }: TokenStatsProps) => {
+export const TokenStats = ({ token, tokenInfo }: TokenStatsProps) => {
   const { data } = useGetTokenHolders({ token, limit: 1 });
 
   return (
@@ -16,8 +18,16 @@ export const TokenStats = ({ token }: TokenStatsProps) => {
         <Text as="div" size="2" color="gray">
           Supply
         </Text>
-        <Text as="div" mt="2" size="5" weight="medium">
-          {Number(data.total_supply).toLocaleString("en-US")}
+        <Text
+          as="div"
+          mt="2"
+          size="5"
+          weight="medium"
+          title={data.total_supply}
+        >
+          {Number(
+            Number(data.total_supply) / Number(10 ** (tokenInfo.decimals ?? 0)),
+          ).toLocaleString("en-US")}
         </Text>
       </Card>
       <Card size="2">

@@ -1,23 +1,30 @@
 "use client";
 
 import { useGetTransactionVolume } from "@/hooks/api/useGetTransactionVolume";
+import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
+import { useMemo } from "react";
 import { AreaChart } from "../ui/AreaChart";
 import { numberValueFormatter } from "../ui/utils";
 
 interface TokenStatsProps {
   token: string;
+  tokenInfo: FtMetadataResponse;
 }
 
-export const TokenTransactionsVolume = ({ token }: TokenStatsProps) => {
+export const TokenTransactionsVolume = ({
+  token,
+  tokenInfo,
+}: TokenStatsProps) => {
   const { data } = useGetTransactionVolume({ token });
 
-  const formattedData: {
-    date: string;
-  }[] = data.map((d) => ({
-    date: d.date,
-    daily_volume: Number(d.daily_volume),
-  }));
+  const formattedData = useMemo(() => {
+    return data.map((d) => ({
+      date: d.date,
+      daily_volume:
+        Number(d.daily_volume) / Number(10 ** (tokenInfo.decimals ?? 0)),
+    }));
+  }, [data, tokenInfo.decimals]);
 
   return (
     <Card size="2" className="mt-5">

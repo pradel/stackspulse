@@ -1,13 +1,18 @@
 "use client";
 
 import { useGetTokenHolders } from "@/hooks/api/useGetTokenHolders";
+import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
 import { Link, Table, Text } from "@radix-ui/themes";
 
 interface TokenHoldersTableProps {
   token: string;
+  tokenInfo: FtMetadataResponse;
 }
 
-export const TokenHoldersTable = ({ token }: TokenHoldersTableProps) => {
+export const TokenHoldersTable = ({
+  token,
+  tokenInfo,
+}: TokenHoldersTableProps) => {
   const { data } = useGetTokenHolders({ token, limit: 10 });
 
   const calculatePercentage = (balance: string) => {
@@ -46,7 +51,10 @@ export const TokenHoldersTable = ({ token }: TokenHoldersTableProps) => {
             </Table.Cell>
             <Table.Cell align="right">
               <Text size="2">
-                {Number(holder.balance).toLocaleString("en-US")}
+                {(
+                  Number(holder.balance) /
+                  Number(10 ** (tokenInfo.decimals ?? 0))
+                ).toLocaleString("en-US")}
               </Text>
             </Table.Cell>
             <Table.Cell align="right">
