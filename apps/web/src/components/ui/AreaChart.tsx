@@ -469,6 +469,7 @@ interface AreaChartProps extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[];
   colors?: AvailableChartColorsKeys[];
   valueFormatter?: (value: number) => string;
+  valueFormatterYAxis?: (value: number) => string;
   startEndOnly?: boolean;
   showXAxis?: boolean;
   showYAxis?: boolean;
@@ -502,6 +503,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
       index,
       colors = AvailableChartColors,
       valueFormatter = (value: number) => value.toString(),
+      valueFormatterYAxis = valueFormatter,
       startEndOnly = false,
       showXAxis = true,
       showYAxis = true,
@@ -718,7 +720,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                 "fill-gray-11 dark:fill-gray-11",
               )}
               tickFormatter={
-                type === "percent" ? valueToPercent : valueFormatter
+                type === "percent" ? valueToPercent : valueFormatterYAxis
               }
               allowDecimals={allowDecimals}
             >

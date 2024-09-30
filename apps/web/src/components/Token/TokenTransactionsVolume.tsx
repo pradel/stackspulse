@@ -5,7 +5,7 @@ import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client"
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 import { useMemo } from "react";
 import { AreaChart } from "../ui/AreaChart";
-import { numberValueFormatter } from "../ui/utils";
+import { bigNumberValueFormatter, numberValueFormatter } from "../ui/utils";
 
 interface TokenStatsProps {
   token: string;
@@ -38,13 +38,13 @@ export const TokenTransactionsVolume = ({
         <Separator size="4" />
       </Inset>
       <AreaChart
-        className="mt-6 pr-3"
+        className="mt-3 pr-3"
         data={formattedData}
         index="date"
         categories={["daily_volume"]}
         colors={["orange"]}
-        yAxisWidth={60}
         valueFormatter={numberValueFormatter}
+        valueFormatterYAxis={bigNumberValueFormatter}
       />
     </Card>
   );
