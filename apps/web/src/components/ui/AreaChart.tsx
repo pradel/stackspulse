@@ -703,7 +703,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                 <Label
                   position="insideBottom"
                   offset={-20}
-                  className="fill-gray-800 dark:fill-gray-200 text-1 font-medium"
+                  className="fill-gray-9 text-1 font-medium dark:fill-gray-9"
                 >
                   {xAxisLabel}
                 </Label>
@@ -736,7 +736,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                   style={{ textAnchor: "middle" }}
                   angle={-90}
                   offset={-15}
-                  className="fill-gray-800 dark:fill-gray-200 text-1 font-medium"
+                  className="fill-gray-9 text-1 font-medium dark:fill-gray-9"
                 >
                   {yAxisLabel}
                 </Label>
