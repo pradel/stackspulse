@@ -393,7 +393,7 @@ const ChartTooltip = ({
       <div
         className={cx(
           // base
-          "rounded-md border text-sm shadow-md",
+          "rounded-md border text-1 shadow-md",
           // border color
           "border-gray-200 dark:border-gray-800",
           // background color
@@ -691,9 +691,9 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
               stroke=""
               className={cx(
                 // base
-                "text-xs",
+                "text-1",
                 // text fill
-                "fill-gray-500 dark:fill-gray-500",
+                "fill-gray-11 dark:fill-gray-11",
               )}
               tickLine={false}
               axisLine={false}
@@ -703,7 +703,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                 <Label
                   position="insideBottom"
                   offset={-20}
-                  className="fill-gray-800 text-sm font-medium dark:fill-gray-200"
+                  className="fill-gray-800 dark:fill-gray-200 text-1 font-medium"
                 >
                   {xAxisLabel}
                 </Label>
@@ -721,9 +721,9 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
               stroke=""
               className={cx(
                 // base
-                "text-xs",
+                "text-1",
                 // text fill
-                "fill-gray-500 dark:fill-gray-500",
+                "fill-gray-11 dark:fill-gray-11",
               )}
               tickFormatter={
                 type === "percent" ? valueToPercent : valueFormatter
@@ -736,7 +736,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                   style={{ textAnchor: "middle" }}
                   angle={-90}
                   offset={-15}
-                  className="fill-gray-800 text-sm font-medium dark:fill-gray-200"
+                  className="fill-gray-800 dark:fill-gray-200 text-1 font-medium"
                 >
                   {yAxisLabel}
                 </Label>
@@ -872,7 +872,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                       return (
                         <Dot
                           className={cx(
-                            "stroke-white dark:stroke-gray-950",
+                            "stroke-white dark:stroke-white",
                             onValueChange ? "cursor-pointer" : "",
                             getColorClassName(
                               categoryColors.get(
@@ -926,7 +926,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
                             strokeLinejoin={strokeLinejoin}
                             strokeWidth={strokeWidth}
                             className={cx(
-                              "stroke-white dark:stroke-gray-950",
+                              "stroke-white dark:stroke-white",
                               onValueChange ? "cursor-pointer" : "",
                               getColorClassName(
                                 categoryColors.get(
