@@ -66,3 +66,12 @@ export type TokensHoldersRouteResponse = {
     balance: string;
   }[];
 };
+
+/**
+ * `/api/tokens/transaction-volume`
+ */
+
+export type TokensTransactionVolumeRouteResponse = {
+  date: string;
+  daily_volume: string;
+}[];
