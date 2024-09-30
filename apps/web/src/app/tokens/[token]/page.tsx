@@ -1,6 +1,7 @@
 import { TokenHoldersTable } from "@/components/Token/TokenHoldersTable";
 import { TokenInfo } from "@/components/Token/TokenInfo";
 import { TokenStats } from "@/components/Token/TokenStats";
+import { TokenTransactionsVolume } from "@/components/Token/TokenTransactionsVolume";
 import { stacksTokensApi } from "@/lib/stacks";
 import { Container } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
@@ -32,6 +33,10 @@ export default async function ProtocolPage({ params }: PageProps) {
 
       <Suspense>
         <TokenStats token={token} />
+      </Suspense>
+
+      <Suspense>
+        <TokenTransactionsVolume token={token} />
       </Suspense>
 
       <Suspense>
