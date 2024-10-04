@@ -8,6 +8,7 @@ export const protocols = [
   "zest",
   "charisma",
   "lisa",
+  "hermetica",
 ] as const;
 
 export type Protocol = (typeof protocols)[number];
@@ -206,6 +207,18 @@ export const protocolsInfo: {
     x: "https://twitter.com/LisaLab_BTC",
     contracts: [
       "SM3KNVZS30WM7F89SXKVVFY4SN9RMPZZ9FX929N0V.lqstx-mint-endpoint-v2-01",
+    ],
+  },
+  hermetica: {
+    name: "Hermetica",
+    description:
+      "Hermetica's USDh is the first Bitcoin-backed, yield-bearing stablecoin. Earn up to 25% APY without leaving Bitcoin.",
+    website: "https://hermetica.fi/",
+    x: "https://twitter.com/HermeticaFi",
+    contracts: [
+      "SPN5AKG35QZSK2M8GAMR4AFX45659RJHDW353HSG.usdh-token-v1",
+      "SPN5AKG35QZSK2M8GAMR4AFX45659RJHDW353HSG.susdh-token-v1",
+      "SPN5AKG35QZSK2M8GAMR4AFX45659RJHDW353HSG.staking-v1",
     ],
   },
 } as const;
