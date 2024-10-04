@@ -1,15 +1,18 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "organizeImports": {
     "enabled": true
+  },
+  "files": {
+    "ignore": [".nitro", ".output", ".next", "dist"],
+    "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 80,
-    "ignore": [".nitro", ".next", "dist"]
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
@@ -23,9 +26,6 @@
       }
     },
     "ignore": [
-      ".nitro",
-      ".next",
-      "dist",
       "apps/web/src/lib/chartUtils.tsx",
       "apps/web/src/components/ui/AreaChart.tsx"
     ]
