@@ -4,7 +4,8 @@
     "enabled": true
   },
   "files": {
-    "ignore": [".nitro", ".output", ".next", "dist"]
+    "ignore": [".nitro", ".output", ".next", "dist"],
+    "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
