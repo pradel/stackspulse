@@ -3,13 +3,15 @@
   "organizeImports": {
     "enabled": true
   },
+  "files": {
+    "ignore": [".nitro", ".output", ".next", "dist"]
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 80,
-    "ignore": [".nitro", ".next", "dist"]
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
@@ -23,9 +25,6 @@
       }
     },
     "ignore": [
-      ".nitro",
-      ".next",
-      "dist",
       "apps/web/src/lib/chartUtils.tsx",
       "apps/web/src/components/ui/AreaChart.tsx"
     ]
