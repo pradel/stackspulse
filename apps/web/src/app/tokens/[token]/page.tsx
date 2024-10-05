@@ -14,9 +14,8 @@ interface PageProps {
 }
 
 export default async function ProtocolPage({ params }: PageProps) {
-  const token = decodeURIComponent(params.token);
   const tokenInfo = await stacksTokensApi
-    .getFtMetadata(token.split("::")[0])
+    .getFtMetadata(params.token)
     .catch((error) => {
       if (error.status === 404) {
         return null;
@@ -26,6 +25,10 @@ export default async function ProtocolPage({ params }: PageProps) {
   if (!tokenInfo) {
     notFound();
   }
+
+  // TODO change once https://github.com/hirosystems/token-metadata-api/issues/268 is fixed
+  const token = (tokenInfo as unknown as { asset_identifier: string })
+    .asset_identifier;
 
   return (
     <Container size="2" className="px-4 pt-10">
