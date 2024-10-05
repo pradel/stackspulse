@@ -2,4 +2,4 @@
 "stackspulse": patch
 ---
 
-Add charisma dapp.
+Add Hermetica dapp.
