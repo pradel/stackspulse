@@ -86,6 +86,9 @@ export default async function ProtocolPage() {
                   {market.price_change_percentage_24h
                     ? `${market.price_change_percentage_24h.toLocaleString(
                         "en-US",
+                        {
+                          maximumFractionDigits: 2,
+                        },
                       )}%`
                     : ""}
                 </Text>
