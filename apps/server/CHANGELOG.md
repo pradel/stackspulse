@@ -1,5 +1,12 @@
 # @stackspulse/server
 
+## 0.16.0
+
+### Minor Changes
+
+- d21feef: Create new `/api/tokens/resolve` route.
+- d21feef: Create new `/api/tokens/markets` route.
+
 ## 0.15.1
 
 ## 0.15.0
