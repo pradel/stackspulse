@@ -10,7 +10,7 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.14.2",
+    "@dotenvx/dotenvx": "1.15.0",
     "@libsql/client": "0.8.0",
     "@sentry/node": "8.33.1",
     "@stacks/blockchain-api-client": "8.0.3",

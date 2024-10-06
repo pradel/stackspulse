@@ -9,6 +9,7 @@ export const env = createEnv({
     TURSO_DATABASE_URL: z.string().url(),
     TURSO_AUTH_TOKEN: z.string().optional(),
     SENTRY_DSN: z.string().url().optional(),
+    COINGECKO_API_KEY: z.string(),
   },
 
   runtimeEnv: process.env,
