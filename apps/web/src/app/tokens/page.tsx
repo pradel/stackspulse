@@ -1,8 +1,9 @@
 import { env } from "@/env";
 import type { TokensMarketsRouteResponse } from "@/lib/api";
-import { Container, Table, Text } from "@radix-ui/themes";
+import { Container, Link, Table, Text } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import Image from "next/image";
+import NextLink from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,11 @@ export default async function ProtocolPage() {
                   width={20}
                   height={20}
                 />
-                <Text size="2">{market.name}</Text>
+                <Link color="gray" highContrast size="2" asChild>
+                  <NextLink href={`/tokens/resolve/${market.id}`}>
+                    {market.name}
+                  </NextLink>
+                </Link>
               </Table.Cell>
               <Table.Cell align="right">
                 $

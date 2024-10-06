@@ -91,3 +91,16 @@ type CoingeckoCoinsMarketsResponse = {
 }[];
 
 export type TokensMarketsRouteResponse = CoingeckoCoinsMarketsResponse;
+
+/**
+ * `/api/tokens/resolve`
+ */
+
+type CoingeckoCoinsIdResponse = {
+  id: string;
+  symbol: string;
+  name: string;
+  contract_address: string;
+};
+
+export type TokensResolveRouteResponse = CoingeckoCoinsIdResponse;

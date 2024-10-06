@@ -31,6 +31,6 @@ export default defineCachedEventHandler(
   {
     ...apiCacheConfig,
     // Cache for 24 hours
-    maxAge: 24 * 60 * 60,
+    maxAge: 60 * 60 * 24,
   },
 );
