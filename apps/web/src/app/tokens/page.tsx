@@ -47,11 +47,15 @@ export default async function ProtocolPage() {
                   width={20}
                   height={20}
                 />
-                <Link color="gray" highContrast size="2" asChild>
-                  <NextLink href={`/tokens/resolve/${market.id}`}>
-                    {market.name}
-                  </NextLink>
-                </Link>
+                {market.id === "blockstack" ? (
+                  <Text size="2">{market.name}</Text>
+                ) : (
+                  <Link color="gray" highContrast size="2" asChild>
+                    <NextLink href={`/tokens/resolve/${market.id}`}>
+                      {market.name}
+                    </NextLink>
+                  </Link>
+                )}
               </Table.Cell>
               <Table.Cell align="right">
                 $
