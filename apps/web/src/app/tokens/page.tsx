@@ -12,36 +12,20 @@ import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
-// export async function generateMetadata({
-//   params,
-// }: PageProps): Promise<Metadata> {
-//   const tokenInfo = await stacksTokensApi
-//     .getFtMetadata(params.token)
-//     .catch((error) => {
-//       if (error.status === 404) {
-//         return null;
-//       }
-//       throw error;
-//     });
-//   if (!tokenInfo) {
-//     notFound();
-//   }
-
-//   return {
-//     title: `stackspulse - ${tokenInfo.name}`,
-//     description: `Get the latest ${tokenInfo.name} on-chain stats. Explore holders, transaction volume, and more..`,
-//     alternates: {
-//       canonical: `/tokens/${params.token}`,
-//     },
-//   };
-// }
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "stackspulse - tokens",
+    description: "Explore Stacks tokens by market cap, volume, and price",
+    alternates: {
+      canonical: "/tokens",
+    },
+  };
+}
 
 export default async function ProtocolPage() {
   const data = await fetch(
     `${env.NEXT_PUBLIC_API_URL}/api/tokens/markets`,
   ).then((res) => res.json());
-
-  console.log("data", data);
 
   return (
     <Container size="2" className="px-4 pt-5">
