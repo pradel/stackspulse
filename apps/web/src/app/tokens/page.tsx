@@ -87,6 +87,16 @@ export default async function ProtocolPage() {
           ))}
         </Table.Body>
       </Table.Root>
+
+      <div className="mt-5 flex justify-end">
+        <Text size="1" color="gray">
+          Data provided by{" "}
+          <Link href="https://coingecko.com/" target="_blank">
+            CoinGecko
+          </Link>
+          .
+        </Text>
+      </div>
     </Container>
   );
 }
