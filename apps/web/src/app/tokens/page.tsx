@@ -50,6 +50,7 @@ export default async function ProtocolPage() {
           <Table.Row>
             <Table.ColumnHeaderCell>Token</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell align="right">Price</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell align="right">24h</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell align="right">
               Market Cap
             </Table.ColumnHeaderCell>
@@ -74,6 +75,20 @@ export default async function ProtocolPage() {
                 {market.current_price.toLocaleString("en-US", {
                   maximumFractionDigits: 12,
                 })}
+              </Table.Cell>
+              <Table.Cell align="right">
+                <Text
+                  size="2"
+                  color={
+                    market.price_change_percentage_24h >= 0 ? "green" : "red"
+                  }
+                >
+                  {market.price_change_percentage_24h
+                    ? `${market.price_change_percentage_24h.toLocaleString(
+                        "en-US",
+                      )}%`
+                    : ""}
+                </Text>
               </Table.Cell>
               <Table.Cell align="right">
                 ${market.market_cap.toLocaleString("en-US")}
