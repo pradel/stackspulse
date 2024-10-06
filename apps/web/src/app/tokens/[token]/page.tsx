@@ -4,6 +4,7 @@ import { TokenStats } from "@/components/Token/TokenStats";
 import { TokenTransactionsVolume } from "@/components/Token/TokenTransactionsVolume";
 import { stacksTokensApi } from "@/lib/stacks";
 import { Container } from "@radix-ui/themes";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -11,6 +12,30 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { token: string };
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const tokenInfo = await stacksTokensApi
+    .getFtMetadata(params.token)
+    .catch((error) => {
+      if (error.status === 404) {
+        return null;
+      }
+      throw error;
+    });
+  if (!tokenInfo) {
+    notFound();
+  }
+
+  return {
+    title: `stackspulse - ${tokenInfo.name}`,
+    description: `Get the latest ${tokenInfo.name} on-chain stats. Explore holders, transaction volume, and more..`,
+    alternates: {
+      canonical: `/tokens/${params.token}`,
+    },
+  };
 }
 
 export default async function ProtocolPage({ params }: PageProps) {
