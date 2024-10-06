@@ -1,14 +1,8 @@
-import { TokenHoldersTable } from "@/components/Token/TokenHoldersTable";
-import { TokenInfo } from "@/components/Token/TokenInfo";
-import { TokenStats } from "@/components/Token/TokenStats";
-import { TokenTransactionsVolume } from "@/components/Token/TokenTransactionsVolume";
 import { env } from "@/env";
-import { stacksTokensApi } from "@/lib/stacks";
+import type { TokensMarketsRouteResponse } from "@/lib/api";
 import { Container, Table, Text } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProtocolPage() {
-  const data = await fetch(
+  const data: TokensMarketsRouteResponse = await fetch(
     `${env.NEXT_PUBLIC_API_URL}/api/tokens/markets`,
   ).then((res) => res.json());
 

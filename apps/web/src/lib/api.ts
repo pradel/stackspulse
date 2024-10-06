@@ -75,3 +75,19 @@ export type TokensTransactionVolumeRouteResponse = {
   date: string;
   daily_volume: string;
 }[];
+
+/**
+ * `/api/tokens/markets`
+ */
+
+type CoingeckoCoinsMarketsResponse = {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  price_change_percentage_24h: number;
+}[];
+
+export type TokensMarketsRouteResponse = CoingeckoCoinsMarketsResponse;
