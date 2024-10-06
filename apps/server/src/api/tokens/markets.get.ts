@@ -1,9 +1,7 @@
 import { env } from "~/env";
 import { apiCacheConfig } from "~/lib/api";
 
-type TokensMarketsRouteResponse = {
-  TODO: string;
-};
+type TokensMarketsRouteResponse = CoingeckoCoinsMarketsResponse;
 
 type CoingeckoCoinsMarketsResponse = {
   id: string;
@@ -11,7 +9,7 @@ type CoingeckoCoinsMarketsResponse = {
   name: string;
 }[];
 
-export default defineCachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async () => {
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=stacks-ecosystem";
 

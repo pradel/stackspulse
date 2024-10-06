@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.hiro.so",
       },
+      {
+        protocol: "https",
+        hostname: "**.coingecko.com",
+      },
     ],
   },
 };
