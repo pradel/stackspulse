@@ -54,8 +54,13 @@ export const TokenHoldersTable = ({
                   href={`https://explorer.hiro.so/address/${holder.address}?chain=mainnet`}
                   target="_blank"
                   color="gray"
+                  title={holder.address}
                 >
-                  {holder.address}
+                  {holder.address.includes(".")
+                    ? `${holder.address.split(".")[0].slice(0, 20)}...${
+                        holder.address.split(".")[1]
+                      }`
+                    : holder.address}
                 </Link>
               </Table.Cell>
               <Table.Cell align="right">
