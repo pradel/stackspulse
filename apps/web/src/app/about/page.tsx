@@ -11,11 +11,9 @@ export const metadata: Metadata = {
 export default async function AboutPage() {
   return (
     <Container size="2" className="px-4 pt-10">
-      <div>
-        <Heading as="h1" size="4">
-          stackpulse
-        </Heading>
-      </div>
+      <Heading as="h1" size="5">
+        stackpulse
+      </Heading>
 
       <div className="mt-5 space-y-2">
         <Text as="p" size="3" color="gray">
@@ -39,8 +37,25 @@ export default async function AboutPage() {
         </Text>
       </div>
 
+      <div className="mt-5 space-y-2">
+        <Heading as="h2" size="4">
+          Data
+        </Heading>
+        <Text as="p" size="3" color="gray">
+          Data is extracted from a self-hosted Stacks blockchain node and
+          aggregated using PostgreSQL.
+        </Text>
+        <Text as="p" size="3" color="gray">
+          Token prices and volume is provided by{" "}
+          <Link href="https://coingecko.com/" target="_blank">
+            CoinGecko
+          </Link>
+          .
+        </Text>
+      </div>
+
       <div className="mt-10">
-        <Heading as="h3" size="4">
+        <Heading as="h2" size="4">
           Open Stats
         </Heading>
         <iframe

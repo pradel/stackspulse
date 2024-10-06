@@ -10,7 +10,7 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.14.2",
+    "@dotenvx/dotenvx": "1.15.0",
     "@hirosystems/token-metadata-api-client": "1.3.0",
     "@radix-ui/themes": "3.0.5",
     "@sentry/nextjs": "8.33.1",

@@ -61,6 +61,9 @@ export const Header = () => {
               </DropdownMenu.Content>
             </DropdownMenu.Root>
             <Link color="gray" size="2" asChild>
+              <NextLink href="/tokens">Tokens</NextLink>
+            </Link>
+            <Link color="gray" size="2" asChild>
               <NextLink href="/about">About</NextLink>
             </Link>
           </div>

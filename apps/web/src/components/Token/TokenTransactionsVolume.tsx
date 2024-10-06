@@ -32,7 +32,7 @@ export const TokenTransactionsVolume = ({
         Transactions volume
       </Text>
       <Text className="mt-1" as="div" size="1" color="gray">
-        The total volume of transactions for the token.
+        The total volume of transactions for the token (transfers, swaps, etc.).
       </Text>
       <Inset py="current" side="bottom">
         <Separator size="4" />
