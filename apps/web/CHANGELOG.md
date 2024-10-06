@@ -1,5 +1,17 @@
 # stackspulse
 
+## 0.16.0
+
+### Minor Changes
+
+- d21feef: Create new token list page.
+
+### Patch Changes
+
+- d21feef: Add "Data" section in about page.
+- 457b329: Fix tokens page to not include the identifier in the URL.
+- d2f95ae: Add SEO to new tokens page.
+
 ## 0.15.1
 
 ### Patch Changes
