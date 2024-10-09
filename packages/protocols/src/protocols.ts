@@ -67,6 +67,7 @@ export const protocolsInfo: {
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-abtc-xbtc-v-1-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-abtc-xbtc-v-1-2",
       "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.stableswap-pool-aeusdc-usdh-v-1-1",
+      "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.stableswap-pool-aeusdc-usdh-v-1-2",
       // Earn Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-stx-ststx-v-1-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-stx-ststx-v-1-2",
@@ -96,8 +97,12 @@ export const protocolsInfo: {
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-aeusdc-ststx-v-2-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-susdt-ststx-v-1-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-xyk-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-xyk-v-1-2",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-velar-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-velar-v-1-2",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-alex-v-1-1",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-alex-v-1-2",
+      "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.router-stableswap-usda-aeusdc-v-1-1",
       // Wrapper Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.wrapper-velar-v-1-1",
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.wrapper-alex-v-2-1",
@@ -106,6 +111,7 @@ export const protocolsInfo: {
       // Core Contracts
       "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.xyk-core-v-1-1",
       "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.stableswap-core-v-1-1",
+      "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.stableswap-core-v-1-2",
     ],
   },
   stackingdao: {
