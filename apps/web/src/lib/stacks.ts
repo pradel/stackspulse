@@ -11,4 +11,5 @@ export interface FtMetadataResponse {
   description?: string;
   image_uri?: string;
   image_thumbnail_uri?: string;
+  asset_identifier: string;
 }

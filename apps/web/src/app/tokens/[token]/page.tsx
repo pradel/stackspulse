@@ -64,15 +64,15 @@ export default async function ProtocolPage({ params }: PageProps) {
       <TokenInfo tokenInfo={tokenInfo} />
 
       <Suspense>
-        <TokenStats token={token} tokenInfo={tokenInfo} />
+        <TokenStats tokenInfo={tokenInfo} />
       </Suspense>
 
       <Suspense>
-        <TokenTransactionsVolume token={token} tokenInfo={tokenInfo} />
+        <TokenTransactionsVolume tokenInfo={tokenInfo} />
       </Suspense>
 
       <Suspense>
-        <TokenHoldersTable token={token} tokenInfo={tokenInfo} />
+        <TokenHoldersTable tokenInfo={tokenInfo} />
       </Suspense>
     </Container>
   );

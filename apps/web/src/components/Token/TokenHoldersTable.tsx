@@ -5,15 +5,14 @@ import type { FtMetadataResponse } from "@/lib/stacks";
 import { Card, Inset, Link, Separator, Table, Text } from "@radix-ui/themes";
 
 interface TokenHoldersTableProps {
-  token: string;
   tokenInfo: FtMetadataResponse;
 }
 
-export const TokenHoldersTable = ({
-  token,
-  tokenInfo,
-}: TokenHoldersTableProps) => {
-  const { data } = useGetTokenHolders({ token, limit: 10 });
+export const TokenHoldersTable = ({ tokenInfo }: TokenHoldersTableProps) => {
+  const { data } = useGetTokenHolders({
+    token: tokenInfo.asset_identifier,
+    limit: 10,
+  });
 
   const calculatePercentage = (balance: string) => {
     const holderBalance = Number.parseFloat(balance);

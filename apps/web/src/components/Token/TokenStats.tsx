@@ -5,12 +5,14 @@ import type { FtMetadataResponse } from "@/lib/stacks";
 import { Card, Text } from "@radix-ui/themes";
 
 interface TokenStatsProps {
-  token: string;
   tokenInfo: FtMetadataResponse;
 }
 
-export const TokenStats = ({ token, tokenInfo }: TokenStatsProps) => {
-  const { data } = useGetTokenHolders({ token, limit: 1 });
+export const TokenStats = ({ tokenInfo }: TokenStatsProps) => {
+  const { data } = useGetTokenHolders({
+    token: tokenInfo.asset_identifier,
+    limit: 1,
+  });
 
   return (
     <div className="mt-5 grid grid-cols-2 gap-5">
