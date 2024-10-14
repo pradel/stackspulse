@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { stacksTokensApi } from "@/lib/stacks";
+import { tokenMetadataClient } from "@/lib/stacks";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
@@ -18,14 +18,17 @@ interface PageProps {
 }
 
 export default async function Image({ params }: PageProps) {
-  const tokenInfo = await stacksTokensApi
-    .getFtMetadata(params.token)
-    .catch((error) => {
-      if (error.status === 404) {
-        return null;
-      }
-      throw error;
-    });
+  const metadata = await tokenMetadataClient.GET(
+    "/metadata/v1/ft/{principal}",
+    {
+      params: {
+        path: {
+          principal: params.token,
+        },
+      },
+    },
+  );
+  const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();
   }

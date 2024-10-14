@@ -1,4 +1,4 @@
-import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
+import type { FtMetadataResponse } from "@/lib/stacks";
 import { Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 

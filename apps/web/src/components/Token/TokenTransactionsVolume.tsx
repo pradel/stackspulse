@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetTransactionVolume } from "@/hooks/api/useGetTransactionVolume";
-import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
+import type { FtMetadataResponse } from "@/lib/stacks";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 import { useMemo } from "react";
 import { AreaChart } from "../ui/AreaChart";

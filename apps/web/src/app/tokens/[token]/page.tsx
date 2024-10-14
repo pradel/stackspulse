@@ -2,7 +2,7 @@ import { TokenHoldersTable } from "@/components/Token/TokenHoldersTable";
 import { TokenInfo } from "@/components/Token/TokenInfo";
 import { TokenStats } from "@/components/Token/TokenStats";
 import { TokenTransactionsVolume } from "@/components/Token/TokenTransactionsVolume";
-import { stacksTokensApi } from "@/lib/stacks";
+import { tokenMetadataClient } from "@/lib/stacks";
 import { Container } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -17,14 +17,17 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const tokenInfo = await stacksTokensApi
-    .getFtMetadata(params.token)
-    .catch((error) => {
-      if (error.status === 404) {
-        return null;
-      }
-      throw error;
-    });
+  const metadata = await tokenMetadataClient.GET(
+    "/metadata/v1/ft/{principal}",
+    {
+      params: {
+        path: {
+          principal: params.token,
+        },
+      },
+    },
+  );
+  const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();
   }
@@ -39,21 +42,22 @@ export async function generateMetadata({
 }
 
 export default async function ProtocolPage({ params }: PageProps) {
-  const tokenInfo = await stacksTokensApi
-    .getFtMetadata(params.token)
-    .catch((error) => {
-      if (error.status === 404) {
-        return null;
-      }
-      throw error;
-    });
+  const metadata = await tokenMetadataClient.GET(
+    "/metadata/v1/ft/{principal}",
+    {
+      params: {
+        path: {
+          principal: params.token,
+        },
+      },
+    },
+  );
+  const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();
   }
 
-  // TODO change once https://github.com/hirosystems/token-metadata-api/issues/268 is fixed
-  const token = (tokenInfo as unknown as { asset_identifier: string })
-    .asset_identifier;
+  const token = tokenInfo.asset_identifier;
 
   return (
     <Container size="2" className="px-4 pt-10">
