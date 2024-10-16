@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.16.1
+
+### Patch Changes
+
+- 485e42d: Fix token contract address when it's deployed to multiple chains.
+
 ## 0.16.0
 
 ### Minor Changes
