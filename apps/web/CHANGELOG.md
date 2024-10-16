@@ -1,5 +1,12 @@
 # stackspulse
 
+## 0.16.1
+
+### Patch Changes
+
+- 8e9505f: Upgrade "@hirosystems/token-metadata-api-client" to v2.
+- f42ad0a: Bitflow update contracts list.
+
 ## 0.16.0
 
 ### Minor Changes
