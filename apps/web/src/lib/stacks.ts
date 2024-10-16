@@ -4,6 +4,7 @@ export const tokenMetadataClient = createClient({
   baseUrl: "https://api.mainnet.hiro.so",
 });
 
+// TODO remove this type once https://github.com/hirosystems/token-metadata-api/issues/275 is fixed
 export interface FtMetadataResponse {
   decimals?: number;
   name?: string;
