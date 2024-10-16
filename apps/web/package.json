@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.19.3",
-    "@hirosystems/token-metadata-api-client": "1.3.0",
+    "@hirosystems/token-metadata-api-client": "2.0.0",
     "@radix-ui/themes": "3.0.5",
     "@sentry/nextjs": "8.34.0",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
