@@ -1,11 +1,7 @@
-import { TokensApi } from "@hirosystems/token-metadata-api-client";
+import { tokenMetadataClient } from "@/lib/stacks";
 import { useQuery } from "@tanstack/react-query";
 
-const api = new TokensApi();
-
-export const useGetFtMetadata = (params: {
-  principal: string;
-}) => {
+export const useGetFtMetadata = (params: { principal: string }) => {
   return useQuery({
     queryKey: ["get-transactions", params.principal],
     queryFn: async () => {
@@ -18,8 +14,18 @@ export const useGetFtMetadata = (params: {
           symbol: "STX",
         };
       }
-      const result = await api.getFtMetadata(params.principal);
-      return result;
+      const metadata = await tokenMetadataClient.GET(
+        "/metadata/v1/ft/{principal}",
+        {
+          params: {
+            path: {
+              principal: params.principal,
+            },
+          },
+        },
+      );
+      const tokenInfo = metadata?.data;
+      return tokenInfo;
     },
   });
 };

@@ -1,22 +1,20 @@
 "use client";
 
 import { useGetTransactionVolume } from "@/hooks/api/useGetTransactionVolume";
-import type { FtMetadataResponse } from "@hirosystems/token-metadata-api-client";
+import type { FtMetadataResponse } from "@/lib/stacks";
 import { Card, Inset, Separator, Text } from "@radix-ui/themes";
 import { useMemo } from "react";
 import { AreaChart } from "../ui/AreaChart";
 import { bigNumberValueFormatter, numberValueFormatter } from "../ui/utils";
 
 interface TokenStatsProps {
-  token: string;
   tokenInfo: FtMetadataResponse;
 }
 
-export const TokenTransactionsVolume = ({
-  token,
-  tokenInfo,
-}: TokenStatsProps) => {
-  const { data } = useGetTransactionVolume({ token });
+export const TokenTransactionsVolume = ({ tokenInfo }: TokenStatsProps) => {
+  const { data } = useGetTransactionVolume({
+    token: tokenInfo.asset_identifier,
+  });
 
   const formattedData = useMemo(() => {
     return data.map((d) => ({
