@@ -8,6 +8,9 @@ type CoingeckoCoinsIdResponse = {
   symbol: string;
   name: string;
   contract_address: string;
+  platforms?: {
+    stacks?: string;
+  };
 };
 
 type TokensResolveRouteResponse = CoingeckoCoinsIdResponse;
@@ -37,7 +40,7 @@ export default defineCachedEventHandler(
       id: data.id,
       symbol: data.symbol,
       name: data.name,
-      contract_address: data.contract_address,
+      contract_address: data.platforms?.stacks || data.contract_address,
     };
   },
   {
