@@ -24,22 +24,61 @@ export default defineCachedEventHandler(async (event) => {
       "7d": 7,
       "30d": 30,
     };
-    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract[query.date]} days'))`;
+    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${
+      daysToSubtract[query.date]
+    } days'))`;
   }
 
   const result = await sql`
+WITH protocol_contracts AS (
+    SELECT id, UNNEST(contracts) AS contract_address
+    FROM dapps
+),
+
+address_txs AS (
+    SELECT DISTINCT tx_id, index_block_hash, microblock_hash, protocol_contracts.id AS protocol_name
+    FROM (
+        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
+        FROM txs
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, principal
+        FROM principal_stx_txs
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM stx_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM stx_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM ft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM ft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM nft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM nft_events
+    ) sub
+    JOIN protocol_contracts ON sub.address = protocol_contracts.contract_address
+)
+
 SELECT
-    dapps.id as protocol_name,
+    atxs.protocol_name,
     COUNT(DISTINCT txs.sender_address) AS unique_senders
 FROM
-    txs
+    address_txs atxs
 JOIN
-    dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
+    txs ON atxs.tx_id = txs.tx_id
+JOIN
+    blocks ON txs.block_height = blocks.block_height
 WHERE
-  txs.type_id = 2
-  ${sql.unsafe(dateCondition)}
+    1=1
+    ${sql.unsafe(dateCondition)}
 GROUP BY
-    dapps.id
+    atxs.protocol_name
 ORDER BY
     unique_senders DESC
 LIMIT ${limit};
