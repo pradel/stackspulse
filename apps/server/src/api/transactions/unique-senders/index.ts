@@ -69,13 +69,13 @@ address_txs AS (
 
 SELECT
   mb.month,
-  COUNT(DISTINCT t.sender_address) AS unique_senders
+  COUNT(DISTINCT txs.sender_address) AS unique_senders
 FROM
   monthly_blocks mb
 JOIN
-    txs t ON t.block_height BETWEEN mb.min_block_height AND mb.max_block_height
+    txs ON txs.block_height BETWEEN mb.min_block_height AND mb.max_block_height
 JOIN
-    address_txs at ON at.tx_id = t.tx_id
+    address_txs atxs ON atxs.tx_id = txs.tx_id
 GROUP BY
   mb.month
 ORDER BY
