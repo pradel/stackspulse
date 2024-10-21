@@ -41,45 +41,34 @@ protocol_contracts AS (
 ),
 
 address_txs AS (
-    (
-        SELECT tx_id, index_block_hash, microblock_hash
+    SELECT DISTINCT tx_id, index_block_hash, microblock_hash
+    FROM (
+        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
         FROM txs
-        WHERE contract_call_contract_id IN (SELECT contract_address FROM protocol_contracts)
-    )
-    UNION
-    (
-        SELECT tx_id, index_block_hash, microblock_hash
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, principal
         FROM principal_stx_txs
-        WHERE principal IN (SELECT contract_address FROM protocol_contracts)
-    )
-    UNION
-    (
-        SELECT tx_id, index_block_hash, microblock_hash
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM stx_events
-        WHERE sender IN (SELECT contract_address FROM protocol_contracts) OR recipient IN (SELECT contract_address FROM protocol_contracts)
-    )
-    UNION
-    (
-        SELECT tx_id, index_block_hash, microblock_hash
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM stx_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM ft_events
-        WHERE sender IN (SELECT contract_address FROM protocol_contracts) OR recipient IN (SELECT contract_address FROM protocol_contracts)
-    )
-    UNION
-    (
-        SELECT tx_id, index_block_hash, microblock_hash
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM ft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM nft_events
-        WHERE sender IN (SELECT contract_address FROM protocol_contracts) OR recipient IN (SELECT contract_address FROM protocol_contracts)
-    )
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM nft_events
+    ) sub
+    WHERE address IN (SELECT contract_address FROM protocol_contracts)
 )
-
-
--- SELECT COUNT(*)
--- from txs
--- JOIN
---   dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
--- WHERE
---   txs.type_id = 2
---   AND dapps.id = ;
 
 SELECT
   mb.month,
