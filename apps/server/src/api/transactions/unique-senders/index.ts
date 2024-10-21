@@ -19,9 +19,6 @@ export default defineCachedEventHandler(async (event) => {
     transactionUniqueSendersRouteSchema,
   );
 
-  const start = Date.now();
-  console.log("start", start);
-
   const result = await sql`
 WITH monthly_blocks AS (
     SELECT
@@ -85,17 +82,12 @@ ORDER BY
   mb.month ASC
   `;
 
-  const end = Date.now();
-  console.log("end", end);
-  console.log("duration", end - start);
+  const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
+    // format of the month is "2021-08-01 00:00:00+00"
+    // we want to output "2021-08"
+    month: row.month.slice(0, 7),
+    unique_senders: Number.parseInt(row.unique_senders),
+  }));
 
-  // const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
-  //   // format of the month is "2021-08-01 00:00:00+00"
-  //   // we want to output "2021-08"
-  //   month: row.month.slice(0, 7),
-  //   unique_senders: Number.parseInt(row.unique_senders),
-  // }));
-
-  return result;
-});
-// }, apiCacheConfig);
+  return stats;
+}, apiCacheConfig);
