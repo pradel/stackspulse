@@ -6,10 +6,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: { protocol: string };
+  params: Promise<{ protocol: string }>;
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
   const protocol = params.protocol;
   if (!isProtocol(protocol)) {
     notFound();
@@ -26,13 +27,16 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function ProtocolLayout({
-  children,
-  params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: PageProps["params"];
-}>) {
+export default async function ProtocolLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: PageProps["params"];
+  }>,
+) {
+  const params = await props.params;
+
+  const { children } = props;
+
   const protocol = params.protocol;
   if (!isProtocol(protocol)) {
     notFound();

@@ -12,7 +12,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "1.19.3",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.34.0",
+    "@sentry/node": "8.35.0",
     "@stacks/blockchain-api-client": "8.0.4",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",

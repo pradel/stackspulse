@@ -11,12 +11,11 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 interface PageProps {
-  params: { token: string };
+  params: Promise<{ token: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
   const metadata = await tokenMetadataClient.GET(
     "/metadata/v1/ft/{principal}",
     {
@@ -41,7 +40,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProtocolPage({ params }: PageProps) {
+export default async function ProtocolPage(props: PageProps) {
+  const params = await props.params;
   const metadata = await tokenMetadataClient.GET(
     "/metadata/v1/ft/{principal}",
     {

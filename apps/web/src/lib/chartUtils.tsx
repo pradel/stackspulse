@@ -9,6 +9,12 @@ export const chartColors = {
     fill: "fill-orange-9",
     text: "text-orange-9",
   },
+  indigo: {
+    bg: "bg-indigo-9",
+    stroke: "stroke-indigo-9",
+    fill: "fill-indigo-9",
+    text: "text-indigo-9",
+  },
   blue: {
     bg: "bg-blue-9",
     stroke: "stroke-blue-9",

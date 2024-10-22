@@ -6,7 +6,8 @@ import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: PageProps): Metadata {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
   const protocol = params.protocol;
 
   return {
@@ -17,10 +18,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 interface PageProps {
-  params: { protocol: string };
+  params: Promise<{ protocol: string }>;
 }
 
-export default async function ProtocolPage({ params }: PageProps) {
+export default async function ProtocolPage(props: PageProps) {
+  const params = await props.params;
   const protocol = params.protocol;
   if (!isProtocol(protocol)) {
     notFound();
