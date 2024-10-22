@@ -16,22 +16,55 @@ type TransactionStatsRouteResponse = {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionStatsRouteSchema);
 
-  let protocolCondition = "";
+  let protocolContractsCondition = "";
   if (query.protocol) {
-    protocolCondition = `AND dapps.id = '${query.protocol}'`;
+    protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
   }
 
   const result = await sql`
+WITH protocol_contracts AS (
+    SELECT UNNEST(contracts) AS contract_address
+    FROM dapps
+    ${sql.unsafe(protocolContractsCondition)}
+),
+
+address_txs AS (
+    SELECT DISTINCT tx_id, index_block_hash, microblock_hash
+    FROM (
+        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
+        FROM txs
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, principal
+        FROM principal_stx_txs
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM stx_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM stx_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM ft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM ft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, sender
+        FROM nft_events
+        UNION ALL
+        SELECT tx_id, index_block_hash, microblock_hash, recipient
+        FROM nft_events
+    ) sub
+    WHERE address IN (SELECT contract_address FROM protocol_contracts)
+)
+
 SELECT
-  COUNT(txs.id) AS count,
-  COUNT(DISTINCT sender_address) AS unique_senders
+  COUNT(DISTINCT atxs.tx_id) AS count,
+  COUNT(DISTINCT txs.sender_address) AS unique_senders
 FROM
-    txs
+  txs
 JOIN
-    dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
-WHERE
-  txs.type_id = 2
-  ${sql.unsafe(protocolCondition)}
+  address_txs atxs ON atxs.tx_id = txs.tx_id
   `;
 
   const stats: TransactionStatsRouteResponse = {
