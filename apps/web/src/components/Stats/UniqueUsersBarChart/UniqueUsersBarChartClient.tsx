@@ -35,6 +35,7 @@ export const UniqueUsersBarChartClient = ({
         <Separator size="4" />
       </Inset>
       <BarChart
+        showLegend={false}
         className="mt-6 pr-3"
         data={formattedData}
         index="date"
