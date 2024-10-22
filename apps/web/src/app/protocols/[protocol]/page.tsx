@@ -3,7 +3,7 @@ import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions
 import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
 import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
-import { isProtocol, protocolsInfo } from "@stackspulse/protocols";
+import { isProtocol } from "@stackspulse/protocols";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -18,8 +18,6 @@ export default async function ProtocolPage({ params }: PageProps) {
   if (!isProtocol(protocol)) {
     notFound();
   }
-
-  const protocolInfo = protocolsInfo[protocol];
 
   return (
     <>
