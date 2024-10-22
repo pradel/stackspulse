@@ -120,7 +120,7 @@ const LegendItem = ({
     >
       <span
         className={cx(
-          "size-2 shrink-0 rounded-sm",
+          "size-2 shrink-0 rounded-full",
           getColorClassName(color, "bg"),
           activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
         )}
