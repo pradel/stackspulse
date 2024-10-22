@@ -26,6 +26,7 @@ import {
   getYAxisDomain,
 } from "@/lib/chartUtils";
 import { cn as cx } from "@/lib/cn";
+import { Separator, Text } from "@radix-ui/themes";
 
 //#region Shape
 
@@ -451,60 +452,35 @@ const ChartTooltip = ({
       <div
         className={cx(
           // base
-          "rounded-md border text-1 shadow-md",
+          "min-w-[150px] rounded-2 border text-1 shadow-md py-3",
           // border color
-          "border-gray-200 dark:border-gray-800",
+          "border-gray-6",
           // background color
-          "bg-white dark:bg-gray-950",
+          "bg-[var(--color-background)]",
         )}
       >
-        <div className={cx("border-b border-inherit px-4 py-2")}>
-          <p
-            className={cx(
-              // base
-              "font-medium",
-              // text color
-              "text-gray-900 dark:text-gray-50",
-            )}
-          >
+        <div className="px-4">
+          <Text as="div" size="2" weight="medium">
             {label}
-          </p>
+          </Text>
         </div>
-        <div className={cx("space-y-1 px-4 py-2")}>
+        <Separator className="my-3" size="4" />
+        <div className={cx("space-y-1 px-4")}>
           {payload.map(({ value, category, color }, index) => (
-            <div
-              key={`id-${index}`}
-              className="flex items-center justify-between space-x-8"
-            >
-              <div className="flex items-center space-x-2">
-                <span
-                  aria-hidden="true"
-                  className={cx(
-                    "size-2 shrink-0 rounded-sm",
-                    getColorClassName(color, "bg"),
-                  )}
-                />
-                <p
-                  className={cx(
-                    // base
-                    "whitespace-nowrap text-right",
-                    // text color
-                    "text-gray-700 dark:text-gray-300",
-                  )}
-                >
-                  {category}
-                </p>
-              </div>
-              <p
+            <div key={`id-${index}`} className="flex items-center space-x-2">
+              <span
+                aria-hidden="true"
                 className={cx(
-                  // base
-                  "whitespace-nowrap text-right font-medium tabular-nums",
-                  // text color
-                  "text-gray-900 dark:text-gray-50",
+                  "size-2 shrink-0 rounded-full",
+                  getColorClassName(color, "bg"),
                 )}
-              >
-                {valueFormatter(value)}
-              </p>
+              />
+              <Text as="div" size="2" color="gray">
+                {category}:{" "}
+                <Text color="gray" highContrast>
+                  {valueFormatter(value)}
+                </Text>
+              </Text>
             </div>
           ))}
         </div>
