@@ -58,16 +58,20 @@ export default async function ProtocolPage() {
                 )}
               </Table.Cell>
               <Table.Cell align="right">
-                $
-                {market.current_price.toLocaleString("en-US", {
-                  maximumFractionDigits: 12,
-                })}
+                {market.current_price
+                  ? `$${market.current_price.toLocaleString("en-US", {
+                      maximumFractionDigits: 12,
+                    })}`
+                  : ""}
               </Table.Cell>
               <Table.Cell align="right">
                 <Text
                   size="2"
                   color={
-                    market.price_change_percentage_24h >= 0 ? "green" : "red"
+                    market.price_change_percentage_24h &&
+                    market.price_change_percentage_24h >= 0
+                      ? "green"
+                      : "red"
                   }
                 >
                   {market.price_change_percentage_24h
@@ -81,7 +85,9 @@ export default async function ProtocolPage() {
                 </Text>
               </Table.Cell>
               <Table.Cell align="right">
-                ${market.market_cap.toLocaleString("en-US")}
+                {market.market_cap
+                  ? `$${market.market_cap.toLocaleString("en-US")}`
+                  : ""}
               </Table.Cell>
             </Table.Row>
           ))}
