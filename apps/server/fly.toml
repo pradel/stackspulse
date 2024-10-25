@@ -9,6 +9,7 @@ image = "ghcr.io/pradel/stackspulse/server:0.16.2"
 internal_port = 3000
 force_https = true
 auto_stop_machines = "suspend"
+auto_start_machines = true
 min_machines_running = 0
 processes = ['app']
 
