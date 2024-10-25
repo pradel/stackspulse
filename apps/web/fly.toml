@@ -6,17 +6,17 @@ primary_region = 'sjc'
 image = "ghcr.io/pradel/stackspulse:0.16.2"
 
 [http_service]
-  internal_port = 3000
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
-  [http_service.concurrency]
-    type = "requests"
-    soft_limit = 400
-    hard_limit = 450
+internal_port = 3000
+force_https = true
+auto_stop_machines = "suspend"
+auto_start_machines = true
+min_machines_running = 0
+processes = ['app']
+[http_service.concurrency]
+type = "requests"
+soft_limit = 400
+hard_limit = 450
 
 [[vm]]
-  size = 'shared-cpu-1x'
-  memory = '512mb'
+size = 'shared-cpu-1x'
+memory = '512mb'
