@@ -10,10 +10,10 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.20.0",
+    "@dotenvx/dotenvx": "1.20.1",
     "@libsql/client": "0.8.0",
     "@sentry/node": "8.35.0",
-    "@stacks/blockchain-api-client": "8.0.4",
+    "@stacks/blockchain-api-client": "8.1.2",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.11.1",
@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "nitropack": "2.9.7",
-    "prisma": "5.20.0"
+    "prisma": "5.21.1"
   }
 }

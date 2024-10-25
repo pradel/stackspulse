@@ -28,8 +28,8 @@ importers:
   apps/server:
     dependencies:
       '@dotenvx/dotenvx':
-        specifier: 1.20.0
-        version: 1.20.0
+        specifier: 1.20.1
+        version: 1.20.1
       '@libsql/client':
         specifier: 0.8.0
         version: 0.8.0
@@ -37,8 +37,8 @@ importers:
         specifier: 8.35.0
         version: 8.35.0
       '@stacks/blockchain-api-client':
-        specifier: 8.0.4
-        version: 8.0.4
+        specifier: 8.1.2
+        version: 8.1.2
       '@stacks/stacks-blockchain-api-types':
         specifier: 7.14.1
         version: 7.14.1
@@ -50,7 +50,7 @@ importers:
         version: 0.11.1(typescript@5.6.3)(zod@3.23.8)
       drizzle-orm:
         specifier: 0.33.0
-        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1)
+        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1)
       h3:
         specifier: 1.13.0
         version: 1.13.0
@@ -72,16 +72,16 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.9.7
-        version: 2.9.7(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1))
+        version: 2.9.7(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1))
       prisma:
-        specifier: 5.20.0
-        version: 5.20.0
+        specifier: 5.21.1
+        version: 5.21.1
 
   apps/web:
     dependencies:
       '@dotenvx/dotenvx':
-        specifier: 1.20.0
-        version: 1.20.0
+        specifier: 1.20.1
+        version: 1.20.1
       '@hirosystems/token-metadata-api-client':
         specifier: 2.0.0
         version: 2.0.0
@@ -159,8 +159,8 @@ importers:
         version: 3.23.8
     devDependencies:
       '@types/node':
-        specifier: 22.7.7
-        version: 22.7.7
+        specifier: 22.8.0
+        version: 22.8.0
       '@types/react':
         specifier: 18.3.11
         version: 18.3.11
@@ -402,9 +402,15 @@ packages:
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
     engines: {node: '>=16.13'}
 
-  '@dotenvx/dotenvx@1.20.0':
-    resolution: {integrity: sha512-Zepr4dxvbTw1PKVa5i0HFP59wy1L6LXD+I9HcXnvugDevLOIA8mwwIH1ZqKDF6TrwRS4AHZy2lP9hKLBqib1EQ==}
+  '@dotenvx/dotenvx@1.20.1':
+    resolution: {integrity: sha512-BkUNp2YdlH0XuzsceTtobFZBkOvxdCUxgv8kDGUEBoU9sfeYmzpDuzTm8QAgsDiusyy9ET1zaEK1s7ojXTnz5w==}
     hasBin: true
+
+  '@ecies/ciphers@0.2.0':
+    resolution: {integrity: sha512-dqQk3HbyuXSdflgRMrXjEcCohKeBZQl2rm0lOcYnEC4Oue90irVMwVJ0GiM/nhjP0zzGimH8mVFF/pOzQcv+Lg==}
+    engines: {bun: '>=1', deno: '>=2', node: '>=16'}
+    peerDependencies:
+      '@noble/ciphers': ^1.0.0
 
   '@emnapi/runtime@1.2.0':
     resolution: {integrity: sha512-bV21/9LQmcQeCPEg3BDFtvwL6cwiTMksYNWQQ4KOxCZikEGalWtenoZ0wCiukJINlGCIi2KXx01g4FoH/LxpzQ==}
@@ -1201,20 +1207,20 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@5.20.0':
-    resolution: {integrity: sha512-oCx79MJ4HSujokA8S1g0xgZUGybD4SyIOydoHMngFYiwEwYDQ5tBQkK5XoEHuwOYDKUOKRn/J0MEymckc4IgsQ==}
+  '@prisma/debug@5.21.1':
+    resolution: {integrity: sha512-uY8SAhcnORhvgtOrNdvWS98Aq/nkQ9QDUxrWAgW8XrCZaI3j2X7zb7Xe6GQSh6xSesKffFbFlkw0c2luHQviZA==}
 
-  '@prisma/engines-version@5.20.0-12.06fc58a368dc7be9fbbbe894adf8d445d208c284':
-    resolution: {integrity: sha512-Lg8AS5lpi0auZe2Mn4gjuCg081UZf88k3cn0RCwHgR+6cyHHpttPZBElJTHf83ZGsRNAmVCZCfUGA57WB4u4JA==}
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36':
+    resolution: {integrity: sha512-qvnEflL0//lh44S/T9NcvTMxfyowNeUxTunPcDfKPjyJNrCNf2F1zQLcUv5UHAruECpX+zz21CzsC7V2xAeM7Q==}
 
-  '@prisma/engines@5.20.0':
-    resolution: {integrity: sha512-DtqkP+hcZvPEbj8t8dK5df2b7d3B8GNauKqaddRRqQBBlgkbdhJkxhoJTrOowlS3vaRt2iMCkU0+CSNn0KhqAQ==}
+  '@prisma/engines@5.21.1':
+    resolution: {integrity: sha512-hGVTldUkIkTwoV8//hmnAAiAchi4oMEKD3aW5H2RrnI50tTdwza7VQbTTAyN3OIHWlK5DVg6xV7X8N/9dtOydA==}
 
-  '@prisma/fetch-engine@5.20.0':
-    resolution: {integrity: sha512-JVcaPXC940wOGpCOwuqQRTz6I9SaBK0c1BAyC1pcz9xBi+dzFgUu3G/p9GV1FhFs9OKpfSpIhQfUJE9y00zhqw==}
+  '@prisma/fetch-engine@5.21.1':
+    resolution: {integrity: sha512-70S31vgpCGcp9J+mh/wHtLCkVezLUqe/fGWk3J3JWZIN7prdYSlr1C0niaWUyNK2VflLXYi8kMjAmSxUVq6WGQ==}
 
-  '@prisma/get-platform@5.20.0':
-    resolution: {integrity: sha512-8/+CehTZZNzJlvuryRgc77hZCWrUDYd/PmlZ7p2yNXtmf2Una4BWnTbak3us6WVdqoz5wmptk6IhsXdG2v5fmA==}
+  '@prisma/get-platform@5.21.1':
+    resolution: {integrity: sha512-sRxjL3Igst3ct+e8ya/x//cDXmpLbZQ5vfps2N4tWl4VGKQAmym77C/IG/psSMsQKszc8uFC/q1dgmKFLUgXZQ==}
 
   '@prisma/instrumentation@5.19.1':
     resolution: {integrity: sha512-VLnzMQq7CWroL5AeaW0Py2huiNKeoMfCH3SUxstdzPrlWQi6UQ9UrfcbUkNHlVFqOMacqy8X/8YtE0kuKDpD9w==}
@@ -2177,8 +2183,8 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
-  '@stacks/blockchain-api-client@8.0.4':
-    resolution: {integrity: sha512-1ACkfFkXIOYejoBNtHOpUjrcZWrWdgOXmr4go8UiUxFtpf9J6aDgq+eRlXSfrS+P5Vkk/Cr8b4rwteJTEnIn/Q==}
+  '@stacks/blockchain-api-client@8.1.2':
+    resolution: {integrity: sha512-pP9Wd0Dq7eRIJ++nB2HQ7gSK2w9SucHV2lhdFMUwWJQlEmJNJCupNDcoUdLrrTSNyDkBF7vkYEasD5O6T5zThw==}
 
   '@stacks/common@6.16.0':
     resolution: {integrity: sha512-PnzvhrdGRMVZvxTulitlYafSK4l02gPCBBoI9QEoTqgSnv62oaOXhYAUUkTMFKxdHW1seVEwZsrahuXiZPIAwg==}
@@ -2292,17 +2298,17 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@18.19.57':
-    resolution: {integrity: sha512-I2ioBd/IPrYDMv9UNR5NlPElOZ68QB7yY5V2EsLtSrTO0LM0PnCEFF9biLWHf5k+sIy4ohueCV9t4gk1AEdlVA==}
+  '@types/node@18.19.59':
+    resolution: {integrity: sha512-vizm2EqwV/7Zay+A6J3tGl9Lhr7CjZe2HmWS988sefiEmsyP9CeXEleho6i4hJk/8UtZAo0bWN4QPZZr83RxvQ==}
 
   '@types/node@20.14.14':
     resolution: {integrity: sha512-d64f00982fS9YoOgJkAMolK7MN8Iq3TDdVjchbYHdEmjth/DHowx82GnoA+tVUAN+7vxfYUgAzi+JXbKNd2SDQ==}
 
-  '@types/node@22.7.6':
-    resolution: {integrity: sha512-/d7Rnj0/ExXDMcioS78/kf1lMzYk4BZV8MZGTBKzTGZ6/406ukkbYlIsZmMPhcR5KlkunDHQLrtAVmSq7r+mSw==}
-
   '@types/node@22.7.7':
     resolution: {integrity: sha512-SRxCrrg9CL/y54aiMCG3edPKdprgMVGDXjA3gB8UmmBW5TcXzRUYAh8EWzTnSJFAd1rgImPELza+A3bJ+qxz8Q==}
+
+  '@types/node@22.8.0':
+    resolution: {integrity: sha512-84rafSBHC/z1i1E3p0cJwKA+CfYDNSXX9WSZBRopjIzLET8oNt6ht2tei4C7izwDeEiLLfdeSVBv1egOH916hg==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -2660,6 +2666,11 @@ packages:
 
   browserslist@4.24.0:
     resolution: {integrity: sha512-Rmb62sR1Zpjql25eSanFGEhAxcFwfA1K0GuQcLoaJBAcENegrQut3hYdhXFF1obQfiDyqIW/cLM5HSJ/9k884A==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
+  browserslist@4.24.2:
+    resolution: {integrity: sha512-ZIc+Q62revdMcqC6aChtW4jz3My3klmCO1fEmINZY/8J3EpBg5/A/D0AKmBveUh6pgoeycoMkVMko84tuYS+Gg==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -3210,8 +3221,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  eciesjs@0.4.8:
-    resolution: {integrity: sha512-U2wAn6yEOVBP9lOVh3nryufg3hQTKVicG+qjEfqB/70m/mU9DzwWNdK0mC5zuxlJH42EGAezFlHVWI0snwg1nw==}
+  eciesjs@0.4.10:
+    resolution: {integrity: sha512-dYAgdXAC7/d9fEC0w6kpRWj5vHah2BQgMM639g78JI0FUUffMN2Mq60HEHPkyH8ah+FX+cQd6ouDK4kWiatzyw==}
     engines: {node: '>=16.0.0'}
 
   ee-first@1.1.1:
@@ -3219,6 +3230,9 @@ packages:
 
   electron-to-chromium@1.5.41:
     resolution: {integrity: sha512-dfdv/2xNjX0P8Vzme4cfzHqnPm5xsZXwsolTYr0eyW18IUmNyG08vL+fttvinTfhKfIKdRoqkDIC9e9iWQCNYQ==}
+
+  electron-to-chromium@1.5.45:
+    resolution: {integrity: sha512-vOzZS6uZwhhbkZbcRyiy99Wg+pYFV5hk+5YaECvx0+Z31NR3Tt5zS6dze2OepT6PCTzVzT0dIJItti+uAW5zmw==}
 
   electron-to-chromium@1.5.5:
     resolution: {integrity: sha512-QR7/A7ZkMS8tZuoftC/jfqNkZLQO779SSW3YuZHP4eXpj3EffGLFcB/Xu9AAZQzLccTiCV+EmUo3ha4mQ9wnlA==}
@@ -3236,8 +3250,8 @@ packages:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
     engines: {node: '>= 0.8'}
 
-  engine.io-client@6.6.1:
-    resolution: {integrity: sha512-aYuoak7I+R83M/BBPIOs2to51BmFIpC1wZe6zZzMrT2llVsHy5cvcmdsJgP2Qz6smHu+sD9oexiSUAVd8OfBPw==}
+  engine.io-client@6.6.2:
+    resolution: {integrity: sha512-TAr+NKeoVTjEVW8P3iHguO1LO6RlUz9O5Y8o7EY0fU+gY1NYqas7NN3slpFtbXEsLMHk0h90fJMfKjRkQ0qUIw==}
 
   engine.io-parser@5.2.3:
     resolution: {integrity: sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==}
@@ -4794,8 +4808,8 @@ packages:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
-  prisma@5.20.0:
-    resolution: {integrity: sha512-6obb3ucKgAnsGS9x9gLOe8qa51XxvJ3vLQtmyf52CTey1Qcez3A6W6ROH5HIz5Q5bW+0VpmZb8WBohieMFGpig==}
+  prisma@5.21.1:
+    resolution: {integrity: sha512-PB+Iqzld/uQBPaaw2UVIk84kb0ITsLajzsxzsadxxl54eaU5Gyl2/L02ysivHxK89t7YrfQJm+Ggk37uvM70oQ==}
     engines: {node: '>=16.13'}
     hasBin: true
 
@@ -5152,8 +5166,8 @@ packages:
   smob@1.5.0:
     resolution: {integrity: sha512-g6T+p7QO8npa+/hNx9ohv1E5pVCmWrVCUzUXJyLdMmftX6ER0oiWY/w9knEonLpnOp6b6FenKnMfR8gqwWdwig==}
 
-  socket.io-client@4.8.0:
-    resolution: {integrity: sha512-C0jdhD5yQahMws9alf/yvtsMGTaIDBnZ8Rb5HU56svyq0l5LIrGzIDZZD5pHQlmzxLuU91Gz+VpQMKgCTNYtkw==}
+  socket.io-client@4.8.1:
+    resolution: {integrity: sha512-hJVXfu3E28NmzGk8o1sHhN3om52tRvwYeidbj7xKy2eIIse5IoKX3USlS6Tqt3BHAtflLIkCQBkzVrEEfWUyYQ==}
     engines: {node: '>=10.0.0'}
 
   socket.io-parser@4.2.4:
@@ -5764,8 +5778,8 @@ packages:
       utf-8-validate:
         optional: true
 
-  xmlhttprequest-ssl@2.1.1:
-    resolution: {integrity: sha512-ptjR8YSJIXoA3Mbv5po7RtSYHO6mZr8s7i5VGmEk7QY2pQWyT1o0N+W1gKbOyJPUCGXGnuw0wqe8f0L6Y0ny7g==}
+  xmlhttprequest-ssl@2.1.2:
+    resolution: {integrity: sha512-TEU+nJVUUnA4CYJFLvK5X9AOeH4KvDvhIfm0vV1GaQRtchnG0hgK5p8hw/xjv8cunWYCsiPCSDzObPyhEwq3KQ==}
     engines: {node: '>=0.4.0'}
 
   xtend@4.0.2:
@@ -6130,17 +6144,21 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@dotenvx/dotenvx@1.20.0':
+  '@dotenvx/dotenvx@1.20.1':
     dependencies:
       commander: 11.1.0
       dotenv: 16.4.5
-      eciesjs: 0.4.8
+      eciesjs: 0.4.10
       execa: 5.1.1
       fdir: 6.4.2(picomatch@4.0.2)
       ignore: 5.3.2
       object-treeify: 1.1.33
       picomatch: 4.0.2
       which: 4.0.0
+
+  '@ecies/ciphers@0.2.0(@noble/ciphers@1.0.0)':
+    dependencies:
+      '@noble/ciphers': 1.0.0
 
   '@emnapi/runtime@1.2.0':
     dependencies:
@@ -6868,31 +6886,31 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@5.20.0(prisma@5.20.0)':
+  '@prisma/client@5.20.0(prisma@5.21.1)':
     optionalDependencies:
-      prisma: 5.20.0
+      prisma: 5.21.1
     optional: true
 
-  '@prisma/debug@5.20.0': {}
+  '@prisma/debug@5.21.1': {}
 
-  '@prisma/engines-version@5.20.0-12.06fc58a368dc7be9fbbbe894adf8d445d208c284': {}
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36': {}
 
-  '@prisma/engines@5.20.0':
+  '@prisma/engines@5.21.1':
     dependencies:
-      '@prisma/debug': 5.20.0
-      '@prisma/engines-version': 5.20.0-12.06fc58a368dc7be9fbbbe894adf8d445d208c284
-      '@prisma/fetch-engine': 5.20.0
-      '@prisma/get-platform': 5.20.0
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/fetch-engine': 5.21.1
+      '@prisma/get-platform': 5.21.1
 
-  '@prisma/fetch-engine@5.20.0':
+  '@prisma/fetch-engine@5.21.1':
     dependencies:
-      '@prisma/debug': 5.20.0
-      '@prisma/engines-version': 5.20.0-12.06fc58a368dc7be9fbbbe894adf8d445d208c284
-      '@prisma/get-platform': 5.20.0
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/get-platform': 5.21.1
 
-  '@prisma/get-platform@5.20.0':
+  '@prisma/get-platform@5.21.1':
     dependencies:
-      '@prisma/debug': 5.20.0
+      '@prisma/debug': 5.21.1
 
   '@prisma/instrumentation@5.19.1':
     dependencies:
@@ -7954,13 +7972,13 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
-  '@stacks/blockchain-api-client@8.0.4':
+  '@stacks/blockchain-api-client@8.1.2':
     dependencies:
       '@types/node': 20.14.14
       eventemitter3: 4.0.7
       jsonrpc-lite: 2.2.0
       openapi-fetch: 0.10.6
-      socket.io-client: 4.8.0
+      socket.io-client: 4.8.1
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -7969,7 +7987,7 @@ snapshots:
   '@stacks/common@6.16.0':
     dependencies:
       '@types/bn.js': 5.1.6
-      '@types/node': 18.19.57
+      '@types/node': 18.19.59
 
   '@stacks/network@6.17.0':
     dependencies:
@@ -8029,16 +8047,16 @@ snapshots:
 
   '@types/better-sqlite3@7.6.11':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
     optional: true
 
   '@types/bn.js@5.1.6':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
 
   '@types/d3-array@3.2.1': {}
 
@@ -8070,7 +8088,7 @@ snapshots:
 
   '@types/http-proxy@1.17.14':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
 
   '@types/json-schema@7.0.15': {}
 
@@ -8078,11 +8096,11 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
 
   '@types/node@12.20.55': {}
 
-  '@types/node@18.19.57':
+  '@types/node@18.19.59':
     dependencies:
       undici-types: 5.26.5
 
@@ -8090,11 +8108,11 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.7.6':
+  '@types/node@22.7.7':
     dependencies:
       undici-types: 6.19.8
 
-  '@types/node@22.7.7':
+  '@types/node@22.8.0':
     dependencies:
       undici-types: 6.19.8
 
@@ -8104,14 +8122,14 @@ snapshots:
 
   '@types/pg@8.11.10':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
       pg-protocol: 1.7.0
       pg-types: 4.0.2
     optional: true
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
       pg-protocol: 1.7.0
       pg-types: 2.2.0
 
@@ -8132,7 +8150,7 @@ snapshots:
 
   '@types/ws@8.5.10':
     dependencies:
-      '@types/node': 22.7.7
+      '@types/node': 22.8.0
 
   '@typescript-eslint/eslint-plugin@8.9.0(@typescript-eslint/parser@8.9.0(eslint@8.57.0)(typescript@5.6.3))(eslint@8.57.0)(typescript@5.6.3)':
     dependencies:
@@ -8563,6 +8581,13 @@ snapshots:
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
+  browserslist@4.24.2:
+    dependencies:
+      caniuse-lite: 1.0.30001669
+      electron-to-chromium: 1.5.45
+      node-releases: 2.0.18
+      update-browserslist-db: 1.1.1(browserslist@4.24.2)
+
   buffer-crc32@1.0.0: {}
 
   buffer-from@1.1.2: {}
@@ -8852,10 +8877,10 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.1.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1)):
+  db0@0.1.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1)):
     optionalDependencies:
       '@libsql/client': 0.8.0
-      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1)
+      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1)
 
   debug@2.6.9:
     dependencies:
@@ -8963,24 +8988,25 @@ snapshots:
 
   dotenv@16.4.5: {}
 
-  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1):
+  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1):
     optionalDependencies:
       '@libsql/client': 0.8.0
       '@opentelemetry/api': 1.9.0
-      '@prisma/client': 5.20.0(prisma@5.20.0)
+      '@prisma/client': 5.20.0(prisma@5.21.1)
       '@types/better-sqlite3': 7.6.11
       '@types/pg': 8.11.10
       '@types/react': 18.3.11
       postgres: 3.4.4
-      prisma: 5.20.0
+      prisma: 5.21.1
       react: 18.3.1
 
   duplexer@0.1.2: {}
 
   eastasianwidth@0.2.0: {}
 
-  eciesjs@0.4.8:
+  eciesjs@0.4.10:
     dependencies:
+      '@ecies/ciphers': 0.2.0(@noble/ciphers@1.0.0)
       '@noble/ciphers': 1.0.0
       '@noble/curves': 1.6.0
       '@noble/hashes': 1.5.0
@@ -8988,6 +9014,8 @@ snapshots:
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.41: {}
+
+  electron-to-chromium@1.5.45: {}
 
   electron-to-chromium@1.5.5: {}
 
@@ -8999,13 +9027,13 @@ snapshots:
 
   encodeurl@1.0.2: {}
 
-  engine.io-client@6.6.1:
+  engine.io-client@6.6.2:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
       debug: 4.3.7
       engine.io-parser: 5.2.3
       ws: 8.17.1
-      xmlhttprequest-ssl: 2.1.1
+      xmlhttprequest-ssl: 2.1.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -10017,7 +10045,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.7.6
+      '@types/node': 22.7.7
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -10355,7 +10383,7 @@ snapshots:
       h3: 1.13.0
       ufo: 1.5.3
 
-  nitropack@2.9.7(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1)):
+  nitropack@2.9.7(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1)):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.1
@@ -10378,7 +10406,7 @@ snapshots:
       cookie-es: 1.1.0
       croner: 8.1.0
       crossws: 0.2.4
-      db0: 0.1.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.20.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.20.0)(react@18.3.1))
+      db0: 0.1.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@5.21.1))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.11)(postgres@3.4.4)(prisma@5.21.1)(react@18.3.1))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 8.0.2
@@ -10811,9 +10839,9 @@ snapshots:
 
   pretty-bytes@6.1.1: {}
 
-  prisma@5.20.0:
+  prisma@5.21.1:
     dependencies:
-      '@prisma/engines': 5.20.0
+      '@prisma/engines': 5.21.1
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -11245,11 +11273,11 @@ snapshots:
 
   smob@1.5.0: {}
 
-  socket.io-client@4.8.0:
+  socket.io-client@4.8.1:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
       debug: 4.3.7
-      engine.io-client: 6.6.1
+      engine.io-client: 6.6.2
       socket.io-parser: 4.2.4
     transitivePeerDependencies:
       - bufferutil
@@ -11754,6 +11782,12 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
+  update-browserslist-db@1.1.1(browserslist@4.24.2):
+    dependencies:
+      browserslist: 4.24.2
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
   uqr@0.1.2: {}
 
   uri-js@4.4.1:
@@ -11821,7 +11855,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.13.0
       acorn-import-attributes: 1.9.5(acorn@8.13.0)
-      browserslist: 4.24.0
+      browserslist: 4.24.2
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.17.1
       es-module-lexer: 1.5.4
@@ -11928,7 +11962,7 @@ snapshots:
 
   ws@8.18.0: {}
 
-  xmlhttprequest-ssl@2.1.1: {}
+  xmlhttprequest-ssl@2.1.2: {}
 
   xtend@4.0.2: {}
 
