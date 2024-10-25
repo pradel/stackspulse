@@ -26,6 +26,7 @@ export const DepositWithdrawBarChartClient = ({
         <Separator size="4" />
       </Inset>
       <BarChart
+        showLegend={false}
         className="mt-6 pr-3"
         data={data}
         index="date"
