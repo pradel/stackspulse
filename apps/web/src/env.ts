@@ -2,13 +2,7 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 export const env = createEnv({
-  server: {
-    CRON_API_TOKEN: z.string().min(1),
-    TWITTER_API_KEY: z.string().min(1),
-    TWITTER_API_SECRET_KEY: z.string().min(1),
-    TWITTER_ACCESS_TOKEN: z.string().min(1),
-    TWITTER_ACCESS_TOKEN_SECRET: z.string().min(1),
-  },
+  server: {},
   client: {
     NEXT_PUBLIC_BASE_URL: z.string().url(),
     NEXT_PUBLIC_API_URL: z.string().url(),

@@ -9,7 +9,7 @@ const protocolUsersRouteSchema = z.object({
   limit: z.coerce.number().min(1).max(100).optional(),
 });
 
-type ProtocolUsersRouteResponse = {
+export type ProtocolUsersRouteResponse = {
   protocol_name: Protocol;
   unique_senders: number;
 }[];
