@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.17.0
+
+### Patch Changes
+
+- b4d2e11: Fly set aut_stop to "suspend".
+
 ## 0.16.2
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @stackspulse/server
 
+## 0.17.0
+
+### Minor Changes
+
+- 80a7641: Properly count protocol stats when there are nested smart contract calls.
+
+### Patch Changes
+
+- b4d2e11: Fly set aut_stop to "suspend".
+
 ## 0.16.2
 
 ## 0.16.1
