@@ -3,7 +3,7 @@ name: cron-weekly
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * 0'
+    - cron: "0 16 * * 0"
 
 jobs:
   cron:
@@ -12,5 +12,5 @@ jobs:
       - name: weekly-cron-job
         run: |
           curl --request GET \
-          --url 'https://www.stackspulse.com/api/cron/weekly-users' \
+          --url 'https://api.stackspulse.com/api/root/tweet-weekly-users' \
           --header 'Authorization: Bearer ${{ secrets.CRON_API_TOKEN }}'
