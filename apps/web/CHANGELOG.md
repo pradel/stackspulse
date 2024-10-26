@@ -1,5 +1,13 @@
 # stackspulse
 
+## 0.16.2
+
+### Patch Changes
+
+- fb1e800: Improve BarChart component.
+- a1d4909: Velar update contracts list.
+- adafd99: Fix tokens page when empty price returned from Coingecko.
+
 ## 0.16.1
 
 ### Patch Changes

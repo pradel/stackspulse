@@ -27,7 +27,8 @@
     },
     "ignore": [
       "apps/web/src/lib/chartUtils.tsx",
-      "apps/web/src/components/ui/AreaChart.tsx"
+      "apps/web/src/components/ui/AreaChart.tsx",
+      "apps/web/src/components/ui/BarChart.tsx"
     ]
   }
 }
