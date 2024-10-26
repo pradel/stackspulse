@@ -12,8 +12,6 @@ export default defineEventHandler(async () => {
   apiParams.append("date", "7d");
   apiParams.append("limit", "5");
 
-  console.log(apiParams.toString());
-
   const stats: ProtocolUsersRouteResponse = await fetch(
     `${env.API_URL}/api/protocols/users?${apiParams.toString()}`,
   ).then((res) => res.json());
@@ -22,8 +20,6 @@ export default defineEventHandler(async () => {
     name: protocolsInfo[stat.protocol_name].name,
     value: stat.unique_senders,
   }));
-
-  console.log(data);
 
   const params = new URLSearchParams();
   params.append("title", "Last 7 Days Unique Users");
