@@ -1,5 +1,5 @@
-import { env } from "@/env";
 import { EUploadMimeType, TwitterApi } from "twitter-api-v2";
+import { env } from "~/env";
 
 const twitterClient = new TwitterApi({
   appKey: env.TWITTER_API_KEY,
