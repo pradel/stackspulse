@@ -65,6 +65,8 @@ FROM
   txs
 JOIN
   address_txs atxs ON atxs.tx_id = txs.tx_id
+  AND atxs.index_block_hash = txs.index_block_hash
+  AND atxs.microblock_hash = txs.microblock_hash
   `;
 
   const stats: TransactionStatsRouteResponse = {
