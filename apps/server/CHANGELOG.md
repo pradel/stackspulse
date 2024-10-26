@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.17.1
+
+### Patch Changes
+
+- a86d700: Move send weekly tweet from web to server.
+
 ## 0.17.0
 
 ### Minor Changes
