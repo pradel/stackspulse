@@ -1,21 +1,19 @@
-import { env } from "@/env";
-import type { ProtocolUsersRouteResponse } from "@/lib/api";
-import { sendTweet } from "@/lib/twitter";
 import { protocolsInfo } from "@stackspulse/protocols";
-
-export const dynamic = "force-dynamic";
+import type { ProtocolUsersRouteResponse } from "~/api/protocols/users";
+import { env } from "~/env";
+import { sendTweet } from "~/lib/twitter";
 
 /**
  * Send a tweet with the top 5 protocols by unique users in the last 7 days
  */
-export async function GET() {
+export default defineEventHandler(async () => {
   const apiParams = new URLSearchParams();
   apiParams.append("noCache", "true");
   apiParams.append("date", "7d");
   apiParams.append("limit", "5");
 
   const stats: ProtocolUsersRouteResponse = await fetch(
-    `${env.NEXT_PUBLIC_API_URL}/api/protocols/users?${apiParams.toString()}`,
+    `${env.API_URL}/api/protocols/users?${apiParams.toString()}`,
   ).then((res) => res.json());
 
   const data = stats.map((stat) => ({
@@ -28,7 +26,7 @@ export async function GET() {
   params.append("data", JSON.stringify(data));
 
   const imageUrl = `${
-    env.NEXT_PUBLIC_BASE_URL
+    env.WEB_URL
   }/api/images/weekly-users?${params.toString()}`;
 
   let message = "📈 Last 7 days unique users:\n\n";
@@ -41,5 +39,5 @@ export async function GET() {
 
   const tweetId = await sendTweet({ message, images: [imageUrl] });
 
-  return Response.json({ ok: true, tweetId });
-}
+  return { ok: true, tweetId };
+});
