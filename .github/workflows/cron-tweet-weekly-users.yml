@@ -13,4 +13,4 @@ jobs:
         run: |
           curl --request GET \
           --url 'https://api.stackspulse.com/api/root/tweet-weekly-users' \
-          --header 'Authorization: Bearer ${{ secrets.CRON_API_TOKEN }}'
+          --header 'Authorization: Bearer ${{ secrets.ADMIN_API_TOKEN }}'
