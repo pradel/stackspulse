@@ -4,7 +4,7 @@ import { env } from "~/env";
 import { sendTweet } from "~/lib/twitter";
 
 /**
- * Keep the DB up to date with the latest protocols
+ * Send a tweet with the top 5 protocols by unique users in the last 7 days
  */
 export default defineEventHandler(async () => {
   const apiParams = new URLSearchParams();
