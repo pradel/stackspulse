@@ -1,4 +1,4 @@
-name: cron-weekly
+name: cron-tweet-weekly-users
 
 on:
   workflow_dispatch:
