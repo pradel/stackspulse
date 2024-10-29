@@ -1,0 +1,16 @@
+name: cron-tweet-weekly-users
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * 0"
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: weekly-cron-job
+        run: |
+          curl --request GET \
+          --url 'https://api.stackspulse.com/api/root/tweet-weekly-users' \
+          --header 'Authorization: Bearer ${{ secrets.ADMIN_API_TOKEN }}'

@@ -1,5 +1,18 @@
 # stackspulse
 
+## 0.17.1
+
+### Patch Changes
+
+- a86d700: Move send weekly tweet from web to server.
+- a86d700: Alex update contracts list.
+
+## 0.17.0
+
+### Patch Changes
+
+- b4d2e11: Fly set aut_stop to "suspend".
+
 ## 0.16.2
 
 ### Patch Changes

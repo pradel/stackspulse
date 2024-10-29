@@ -3,7 +3,7 @@ primary_region = 'sjc'
 
 [build]
 # Comment next line to deploy the app from source code
-image = "ghcr.io/pradel/stackspulse/server:0.16.2"
+image = "ghcr.io/pradel/stackspulse/server:0.17.1"
 
 [http_service]
 internal_port = 3000
@@ -20,4 +20,4 @@ soft_limit = 900
 
 [[vm]]
 size = 'shared-cpu-1x'
-memory = '256mb'
+memory = '512mb'
