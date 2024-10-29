@@ -22,17 +22,17 @@ export default async function ProtocolPage(props: PageProps) {
 
   return (
     <>
-      {protocol === "stackingdao" ? <StackingDAORef /> : null}
+      {/* {protocol === "stackingdao" ? <StackingDAORef /> : null} */}
 
-      <Suspense>
+      {/* <Suspense>
         <ProtocolStats protocol={protocol} />
-      </Suspense>
+      </Suspense> */}
 
       <Suspense>
         <UniqueUsersBarChart protocol={protocol} />
       </Suspense>
 
-      {protocol === "stackingdao" ? (
+      {/* {protocol === "stackingdao" ? (
         <Suspense>
           <DepositWithdrawBarChart />
         </Suspense>
@@ -40,7 +40,7 @@ export default async function ProtocolPage(props: PageProps) {
 
       <Suspense>
         <ProtocolTransactions protocol={protocol} />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }
