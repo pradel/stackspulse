@@ -19,8 +19,6 @@ export default defineCachedEventHandler(async (event) => {
     transactionUniqueSendersRouteSchema,
   );
 
-  const startTime = Date.now();
-
   const result = await sql`
 WITH monthly_blocks AS (
     SELECT
@@ -90,13 +88,6 @@ GROUP BY
 ORDER BY
   mb.month ASC
   `;
-
-  const endTime = Date.now();
-  console.log(
-    `[api/transactions/unique-senders] ${query.protocol} took ${
-      endTime - startTime
-    }ms`,
-  );
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"
