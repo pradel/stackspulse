@@ -17,9 +17,9 @@ type TransactionsRouteResponse = (ContractCallTransaction & {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionsRouteSchema);
 
-  let protocolCondition = "";
+  let protocolContractsCondition = "";
   if (query.protocol) {
-    protocolCondition = `AND dapps.id = '${query.protocol}'`;
+    protocolContractsCondition = `WHERE id = '${query.protocol}'`;
   }
 
   const result = await sql<
@@ -28,16 +28,21 @@ export default defineCachedEventHandler(async (event) => {
       tx_id: Buffer;
     }[]
   >`
+WITH protocol_contracts AS (
+    SELECT id, UNNEST(contracts) AS contract_address
+    FROM dapps
+    ${sql.unsafe(protocolContractsCondition)}
+)
+
 SELECT
-    dapps.id as protocol,
+    protocol_contracts.id as protocol,
     tx_id
 FROM
     txs
 JOIN
-    dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
+    protocol_contracts ON txs.contract_call_contract_id LIKE protocol_contracts.contract_address
 WHERE
     txs.type_id = 2
-    ${sql.unsafe(protocolCondition)}
     AND canonical = TRUE
     AND microblock_canonical = TRUE
 ORDER BY
