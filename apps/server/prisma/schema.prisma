@@ -28,12 +28,15 @@ model blocks {
   tx_count                    Int     @default(1)
   block_time                  Int     @default(0)
   signer_bitvec               String? @db.VarBit
+  tenure_height               Int?
+  signer_signatures           Bytes[]
 
   @@index([block_hash], map: "blocks_block_hash_index", type: Hash)
   @@index([block_height(sort: Desc)], map: "blocks_block_height_index")
   @@index([burn_block_hash], map: "blocks_burn_block_hash_index", type: Hash)
   @@index([burn_block_height(sort: Desc)], map: "blocks_burn_block_height_index")
   @@index([index_block_hash], map: "blocks_index_block_hash_index", type: Hash)
+  @@index([signer_signatures], map: "blocks_signer_signatures_index", type: Gin)
 }
 
 model burnchain_rewards {
