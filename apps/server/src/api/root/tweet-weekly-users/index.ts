@@ -68,7 +68,7 @@ export default defineEventHandler(async () => {
   }/api/images/weekly-users?${params.toString()}`;
 
   let messageDirect =
-    "📈 Last 7 days unique users that interacted directly with the protocol:\n\n";
+    "📈 Last 7 days unique users that interacted directly with the protocols:\n\n";
   for (const stat of statsDirect) {
     messageDirect += `\n- @${protocolsInfo[stat.protocol_name].x.replace(
       "https://twitter.com/",
