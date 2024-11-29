@@ -10,10 +10,11 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 interface PageProps {
-  params: { protocol: string };
+  params: Promise<{ protocol: string }>;
 }
 
-export default async function ProtocolPage({ params }: PageProps) {
+export default async function ProtocolPage(props: PageProps) {
+  const params = await props.params;
   const protocol = params.protocol;
   if (!isProtocol(protocol)) {
     notFound();
