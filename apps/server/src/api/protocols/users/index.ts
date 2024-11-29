@@ -46,7 +46,8 @@ export default defineCachedEventHandler(async (event) => {
   }));
 
   return stats;
-}, apiCacheConfig);
+  // }, apiCacheConfig);
+});
 
 interface QueryParams {
   limit: number;
@@ -63,22 +64,29 @@ const getProtocolUsersDirect = async ({
   }
 
   const result = await sql`
- SELECT
-     dapps.id as protocol_name,
-     COUNT(DISTINCT txs.sender_address) AS unique_senders
- FROM
-     txs
- JOIN
-     dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
- WHERE
-   txs.type_id = 2
-   ${sql.unsafe(dateCondition)}
- GROUP BY
-     dapps.id
- ORDER BY
-     unique_senders DESC
- LIMIT ${limit};
-   `;
+WITH protocol_contracts AS (
+    SELECT id, UNNEST(contracts) AS contract_address
+    FROM dapps
+)
+
+SELECT
+    protocol_contracts.id as protocol_name,
+    COUNT(DISTINCT txs.sender_address) AS unique_senders
+FROM
+    txs
+JOIN
+    protocol_contracts ON txs.contract_call_contract_id LIKE protocol_contracts.contract_address
+WHERE
+    txs.type_id = 2
+    ${sql.unsafe(dateCondition)}
+GROUP BY
+    protocol_contracts.id
+ORDER BY
+    unique_senders DESC
+LIMIT ${limit};
+  `;
+
+  console.log("result", JSON.stringify(result, null, 2));
 
   return result;
 };
@@ -125,7 +133,7 @@ address_txs AS (
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM nft_events
     ) sub
-    JOIN protocol_contracts ON sub.address = protocol_contracts.contract_address
+    JOIN protocol_contracts ON sub.address LIKE protocol_contracts.contract_address
 )
 
 SELECT
@@ -146,6 +154,8 @@ ORDER BY
     unique_senders DESC
 LIMIT ${limit};
   `;
+
+  console.log("result", JSON.stringify(result, null, 2));
 
   return result;
 };
