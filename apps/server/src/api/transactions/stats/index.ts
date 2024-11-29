@@ -16,8 +16,6 @@ type TransactionStatsRouteResponse = {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionStatsRouteSchema);
 
-  const startTime = Date.now();
-
   let protocolContractsCondition = "";
   if (query.protocol) {
     protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
@@ -80,7 +78,6 @@ INNER JOIN txs USING (tx_id, index_block_hash, microblock_hash)
 WHERE txs.canonical = TRUE
 AND txs.microblock_canonical = TRUE;
   `;
-
   console.log("Result", result);
 
   const stats: TransactionStatsRouteResponse = {
@@ -88,9 +85,5 @@ AND txs.microblock_canonical = TRUE;
     unique_senders: Number.parseInt(result[0].unique_senders),
   };
 
-  const endTime = Date.now();
-  console.log(`Transaction stats took ${endTime - startTime}ms`);
-
   return stats;
-  // }, apiCacheConfig);
-});
+}, apiCacheConfig);
