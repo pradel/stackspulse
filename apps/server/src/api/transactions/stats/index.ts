@@ -31,31 +31,34 @@ WITH protocol_contracts AS (
 address_txs AS (
     SELECT DISTINCT tx_id, index_block_hash, microblock_hash
     FROM (
-        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
-        FROM txs
-        UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, principal
         FROM principal_stx_txs
+        WHERE principal LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM stx_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM stx_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM ft_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM ft_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM nft_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM nft_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
     ) sub
-    WHERE address IN (SELECT contract_address FROM protocol_contracts)
 )
 
 SELECT
@@ -69,10 +72,13 @@ JOIN
   AND atxs.microblock_hash = txs.microblock_hash
   `;
 
+  console.log("Result", result);
+
   const stats: TransactionStatsRouteResponse = {
     count: Number.parseInt(result[0].count),
     unique_senders: Number.parseInt(result[0].unique_senders),
   };
 
   return stats;
-}, apiCacheConfig);
+  // }, apiCacheConfig);
+});
