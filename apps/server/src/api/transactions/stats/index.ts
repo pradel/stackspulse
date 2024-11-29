@@ -30,19 +30,14 @@ WITH protocol_contracts AS (
     ${sql.unsafe(protocolContractsCondition)}
 ),
 
--- Materialize protocol_contracts to avoid multiple scans
-protocol_contracts_mat AS MATERIALIZED (
-    SELECT contract_address FROM protocol_contracts
-),
-
 address_txs AS (
     SELECT DISTINCT tx_id, index_block_hash, microblock_hash
     FROM (
         SELECT tx_id, index_block_hash, microblock_hash
         FROM principal_stx_txs
         WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts_mat
-            WHERE principal_stx_txs.principal LIKE protocol_contracts_mat.contract_address
+            SELECT 1 FROM protocol_contracts
+            WHERE principal_stx_txs.principal LIKE protocol_contracts.contract_address
         )
 
         UNION ALL
@@ -50,9 +45,9 @@ address_txs AS (
         SELECT tx_id, index_block_hash, microblock_hash
         FROM stx_events
         WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts_mat
-            WHERE stx_events.sender LIKE protocol_contracts_mat.contract_address
-            OR stx_events.recipient LIKE protocol_contracts_mat.contract_address
+            SELECT 1 FROM protocol_contracts
+            WHERE stx_events.sender LIKE protocol_contracts.contract_address
+            OR stx_events.recipient LIKE protocol_contracts.contract_address
         )
 
         UNION ALL
@@ -60,9 +55,9 @@ address_txs AS (
         SELECT tx_id, index_block_hash, microblock_hash
         FROM ft_events
         WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts_mat
-            WHERE ft_events.sender LIKE protocol_contracts_mat.contract_address
-            OR ft_events.recipient LIKE protocol_contracts_mat.contract_address
+            SELECT 1 FROM protocol_contracts
+            WHERE ft_events.sender LIKE protocol_contracts.contract_address
+            OR ft_events.recipient LIKE protocol_contracts.contract_address
         )
 
         UNION ALL
@@ -70,9 +65,9 @@ address_txs AS (
         SELECT tx_id, index_block_hash, microblock_hash
         FROM nft_events
         WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts_mat
-            WHERE nft_events.sender LIKE protocol_contracts_mat.contract_address
-            OR nft_events.recipient LIKE protocol_contracts_mat.contract_address
+            SELECT 1 FROM protocol_contracts
+            WHERE nft_events.sender LIKE protocol_contracts.contract_address
+            OR nft_events.recipient LIKE protocol_contracts.contract_address
         )
     ) combined_events
 )
