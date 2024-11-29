@@ -11,6 +11,7 @@ export type ProtocolUsersRouteResponse = {
 }[];
 
 export type ProtocolUsersRouteQuery = {
+  mode?: "direct" | "nested";
   /**
    * Date range to query
    */

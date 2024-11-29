@@ -5,13 +5,16 @@ import { protocolsInfo } from "@stackspulse/protocols";
 
 interface TopProtocolsBarListClientProps {
   dateFilter: ProtocolUsersRouteQuery["date"];
+  modeFilter: ProtocolUsersRouteQuery["mode"];
 }
 
 export const TopProtocolsBarListQuery = ({
   dateFilter,
+  modeFilter,
 }: TopProtocolsBarListClientProps) => {
   const { data: stats } = useGetProtocolsUsers({
     date: dateFilter,
+    mode: modeFilter,
     limit: 6,
   });
 
