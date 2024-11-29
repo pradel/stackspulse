@@ -3,7 +3,7 @@
   "version": "0.17.1",
   "private": true,
   "scripts": {
-    "build": "nitro build",
+    "build": "nitro build && tsc --noEmit",
     "dev": "dotenvx run --env-file=.env.development.local --env-file=.env.development -- nitro dev --port 3001",
     "prepare": "nitro prepare",
     "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
