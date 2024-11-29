@@ -29,11 +29,11 @@ export const sendTweet = async ({
           });
         }),
       )
-    : [];
+    : undefined;
 
   const data = await twitterClient.v2.tweet({
     text: message,
-    media: { media_ids: mediaIds },
+    media: { media_ids: mediaIds as [string, string] },
   });
 
   return data.data.id;
