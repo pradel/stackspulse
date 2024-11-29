@@ -1,5 +1,15 @@
 # @stackspulse/server
 
+## 0.18.0
+
+### Minor Changes
+
+- 1780318: Accept `mode` param for the protocol users.
+
+### Patch Changes
+
+- 051ba8e: Upgrade to prisma 6 and nitro 2.10.
+
 ## 0.17.1
 
 ### Patch Changes
