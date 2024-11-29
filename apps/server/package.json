@@ -7,11 +7,13 @@
     "dev": "dotenvx run --env-file=.env.development.local --env-file=.env.development -- nitro dev --port 3001",
     "prepare": "nitro prepare",
     "stacks-node:db:pull": "dotenvx run --env-file=.env.production.local --env-file=.env.production -- prisma db pull",
+    "prisma:generate": "dotenvx run --env-file=.env.production.local -- prisma generate --sql",
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.25.1",
     "@libsql/client": "0.8.0",
+    "@prisma/client": "6.0.0",
     "@sentry/node": "8.41.0",
     "@stacks/blockchain-api-client": "8.2.2",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
