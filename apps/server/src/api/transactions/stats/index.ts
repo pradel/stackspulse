@@ -23,9 +23,13 @@ export default defineCachedEventHandler(async (event) => {
 
   const result = await sql`
 WITH protocol_contracts AS (
-    SELECT UNNEST(contracts) AS contract_address
-    FROM dapps
-    ${sql.unsafe(protocolContractsCondition)}
+    SELECT DISTINCT contract_id as contract_address
+    FROM smart_contracts
+    WHERE contract_id LIKE ANY (
+        SELECT contract_address
+        FROM dapps, UNNEST(contracts) AS contract_address
+        ${sql.unsafe(protocolContractsCondition)}
+    )
 ),
 
 address_txs AS (
@@ -33,40 +37,28 @@ address_txs AS (
     FROM (
         SELECT tx_id, index_block_hash, microblock_hash
         FROM principal_stx_txs
-        WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts
-            WHERE principal_stx_txs.principal LIKE protocol_contracts.contract_address
-        )
+        WHERE principal IN (SELECT contract_address FROM protocol_contracts)
 
         UNION ALL
 
         SELECT tx_id, index_block_hash, microblock_hash
         FROM stx_events
-        WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts
-            WHERE stx_events.sender LIKE protocol_contracts.contract_address
-            OR stx_events.recipient LIKE protocol_contracts.contract_address
-        )
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
 
         UNION ALL
 
         SELECT tx_id, index_block_hash, microblock_hash
         FROM ft_events
-        WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts
-            WHERE ft_events.sender LIKE protocol_contracts.contract_address
-            OR ft_events.recipient LIKE protocol_contracts.contract_address
-        )
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
 
         UNION ALL
 
         SELECT tx_id, index_block_hash, microblock_hash
         FROM nft_events
-        WHERE EXISTS (
-            SELECT 1 FROM protocol_contracts
-            WHERE nft_events.sender LIKE protocol_contracts.contract_address
-            OR nft_events.recipient LIKE protocol_contracts.contract_address
-        )
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
     ) combined_events
 )
 
