@@ -1,5 +1,16 @@
 # stackspulse
 
+## 0.18.0
+
+### Minor Changes
+
+- 1780318: Send weekly tweet reply to direct calls made to protocols.
+- 1780318: Allow users to select direct / nested for the protocols users chart.
+
+### Patch Changes
+
+- 9fa18a4: Upgrade to next.js 15.
+
 ## 0.17.1
 
 ### Patch Changes
