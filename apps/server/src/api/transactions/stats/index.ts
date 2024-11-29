@@ -70,7 +70,6 @@ INNER JOIN txs USING (tx_id, index_block_hash, microblock_hash)
 WHERE txs.canonical = TRUE
 AND txs.microblock_canonical = TRUE;
   `;
-  console.log("Result", result);
 
   const stats: TransactionStatsRouteResponse = {
     count: Number.parseInt(result[0].count),
