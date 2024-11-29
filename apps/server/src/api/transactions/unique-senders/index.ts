@@ -40,35 +40,34 @@ protocol_contracts AS (
 address_txs AS (
     SELECT DISTINCT tx_id, index_block_hash, microblock_hash
     FROM (
-        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
-        FROM txs
-        UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, principal
         FROM principal_stx_txs
+        WHERE principal LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM stx_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM stx_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM ft_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM ft_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM nft_events
+        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM nft_events
+        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
     ) sub
-    WHERE EXISTS (
-        SELECT 1
-        FROM protocol_contracts
-        WHERE sub.address LIKE protocol_contracts.contract_address
-    )
 )
 
 SELECT
@@ -86,8 +85,6 @@ ORDER BY
   mb.month ASC
   `;
 
-  console.log("result", JSON.stringify(result, null, 2));
-
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"
     // we want to output "2021-08"
@@ -96,5 +93,4 @@ ORDER BY
   }));
 
   return stats;
-  // }, apiCacheConfig);
-});
+}, apiCacheConfig);
