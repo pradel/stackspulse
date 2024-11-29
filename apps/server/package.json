@@ -12,8 +12,8 @@
   "dependencies": {
     "@dotenvx/dotenvx": "1.25.1",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.35.0",
-    "@stacks/blockchain-api-client": "8.1.2",
+    "@sentry/node": "8.41.0",
+    "@stacks/blockchain-api-client": "8.2.2",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.11.1",
@@ -22,12 +22,12 @@
     "nitro-cors": "0.7.1",
     "postgres": "3.4.5",
     "twitter-api-v2": "1.17.1",
-    "unstorage": "1.12.0",
+    "unstorage": "1.13.1",
     "zod": "3.23.8",
     "zod-validation-error": "3.4.0"
   },
   "devDependencies": {
-    "nitropack": "2.9.7",
-    "prisma": "5.21.1"
+    "nitropack": "2.10.4",
+    "prisma": "6.0.0"
   }
 }

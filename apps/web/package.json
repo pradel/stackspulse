@@ -34,7 +34,7 @@
     "sharp": "0.33.5",
     "tailwind-merge": "2.5.5",
     "tailwindcss-animate": "1.0.7",
-    "unstorage": "1.12.0",
+    "unstorage": "1.13.1",
     "zod": "3.23.8"
   },
   "devDependencies": {
