@@ -23,50 +23,52 @@ export default defineCachedEventHandler(async (event) => {
 
   const result = await sql`
 WITH protocol_contracts AS (
-    SELECT UNNEST(contracts) AS contract_address
-    FROM dapps
-    ${sql.unsafe(protocolContractsCondition)}
+    SELECT DISTINCT contract_id as contract_address
+    FROM smart_contracts
+    WHERE contract_id LIKE ANY (
+        SELECT contract_address
+        FROM dapps, UNNEST(contracts) AS contract_address
+        ${sql.unsafe(protocolContractsCondition)}
+    )
 ),
 
 address_txs AS (
     SELECT DISTINCT tx_id, index_block_hash, microblock_hash
     FROM (
-        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
-        FROM txs
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, principal
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM principal_stx_txs
+        WHERE principal IN (SELECT contract_address FROM protocol_contracts)
+
         UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM stx_events
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
+
         UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM stx_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM ft_events
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
+
         UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM ft_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM nft_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM nft_events
-    ) sub
-    WHERE address IN (SELECT contract_address FROM protocol_contracts)
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
+           OR recipient IN (SELECT contract_address FROM protocol_contracts)
+    ) combined_events
 )
 
 SELECT
-  COUNT(DISTINCT atxs.tx_id) AS count,
+  COUNT(DISTINCT address_txs.tx_id) AS count,
   COUNT(DISTINCT txs.sender_address) AS unique_senders
-FROM
-  txs
-JOIN
-  address_txs atxs ON atxs.tx_id = txs.tx_id
-  AND atxs.index_block_hash = txs.index_block_hash
-  AND atxs.microblock_hash = txs.microblock_hash
+FROM address_txs
+INNER JOIN txs USING (tx_id, index_block_hash, microblock_hash)
+WHERE txs.canonical = TRUE
+AND txs.microblock_canonical = TRUE;
   `;
 
   const stats: TransactionStatsRouteResponse = {
