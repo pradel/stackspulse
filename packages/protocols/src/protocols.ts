@@ -58,6 +58,7 @@ export const protocolsInfo: {
     contracts: [
       // StableSwap Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-%",
+      "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.stableswap-%",
       // Earn Contracts
       "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.earn-%",
       // Router Contracts
