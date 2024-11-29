@@ -64,7 +64,11 @@ address_txs AS (
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM nft_events
     ) sub
-    WHERE address IN (SELECT contract_address FROM protocol_contracts)
+    WHERE EXISTS (
+        SELECT 1
+        FROM protocol_contracts
+        WHERE sub.address LIKE protocol_contracts.contract_address
+    )
 )
 
 SELECT
@@ -82,6 +86,8 @@ ORDER BY
   mb.month ASC
   `;
 
+  console.log("result", JSON.stringify(result, null, 2));
+
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"
     // we want to output "2021-08"
@@ -90,4 +96,5 @@ ORDER BY
   }));
 
   return stats;
-}, apiCacheConfig);
+  // }, apiCacheConfig);
+});
