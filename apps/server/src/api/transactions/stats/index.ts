@@ -16,6 +16,8 @@ type TransactionStatsRouteResponse = {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionStatsRouteSchema);
 
+  const startTime = Date.now();
+
   let protocolContractsCondition = "";
   if (query.protocol) {
     protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
@@ -29,47 +31,40 @@ WITH protocol_contracts AS (
 ),
 
 address_txs AS (
-    SELECT DISTINCT tx_id, index_block_hash, microblock_hash
-    FROM (
-        SELECT tx_id, index_block_hash, microblock_hash, principal
+    (
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM principal_stx_txs
         WHERE principal LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+    )
+    UNION
+    (
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM stx_events
         WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM stx_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+            OR recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+    )
+    UNION
+    (
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM ft_events
         WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM ft_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
+            OR recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+    )
+    UNION
+    (
+        SELECT tx_id, index_block_hash, microblock_hash
         FROM nft_events
         WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM nft_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
-    ) sub
+            OR recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+    )
 )
 
 SELECT
-  COUNT(DISTINCT atxs.tx_id) AS count,
+  COUNT(DISTINCT address_txs.tx_id) AS count,
   COUNT(DISTINCT txs.sender_address) AS unique_senders
-FROM
-  txs
-JOIN
-  address_txs atxs ON atxs.tx_id = txs.tx_id
-  AND atxs.index_block_hash = txs.index_block_hash
-  AND atxs.microblock_hash = txs.microblock_hash
+  FROM address_txs
+  INNER JOIN txs USING (tx_id, index_block_hash, microblock_hash)
+  WHERE canonical = TRUE AND microblock_canonical = TRUE
   `;
 
   console.log("Result", result);
@@ -78,6 +73,9 @@ JOIN
     count: Number.parseInt(result[0].count),
     unique_senders: Number.parseInt(result[0].unique_senders),
   };
+
+  const endTime = Date.now();
+  console.log(`Transaction stats took ${endTime - startTime}ms`);
 
   return stats;
   // }, apiCacheConfig);
