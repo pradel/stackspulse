@@ -11,9 +11,11 @@ const twitterClient = new TwitterApi({
 export const sendTweet = async ({
   message,
   images,
+  in_reply_to_tweet_id,
 }: {
   message: string;
   images?: string[];
+  in_reply_to_tweet_id?: string;
 }) => {
   if (env.TWITTER_API_KEY === "dev") {
     console.log("Debug Send Tweet:\n", message);
@@ -34,6 +36,7 @@ export const sendTweet = async ({
   const data = await twitterClient.v2.tweet({
     text: message,
     media: { media_ids: mediaIds as [string, string] },
+    reply: in_reply_to_tweet_id ? { in_reply_to_tweet_id } : undefined,
   });
 
   return data.data.id;
