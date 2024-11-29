@@ -19,6 +19,8 @@ export default defineCachedEventHandler(async (event) => {
     transactionUniqueSendersRouteSchema,
   );
 
+  const startTime = Date.now();
+
   const result = await sql`
 WITH monthly_blocks AS (
     SELECT
@@ -32,9 +34,13 @@ WITH monthly_blocks AS (
 ),
 
 protocol_contracts AS (
-    SELECT UNNEST(contracts) AS contract_address
-    FROM dapps
-    WHERE id = ${query.protocol}
+    SELECT DISTINCT contract_id as contract_address
+    FROM smart_contracts
+    WHERE contract_id LIKE ANY (
+        SELECT contract_address
+        FROM dapps, UNNEST(contracts) AS contract_address
+        WHERE id = ${query.protocol}
+    )
 ),
 
 address_txs AS (
@@ -42,31 +48,31 @@ address_txs AS (
     FROM (
         SELECT tx_id, index_block_hash, microblock_hash, principal
         FROM principal_stx_txs
-        WHERE principal LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE principal IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM stx_events
-        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM stx_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE recipient IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM ft_events
-        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM ft_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE recipient IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, sender
         FROM nft_events
-        WHERE sender LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE sender IN (SELECT contract_address FROM protocol_contracts)
         UNION ALL
         SELECT tx_id, index_block_hash, microblock_hash, recipient
         FROM nft_events
-        WHERE recipient LIKE ANY (SELECT contract_address FROM protocol_contracts)
+        WHERE recipient IN (SELECT contract_address FROM protocol_contracts)
     ) sub
 )
 
@@ -84,6 +90,13 @@ GROUP BY
 ORDER BY
   mb.month ASC
   `;
+
+  const endTime = Date.now();
+  console.log(
+    `[api/transactions/unique-senders] ${query.protocol} took ${
+      endTime - startTime
+    }ms`,
+  );
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"
