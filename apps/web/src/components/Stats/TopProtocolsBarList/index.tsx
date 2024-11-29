@@ -45,14 +45,14 @@ export const TopProtocolsBarList = () => {
             </TabNav.Link>
           </TabNav.Root>
           <TabNav.Root size="1">
-            <TabNav.Link asChild active={modeFilter === "nested"}>
-              <button type="button" onClick={() => setModeFilter("nested")}>
-                nested
-              </button>
-            </TabNav.Link>
             <TabNav.Link asChild active={modeFilter === "direct"}>
               <button type="button" onClick={() => setModeFilter("direct")}>
                 direct
+              </button>
+            </TabNav.Link>
+            <TabNav.Link asChild active={modeFilter === "nested"}>
+              <button type="button" onClick={() => setModeFilter("nested")}>
+                nested
               </button>
             </TabNav.Link>
           </TabNav.Root>
