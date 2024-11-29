@@ -9,30 +9,54 @@ import { TopProtocolsBarListQuery } from "./TopProtocolsBarListQuery";
 export const TopProtocolsBarList = () => {
   const [dateFilter, setDateFilter] =
     useState<ProtocolUsersRouteQuery["date"]>("all");
+  const [modeFilter, setModeFilter] =
+    useState<ProtocolUsersRouteQuery["mode"]>("nested");
 
   return (
     <Card size="2" className="mt-5">
       <div className="-mt-2 flex items-center justify-between">
-        <Text as="div" size="2" weight="medium" color="gray" highContrast>
-          Top Stacks protocols
-        </Text>
-        <TabNav.Root size="2">
-          <TabNav.Link asChild active={dateFilter === "7d"}>
-            <button type="button" onClick={() => setDateFilter("7d")}>
-              7d
-            </button>
-          </TabNav.Link>
-          <TabNav.Link asChild active={dateFilter === "30d"}>
-            <button type="button" onClick={() => setDateFilter("30d")}>
-              30d
-            </button>
-          </TabNav.Link>
-          <TabNav.Link asChild active={dateFilter === "all"}>
-            <button type="button" onClick={() => setDateFilter("all")}>
-              all
-            </button>
-          </TabNav.Link>
-        </TabNav.Root>
+        <div>
+          <Text as="div" size="2" weight="medium" color="gray" highContrast>
+            Top Stacks protocols
+          </Text>
+          <Text as="div" size="1" color="gray" className="mt-1">
+            {modeFilter === "nested"
+              ? "Unique addresses that have interacted with the protocol contracts"
+              : "Unique addresses that have interacted with the protocol directly"}
+          </Text>
+        </div>
+
+        <div className="flex flex-col justify-end items-end gap-1">
+          <TabNav.Root size="2">
+            <TabNav.Link asChild active={dateFilter === "7d"}>
+              <button type="button" onClick={() => setDateFilter("7d")}>
+                7d
+              </button>
+            </TabNav.Link>
+            <TabNav.Link asChild active={dateFilter === "30d"}>
+              <button type="button" onClick={() => setDateFilter("30d")}>
+                30d
+              </button>
+            </TabNav.Link>
+            <TabNav.Link asChild active={dateFilter === "all"}>
+              <button type="button" onClick={() => setDateFilter("all")}>
+                all
+              </button>
+            </TabNav.Link>
+          </TabNav.Root>
+          <TabNav.Root size="1">
+            <TabNav.Link asChild active={modeFilter === "nested"}>
+              <button type="button" onClick={() => setModeFilter("nested")}>
+                nested
+              </button>
+            </TabNav.Link>
+            <TabNav.Link asChild active={modeFilter === "direct"}>
+              <button type="button" onClick={() => setModeFilter("direct")}>
+                direct
+              </button>
+            </TabNav.Link>
+          </TabNav.Root>
+        </div>
       </div>
 
       <div className="mt-4 flex justify-between">
@@ -77,7 +101,10 @@ export const TopProtocolsBarList = () => {
           />
         }
       >
-        <TopProtocolsBarListQuery dateFilter={dateFilter} />
+        <TopProtocolsBarListQuery
+          dateFilter={dateFilter}
+          modeFilter={modeFilter}
+        />
       </Suspense>
     </Card>
   );
