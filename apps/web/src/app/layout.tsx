@@ -36,7 +36,6 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${font.variable} font-sans antialiased`}
       >
-        <Fathom />
         <Providers>
           <Theme appearance="dark" accentColor="orange" grayColor="sand">
             <Header />
@@ -44,6 +43,7 @@ export default function RootLayout({
             <Footer />
           </Theme>
         </Providers>
+        <Fathom />
       </body>
     </html>
   );
