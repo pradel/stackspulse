@@ -2,8 +2,8 @@ name: cron-tweet-weekly-users
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 16 * * 0"
+  #schedule:
+  #  - cron: "0 16 * * 0"
 
 jobs:
   cron:
