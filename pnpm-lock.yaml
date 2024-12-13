@@ -33,6 +33,9 @@ importers:
       '@libsql/client':
         specifier: 0.8.0
         version: 0.8.0
+      '@prisma/client':
+        specifier: 6.0.0
+        version: 6.0.0(prisma@6.0.0)
       '@sentry/node':
         specifier: 8.41.0
         version: 8.41.0
@@ -50,7 +53,7 @@ importers:
         version: 0.11.1(typescript@5.7.2)(zod@3.23.8)
       drizzle-orm:
         specifier: 0.33.0
-        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
+        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
       h3:
         specifier: 1.13.0
         version: 1.13.0
@@ -75,7 +78,7 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.10.4
-        version: 2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.2)
+        version: 2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.2)
       prisma:
         specifier: 6.0.0
         version: 6.0.0
@@ -1248,9 +1251,9 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@prisma/client@5.20.0':
-    resolution: {integrity: sha512-CLv55ZuMuUawMsxoqxGtLT3bEZoa2W8L3Qnp6rDIFWy+ZBrUcOFKdoeGPSnbBqxc3SkdxJrF+D1veN/WNynZYA==}
-    engines: {node: '>=16.13'}
+  '@prisma/client@6.0.0':
+    resolution: {integrity: sha512-tOBhG35ozqZ/5Y6B0TNOa6cwULUW8ijXqBXcgb12bfozqf6eGMyGs+jphywCsj6uojv5lAZZnxVSoLMVebIP+g==}
+    engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
     peerDependenciesMeta:
@@ -4165,6 +4168,7 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@2.1.0:
@@ -6905,10 +6909,9 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@5.20.0(prisma@6.0.0)':
+  '@prisma/client@6.0.0(prisma@6.0.0)':
     optionalDependencies:
       prisma: 6.0.0
-    optional: true
 
   '@prisma/debug@6.0.0': {}
 
@@ -8895,10 +8898,10 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)):
+  db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)):
     optionalDependencies:
       '@libsql/client': 0.8.0
-      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
+      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
 
   debug@2.6.9:
     dependencies:
@@ -8983,11 +8986,11 @@ snapshots:
 
   dotenv@16.4.5: {}
 
-  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1):
+  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1):
     optionalDependencies:
       '@libsql/client': 0.8.0
       '@opentelemetry/api': 1.9.0
-      '@prisma/client': 5.20.0(prisma@6.0.0)
+      '@prisma/client': 6.0.0(prisma@6.0.0)
       '@types/better-sqlite3': 7.6.11
       '@types/pg': 8.11.10
       '@types/react': 18.3.12
@@ -10337,7 +10340,7 @@ snapshots:
       h3: 1.13.0
       ufo: 1.5.3
 
-  nitropack@2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.2):
+  nitropack@2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.2):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.2
@@ -10361,7 +10364,7 @@ snapshots:
       cookie-es: 1.2.2
       croner: 9.0.0
       crossws: 0.3.1
-      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))
+      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.0.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 9.0.0
