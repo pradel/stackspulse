@@ -33,9 +33,6 @@ importers:
       '@libsql/client':
         specifier: 0.8.0
         version: 0.8.0
-      '@prisma/client':
-        specifier: 6.3.1
-        version: 6.3.1(prisma@6.3.1(typescript@5.7.3))(typescript@5.7.3)
       '@sentry/node':
         specifier: 8.41.0
         version: 8.41.0
@@ -4232,7 +4229,6 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
-    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@2.1.0:
@@ -7074,6 +7070,7 @@ snapshots:
     optionalDependencies:
       prisma: 6.3.1(typescript@5.7.3)
       typescript: 5.7.3
+    optional: true
 
   '@prisma/debug@6.3.1': {}
 
