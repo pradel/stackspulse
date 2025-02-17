@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.20.1
+
+### Patch Changes
+
+- 0589659: Upgrade drizzle-orm.
+
 ## 0.20.0
 
 ### Minor Changes
