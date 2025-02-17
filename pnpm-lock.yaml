@@ -76,9 +76,6 @@ importers:
         specifier: 3.4.0
         version: 3.4.0(zod@3.24.2)
     devDependencies:
-      '@types/better-sqlite3':
-        specifier: 7.6.12
-        version: 7.6.12
       nitropack:
         specifier: 2.10.4
         version: 2.10.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0))(typescript@5.7.3)
@@ -8212,6 +8209,7 @@ snapshots:
   '@types/better-sqlite3@7.6.12':
     dependencies:
       '@types/node': 22.13.4
+    optional: true
 
   '@types/connect@3.4.36':
     dependencies:

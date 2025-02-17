@@ -28,7 +28,6 @@
     "zod-validation-error": "3.4.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "7.6.12",
     "nitropack": "2.10.4",
     "prisma": "6.3.1"
   }
