@@ -50,10 +50,10 @@ importers:
         version: 11.8.1
       db0:
         specifier: 0.2.4
-        version: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0))
+        version: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5))
       drizzle-orm:
-        specifier: 0.33.0
-        version: 0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0)
+        specifier: 0.39.3
+        version: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))
       h3:
         specifier: 1.15.0
         version: 1.15.0
@@ -68,7 +68,7 @@ importers:
         version: 1.18.2
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0)))(ioredis@5.5.0)
+        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)))(ioredis@5.5.0)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -78,7 +78,7 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.10.4
-        version: 2.10.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0))(typescript@5.7.3)
+        version: 2.10.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3)))(typescript@5.7.3)
       prisma:
         specifier: 6.3.1
         version: 6.3.1(typescript@5.7.3)
@@ -159,7 +159,7 @@ importers:
         version: 1.0.7(tailwindcss@3.4.15)
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0)))(ioredis@5.5.0)
+        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)))(ioredis@5.5.0)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -3179,14 +3179,15 @@ packages:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
     engines: {node: '>=12'}
 
-  drizzle-orm@0.33.0:
-    resolution: {integrity: sha512-SHy72R2Rdkz0LEq0PSG/IdvnT3nGiWuRk+2tXZQ90GVq/XQhpCzu/EFT3V2rox+w8MlkBQxifF8pCStNYnERfA==}
+  drizzle-orm@0.39.3:
+    resolution: {integrity: sha512-EZ8ZpYvDIvKU9C56JYLOmUskazhad+uXZCTCRN4OnRMsL+xAJ05dv1eCpAG5xzhsm1hqiuC5kAZUCS924u2DTw==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
-      '@cloudflare/workers-types': '>=3'
-      '@electric-sql/pglite': '>=0.1.1'
-      '@libsql/client': '*'
-      '@neondatabase/serverless': '>=0.1'
+      '@cloudflare/workers-types': '>=4'
+      '@electric-sql/pglite': '>=0.2.0'
+      '@libsql/client': '>=0.10.0'
+      '@libsql/client-wasm': '>=0.10.0'
+      '@neondatabase/serverless': '>=0.10.0'
       '@op-engineering/op-sqlite': '>=2'
       '@opentelemetry/api': ^1.4.1
       '@planetscale/database': '>=1'
@@ -3194,20 +3195,18 @@ packages:
       '@tidbcloud/serverless': '*'
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
-      '@types/react': '>=18'
       '@types/sql.js': '*'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
-      expo-sqlite: '>=13.2.0'
+      expo-sqlite: '>=14.0.0'
       knex: '*'
       kysely: '*'
       mysql2: '>=2'
       pg: '>=8'
       postgres: '>=3'
       prisma: '*'
-      react: '>=18'
       sql.js: '>=1'
       sqlite3: '>=5'
     peerDependenciesMeta:
@@ -3218,6 +3217,8 @@ packages:
       '@electric-sql/pglite':
         optional: true
       '@libsql/client':
+        optional: true
+      '@libsql/client-wasm':
         optional: true
       '@neondatabase/serverless':
         optional: true
@@ -3234,8 +3235,6 @@ packages:
       '@types/better-sqlite3':
         optional: true
       '@types/pg':
-        optional: true
-      '@types/react':
         optional: true
       '@types/sql.js':
         optional: true
@@ -3260,8 +3259,6 @@ packages:
       postgres:
         optional: true
       prisma:
-        optional: true
-      react:
         optional: true
       sql.js:
         optional: true
@@ -9016,11 +9013,11 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0)):
+  db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)):
     optionalDependencies:
       '@libsql/client': 0.14.0
       better-sqlite3: 11.8.1
-      drizzle-orm: 0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0)
+      drizzle-orm: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))
 
   debug@2.6.9:
     dependencies:
@@ -9110,17 +9107,15 @@ snapshots:
 
   dotenv@16.4.7: {}
 
-  drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0):
+  drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3)):
     optionalDependencies:
       '@libsql/client': 0.14.0
       '@opentelemetry/api': 1.9.0
       '@types/better-sqlite3': 7.6.12
       '@types/pg': 8.6.1
-      '@types/react': 19.0.9
       better-sqlite3: 11.8.1
       postgres: 3.4.5
       prisma: 6.3.1(typescript@5.7.3)
-      react: 19.0.0
 
   dunder-proto@1.0.1:
     dependencies:
@@ -10507,7 +10502,7 @@ snapshots:
       h3: 1.15.0
       ufo: 1.5.4
 
-  nitropack@2.10.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@19.0.0))(typescript@5.7.3):
+  nitropack@2.10.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3)))(typescript@5.7.3):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.2
@@ -10531,7 +10526,7 @@ snapshots:
       cookie-es: 1.2.2
       croner: 9.0.0
       crossws: 0.3.4
-      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0))
+      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 9.0.0
@@ -10574,7 +10569,7 @@ snapshots:
       unctx: 2.4.1
       unenv: 1.10.0
       unimport: 3.14.6(rollup@4.34.8)
-      unstorage: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0)))(ioredis@5.5.0)
+      unstorage: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)))(ioredis@5.5.0)
       untyped: 1.5.2
       unwasm: 0.3.9
     transitivePeerDependencies:
@@ -11977,7 +11972,7 @@ snapshots:
       acorn: 8.14.0
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0)))(ioredis@5.5.0):
+  unstorage@1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5)))(ioredis@5.5.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -11988,7 +11983,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.33.0(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(@types/react@19.0.9)(better-sqlite3@11.8.1)(postgres@3.4.5)(react@19.0.0))
+      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.8.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.8.1)(postgres@3.4.5))
       ioredis: 5.5.0
 
   untun@0.1.3:
