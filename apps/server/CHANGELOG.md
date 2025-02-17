@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.20.0
+
+### Minor Changes
+
+- d6b1d0d: Replace libsql with local sqlite file.
+
 ## 0.19.0
 
 ### Minor Changes
