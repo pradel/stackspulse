@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "nitropack": "2.10.4",
-    "prisma": "6.0.0"
+    "prisma": "6.3.1"
   }
 }

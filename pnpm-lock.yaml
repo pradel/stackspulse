@@ -50,7 +50,7 @@ importers:
         version: 0.12.0(typescript@5.7.3)(zod@3.24.2)
       drizzle-orm:
         specifier: 0.33.0
-        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
+        version: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)
       h3:
         specifier: 1.15.0
         version: 1.15.0
@@ -65,7 +65,7 @@ importers:
         version: 1.18.2
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)))(ioredis@5.4.1)
+        version: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)))(ioredis@5.4.1)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -75,10 +75,10 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.10.4
-        version: 2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.3)
+        version: 2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1))(typescript@5.7.3)
       prisma:
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.3.1
+        version: 6.3.1(typescript@5.7.3)
 
   apps/web:
     dependencies:
@@ -98,8 +98,8 @@ importers:
         specifier: 7.14.1
         version: 7.14.1
       '@stacks/transactions':
-        specifier: 6.17.0
-        version: 6.17.0
+        specifier: 7.0.4
+        version: 7.0.4
       '@stackspulse/protocols':
         specifier: workspace:*
         version: link:../../packages/protocols
@@ -156,7 +156,7 @@ importers:
         version: 1.0.7(tailwindcss@3.4.15)
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)))(ioredis@5.4.1)
+        version: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)))(ioredis@5.4.1)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -1261,20 +1261,20 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@6.0.0':
-    resolution: {integrity: sha512-eUjoNThlDXdyJ1iQ2d7U6aTVwm59EwvODb5zFVNJEokNoSiQmiYWNzZIwZyDmZ+j51j42/0iTaHIJ4/aZPKFRg==}
+  '@prisma/debug@6.3.1':
+    resolution: {integrity: sha512-RrEBkd+HLZx+ydfmYT0jUj7wjLiS95wfTOSQ+8FQbvb6vHh5AeKfEPt/XUQ5+Buljj8hltEfOslEW57/wQIVeA==}
 
-  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e':
-    resolution: {integrity: sha512-JmIds0Q2/vsOmnuTJYxY4LE+sajqjYKhLtdOT6y4imojqv5d/aeVEfbBGC74t8Be1uSp0OP8lxIj2OqoKbLsfQ==}
+  '@prisma/engines-version@6.3.0-17.acc0b9dd43eb689cbd20c9470515d719db10d0b0':
+    resolution: {integrity: sha512-R/ZcMuaWZT2UBmgX3Ko6PAV3f8//ZzsjRIG1eKqp3f2rqEqVtCv+mtzuH2rBPUC9ujJ5kCb9wwpxeyCkLcHVyA==}
 
-  '@prisma/engines@6.0.0':
-    resolution: {integrity: sha512-ZZCVP3q22ifN6Ex6C8RIcTDBlRtMJS2H1ljV0knCiWNGArvvkEbE88W3uDdq/l4+UvyvHpGzdf9ZsCWSQR7ZQQ==}
+  '@prisma/engines@6.3.1':
+    resolution: {integrity: sha512-sXdqEVLyGAJ5/iUoG/Ea5AdHMN71m6PzMBWRQnLmhhOejzqAaEr8rUd623ql6OJpED4s/U4vIn4dg1qkF7vGag==}
 
-  '@prisma/fetch-engine@6.0.0':
-    resolution: {integrity: sha512-j2m+iO5RDPRI7SUc7sHo8wX7SA4iTkJ+18Sxch8KinQM46YiCQD1iXKN6qU79C1Fliw5Bw/qDyTHaTsa3JMerA==}
+  '@prisma/fetch-engine@6.3.1':
+    resolution: {integrity: sha512-HOf/0umOgt+/S2xtZze+FHKoxpVg4YpVxROr6g2YG09VsI3Ipyb+rGvD6QGbCqkq5NTWAAZoOGNL+oy7t+IhaQ==}
 
-  '@prisma/get-platform@6.0.0':
-    resolution: {integrity: sha512-PS6nYyIm9g8C03E4y7LknOfdCw/t2KyEJxntMPQHQZCOUgOpF82Ma60mdlOD08w90I3fjLiZZ0+MadenR3naDQ==}
+  '@prisma/get-platform@6.3.1':
+    resolution: {integrity: sha512-AYLq6Hk9xG73JdLWJ3Ip9Wg/vlP7xPvftGBalsPzKDOHr/ImhwJ09eS8xC2vNT12DlzGxhfk8BkL0ve2OriNhQ==}
 
   '@prisma/instrumentation@5.19.1':
     resolution: {integrity: sha512-VLnzMQq7CWroL5AeaW0Py2huiNKeoMfCH3SUxstdzPrlWQi6UQ9UrfcbUkNHlVFqOMacqy8X/8YtE0kuKDpD9w==}
@@ -2234,17 +2234,17 @@ packages:
   '@stacks/blockchain-api-client@8.6.0':
     resolution: {integrity: sha512-y4VCKFsSviXdvl2V8hgrLvWDUc91MrHPFOtjOeZPXSWosof0OENcXtJ1OHAJMV5qWwDKw9DbhvfqS2Cz3NYGZw==}
 
-  '@stacks/common@6.16.0':
-    resolution: {integrity: sha512-PnzvhrdGRMVZvxTulitlYafSK4l02gPCBBoI9QEoTqgSnv62oaOXhYAUUkTMFKxdHW1seVEwZsrahuXiZPIAwg==}
+  '@stacks/common@7.0.2':
+    resolution: {integrity: sha512-+RSecHdkxOtswmE4tDDoZlYEuULpnTQVeDIG5eZ32opK8cFxf4EugAcK9CsIsHx/Se1yTEaQ21WGATmJGK84lQ==}
 
-  '@stacks/network@6.17.0':
-    resolution: {integrity: sha512-numHbfKjwco/rbkGPOEz8+FcJ2nBnS/tdJ8R422Q70h3SiA9eqk9RjSzB8p4JP8yW1SZvW+eihADHfMpBuZyfw==}
+  '@stacks/network@7.0.2':
+    resolution: {integrity: sha512-XzHnoWqku/jRrTgMXhmh3c+I0O9vDH24KlhzGDZtBu+8CGGyHNPAZzGwvoUShonMXrXjEnfO9IYQwV5aJhfv6g==}
 
   '@stacks/stacks-blockchain-api-types@7.14.1':
     resolution: {integrity: sha512-65hvhXxC+EUqHJAQsqlBCqXB+zwfxZICSKYJugdg6BCp9I9qniyfz5XyQeC4RMVo0tgEoRdS/b5ZCFo5kLWmxA==}
 
-  '@stacks/transactions@6.17.0':
-    resolution: {integrity: sha512-FUah2BRgV66ApLcEXGNGhwyFTRXqX5Zco3LpiM3essw8PF0NQlHwwdPgtDko5RfrJl3LhGXXe/30nwsfNnB3+g==}
+  '@stacks/transactions@7.0.4':
+    resolution: {integrity: sha512-OTQSqb+xaq+QeHB1m83SONVjVs9DD1SMqX7UvvLmzQx3ppZNoRqbWx9UGjm1bVwpQ+mw44TVOe7w3Zm0HRYFfw==}
 
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
@@ -2302,9 +2302,6 @@ packages:
   '@types/better-sqlite3@7.6.11':
     resolution: {integrity: sha512-i8KcD3PgGtGBLl3+mMYA8PdKkButvPyARxA7IQAd6qeslht13qxb1zzO8dRCtE7U3IoJS782zDBAeoKiM695kg==}
 
-  '@types/bn.js@5.1.6':
-    resolution: {integrity: sha512-Xh8vSwUeMKeYYrj3cX4lGQgFSF/N03r+tv4AiLl1SucqV+uTQpxRcnM8AkXKHwYP9ZPXOYXRr2KPXpVlIvqh9w==}
-
   '@types/connect@3.4.36':
     resolution: {integrity: sha512-P63Zd/JUGq+PdrM1lv0Wv5SBYeA2+CORvbrXbngriYY0jzLUWfQMQQxOhjONEz/wlHOAxOdY7CY65rgQdTjq2w==}
 
@@ -2352,9 +2349,6 @@ packages:
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
-
-  '@types/node@18.19.76':
-    resolution: {integrity: sha512-yvR7Q9LdPz2vGpmpJX5LolrgRdWvB67MJKDPSgIIzpFbaf9a1j/f5DnLp5VDyHGMR0QZHlTr1afsD87QCXFHKw==}
 
   '@types/node@20.14.14':
     resolution: {integrity: sha512-d64f00982fS9YoOgJkAMolK7MN8Iq3TDdVjchbYHdEmjth/DHowx82GnoA+tVUAN+7vxfYUgAzi+JXbKNd2SDQ==}
@@ -2956,8 +2950,8 @@ packages:
     resolution: {integrity: sha512-onMB0OkDjkXunhdW9htFjEhqrD54+M94i6ackoUkjHKbRnXdyEyKRelp4nJ1kAz32+s27jP1FsebpJCVl0BsvA==}
     engines: {node: '>=18.0'}
 
-  cross-fetch@3.1.8:
-    resolution: {integrity: sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==}
+  cross-fetch@3.2.0:
+    resolution: {integrity: sha512-Q+xVJLoGOeIMXZmbUK4HYk+69cQH6LudR0Vu/pRm2YlU/hDV9CiS0gKUMaWY5f2NeUH9C1nV3bsTlCo0FsTV1Q==}
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -4882,10 +4876,15 @@ packages:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
-  prisma@6.0.0:
-    resolution: {integrity: sha512-RX7KtbW7IoEByf7MR32JK1PkVYLVYFqeODTtiIX3cqekq1aKdsF3Eud4zp2sUShMLjvdb5Jow0LbUjRq5LVxPw==}
+  prisma@6.3.1:
+    resolution: {integrity: sha512-JKCZWvBC3enxk51tY4TWzS4b5iRt4sSU1uHn2I183giZTvonXaQonzVtjLzpOHE7qu9MxY510kAtFGJwryKe3Q==}
     engines: {node: '>=18.18'}
     hasBin: true
+    peerDependencies:
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -7008,31 +7007,31 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@5.20.0(prisma@6.0.0)':
+  '@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3))':
     optionalDependencies:
-      prisma: 6.0.0
+      prisma: 6.3.1(typescript@5.7.3)
     optional: true
 
-  '@prisma/debug@6.0.0': {}
+  '@prisma/debug@6.3.1': {}
 
-  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e': {}
+  '@prisma/engines-version@6.3.0-17.acc0b9dd43eb689cbd20c9470515d719db10d0b0': {}
 
-  '@prisma/engines@6.0.0':
+  '@prisma/engines@6.3.1':
     dependencies:
-      '@prisma/debug': 6.0.0
-      '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
-      '@prisma/fetch-engine': 6.0.0
-      '@prisma/get-platform': 6.0.0
+      '@prisma/debug': 6.3.1
+      '@prisma/engines-version': 6.3.0-17.acc0b9dd43eb689cbd20c9470515d719db10d0b0
+      '@prisma/fetch-engine': 6.3.1
+      '@prisma/get-platform': 6.3.1
 
-  '@prisma/fetch-engine@6.0.0':
+  '@prisma/fetch-engine@6.3.1':
     dependencies:
-      '@prisma/debug': 6.0.0
-      '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
-      '@prisma/get-platform': 6.0.0
+      '@prisma/debug': 6.3.1
+      '@prisma/engines-version': 6.3.0-17.acc0b9dd43eb689cbd20c9470515d719db10d0b0
+      '@prisma/get-platform': 6.3.1
 
-  '@prisma/get-platform@6.0.0':
+  '@prisma/get-platform@6.3.1':
     dependencies:
-      '@prisma/debug': 6.0.0
+      '@prisma/debug': 6.3.1
 
   '@prisma/instrumentation@5.19.1':
     dependencies:
@@ -8124,26 +8123,23 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stacks/common@6.16.0':
-    dependencies:
-      '@types/bn.js': 5.1.6
-      '@types/node': 18.19.76
+  '@stacks/common@7.0.2': {}
 
-  '@stacks/network@6.17.0':
+  '@stacks/network@7.0.2':
     dependencies:
-      '@stacks/common': 6.16.0
-      cross-fetch: 3.1.8
+      '@stacks/common': 7.0.2
+      cross-fetch: 3.2.0
     transitivePeerDependencies:
       - encoding
 
   '@stacks/stacks-blockchain-api-types@7.14.1': {}
 
-  '@stacks/transactions@6.17.0':
+  '@stacks/transactions@7.0.4':
     dependencies:
       '@noble/hashes': 1.1.5
       '@noble/secp256k1': 1.7.1
-      '@stacks/common': 6.16.0
-      '@stacks/network': 6.17.0
+      '@stacks/common': 7.0.2
+      '@stacks/network': 7.0.2
       c32check: 2.0.0
       lodash.clonedeep: 4.5.0
     transitivePeerDependencies:
@@ -8188,10 +8184,6 @@ snapshots:
       '@types/node': 22.13.4
     optional: true
 
-  '@types/bn.js@5.1.6':
-    dependencies:
-      '@types/node': 22.13.4
-
   '@types/connect@3.4.36':
     dependencies:
       '@types/node': 22.13.4
@@ -8235,10 +8227,6 @@ snapshots:
       '@types/node': 22.13.4
 
   '@types/node@12.20.55': {}
-
-  '@types/node@18.19.76':
-    dependencies:
-      undici-types: 5.26.5
 
   '@types/node@20.14.14':
     dependencies:
@@ -8934,7 +8922,7 @@ snapshots:
 
   croner@9.0.0: {}
 
-  cross-fetch@3.1.8:
+  cross-fetch@3.2.0:
     dependencies:
       node-fetch: 2.7.0
     transitivePeerDependencies:
@@ -9026,10 +9014,10 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)):
+  db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)):
     optionalDependencies:
       '@libsql/client': 0.8.0
-      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)
+      drizzle-orm: 0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)
 
   debug@2.6.9:
     dependencies:
@@ -9114,16 +9102,16 @@ snapshots:
 
   dotenv@16.4.7: {}
 
-  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1):
+  drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1):
     optionalDependencies:
       '@libsql/client': 0.8.0
       '@opentelemetry/api': 1.9.0
-      '@prisma/client': 5.20.0(prisma@6.0.0)
+      '@prisma/client': 5.20.0(prisma@6.3.1(typescript@5.7.3))
       '@types/better-sqlite3': 7.6.11
       '@types/pg': 8.11.10
       '@types/react': 18.3.12
       postgres: 3.4.5
-      prisma: 6.0.0
+      prisma: 6.3.1(typescript@5.7.3)
       react: 18.3.1
 
   duplexer@0.1.2: {}
@@ -10483,7 +10471,7 @@ snapshots:
       h3: 1.15.0
       ufo: 1.5.3
 
-  nitropack@2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))(typescript@5.7.3):
+  nitropack@2.10.4(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1))(typescript@5.7.3):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.2
@@ -10507,7 +10495,7 @@ snapshots:
       cookie-es: 1.2.2
       croner: 9.0.0
       crossws: 0.3.1
-      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))
+      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 9.0.0
@@ -10550,7 +10538,7 @@ snapshots:
       unctx: 2.3.1
       unenv: 1.10.0
       unimport: 3.14.2(rollup@4.27.4)
-      unstorage: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)))(ioredis@5.4.1)
+      unstorage: 1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)))(ioredis@5.4.1)
       untyped: 1.5.1
       unwasm: 0.3.9
     transitivePeerDependencies:
@@ -10951,11 +10939,12 @@ snapshots:
 
   pretty-bytes@6.1.1: {}
 
-  prisma@6.0.0:
+  prisma@6.3.1(typescript@5.7.3):
     dependencies:
-      '@prisma/engines': 6.0.0
+      '@prisma/engines': 6.3.1
     optionalDependencies:
       fsevents: 2.3.3
+      typescript: 5.7.3
 
   process-nextick-args@2.0.1: {}
 
@@ -11830,7 +11819,7 @@ snapshots:
       acorn: 8.14.0
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1)))(ioredis@5.4.1):
+  unstorage@1.14.4(db0@0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1)))(ioredis@5.4.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -11841,7 +11830,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.0.0))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.0.0)(react@18.3.1))
+      db0: 0.2.1(@libsql/client@0.8.0)(drizzle-orm@0.33.0(@libsql/client@0.8.0)(@opentelemetry/api@1.9.0)(@prisma/client@5.20.0(prisma@6.3.1(typescript@5.7.3)))(@types/better-sqlite3@7.6.11)(@types/pg@8.11.10)(@types/react@18.3.12)(postgres@3.4.5)(prisma@6.3.1(typescript@5.7.3))(react@18.3.1))
       ioredis: 5.4.1
 
   untun@0.1.3:
