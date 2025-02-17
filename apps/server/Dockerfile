@@ -56,12 +56,12 @@ COPY --from=installer --chown=nitro:nodejs /app/apps/server/.output ./.output
 COPY --from=installer --chown=nitro:nodejs /app/apps/server/package.json ./package.json
 COPY --from=builder --chown=nitro:nodejs /app/apps/server/.env.production.local ./.env.production.local
 
-USER nitro
-
 # Setup sqlite on a separate volume
 RUN mkdir -p /data
 VOLUME /data
 ENV LOCAL_DATABASE_URL="/data/sqlite.db"
+
+USER nitro
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
