@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
 
 export default withSentryConfig(nextConfig, {
   silent: !process.env.CI,
+  telemetry: false,
   widenClientFileUpload: true,
   disableLogger: true,
-  automaticVercelMonitors: true,
 });
