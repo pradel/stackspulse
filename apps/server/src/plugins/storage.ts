@@ -8,7 +8,7 @@ export default defineNitroPlugin(async () => {
 
   const database = createDatabase(
     sqlite({
-      path: env.TURSO_DATABASE_URL,
+      path: env.LOCAL_DATABASE_URL,
     }),
   );
 
