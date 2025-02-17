@@ -10,24 +10,24 @@
     "deploy": "fly deploy --remote-only"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "1.25.1",
+    "@dotenvx/dotenvx": "1.36.0",
     "@libsql/client": "0.8.0",
-    "@sentry/node": "8.41.0",
-    "@stacks/blockchain-api-client": "8.2.2",
+    "@sentry/node": "8.54.0",
+    "@stacks/blockchain-api-client": "8.6.0",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
-    "@t3-oss/env-core": "0.11.1",
+    "@t3-oss/env-core": "0.12.0",
     "drizzle-orm": "0.33.0",
-    "h3": "1.13.0",
+    "h3": "1.15.0",
     "nitro-cors": "0.7.1",
     "postgres": "3.4.5",
     "twitter-api-v2": "1.18.2",
-    "unstorage": "1.13.1",
-    "zod": "3.23.8",
+    "unstorage": "1.14.4",
+    "zod": "3.24.2",
     "zod-validation-error": "3.4.0"
   },
   "devDependencies": {
     "nitropack": "2.10.4",
-    "prisma": "6.0.0"
+    "prisma": "6.3.1"
   }
 }

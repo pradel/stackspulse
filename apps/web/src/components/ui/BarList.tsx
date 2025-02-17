@@ -1,3 +1,5 @@
+"use client";
+
 // Inspired by https://github.com/tremorlabs/tremor/blob/bd6566b814d907e130b6827194def10b5bc3661f/src/components/vis-elements/BarList/BarList.tsx
 import { cn } from "@/lib/cn";
 import { Spinner, Text } from "@radix-ui/themes";
