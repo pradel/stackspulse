@@ -58,6 +58,11 @@ COPY --from=builder --chown=nitro:nodejs /app/apps/server/.env.production.local 
 
 USER nitro
 
+# Setup sqlite on a separate volume
+RUN mkdir -p /data
+VOLUME /data
+ENV TURSO_DATABASE_URL="/data/sqlite.db"
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD dotenvx run -- node .output/server/index.mjs

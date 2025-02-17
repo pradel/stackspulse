@@ -1,31 +1,20 @@
+import { createDatabase } from "db0";
+import sqlite from "db0/connectors/better-sqlite3";
+import dbDriver from "unstorage/drivers/db0";
 import { env } from "~/env";
-import { unstorageTursoDriver } from "~/lib/unstorage-turso-driver";
 
 export default defineNitroPlugin(async () => {
   const storage = useStorage();
 
-  const driver = unstorageTursoDriver(
-    env.NODE_ENV === "development"
-      ? {
-          client: await import("@libsql/client").then((m) =>
-            m.createClient({
-              url: env.TURSO_DATABASE_URL,
-              authToken: env.TURSO_AUTH_TOKEN,
-            }),
-          ),
-        }
-      : {
-          config: {
-            url: env.TURSO_DATABASE_URL,
-            authToken: env.TURSO_AUTH_TOKEN,
-          },
-        },
+  const database = createDatabase(
+    sqlite({
+      path: env.TURSO_DATABASE_URL,
+    }),
   );
 
-  if (env.NODE_ENV === "development") {
-    // biome-ignore lint/suspicious/noExplicitAny: we know init exists
-    (driver as any).init();
-  }
+  const driver = dbDriver({
+    database,
+  });
 
   storage.mount("api", driver);
 });

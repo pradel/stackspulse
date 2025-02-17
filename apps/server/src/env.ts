@@ -8,7 +8,7 @@ export const env = createEnv({
     WEB_URL: z.string().url(),
     DATABASE_URL: z.string().url(),
     ADMIN_API_TOKEN: z.string(),
-    TURSO_DATABASE_URL: z.string().url(),
+    TURSO_DATABASE_URL: z.string(),
     TURSO_AUTH_TOKEN: z.string().optional(),
     SENTRY_DSN: z.string().url().optional(),
     COINGECKO_API_KEY: z.string(),
