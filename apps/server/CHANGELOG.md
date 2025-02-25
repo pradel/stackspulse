@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.20.2
+
+### Patch Changes
+
+- d7a9c53: Add new StackingDAO contracts.
+
 ## 0.20.1
 
 ### Patch Changes
