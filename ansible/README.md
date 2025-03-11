@@ -53,6 +53,8 @@ tmux new -s seed-chainstate
 ./scripts/seed-chainstate.sh
 ```
 
+To exit the tmux session while the script is running, press `CTRL + b` then `d`.
+
 To attach to the tmux session run:
 
 ```bash
