@@ -20,6 +20,8 @@ CREATE TABLE "blocks" (
     "tx_count" INTEGER NOT NULL DEFAULT 1,
     "block_time" INTEGER NOT NULL DEFAULT 0,
     "signer_bitvec" VARBIT,
+    "tenure_height" INTEGER,
+    "signer_signatures" BYTEA[],
 
     CONSTRAINT "blocks_pkey" PRIMARY KEY ("index_block_hash")
 );
@@ -687,6 +689,16 @@ CREATE TABLE "zonefiles" (
     CONSTRAINT "zonefiles_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "ft_balances" (
+    "id" BIGSERIAL NOT NULL,
+    "address" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "balance" DECIMAL NOT NULL,
+
+    CONSTRAINT "ft_balances_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE INDEX "blocks_block_hash_index" ON "blocks" USING HASH ("block_hash");
 
@@ -701,6 +713,9 @@ CREATE INDEX "blocks_burn_block_height_index" ON "blocks"("burn_block_height" DE
 
 -- CreateIndex
 CREATE INDEX "blocks_index_block_hash_index" ON "blocks" USING HASH ("index_block_hash");
+
+-- CreateIndex
+CREATE INDEX "blocks_signer_signatures_index" ON "blocks" USING GIN ("signer_signatures");
 
 -- CreateIndex
 CREATE INDEX "burnchain_rewards_burn_block_hash_index" ON "burnchain_rewards" USING HASH ("burn_block_hash");
@@ -1117,6 +1132,21 @@ CREATE INDEX "txs_token_transfer_recipient_address_index" ON "txs"("token_transf
 CREATE INDEX "txs_type_id_index" ON "txs"("type_id");
 
 -- CreateIndex
+CREATE INDEX "txs_block_time_index" ON "txs"("block_time");
+
+-- CreateIndex
+CREATE INDEX "txs_burn_block_time_index" ON "txs"("burn_block_time");
+
+-- CreateIndex
+CREATE INDEX "txs_contract_call_function_name_index" ON "txs"("contract_call_function_name");
+
+-- CreateIndex
+CREATE INDEX "txs_fee_rate_index" ON "txs"("fee_rate");
+
+-- CreateIndex
+CREATE INDEX "txs_nonce_index" ON "txs"("nonce");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "unique_tx_id_index_block_hash_microblock_hash" ON "txs"("tx_id", "index_block_hash", "microblock_hash");
 
 -- CreateIndex
@@ -1125,3 +1155,11 @@ CREATE INDEX "zonefiles_zonefile_hash_index" ON "zonefiles"("zonefile_hash");
 -- CreateIndex
 CREATE UNIQUE INDEX "unique_name_zonefile_hash_tx_id_index_block_hash" ON "zonefiles"("name", "zonefile_hash", "tx_id", "index_block_hash");
 
+-- CreateIndex
+CREATE INDEX "ft_balances_token_balance_index" ON "ft_balances"("token", "balance" DESC);
+
+-- CreateIndex
+CREATE INDEX "ft_balances_token_index" ON "ft_balances"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "unique_address_token" ON "ft_balances"("address", "token");
