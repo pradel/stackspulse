@@ -14,5 +14,7 @@ export const env = createEnv({
     WEBHOOK_PROXY_URL: z.string().url().optional(),
     // The API key for the Hiro services
     HIRO_API_KEY: z.string(),
+    // The key used to verify the chainhooks bearer token
+    CHAINHOOK_API_TOKEN: z.string(),
   },
 });
