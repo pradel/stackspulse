@@ -15,6 +15,21 @@ export default defineEventHandler(async (event) => {
 
   consola.log("Received chainhook webhook");
 
+  for (const bundle of chainhook.apply) {
+    const events = bundle.transactions
+      .flatMap((transaction) =>
+        "receipt" in transaction.metadata
+          ? transaction.metadata.receipt.events
+          : [],
+      )
+      // This is separate step to narrow down the type of event for typescript
+      .filter((event) => event.type === "SmartContractEvent")
+      // Get all the events that are coming from the contract we watch in this chainhook
+      .filter((event) => event.data.topic === "print");
+
+    console.log("events", events);
+  }
+
   return {
     success: true,
   };
