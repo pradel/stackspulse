@@ -15,7 +15,9 @@
   "dependencies": {
     "@dotenvx/dotenvx": "1.39.0",
     "@prisma/client": "6.5.0",
-    "prisma": "6.5.0"
+    "@t3-oss/env-core": "0.12.0",
+    "prisma": "6.5.0",
+    "zod": "3.24.2"
   },
   "devDependencies": {
     "nitropack": "2.11.7"

@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/client"
 }
 
 datasource db {
@@ -13,7 +14,29 @@ model Transaction {
   timestamp   BigInt @map("timestamp")
 }
 
-// model Pool {
-//   id      String @id @map("id")
-//   txCount BigInt @map("tx_count")
-// }
+model Token {
+  // token address
+  id            String @id @map("id")
+  // token decimals
+  decimals      Int    @map("decimals")
+  // transactions across all pools that include this token
+  txCount       BigInt @map("tx_count")
+  // number of pools containing this token
+  poolCount     Int    @map("pool_count")
+  // pools where this token is token0
+  poolsAsToken0 Pool[] @relation("PoolToken0")
+  // pools where this token is token1
+  poolsAsToken1 Pool[] @relation("PoolToken1")
+}
+
+model Pool {
+  id       String @id @map("id")
+  // first token in the pool
+  token0Id String @map("token0_id")
+  token0   Token  @relation("PoolToken0", fields: [token0Id], references: [id])
+  // second token in the pool
+  token1Id String @map("token1_id")
+  token1   Token  @relation("PoolToken1", fields: [token1Id], references: [id])
+  // all time number of transactions
+  txCount  BigInt @map("tx_count")
+}
