@@ -91,6 +91,12 @@ importers:
       '@prisma/client':
         specifier: 6.5.0
         version: 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
+      '@stacks/blockchain-api-client':
+        specifier: 8.7.0
+        version: 8.7.0
+      '@stacks/transactions':
+        specifier: 7.0.5
+        version: 7.0.5
       '@t3-oss/env-core':
         specifier: 0.12.0
         version: 0.12.0(typescript@5.8.2)(zod@3.24.2)
@@ -9503,7 +9509,7 @@ snapshots:
 
   c32check@2.0.0:
     dependencies:
-      '@noble/hashes': 1.1.5
+      '@noble/hashes': 1.7.1
       base-x: 4.0.1
 
   call-bind-apply-helpers@1.0.2:

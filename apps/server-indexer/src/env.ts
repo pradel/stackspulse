@@ -12,7 +12,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     // Only used in development, the URL to proxy the various webhooks we receive
     WEBHOOK_PROXY_URL: z.string().url().optional(),
-    // The key used to verify the chainhooks bearer token
-    CHAINHOOK_API_TOKEN: z.string(),
+    // The API key for the Hiro services
+    HIRO_API_KEY: z.string(),
   },
 });
