@@ -1,0 +1,18 @@
+{
+  "name": "@stackspulse/server",
+  "version": "0.20.2",
+  "private": true,
+  "scripts": {
+    "build": "nitro build",
+    "dev": "nitro dev",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "1.39.0"
+  },
+  "devDependencies": {
+    "nitropack": "2.11.7",
+    "prisma": "6.5.0"
+  }
+}
