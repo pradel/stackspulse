@@ -8,8 +8,6 @@ export const getOrCreateToken = async (tokenAddress: string) => {
 
   if (token) return token;
 
-  // TODO call function to get decimals
-  const decimals = 8;
   const [contractAddress, contractName] = tokenAddress.split(".");
   const decimalsResult = await fetchCallReadOnlyFunction({
     contractAddress,
@@ -18,7 +16,10 @@ export const getOrCreateToken = async (tokenAddress: string) => {
     functionArgs: [],
     senderAddress: "SP2X0TZ59D5SZ8ACQ6YMCHHNR2ZN51Z32E2CJ173",
   });
-  console.log("decimalsResult", decimalsResult);
+  if (decimalsResult.type !== "ok" || decimalsResult.value.type !== "uint") {
+    throw new Error("Failed to fetch decimals");
+  }
+  const decimals = Number(decimalsResult.value.value);
 
   const newToken = await prisma.token.create({
     data: {
