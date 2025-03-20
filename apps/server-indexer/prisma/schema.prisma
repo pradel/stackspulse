@@ -17,6 +17,10 @@ model Transaction {
 model Token {
   // token address
   id            String @id @map("id")
+  // token symbol
+  symbol        String @map("symbol")
+  // token name
+  name          String @map("name")
   // token decimals
   decimals      Int    @map("decimals")
   // transactions across all pools that include this token
