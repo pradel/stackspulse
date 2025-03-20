@@ -50,10 +50,10 @@ importers:
         version: 11.9.1
       db0:
         specifier: 0.2.4
-        version: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
+        version: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
       drizzle-orm:
         specifier: 0.39.3
-        version: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
+        version: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
       h3:
         specifier: 1.15.0
         version: 1.15.0
@@ -68,7 +68,7 @@ importers:
         version: 1.18.2
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0)
+        version: 1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -78,7 +78,7 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.11.7
-        version: 2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2)
+        version: 2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2)
       prisma:
         specifier: 6.5.0
         version: 6.5.0(typescript@5.8.2)
@@ -88,13 +88,16 @@ importers:
       '@dotenvx/dotenvx':
         specifier: 1.39.0
         version: 1.39.0
-    devDependencies:
-      nitropack:
-        specifier: 2.11.7
-        version: 2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2)
+      '@prisma/client':
+        specifier: 6.5.0
+        version: 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
       prisma:
         specifier: 6.5.0
         version: 6.5.0(typescript@5.8.2)
+    devDependencies:
+      nitropack:
+        specifier: 2.11.7
+        version: 2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2)
 
   apps/web:
     dependencies:
@@ -172,7 +175,7 @@ importers:
         version: 1.0.7(tailwindcss@3.4.15)
       unstorage:
         specifier: 1.14.4
-        version: 1.14.4(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)))(ioredis@5.6.0)
+        version: 1.14.4(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -1432,6 +1435,18 @@ packages:
   '@poppinss/exception@1.2.1':
     resolution: {integrity: sha512-aQypoot0HPSJa6gDPEPTntc1GT6QINrSbgRlRhadGW2WaYqUK3tK4Bw9SBMZXhmxd3GeAlZjVcODHgiu+THY7A==}
     engines: {node: '>=18'}
+
+  '@prisma/client@6.5.0':
+    resolution: {integrity: sha512-M6w1Ql/BeiGoZmhMdAZUXHu5sz5HubyVcKukbLs3l0ELcQb8hTUJxtGEChhv4SVJ0QJlwtLnwOLgIRQhpsm9dw==}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
 
   '@prisma/config@6.5.0':
     resolution: {integrity: sha512-sOH/2Go9Zer67DNFLZk6pYOHj+rumSb0VILgltkoxOjYnlLqUpHPAN826vnx8HigqnOCxj9LRhT6U7uLiIIWgw==}
@@ -7642,6 +7657,11 @@ snapshots:
 
   '@poppinss/exception@1.2.1': {}
 
+  '@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)':
+    optionalDependencies:
+      prisma: 6.5.0(typescript@5.8.2)
+      typescript: 5.8.2
+
   '@prisma/config@6.5.0':
     dependencies:
       esbuild: 0.25.1
@@ -9732,17 +9752,17 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))):
+  db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))):
     optionalDependencies:
       '@libsql/client': 0.14.0
       better-sqlite3: 11.9.1
-      drizzle-orm: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
+      drizzle-orm: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
 
-  db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)):
+  db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))):
     optionalDependencies:
       '@libsql/client': 0.14.0
       better-sqlite3: 11.9.1
-      drizzle-orm: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
+      drizzle-orm: 0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))
 
   debug@2.6.9:
     dependencies:
@@ -9832,10 +9852,11 @@ snapshots:
 
   dotenv@16.4.7: {}
 
-  drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)):
+  drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)):
     optionalDependencies:
       '@libsql/client': 0.14.0
       '@opentelemetry/api': 1.9.0
+      '@prisma/client': 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
       '@types/better-sqlite3': 7.6.12
       '@types/pg': 8.6.1
       better-sqlite3: 11.9.1
@@ -11216,7 +11237,7 @@ snapshots:
       h3: 1.15.0
       ufo: 1.5.4
 
-  nitropack@2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2):
+  nitropack@2.11.7(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))(typescript@5.8.2):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@netlify/functions': 3.0.4
@@ -11238,7 +11259,7 @@ snapshots:
       cookie-es: 2.0.0
       croner: 9.0.0
       crossws: 0.3.4
-      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5))
+      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 9.0.0
@@ -11285,7 +11306,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       unimport: 4.1.2
       unplugin-utils: 0.2.4
-      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0)
+      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.6
@@ -12723,7 +12744,7 @@ snapshots:
       acorn: 8.14.1
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0):
+  unstorage@1.14.4(db0@0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -12734,10 +12755,10 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
+      db0: 0.2.4(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
       ioredis: 5.6.0
 
-  unstorage@1.14.4(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)))(ioredis@5.6.0):
+  unstorage@1.14.4(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -12748,10 +12769,10 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5))
+      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
       ioredis: 5.6.0
 
-  unstorage@1.15.0(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0):
+  unstorage@1.15.0(db0@0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2))))(ioredis@5.6.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -12762,7 +12783,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5))
+      db0: 0.3.1(@libsql/client@0.14.0)(better-sqlite3@11.9.1)(drizzle-orm@0.39.3(@libsql/client@0.14.0)(@opentelemetry/api@1.9.0)(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2))(@types/better-sqlite3@7.6.12)(@types/pg@8.6.1)(better-sqlite3@11.9.1)(postgres@3.4.5)(prisma@6.5.0(typescript@5.8.2)))
       ioredis: 5.6.0
 
   untun@0.1.3:

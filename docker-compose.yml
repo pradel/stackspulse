@@ -18,7 +18,7 @@ services:
       timeout: 5s
       retries: 10
 
-  server:
+  server-indexer:
     build:
       context: ./
       dockerfile: ./apps/server-indexer/Dockerfile.dev
@@ -36,6 +36,9 @@ services:
           action: rebuild
         - path: ./apps/server-indexer/prisma
           action: rebuild
+        - path: ./apps/server-indexer/.env.development.local
+          target: /app/apps/server-indexer/.env.development.local
+          action: sync+restart
         - path: ./apps/server-indexer/
           target: /app/apps/server-indexer
           action: sync
@@ -47,9 +50,9 @@ services:
     image: cloudflare/cloudflared:2025.2.1
     container_name: cloudflared
     restart: unless-stopped
-    command: tunnel --url http://server:3001
-    # depends_on:
-    #   - server
+    command: tunnel --url http://server-indexer:3001
+    depends_on:
+      - server-indexer
     networks:
       - stackspulse-network
 
