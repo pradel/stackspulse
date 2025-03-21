@@ -1,4 +1,5 @@
 import type { Payload } from "@hirosystems/chainhook-client";
+import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
 
@@ -13,8 +14,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  consola.log("Received chainhook webhook");
-
   for (const bundle of chainhook.apply) {
     const events = bundle.transactions
       .flatMap((transaction) =>
@@ -26,8 +25,20 @@ export default defineEventHandler(async (event) => {
       .filter((event) => event.type === "SmartContractEvent")
       // Get all the events that are coming from the contract we watch in this chainhook
       .filter((event) => event.data.topic === "print");
+    consola.debug(
+      "block:",
+      bundle.block_identifier.index,
+      ", events: ",
+      events.length,
+    );
 
-    console.log("events", events);
+    for (const event of events) {
+      // biome-ignore lint: using any cast intentionally
+      if (handlePoolCreated.trigger(event.data as any)) {
+        // biome-ignore lint: using any cast intentionally
+        await handlePoolCreated.handler((event.data as any).value);
+      }
+    }
   }
 
   return {
