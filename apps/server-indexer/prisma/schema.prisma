@@ -31,6 +31,10 @@ model Token {
   poolsAsToken0 Pool[] @relation("PoolToken0")
   // pools where this token is token1
   poolsAsToken1 Pool[] @relation("PoolToken1")
+  // pools where this token is token0
+  swapsAsToken0 Swap[] @relation("SwapToken0")
+  // pools where this token is token1
+  swapsAsToken1 Swap[] @relation("SwapToken1")
 }
 
 model Pool {
@@ -43,4 +47,25 @@ model Pool {
   token1   Token  @relation("PoolToken1", fields: [token1Id], references: [id])
   // all time number of transactions
   txCount  BigInt @map("tx_count")
+  swaps    Swap[]
+}
+
+model Swap {
+  // transaction hash + "#" + index in swaps Transaction array
+  id       String @id @map("id")
+  // pool swap occured within
+  poolId   String @map("pool_id")
+  pool     Pool   @relation(fields: [poolId], references: [id])
+  // token swapped in
+  token0Id String @map("token0_id")
+  token0   Token  @relation("SwapToken0", fields: [token0Id], references: [id])
+  // token swapped out
+  token1Id String @map("token1_id")
+  token1   Token  @relation("SwapToken1", fields: [token1Id], references: [id])
+  // delta of token0
+  amount0  BigInt @map("amount0")
+  // delta of token1
+  amount1  BigInt @map("amount1")
+  // index within the txn
+  txIndex  Int    @map("tx_index")
 }
