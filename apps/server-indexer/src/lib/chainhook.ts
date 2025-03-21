@@ -1,9 +1,8 @@
+import type { Predicate } from "@hirosystems/chainhook-client";
 import { env } from "~/env";
 import { consola } from "./consola";
 
-export const getChainhooks = async (): Promise<
-  { name: string; uuid: string }[]
-> => {
+export const getChainhooks = async (): Promise<Predicate[]> => {
   const chainhooks = await fetch(
     `https://api.platform.hiro.so/v1/ext/${env.HIRO_API_KEY}/chainhooks`,
     {
