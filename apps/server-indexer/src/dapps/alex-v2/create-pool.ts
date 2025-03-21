@@ -26,15 +26,22 @@ export const handlePoolCreated = {
       value.action === "created"
     );
   },
-  handler: async (event: PoolCreatedEvent) => {
+  handler: async (event: {
+    tx_id: string;
+    tx_index: number;
+    data: {
+      contract_identifier: string;
+      value: PoolCreatedEvent;
+    };
+  }) => {
     const [token0, token1] = await Promise.all([
-      getOrCreateToken(event["token-x"]),
-      getOrCreateToken(event["token-y"]),
+      getOrCreateToken(event.data.value["token-x"]),
+      getOrCreateToken(event.data.value["token-y"]),
     ]);
 
     await prisma.pool.create({
       data: {
-        id: `alex-v2-${event.data["pool-id"]}`,
+        id: `alex-v2-${event.data.value.data["pool-id"]}`,
         token0Id: token0.id,
         token1Id: token1.id,
         txCount: 0,

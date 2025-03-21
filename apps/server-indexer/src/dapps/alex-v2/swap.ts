@@ -28,15 +28,22 @@ export const handleSwap = {
       (value.action === "swap-x-for-y" || value.action === "swap-y-for-x")
     );
   },
-  handler: async (event: SwapEvent) => {
+  handler: async (event: {
+    tx_id: string;
+    tx_index: number;
+    data: {
+      contract_identifier: string;
+      value: SwapEvent;
+    };
+  }) => {
     const [token0, token1] = await Promise.all([
-      getOrCreateToken(event["token-x"]),
-      getOrCreateToken(event["token-y"]),
+      getOrCreateToken(event.data.value["token-x"]),
+      getOrCreateToken(event.data.value["token-y"]),
     ]);
 
     const pool = await prisma.pool.findUniqueOrThrow({
       where: {
-        id: `alex-v2-${event.data["pool-id"]}`,
+        id: `alex-v2-${event.data.value.data["pool-id"]}`,
       },
     });
 
@@ -53,13 +60,19 @@ export const handleSwap = {
 
     await prisma.swap.create({
       data: {
-        id: `TODO-${event.data["pool-id"]}`,
-        amount0: event.action === "swap-x-for-y" ? event.dx : event.dy,
-        amount1: event.action === "swap-x-for-y" ? event.dy : event.dx,
+        id: `${event.tx_id}-${event.tx_index}`,
+        amount0:
+          event.data.value.action === "swap-x-for-y"
+            ? event.data.value.dx
+            : event.data.value.dy,
+        amount1:
+          event.data.value.action === "swap-x-for-y"
+            ? event.data.value.dy
+            : event.data.value.dx,
         token0Id: token0.id,
         token1Id: token1.id,
         poolId: pool.id,
-        txIndex: event.txIndex,
+        txIndex: event.tx_index,
       },
     });
   },

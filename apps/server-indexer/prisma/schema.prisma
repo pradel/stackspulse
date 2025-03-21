@@ -51,7 +51,7 @@ model Pool {
 }
 
 model Swap {
-  // transaction hash + "#" + index in swaps Transaction array
+  // transaction hash + "-" + index in swaps Transaction array
   id       String @id @map("id")
   // pool swap occured within
   poolId   String @map("pool_id")

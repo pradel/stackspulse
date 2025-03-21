@@ -15,16 +15,20 @@ export default defineEventHandler(async (event) => {
   }
 
   for (const bundle of chainhook.apply) {
-    const events = bundle.transactions
-      .flatMap((transaction) =>
-        "receipt" in transaction.metadata
-          ? transaction.metadata.receipt.events
-          : [],
-      )
-      // This is separate step to narrow down the type of event for typescript
-      .filter((event) => event.type === "SmartContractEvent")
-      // Get all the events that are coming from the contract we watch in this chainhook
-      .filter((event) => event.data.topic === "print");
+    const events = bundle.transactions.flatMap((transaction) =>
+      "receipt" in transaction.metadata
+        ? transaction.metadata.receipt.events
+            // This is separate step to narrow down the type of event for typescript
+            .filter((event) => event.type === "SmartContractEvent")
+            // Get all the events that are coming from the contract we watch in this chainhook
+            .filter((event) => event.data.topic === "print")
+            .map((event) => ({
+              ...event,
+              tx_index: event.position.index,
+              tx_id: transaction.transaction_identifier.hash,
+            }))
+        : [],
+    );
 
     consola.debug(
       "block:",
@@ -37,7 +41,7 @@ export default defineEventHandler(async (event) => {
       // biome-ignore lint: using any cast intentionally
       if (handlePoolCreated.trigger(event.data as any)) {
         // biome-ignore lint: using any cast intentionally
-        await handlePoolCreated.handler((event.data as any).value);
+        await handlePoolCreated.handler(event as any);
       }
     }
   }
