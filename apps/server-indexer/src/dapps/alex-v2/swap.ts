@@ -1,3 +1,4 @@
+import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 import { getOrCreateToken } from "~/lib/token";
 
@@ -58,9 +59,10 @@ export const handleSwap = {
       },
     });
 
+    const swapId = `${event.tx_id}-${event.tx_index}`;
     await prisma.swap.create({
       data: {
-        id: `${event.tx_id}-${event.tx_index}`,
+        id: swapId,
         amount0:
           event.data.value.action === "swap-x-for-y"
             ? event.data.value.dx
@@ -75,5 +77,7 @@ export const handleSwap = {
         txIndex: event.tx_index,
       },
     });
+
+    consola.debug(`Created swap ${swapId}`);
   },
 };

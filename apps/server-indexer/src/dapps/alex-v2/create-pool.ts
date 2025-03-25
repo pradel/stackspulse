@@ -1,3 +1,4 @@
+import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 import { getOrCreateToken } from "~/lib/token";
 
@@ -39,13 +40,16 @@ export const handlePoolCreated = {
       getOrCreateToken(event.data.value["token-y"]),
     ]);
 
+    const poolId = `alex-v2-${event.data.value.data["pool-id"]}`;
     await prisma.pool.create({
       data: {
-        id: `alex-v2-${event.data.value.data["pool-id"]}`,
+        id: poolId,
         token0Id: token0.id,
         token1Id: token1.id,
         txCount: 0,
       },
     });
+
+    consola.debug(`Created pool ${poolId}`);
   },
 };
