@@ -1,5 +1,5 @@
-import { fetchCallReadOnlyFunction } from "@stacks/transactions";
 import { prisma } from "./prisma";
+import { fetchCallReadOnlyFunctionRetry } from "./stacks";
 
 export const getOrCreateToken = async (tokenAddress: string) => {
   const token = await prisma.token.findUnique({
@@ -10,9 +10,7 @@ export const getOrCreateToken = async (tokenAddress: string) => {
 
   const [contractAddress, contractName] = tokenAddress.split(".");
 
-  // TODO retry mechanism for fetchCallReadOnlyFunctions in this file
-
-  const symbolResult = await fetchCallReadOnlyFunction({
+  const symbolResult = await fetchCallReadOnlyFunctionRetry({
     contractAddress,
     contractName,
     functionName: "get-symbol",
@@ -24,7 +22,7 @@ export const getOrCreateToken = async (tokenAddress: string) => {
   }
   const symbol = symbolResult.value.value;
 
-  const nameResult = await fetchCallReadOnlyFunction({
+  const nameResult = await fetchCallReadOnlyFunctionRetry({
     contractAddress,
     contractName,
     functionName: "get-name",
@@ -36,7 +34,7 @@ export const getOrCreateToken = async (tokenAddress: string) => {
   }
   const name = nameResult.value.value;
 
-  const decimalsResult = await fetchCallReadOnlyFunction({
+  const decimalsResult = await fetchCallReadOnlyFunctionRetry({
     contractAddress,
     contractName,
     functionName: "get-decimals",
