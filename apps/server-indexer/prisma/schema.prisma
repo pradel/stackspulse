@@ -68,6 +68,8 @@ model Swap {
   // token swapped out
   token1Id String @map("token1_id")
   token1   Token  @relation("SwapToken1", fields: [token1Id], references: [id])
+  // sender of the swap
+  sender   String @map("sender")
   // delta of token0
   amount0  BigInt @map("amount0")
   // delta of token1

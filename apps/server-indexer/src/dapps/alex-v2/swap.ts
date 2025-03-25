@@ -82,6 +82,7 @@ export const handleSwap = {
       token1Id: token1.id,
       poolId: pool.id,
       txIndex: event.tx_index,
+      sender: event.data.value.sender,
     };
     await prisma.swap.upsert({
       where: {

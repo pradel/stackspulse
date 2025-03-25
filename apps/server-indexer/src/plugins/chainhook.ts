@@ -20,7 +20,8 @@ const predicate = {
         },
       },
       decode_clarity_values: true,
-      start_block: 1,
+      // 152420 is the block height for the alex contract deployment
+      start_block: 152420,
     },
   },
 } satisfies Omit<Predicate, "uuid">;
