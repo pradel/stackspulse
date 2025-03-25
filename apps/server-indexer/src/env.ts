@@ -10,6 +10,8 @@ export const env = createEnv({
     NODE_ENV: z.enum(["production", "development"]),
     // The URL to the Postgres database
     DATABASE_URL: z.string().url(),
+    // The URL to the API server
+    API_URL: z.string().url(),
     // Only used in development, the URL to proxy the various webhooks we receive
     WEBHOOK_PROXY_URL: z.string().url().optional(),
     // The API key for the Hiro services

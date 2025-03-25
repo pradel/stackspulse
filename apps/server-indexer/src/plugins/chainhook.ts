@@ -15,7 +15,7 @@ const predicate = {
       },
       then_that: {
         http_post: {
-          url: `${env.WEBHOOK_PROXY_URL}/api/chainhook/webhook`,
+          url: `${env.WEBHOOK_PROXY_URL || env.API_URL}/api/chainhook/webhook`,
           authorization_header: `Bearer ${env.CHAINHOOK_API_TOKEN}`,
         },
       },
