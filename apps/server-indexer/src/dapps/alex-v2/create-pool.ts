@@ -11,6 +11,10 @@ interface PoolCreatedEvent {
 }
 // Some blocks that can be tested 155991, 155995, 780604
 // Example: https://explorer.hiro.so/txid/0x4e43f10dfd1bc243eccd454afb96e9f027fe2afb665c63fc0e4c00c050c07284?chain=mainnet
+/**
+ * Contracts:
+ * - SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-registry-v2-01 => 152429
+ */
 export const handlePoolCreated = {
   trigger: ({
     contract_identifier,
