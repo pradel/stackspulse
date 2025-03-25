@@ -2,6 +2,7 @@
   "name": "@stackspulse/server-indexer",
   "version": "0.20.2",
   "private": true,
+  "packageManager": "pnpm@9.15.5",
   "scripts": {
     "build": "nitro build",
     "db:generate": "prisma generate",
