@@ -5,7 +5,6 @@ dist
 .cache
 .output
 .env
-generated
 
 # local env files
 .env*.local
