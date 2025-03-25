@@ -10,6 +10,8 @@ export const getOrCreateToken = async (tokenAddress: string) => {
 
   const [contractAddress, contractName] = tokenAddress.split(".");
 
+  // TODO retry mechanism for fetchCallReadOnlyFunctions in this file
+
   const symbolResult = await fetchCallReadOnlyFunction({
     contractAddress,
     contractName,
