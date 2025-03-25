@@ -4,13 +4,19 @@ import { getOrCreateToken } from "~/lib/token";
 
 interface SwapEvent {
   action: "swap-x-for-y" | "swap-y-for-x";
-  "token-x": string;
-  "token-y": string;
-  dx: number;
-  dy: number;
   data: {
+    "balance-x": number;
+    "balance-y": number;
     "pool-id": number;
   };
+  dx: number;
+  dy: number;
+  "fee-rebate": number;
+  fee: number;
+  object: "pool";
+  sender: string;
+  "token-x": string;
+  "token-y": string;
 }
 
 // Example: https://explorer.hiro.so/txid/0x13fc43f33cf8c921edbc49971d6196c45c5cc8767b5206e2b13d3f0e131bacd7?chain=mainnet
