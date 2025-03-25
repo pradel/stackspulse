@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.39.0",
-    "@sentry/node": "9.7.0",
+    "@sentry/node": "9.9.0",
     "@stacks/blockchain-api-client": "8.7.0",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
@@ -19,7 +19,7 @@
     "better-sqlite3": "11.9.1",
     "db0": "0.2.4",
     "drizzle-orm": "0.39.3",
-    "h3": "1.15.0",
+    "h3": "1.15.1",
     "nitro-cors": "0.7.1",
     "postgres": "3.4.5",
     "twitter-api-v2": "1.18.2",
