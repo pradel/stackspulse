@@ -9,14 +9,15 @@ datasource db {
 }
 
 model Block {
-  height    BigInt @id @map("height")
-  timestamp Int    @map("timestamp")
+  height       BigInt        @id @map("height")
+  timestamp    Int           @map("timestamp")
+  transactions Transaction[] @relation("BlockTransactions")
 }
 
 model Transaction {
   id          String @id @map("id")
   blockHeight BigInt @map("block_height")
-  timestamp   BigInt @map("timestamp")
+  block       Block  @relation("BlockTransactions", fields: [blockHeight], references: [height])
 }
 
 model Token {
