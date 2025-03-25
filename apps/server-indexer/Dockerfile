@@ -39,8 +39,6 @@ COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 RUN pnpm install --frozen-lockfile --prod=false
 
 COPY --from=builder /app/out/full/ .
-# Copy contracts source to avoid cyclic dependency
-COPY --from=builder /app/apps/contracts ./apps/contracts
 COPY turbo.json turbo.json
 
 WORKDIR /app/apps/$APP_NAME
