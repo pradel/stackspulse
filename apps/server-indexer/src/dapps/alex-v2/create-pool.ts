@@ -9,8 +9,7 @@ interface PoolCreatedEvent {
     "pool-id": number;
   };
 }
-
-// Some blocks that can be tested 155991, 155995
+// Some blocks that can be tested 155991, 155995, 780604
 // Example: https://explorer.hiro.so/txid/0x4e43f10dfd1bc243eccd454afb96e9f027fe2afb665c63fc0e4c00c050c07284?chain=mainnet
 export const handlePoolCreated = {
   trigger: ({
@@ -41,13 +40,18 @@ export const handlePoolCreated = {
     ]);
 
     const poolId = `alex-v2-${event.data.value.data["pool-id"]}`;
-    await prisma.pool.create({
-      data: {
+    const poolData = {
+      id: poolId,
+      token0Id: token0.id,
+      token1Id: token1.id,
+      txCount: 0,
+    };
+    await prisma.pool.upsert({
+      where: {
         id: poolId,
-        token0Id: token0.id,
-        token1Id: token1.id,
-        txCount: 0,
       },
+      create: poolData,
+      update: poolData,
     });
 
     consola.debug(`Created pool ${poolId}`);

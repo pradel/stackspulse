@@ -46,15 +46,18 @@ export const getOrCreateToken = async (tokenAddress: string) => {
   }
   const decimals = Number(decimalsResult.value.value);
 
-  const newToken = await prisma.token.create({
-    data: {
-      id: tokenAddress,
-      symbol,
-      name,
-      decimals,
-      txCount: 0,
-      poolCount: 0,
-    },
+  const tokenData = {
+    id: tokenAddress,
+    symbol,
+    name,
+    decimals,
+    txCount: 0,
+    poolCount: 0,
+  };
+  const newToken = await prisma.token.upsert({
+    where: { id: tokenAddress },
+    create: tokenData,
+    update: tokenData,
   });
 
   return newToken;
