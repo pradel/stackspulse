@@ -62,7 +62,7 @@ COPY --from=installer --chown=nitro:nodejs /app/apps/$APP_NAME/package.json ./pa
 COPY --from=installer --chown=nitro:nodejs /app/apps/$APP_NAME/scripts ./scripts
 COPY --from=installer --chown=nitro:nodejs /app/apps/$APP_NAME/prisma ./prisma
 COPY --from=builder --chown=nitro:nodejs /app/apps/$APP_NAME/.env.production.local ./.env.production.local
-RUN node scripts/prod-deps.js
+RUN node scripts/prod-deps.cjs
 RUN pnpm install
 
 USER nitro
