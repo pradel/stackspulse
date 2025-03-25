@@ -17,6 +17,8 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
+    networks:
+      - stackspulse-network
 
   server-indexer:
     build:
@@ -45,12 +47,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - stackspulse-network
 
   cloudflared:
     image: cloudflare/cloudflared:2025.2.1
     container_name: cloudflared
     restart: unless-stopped
-    command: tunnel --url http://host.docker.internal:3001
+    command: tunnel --url http://server-indexer:3001
     depends_on:
       - server-indexer
     networks:
