@@ -60,22 +60,27 @@ export const handleSwap = {
     });
 
     const swapId = `${event.tx_id}-${event.tx_index}`;
-    await prisma.swap.create({
-      data: {
+    const swapData = {
+      id: swapId,
+      amount0:
+        event.data.value.action === "swap-x-for-y"
+          ? event.data.value.dx
+          : event.data.value.dy,
+      amount1:
+        event.data.value.action === "swap-x-for-y"
+          ? event.data.value.dy
+          : event.data.value.dx,
+      token0Id: token0.id,
+      token1Id: token1.id,
+      poolId: pool.id,
+      txIndex: event.tx_index,
+    };
+    await prisma.swap.upsert({
+      where: {
         id: swapId,
-        amount0:
-          event.data.value.action === "swap-x-for-y"
-            ? event.data.value.dx
-            : event.data.value.dy,
-        amount1:
-          event.data.value.action === "swap-x-for-y"
-            ? event.data.value.dy
-            : event.data.value.dx,
-        token0Id: token0.id,
-        token1Id: token1.id,
-        poolId: pool.id,
-        txIndex: event.tx_index,
       },
+      create: swapData,
+      update: swapData,
     });
 
     consola.debug(`Created swap ${swapId}`);
