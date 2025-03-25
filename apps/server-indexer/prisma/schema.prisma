@@ -8,6 +8,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Block {
+  height    BigInt @id @map("height")
+  timestamp Int    @map("timestamp")
+}
+
 model Transaction {
   id          String @id @map("id")
   blockHeight BigInt @map("block_height")

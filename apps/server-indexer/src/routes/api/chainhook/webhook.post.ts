@@ -1,7 +1,18 @@
 import type { Payload } from "@hirosystems/chainhook-client";
 import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
+import { handleSwap } from "~/dapps/alex-v2/swap";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
+import { prisma } from "~/lib/prisma";
+
+type Operation = {
+  // biome-ignore lint: using any cast intentionally
+  trigger: (data: any) => boolean;
+  // biome-ignore lint: using any cast intentionally
+  handler: (event: any) => Promise<void>;
+};
+
+const operations: Operation[] = [handlePoolCreated, handleSwap];
 
 export default defineEventHandler(async (event) => {
   const chainhook = await readBody<Payload>(event);
@@ -37,11 +48,26 @@ export default defineEventHandler(async (event) => {
       events.length,
     );
 
+    const blockData = {
+      height: bundle.block_identifier.index,
+      timestamp: bundle.timestamp,
+    };
+    await prisma.block.upsert({
+      where: {
+        height: bundle.block_identifier.index,
+      },
+      create: blockData,
+      update: blockData,
+    });
+
     for (const event of events) {
-      // biome-ignore lint: using any cast intentionally
-      if (handlePoolCreated.trigger(event.data as any)) {
+      // Process all operations for each event
+      for (const operation of operations) {
         // biome-ignore lint: using any cast intentionally
-        await handlePoolCreated.handler(event as any);
+        if (operation.trigger(event.data as any)) {
+          // biome-ignore lint: using any cast intentionally
+          await operation.handler(event as any);
+        }
       }
     }
   }
