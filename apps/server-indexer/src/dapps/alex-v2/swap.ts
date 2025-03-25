@@ -60,16 +60,18 @@ export const handleSwap = {
     });
 
     const swapId = `${event.tx_id}-${event.tx_index}`;
+    const amount0 =
+      event.data.value.action === "swap-x-for-y"
+        ? BigInt(event.data.value.dx)
+        : BigInt(event.data.value.dy);
+    const amount1 =
+      event.data.value.action === "swap-x-for-y"
+        ? BigInt(event.data.value.dy)
+        : BigInt(event.data.value.dx);
     const swapData = {
       id: swapId,
-      amount0:
-        event.data.value.action === "swap-x-for-y"
-          ? event.data.value.dx
-          : event.data.value.dy,
-      amount1:
-        event.data.value.action === "swap-x-for-y"
-          ? event.data.value.dy
-          : event.data.value.dx,
+      amount0,
+      amount1,
       token0Id: token0.id,
       token1Id: token1.id,
       poolId: pool.id,
