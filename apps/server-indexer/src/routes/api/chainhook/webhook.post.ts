@@ -5,11 +5,22 @@ import { env } from "~/env";
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 
-type Operation = {
-  // biome-ignore lint: using any cast intentionally
-  trigger: (data: any) => boolean;
-  // biome-ignore lint: using any cast intentionally
-  handler: (event: any) => Promise<void>;
+// biome-ignore lint: using any cast intentionally
+export type Operation<T = any> = {
+  trigger: (data: {
+    contract_identifier: string;
+    value: Record<string, unknown>;
+  }) => boolean;
+  handler: (event: {
+    tx_id: string;
+    tx_index: number;
+    block_height: number;
+    block_timestamp: number;
+    data: {
+      contract_identifier: string;
+      value: T;
+    };
+  }) => Promise<void>;
 };
 
 const operations: Operation[] = [handlePoolCreated, handleSwap];
@@ -26,6 +37,7 @@ export default defineEventHandler(async (event) => {
   }
 
   for (const bundle of chainhook.apply) {
+    // TODO verify that txs are not reverted
     const events = bundle.transactions.flatMap((transaction) =>
       "receipt" in transaction.metadata
         ? transaction.metadata.receipt.events
@@ -37,6 +49,8 @@ export default defineEventHandler(async (event) => {
               ...event,
               tx_index: event.position.index,
               tx_id: transaction.transaction_identifier.hash,
+              block_height: bundle.block_identifier.index,
+              block_timestamp: bundle.timestamp,
             }))
         : [],
     );

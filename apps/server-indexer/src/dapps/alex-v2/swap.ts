@@ -1,6 +1,7 @@
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 import { getOrCreateToken } from "~/lib/token";
+import type { Operation } from "~/routes/api/chainhook/webhook.post";
 
 interface SwapEvent {
   action: "swap-x-for-y" | "swap-y-for-x";
@@ -20,14 +21,8 @@ interface SwapEvent {
 }
 
 // Example: https://explorer.hiro.so/txid/0x13fc43f33cf8c921edbc49971d6196c45c5cc8767b5206e2b13d3f0e131bacd7?chain=mainnet
-export const handleSwap = {
-  trigger: ({
-    contract_identifier,
-    value,
-  }: {
-    contract_identifier: string;
-    value: Record<string, unknown>;
-  }) => {
+export const handleSwap: Operation<SwapEvent> = {
+  trigger: ({ contract_identifier, value }) => {
     return (
       contract_identifier ===
         "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01" &&
@@ -35,14 +30,7 @@ export const handleSwap = {
       (value.action === "swap-x-for-y" || value.action === "swap-y-for-x")
     );
   },
-  handler: async (event: {
-    tx_id: string;
-    tx_index: number;
-    data: {
-      contract_identifier: string;
-      value: SwapEvent;
-    };
-  }) => {
+  handler: async (event) => {
     const [token0, token1] = await Promise.all([
       getOrCreateToken(event.data.value["token-x"]),
       getOrCreateToken(event.data.value["token-y"]),
@@ -66,25 +54,25 @@ export const handleSwap = {
     });
 
     const swapId = `${event.tx_id}-${event.tx_index}`;
-    const amount0 =
+    const amountIn =
       event.data.value.action === "swap-x-for-y"
         ? BigInt(event.data.value.dx)
         : BigInt(event.data.value.dy);
-    const amount1 =
+    const amountOut =
       event.data.value.action === "swap-x-for-y"
         ? BigInt(event.data.value.dy)
         : BigInt(event.data.value.dx);
     const swapData = {
       id: swapId,
-      amount0,
-      amount1,
+      amountIn,
+      amountOut,
       token0Id: token0.id,
       token1Id: token1.id,
       poolId: pool.id,
       txIndex: event.tx_index,
       sender: event.data.value.sender,
     };
-    await prisma.swap.upsert({
+    await prisma.trade.upsert({
       where: {
         id: swapId,
       },

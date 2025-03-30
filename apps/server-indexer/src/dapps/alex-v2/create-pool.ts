@@ -1,6 +1,7 @@
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 import { getOrCreateToken } from "~/lib/token";
+import type { Operation } from "~/routes/api/chainhook/webhook.post";
 
 interface PoolCreatedEvent {
   action: "created";
@@ -29,14 +30,8 @@ interface PoolCreatedEvent {
  * Contracts:
  * - SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-registry-v2-01 => 152429
  */
-export const handlePoolCreated = {
-  trigger: ({
-    contract_identifier,
-    value,
-  }: {
-    contract_identifier: string;
-    value: Record<string, unknown>;
-  }) => {
+export const handlePoolCreated: Operation<PoolCreatedEvent> = {
+  trigger: ({ contract_identifier, value }) => {
     return (
       contract_identifier ===
         "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-registry-v2-01" &&
@@ -44,14 +39,7 @@ export const handlePoolCreated = {
       value.action === "created"
     );
   },
-  handler: async (event: {
-    tx_id: string;
-    tx_index: number;
-    data: {
-      contract_identifier: string;
-      value: PoolCreatedEvent;
-    };
-  }) => {
+  handler: async (event) => {
     const [token0, token1] = await Promise.all([
       getOrCreateToken(event.data.value["token-x"]),
       getOrCreateToken(event.data.value["token-y"]),
