@@ -1,10 +1,7 @@
 import type { Dapp } from "~/routes/api/chainhook/webhook.post";
 
 const contracts = [
-  "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v1",
-  "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v2",
-  "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v3",
-  "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v4",
+  "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-",
 ];
 
 export const stackingdaoDapp: Dapp = {
@@ -16,9 +13,12 @@ export const stackingdaoDapp: Dapp = {
   }),
 
   isTransaction: (transaction) => {
+    if (transaction.metadata.kind.type !== "ContractCall") return false;
+    const contractIdentifier =
+      transaction.metadata.kind.data.contract_identifier;
     return (
       transaction.metadata.kind.type === "ContractCall" &&
-      contracts.includes(transaction.metadata.kind.data.contract_identifier)
+      contracts.some((contract) => contractIdentifier.startsWith(contract))
     );
   },
 };
