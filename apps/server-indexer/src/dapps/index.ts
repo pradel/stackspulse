@@ -5,6 +5,7 @@ import { bitflowDapp } from "./bitflow";
 import { hermeticaDapp } from "./hermetica";
 import { stackingdaoDapp } from "./stackingdao";
 import { stackswapDapp } from "./stackswap";
+import { velarDapp } from "./velar";
 
 export const dapps: Dapp[] = [
   alexDapp,
@@ -13,4 +14,5 @@ export const dapps: Dapp[] = [
   hermeticaDapp,
   stackingdaoDapp,
   stackswapDapp,
+  velarDapp,
 ];
