@@ -6,6 +6,12 @@ import { env } from "~/env";
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
 
+export type Dapp = {
+  id: string;
+  init: () => Promise<void>;
+  isTransaction: (transaction: StacksTransaction) => boolean;
+};
+
 // biome-ignore lint: using any cast intentionally
 export type Operation<T = any> = {
   trigger: (data: {

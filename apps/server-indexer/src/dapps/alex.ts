@@ -1,5 +1,5 @@
-import type { StacksTransaction } from "@hirosystems/chainhook-client";
 import { prisma } from "~/lib/prisma";
+import type { Dapp } from "~/routes/api/chainhook/webhook.post";
 
 const contracts = [
   // alex-v2
@@ -13,26 +13,28 @@ const contracts = [
   "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.swap-helper-v1-03",
 ];
 
-export const alexDapp = {
+export const alexDapp: Dapp = {
   id: "alex",
 
   init: async () => {
     const dappData = {
       id: "alex",
       name: "Alex",
-      createdAt: new Date(),
       updatedAt: new Date(),
     };
     await prisma.dapp.upsert({
       where: {
         id: dappData.id,
       },
-      create: dappData,
+      create: {
+        ...dappData,
+        createdAt: new Date(),
+      },
       update: dappData,
     });
   },
 
-  isTransaction: (transaction: StacksTransaction) => {
+  isTransaction: (transaction) => {
     return (
       transaction.metadata.kind.type === "ContractCall" &&
       contracts.includes(transaction.metadata.kind.data.contract_identifier)
