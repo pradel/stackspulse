@@ -6,6 +6,7 @@ import { hermeticaDapp } from "./hermetica";
 import { stackingdaoDapp } from "./stackingdao";
 import { stackswapDapp } from "./stackswap";
 import { velarDapp } from "./velar";
+import { zestDapp } from "./zest";
 
 export const dapps: Dapp[] = [
   alexDapp,
@@ -15,4 +16,5 @@ export const dapps: Dapp[] = [
   stackingdaoDapp,
   stackswapDapp,
   velarDapp,
+  zestDapp,
 ];
