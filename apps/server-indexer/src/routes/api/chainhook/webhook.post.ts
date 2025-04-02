@@ -1,8 +1,7 @@
 import type { Payload, StacksTransaction } from "@hirosystems/chainhook-client";
-import { alexDapp } from "~/dapps/alex";
+import { dapps } from "~/dapps";
 import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
 import { handleSwap } from "~/dapps/alex-v2/swap";
-import { stackswapDapp } from "~/dapps/stackswap";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
@@ -31,7 +30,6 @@ export type Operation<T = any> = {
   }) => Promise<void>;
 };
 
-const dapps: Dapp[] = [alexDapp, stackswapDapp];
 const operations: Operation[] = [handlePoolCreated, handleSwap];
 
 export default defineEventHandler(async (event) => {
