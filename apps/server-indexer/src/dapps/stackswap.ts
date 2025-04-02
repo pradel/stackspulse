@@ -1,4 +1,3 @@
-import { prisma } from "~/lib/prisma";
 import type { Dapp } from "~/routes/api/chainhook/webhook.post";
 
 const contracts = [
