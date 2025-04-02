@@ -2,6 +2,7 @@ import type { Payload, StacksTransaction } from "@hirosystems/chainhook-client";
 import { alexDapp } from "~/dapps/alex";
 import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
 import { handleSwap } from "~/dapps/alex-v2/swap";
+import { stackswapDapp } from "~/dapps/stackswap";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
 import { prisma } from "~/lib/prisma";
@@ -30,6 +31,7 @@ export type Operation<T = any> = {
   }) => Promise<void>;
 };
 
+const dapps: Dapp[] = [alexDapp, stackswapDapp];
 const operations: Operation[] = [handlePoolCreated, handleSwap];
 
 export default defineEventHandler(async (event) => {
@@ -92,29 +94,30 @@ export default defineEventHandler(async (event) => {
     for (const tx of transactions) {
       const transaction = tx as StacksTransaction;
       const txId = transaction.transaction_identifier.hash;
-      if (
-        transaction.metadata.kind.type === "ContractCall" &&
-        alexDapp.isTransaction(transaction)
-      ) {
-        const transactionData = {
-          id: txId,
-          index: transaction.metadata.position.index,
-          contractCallContractId:
-            transaction.metadata.kind.data.contract_identifier,
-          contractCallFunctionName: transaction.metadata.kind.data.method,
-          blockHeight: block.height,
-          sender: transaction.metadata.sender,
-          dappId: alexDapp.id,
-        };
-        await prisma.transaction.upsert({
-          where: {
-            id: txId,
-          },
-          create: transactionData,
-          update: transactionData,
-        });
-        // console.log("transaction", JSON.stringify(transaction, null, 2));
-        // throw new Error("Transaction processing failed");
+      if (transaction.metadata.kind.type === "ContractCall") {
+        for (const dapp of dapps) {
+          if (dapp.isTransaction(transaction)) {
+            const transactionData = {
+              id: txId,
+              index: transaction.metadata.position.index,
+              contractCallContractId:
+                transaction.metadata.kind.data.contract_identifier,
+              contractCallFunctionName: transaction.metadata.kind.data.method,
+              blockHeight: block.height,
+              sender: transaction.metadata.sender,
+              dappId: dapp.id,
+            };
+            await prisma.transaction.upsert({
+              where: {
+                id: txId,
+              },
+              create: transactionData,
+              update: transactionData,
+            });
+            // Break after first match to avoid processing the same transaction for multiple dapps
+            break;
+          }
+        }
       }
     }
 
