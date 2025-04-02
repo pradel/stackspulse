@@ -1,6 +1,6 @@
 import type { Payload, StacksTransaction } from "@hirosystems/chainhook-client";
+import { alexDapp } from "~/dapps/alex";
 import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
-import { alexDapp } from "~/dapps/alex-v2/dapp";
 import { handleSwap } from "~/dapps/alex-v2/swap";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
@@ -77,9 +77,6 @@ export default defineEventHandler(async (event) => {
       create: blockData,
       update: blockData,
     });
-
-    // TODO move somewhere else
-    await alexDapp.init();
 
     const transactions = (bundle.transactions as StacksTransaction[]).filter(
       (transaction) =>

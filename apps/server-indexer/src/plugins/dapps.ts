@@ -1,4 +1,4 @@
-import { alexDapp } from "~/dapps/alex-v2/dapp";
+import { alexDapp } from "~/dapps/alex";
 import { consola } from "~/lib/consola";
 
 export default defineNitroPlugin(async () => {
