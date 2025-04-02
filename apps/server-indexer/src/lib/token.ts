@@ -1,7 +1,18 @@
 import { prisma } from "./prisma";
 import { fetchCallReadOnlyFunctionRetry } from "./stacks";
 
-export const getOrCreateToken = async (tokenAddress: string) => {
+export type PrismaToken = {
+  id: string;
+  symbol: string;
+  name: string;
+  decimals: number;
+  txCount: bigint;
+  poolCount: number;
+};
+
+export const getOrCreateToken = async (
+  tokenAddress: string,
+): Promise<PrismaToken> => {
   const token = await prisma.token.findUnique({
     where: { id: tokenAddress },
   });

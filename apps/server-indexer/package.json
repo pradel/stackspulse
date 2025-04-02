@@ -11,6 +11,7 @@
     "dev": "dotenvx run --env-file=.env.development --env-file=.env.development.local -- nitro dev --port 3001",
     "prepare": "nitro prepare",
     "prisma:migrate:dev": "dotenvx run --env-file=.env.development -- prisma migrate dev",
+    "prisma:migrate:reset": "dotenvx run --env-file=.env.development -- prisma migrate reset",
     "prisma:studio:dev": "dotenvx run --env-file=.env.development -- prisma studio",
     "typecheck": "tsc --noEmit"
   },
