@@ -7,6 +7,8 @@ const contracts = [
 ];
 
 export const alexDapp = {
+  id: "alex",
+
   init: async () => {
     const dappData = {
       id: "alex",
@@ -22,13 +24,11 @@ export const alexDapp = {
       update: dappData,
     });
   },
+
   isTransaction: (transaction: StacksTransaction) => {
-    if (
+    return (
       transaction.metadata.kind.type === "ContractCall" &&
       contracts.includes(transaction.metadata.kind.data.contract_identifier)
-    ) {
-      return true;
-    }
-    return false;
+    );
   },
 };

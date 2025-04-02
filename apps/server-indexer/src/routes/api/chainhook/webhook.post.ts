@@ -100,7 +100,7 @@ export default defineEventHandler(async (event) => {
             transaction.metadata.kind.data.contract_identifier,
           contractCallFunctionName: transaction.metadata.kind.data.method,
           blockHeight: block.height,
-          dappId: "alex",
+          dappId: alexDapp.id,
         };
         await prisma.transaction.upsert({
           where: {
