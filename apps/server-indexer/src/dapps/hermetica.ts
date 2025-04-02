@@ -10,23 +10,10 @@ const contracts = [
 export const hermeticaDapp: Dapp = {
   id: "hermetica",
 
-  init: async () => {
-    const dappData = {
-      id: "hermetica",
-      name: "Hermetica",
-      updatedAt: new Date(),
-    };
-    await prisma.dapp.upsert({
-      where: {
-        id: dappData.id,
-      },
-      create: {
-        ...dappData,
-        createdAt: new Date(),
-      },
-      update: dappData,
-    });
-  },
+  init: () => ({
+    id: "hermetica",
+    name: "Hermetica",
+  }),
 
   isTransaction: (transaction) => {
     return (

@@ -16,23 +16,10 @@ const contracts = [
 export const alexDapp: Dapp = {
   id: "alex",
 
-  init: async () => {
-    const dappData = {
-      id: "alex",
-      name: "Alex",
-      updatedAt: new Date(),
-    };
-    await prisma.dapp.upsert({
-      where: {
-        id: dappData.id,
-      },
-      create: {
-        ...dappData,
-        createdAt: new Date(),
-      },
-      update: dappData,
-    });
-  },
+  init: () => ({
+    id: "alex",
+    name: "Alex",
+  }),
 
   isTransaction: (transaction) => {
     return (

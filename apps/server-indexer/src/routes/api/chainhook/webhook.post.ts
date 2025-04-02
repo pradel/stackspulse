@@ -8,7 +8,10 @@ import { prisma } from "~/lib/prisma";
 
 export type Dapp = {
   id: string;
-  init: () => Promise<void>;
+  init: () => {
+    id: string;
+    name: string;
+  };
   isTransaction: (transaction: StacksTransaction) => boolean;
 };
 
