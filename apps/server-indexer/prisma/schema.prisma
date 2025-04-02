@@ -29,6 +29,7 @@ model Transaction {
   block                    Block  @relation("BlockTransactions", fields: [blockHeight], references: [height])
   contractCallContractId   String @map("contract_call_contract_id")
   contractCallFunctionName String @map("contract_call_function_name")
+  sender                   String @map("sender")
   dappId                   String @map("dapp_id")
   dapp                     Dapp   @relation("DappTransactions", fields: [dappId], references: [id])
 }
