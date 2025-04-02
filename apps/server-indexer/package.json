@@ -1,0 +1,32 @@
+{
+  "name": "@stackspulse/server-indexer",
+  "version": "0.20.2",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.5",
+  "scripts": {
+    "build": "nitro build",
+    "db:generate": "prisma generate",
+    "db:migrate:prod": "prisma migrate deploy",
+    "dev": "dotenvx run --env-file=.env.development --env-file=.env.development.local -- nitro dev --port 3001",
+    "prepare": "nitro prepare",
+    "prisma:migrate:dev": "dotenvx run --env-file=.env.development -- prisma migrate dev",
+    "prisma:migrate:reset": "dotenvx run --env-file=.env.development -- prisma migrate reset",
+    "prisma:studio:dev": "dotenvx run --env-file=.env.development -- prisma studio",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "1.39.0",
+    "@hirosystems/chainhook-client": "2.3.0",
+    "@prisma/client": "6.5.0",
+    "@stacks/blockchain-api-client": "8.7.0",
+    "@stacks/transactions": "7.0.5",
+    "@t3-oss/env-core": "0.12.0",
+    "consola": "3.4.2",
+    "prisma": "6.5.0",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "nitropack": "2.11.7"
+  }
+}

@@ -1,0 +1,68 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:17-alpine
+    ports:
+      - 5432:5432
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=stackspulse_password
+      - POSTGRES_USER=stackspulse_user
+      - POSTGRES_DB=stackspulse_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d stackspulse_db -U stackspulse_user"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    networks:
+      - stackspulse-network
+
+  server-indexer:
+    build:
+      context: ./
+      dockerfile: ./apps/server-indexer/Dockerfile.dev
+    restart: always
+    ports:
+      - "3001:3001"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://stackspulse_user:stackspulse_password@postgres:5432/stackspulse_db?sslmode=disable
+    develop:
+      watch:
+        - path: ./apps/server-indexer/package.json
+          action: rebuild
+        - path: ./apps/server-indexer/prisma
+          action: rebuild
+        - path: ./apps/server-indexer/.env.development.local
+          target: /app/apps/server-indexer/.env.development.local
+          action: sync+restart
+        - path: ./apps/server-indexer/
+          target: /app/apps/server-indexer
+          action: sync
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - stackspulse-network
+
+  cloudflared:
+    image: cloudflare/cloudflared:2025.2.1
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --url http://server-indexer:3001
+    depends_on:
+      - server-indexer
+    networks:
+      - stackspulse-network
+
+volumes:
+  postgres_data:
+
+networks:
+  stackspulse-network:
+    driver: bridge
