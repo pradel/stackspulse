@@ -8,16 +8,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Dapp {
+  id           String        @id @map("id")
+  name         String        @map("name")
+  createdAt    DateTime      @map("created_at")
+  updatedAt    DateTime      @map("updated_at")
+  transactions Transaction[] @relation("DappTransactions")
+}
+
 model Block {
-  height       BigInt        @id @map("height")
+  height       Int           @id @map("height")
   timestamp    Int           @map("timestamp")
   transactions Transaction[] @relation("BlockTransactions")
 }
 
 model Transaction {
-  id          String @id @map("id")
-  blockHeight BigInt @map("block_height")
-  block       Block  @relation("BlockTransactions", fields: [blockHeight], references: [height])
+  id                       String @id @map("id")
+  index                    Int    @map("index") @db.SmallInt
+  blockHeight              Int    @map("block_height")
+  block                    Block  @relation("BlockTransactions", fields: [blockHeight], references: [height])
+  contractCallContractId   String @map("contract_call_contract_id")
+  contractCallFunctionName String @map("contract_call_function_name")
+  dappId                   String @map("dapp_id")
+  dapp                     Dapp   @relation("DappTransactions", fields: [dappId], references: [id])
 }
 
 model Token {

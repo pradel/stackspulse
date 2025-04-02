@@ -1,5 +1,6 @@
-import type { Payload } from "@hirosystems/chainhook-client";
+import type { Payload, StacksTransaction } from "@hirosystems/chainhook-client";
 import { handlePoolCreated } from "~/dapps/alex-v2/create-pool";
+import { alexDapp } from "~/dapps/alex-v2/dapp";
 import { handleSwap } from "~/dapps/alex-v2/swap";
 import { env } from "~/env";
 import { consola } from "~/lib/consola";
@@ -36,6 +37,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  // Transactions are grouped by blocks, so each apply item is a different block
   for (const bundle of chainhook.apply) {
     // TODO verify that txs are not reverted
     const events = bundle.transactions.flatMap((transaction) =>
@@ -58,6 +60,8 @@ export default defineEventHandler(async (event) => {
     consola.debug(
       "block:",
       bundle.block_identifier.index,
+      ", transactions:",
+      bundle.transactions.length,
       ", events: ",
       events.length,
     );
@@ -66,7 +70,7 @@ export default defineEventHandler(async (event) => {
       height: bundle.block_identifier.index,
       timestamp: bundle.timestamp,
     };
-    await prisma.block.upsert({
+    const block = await prisma.block.upsert({
       where: {
         height: bundle.block_identifier.index,
       },
@@ -74,16 +78,52 @@ export default defineEventHandler(async (event) => {
       update: blockData,
     });
 
-    for (const event of events) {
-      // Process all operations for each event
-      for (const operation of operations) {
-        // biome-ignore lint: using any cast intentionally
-        if (operation.trigger(event.data as any)) {
-          // biome-ignore lint: using any cast intentionally
-          await operation.handler(event as any);
-        }
+    // TODO move somewhere else
+    await alexDapp.init();
+
+    const transactions = (bundle.transactions as StacksTransaction[]).filter(
+      (transaction) =>
+        // Remove failed transactions
+        transaction.metadata.success === true,
+    );
+    for (const tx of transactions) {
+      const transaction = tx as StacksTransaction;
+      const txId = transaction.transaction_identifier.hash;
+      if (
+        transaction.metadata.kind.type === "ContractCall" &&
+        alexDapp.isTransaction(transaction)
+      ) {
+        const transactionData = {
+          id: txId,
+          index: transaction.metadata.position.index,
+          contractCallContractId:
+            transaction.metadata.kind.data.contract_identifier,
+          contractCallFunctionName: transaction.metadata.kind.data.method,
+          blockHeight: block.height,
+          dappId: "alex",
+        };
+        await prisma.transaction.upsert({
+          where: {
+            id: txId,
+          },
+          create: transactionData,
+          update: transactionData,
+        });
+        // console.log("transaction", JSON.stringify(transaction, null, 2));
+        // throw new Error("Transaction processing failed");
       }
     }
+
+    // for (const event of events) {
+    //   // Process all operations for each event
+    //   for (const operation of operations) {
+    //     // biome-ignore lint: using any cast intentionally
+    //     if (operation.trigger(event.data as any)) {
+    //       // biome-ignore lint: using any cast intentionally
+    //       await operation.handler(event as any);
+    //     }
+    //   }
+    // }
   }
 
   return {
