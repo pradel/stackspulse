@@ -1,3 +1,5 @@
+"use client";
+
 import { appConfig } from "@/appConfig";
 import { Container, IconButton, Link, Text } from "@radix-ui/themes";
 import { IconBrandGithub, IconBrandX } from "@tabler/icons-react";

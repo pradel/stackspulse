@@ -1,5 +1,5 @@
 export default defineNitroConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: "2025-05-10",
   srcDir: "src",
   routeRules: {
     // no cache for all /api/root/** routes
