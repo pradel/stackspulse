@@ -1,5 +1,12 @@
 # @stackspulse/server
 
+## 0.20.3
+
+### Patch Changes
+
+- 1869a4f: Deploy new updated node.
+- c728573: Upgrade deps.
+
 ## 0.20.2
 
 ### Patch Changes

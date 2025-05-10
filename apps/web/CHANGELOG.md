@@ -1,5 +1,11 @@
 # stackspulse
 
+## 0.20.3
+
+### Patch Changes
+
+- c728573: Upgrade deps.
+
 ## 0.20.2
 
 ## 0.20.1
