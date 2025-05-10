@@ -1,9 +1,9 @@
 import type { Protocol } from "@stackspulse/protocols";
 import type postgres from "postgres";
 import { z } from "zod";
-import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
+import { prisma } from "~/lib/prisma";
 
 const protocolUsersRouteSchema = z.object({
   mode: z.enum(["direct", "nested"]).optional(),
@@ -27,14 +27,14 @@ export default defineCachedEventHandler(async (event) => {
   };
   const daysToSubtract = daysToSubtractMap[query.date];
 
-  let result: postgres.Row[];
+  let result: { protocol_name: Protocol; unique_senders: number }[];
   if (mode === "direct") {
-    result = await getProtocolUsersDirect({
+    result = await getProtocolUsersDirectPrisma({
       limit,
       daysToSubtract,
     });
   } else {
-    result = await getProtocolUsersNested({
+    result = await getProtocolUsersNestedPrisma({
       limit,
       daysToSubtract,
     });
@@ -53,99 +53,93 @@ interface QueryParams {
   daysToSubtract?: number;
 }
 
-const getProtocolUsersDirect = async ({
+const getProtocolUsersDirectPrisma = async ({
   limit,
   daysToSubtract,
 }: QueryParams) => {
-  let dateCondition = "";
-  if (daysToSubtract) {
-    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`;
-  }
+  const dateCondition = daysToSubtract
+    ? new Date(Date.now() - daysToSubtract * 24 * 60 * 60 * 1000)
+    : undefined;
 
-  const result = await sql`
- SELECT
-     dapps.id as protocol_name,
-     COUNT(DISTINCT txs.sender_address) AS unique_senders
- FROM
-     txs
- JOIN
-     dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
- WHERE
-   txs.type_id = 2
-   ${sql.unsafe(dateCondition)}
- GROUP BY
-     dapps.id
- ORDER BY
-     unique_senders DESC
- LIMIT ${limit};
-   `;
-
-  return result;
-};
-
-const getProtocolUsersNested = async ({
-  limit,
-  daysToSubtract,
-}: QueryParams) => {
-  let dateCondition = "";
-  if (daysToSubtract) {
-    dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`;
-  }
-
-  const result = await sql`
-WITH protocol_contracts AS (
-    SELECT id, UNNEST(contracts) AS contract_address
-    FROM dapps
-),
-
-address_txs AS (
-    SELECT DISTINCT tx_id, index_block_hash, microblock_hash, protocol_contracts.id AS protocol_name
-    FROM (
-        SELECT tx_id, index_block_hash, microblock_hash, contract_call_contract_id AS address
-        FROM txs
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, principal
-        FROM principal_stx_txs
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
-        FROM stx_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM stx_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
-        FROM ft_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM ft_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, sender
-        FROM nft_events
-        UNION ALL
-        SELECT tx_id, index_block_hash, microblock_hash, recipient
-        FROM nft_events
-    ) sub
-    JOIN protocol_contracts ON sub.address = protocol_contracts.contract_address
-)
-
-SELECT
-    atxs.protocol_name,
-    COUNT(DISTINCT txs.sender_address) AS unique_senders
-FROM
-    address_txs atxs
-JOIN
-    txs ON atxs.tx_id = txs.tx_id
-JOIN
-    blocks ON txs.block_height = blocks.block_height
-WHERE
-    1=1
-    ${sql.unsafe(dateCondition)}
-GROUP BY
-    atxs.protocol_name
-ORDER BY
-    unique_senders DESC
-LIMIT ${limit};
+  const result = await prisma.$queryRaw<
+    {
+      contract_call_contract_id: string;
+      unique_senders: bigint;
+    }[]
+  >`
+    SELECT
+      contract_call_contract_id,
+      COUNT(DISTINCT sender_address) AS unique_senders
+    FROM
+      txs
+    WHERE
+      type_id = 2
+      ${dateCondition ? Prisma.sql`AND block_time >= ${dateCondition}` : Prisma.sql``}
+      AND canonical = TRUE
+      AND microblock_canonical = TRUE
+    GROUP BY
+      contract_call_contract_id
+    ORDER BY
+      unique_senders DESC
+    LIMIT ${limit}
   `;
 
-  return result;
+  return result.map((r) => ({
+    protocol_name: r.contract_call_contract_id,
+    unique_senders: Number(r.unique_senders),
+  }));
+};
+
+const getProtocolUsersNestedPrisma = async ({
+  limit,
+  daysToSubtract,
+}: QueryParams) => {
+  const dateCondition = daysToSubtract
+    ? new Date(Date.now() - daysToSubtract * 24 * 60 * 60 * 1000)
+    : undefined;
+
+  const result = await prisma.$queryRaw<
+    {
+      contract_call_contract_id: string;
+      unique_senders: bigint;
+    }[]
+  >`
+    WITH protocol_contracts AS (
+      SELECT
+        id,
+        UNNEST(contracts) AS contract_address
+      FROM
+        dapps
+    ),
+    address_txs AS (
+      SELECT DISTINCT
+        tx_id,
+        index_block_hash,
+        microblock_hash
+      FROM
+        txs
+      WHERE
+        contract_call_contract_id IN (SELECT contract_address FROM protocol_contracts)
+        ${dateCondition ? Prisma.sql`AND block_time >= ${dateCondition}` : Prisma.sql``}
+        AND canonical = TRUE
+        AND microblock_canonical = TRUE
+    )
+    SELECT
+      contract_call_contract_id,
+      COUNT(DISTINCT sender_address) AS unique_senders
+    FROM
+      txs
+    WHERE
+      tx_id IN (SELECT tx_id FROM address_txs)
+    GROUP BY
+      contract_call_contract_id
+    ORDER BY
+      unique_senders DESC
+    LIMIT ${limit}
+  `;
+
+  return result.map((r) => ({
+    protocol_name: r.contract_call_contract_id,
+    unique_senders: Number(r.unique_senders),
+  }));
 };
