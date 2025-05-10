@@ -14,9 +14,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "2.27.12",
-    "lint-staged": "15.4.3",
-    "turbo": "2.4.2"
+    "@changesets/cli": "2.29.3",
+    "lint-staged": "15.5.2",
+    "turbo": "2.5.3"
   },
   "lint-staged": {
     "*": [
