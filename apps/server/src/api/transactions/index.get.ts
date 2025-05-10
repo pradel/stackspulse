@@ -19,7 +19,7 @@ export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionsRouteSchema);
 
   const protocolCondition = query.protocol
-    ? Prisma.sql`WHERE dapps.id = ${query.protocol}`
+    ? Prisma.sql`AND dapps.id = ${query.protocol}`
     : Prisma.sql``;
 
   const result = await prisma.$queryRaw<
