@@ -2,7 +2,7 @@ import type { EventHandlerRequest, H3Event } from "h3";
 
 export const apiCacheConfig = {
   swr: true,
-  maxAge: 5 * 60,
+  maxAge: 3 * 5 * 60,
   base: "api",
 
   /**
