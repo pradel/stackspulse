@@ -1,7 +1,8 @@
 import { Prisma } from "@prisma/client";
 import { protocols } from "@stackspulse/protocols";
-import { bigint, z } from "zod";
+import { z } from "zod";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { prisma } from "~/lib/prisma";
 
@@ -22,8 +23,7 @@ export default defineCachedEventHandler(async (event) => {
     protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
   }
 
-  console.log("test");
-
+  const startTime = performance.now();
   const result = await prisma.$queryRaw<
     [
       {
@@ -79,7 +79,9 @@ JOIN
   AND atxs.microblock_hash = txs.microblock_hash
   `;
 
-  console.log("results", result);
+  const endTime = performance.now();
+  const executionTime = endTime - startTime;
+  consola.debug("Query execution completed in", executionTime, "ms");
 
   const stats: TransactionStatsRouteResponse = {
     count: Number.parseInt(result[0].count.toString()),
