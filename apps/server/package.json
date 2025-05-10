@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.43.0",
+    "@prisma/client": "6.7.0",
     "@sentry/node": "9.17.0",
     "@stacks/blockchain-api-client": "8.10.0",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
@@ -29,6 +30,6 @@
   },
   "devDependencies": {
     "nitropack": "2.11.11",
-    "prisma": "6.3.1"
+    "prisma": "6.7.0"
   }
 }
