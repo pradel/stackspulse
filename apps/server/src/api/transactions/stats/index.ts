@@ -18,10 +18,9 @@ type TransactionStatsRouteResponse = {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionStatsRouteSchema);
 
-  let protocolContractsCondition = "";
-  if (query.protocol) {
-    protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
-  }
+  const protocolCondition = query.protocol
+    ? Prisma.sql`WHERE dapps.id = ${query.protocol}`
+    : Prisma.sql``;
 
   const startTime = performance.now();
   const result = await prisma.$queryRaw<
@@ -35,7 +34,7 @@ export default defineCachedEventHandler(async (event) => {
 WITH protocol_contracts AS (
     SELECT UNNEST(contracts) AS contract_address
     FROM dapps
-    ${Prisma.sql([protocolContractsCondition])}
+    ${protocolCondition}
 ),
 
 address_txs AS (
