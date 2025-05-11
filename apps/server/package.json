@@ -11,13 +11,15 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "1.43.0",
+    "@prisma/client": "6.7.0",
     "@sentry/node": "9.17.0",
     "@stacks/blockchain-api-client": "8.10.0",
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.13.4",
     "better-sqlite3": "11.10.0",
-    "db0": "0.2.4",
+    "consola": "3.4.2",
+    "db0": "0.3.2",
     "drizzle-orm": "0.39.3",
     "h3": "1.15.3",
     "nitro-cors": "0.7.1",
@@ -29,6 +31,6 @@
   },
   "devDependencies": {
     "nitropack": "2.11.11",
-    "prisma": "6.3.1"
+    "prisma": "6.7.0"
   }
 }

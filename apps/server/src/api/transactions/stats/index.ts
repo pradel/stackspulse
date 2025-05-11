@@ -1,8 +1,10 @@
+import { Prisma } from "@prisma/client";
 import { protocols } from "@stackspulse/protocols";
 import { z } from "zod";
-import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
+import { prisma } from "~/lib/prisma";
 
 const transactionStatsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
@@ -16,16 +18,23 @@ type TransactionStatsRouteResponse = {
 export default defineCachedEventHandler(async (event) => {
   const query = await getValidatedQueryZod(event, transactionStatsRouteSchema);
 
-  let protocolContractsCondition = "";
-  if (query.protocol) {
-    protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
-  }
+  const protocolCondition = query.protocol
+    ? Prisma.sql`WHERE dapps.id = ${query.protocol}`
+    : Prisma.sql``;
 
-  const result = await sql`
+  const startTime = performance.now();
+  const result = await prisma.$queryRaw<
+    [
+      {
+        count: bigint;
+        unique_senders: bigint;
+      },
+    ]
+  >`
 WITH protocol_contracts AS (
     SELECT UNNEST(contracts) AS contract_address
     FROM dapps
-    ${sql.unsafe(protocolContractsCondition)}
+    ${protocolCondition}
 ),
 
 address_txs AS (
@@ -69,9 +78,13 @@ JOIN
   AND atxs.microblock_hash = txs.microblock_hash
   `;
 
+  const endTime = performance.now();
+  const executionTime = endTime - startTime;
+  consola.debug("Query execution completed in", executionTime, "ms");
+
   const stats: TransactionStatsRouteResponse = {
-    count: Number.parseInt(result[0].count),
-    unique_senders: Number.parseInt(result[0].unique_senders),
+    count: Number.parseInt(result[0].count.toString()),
+    unique_senders: Number.parseInt(result[0].unique_senders.toString()),
   };
 
   return stats;
