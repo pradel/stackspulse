@@ -6,6 +6,7 @@ import { apiCacheConfig } from "~/lib/api";
 import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { stacksClient } from "~/lib/stacks";
+import { formatElapsedTime } from "~/utils/timeFormatter";
 
 const transactionsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
@@ -50,7 +51,9 @@ LIMIT 50
 
   const queryEndTime = Date.now();
   consola.debug(
-    `TransactionsRoute: Query executed in ${queryEndTime - queryStartTime}ms`,
+    `TransactionsRoute: Query executed in ${formatElapsedTime(
+      queryEndTime - queryStartTime,
+    )}ms`,
   );
 
   const formattedResult = result.map((r) => ({

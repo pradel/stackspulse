@@ -1,6 +1,7 @@
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { consola } from "~/lib/consola";
+import { formatElapsedTime } from "~/utils/timeFormatter";
 
 type StackingDAOProtocolStatsResponse = {
   month: string;
@@ -74,9 +75,9 @@ ORDER BY
 
   const queryEndTime = Date.now();
   consola.debug(
-    `StackingDAOProtocolStats: Query executed in ${
-      queryEndTime - queryStartTime
-    }ms`,
+    `StackingDAOProtocolStats: Query executed in ${formatElapsedTime(
+      queryEndTime - queryStartTime,
+    )}ms`,
   );
 
   const stats: StackingDAOProtocolStatsResponse = result.map((row) => ({

@@ -4,6 +4,7 @@ import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
+import { formatElapsedTime } from "~/utils/timeFormatter";
 
 const transactionStatsRouteSchema = z.object({
   protocol: z.enum(protocols).optional(),
@@ -73,9 +74,9 @@ JOIN
 
   const queryEndTime = Date.now();
   consola.debug(
-    `TransactionStatsRoute: Query executed in ${
-      queryEndTime - queryStartTime
-    }ms`,
+    `TransactionStatsRoute: Query executed in ${formatElapsedTime(
+      queryEndTime - queryStartTime,
+    )}ms`,
   );
 
   const stats: TransactionStatsRouteResponse = {

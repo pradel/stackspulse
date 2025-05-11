@@ -4,6 +4,7 @@ import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
+import { formatElapsedTime } from "~/utils/timeFormatter";
 
 const transactionUniqueSendersRouteSchema = z.object({
   protocol: z.enum(protocols),
@@ -86,9 +87,9 @@ ORDER BY
 
   const queryEndTime = Date.now();
   consola.debug(
-    `TransactionUniqueSendersRoute: Query executed in ${
-      queryEndTime - queryStartTime
-    }ms`,
+    `TransactionUniqueSendersRoute: Query executed in ${formatElapsedTime(
+      queryEndTime - queryStartTime,
+    )}ms`,
   );
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({

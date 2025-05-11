@@ -5,6 +5,7 @@ import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
 import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
+import { formatElapsedTime } from "~/utils/timeFormatter";
 
 const protocolUsersRouteSchema = z.object({
   mode: z.enum(["direct", "nested"]).optional(),
@@ -151,7 +152,9 @@ LIMIT ${limit};
 
   const queryEndTime = Date.now();
   consola.debug(
-    `ProtocolUsersRoute: Query executed in ${queryEndTime - queryStartTime}ms`,
+    `ProtocolUsersRoute: Query executed in ${formatElapsedTime(
+      queryEndTime - queryStartTime,
+    )}ms`,
   );
 
   return result;
