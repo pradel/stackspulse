@@ -2,6 +2,7 @@ import { protocols } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 
 const transactionStatsRouteSchema = z.object({
@@ -21,6 +22,7 @@ export default defineCachedEventHandler(async (event) => {
     protocolContractsCondition = `WHERE dapps.id = '${query.protocol}'`;
   }
 
+  const queryStartTime = Date.now();
   const result = await sql`
 WITH protocol_contracts AS (
     SELECT UNNEST(contracts) AS contract_address
@@ -68,6 +70,13 @@ JOIN
   AND atxs.index_block_hash = txs.index_block_hash
   AND atxs.microblock_hash = txs.microblock_hash
   `;
+
+  const queryEndTime = Date.now();
+  consola.debug(
+    `TransactionStatsRoute: Query executed in ${
+      queryEndTime - queryStartTime
+    }ms`,
+  );
 
   const stats: TransactionStatsRouteResponse = {
     count: Number.parseInt(result[0].count),
