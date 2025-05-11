@@ -29,7 +29,7 @@ export default defineCachedEventHandler(async (event) => {
 
   let result: { protocol_name: Protocol; unique_senders: number }[];
   if (mode === "direct") {
-    result = await getProtocolUsersDirectPrisma({
+    result = await getProtocolUsersDirect({
       limit,
       daysToSubtract,
     });
@@ -53,7 +53,7 @@ interface QueryParams {
   daysToSubtract?: number;
 }
 
-const getProtocolUsersDirectPrisma = async ({
+const getProtocolUsersDirect = async ({
   limit,
   daysToSubtract,
 }: QueryParams) => {
@@ -68,10 +68,12 @@ const getProtocolUsersDirectPrisma = async ({
     }[]
   >`
     SELECT
-      contract_call_contract_id,
-      COUNT(DISTINCT sender_address) AS unique_senders
+      dapps.id as protocol_name,
+      COUNT(DISTINCT txs.sender_address) AS unique_senders
     FROM
       txs
+    JOIN
+      dapps ON txs.contract_call_contract_id = ANY (dapps.contracts)
     WHERE
       type_id = 2
       ${dateCondition}
@@ -93,8 +95,8 @@ const getProtocolUsersNestedPrisma = async ({
   daysToSubtract,
 }: QueryParams) => {
   const dateCondition = daysToSubtract
-    ? new Date(Date.now() - daysToSubtract * 24 * 60 * 60 * 1000)
-    : undefined;
+    ? Prisma.sql`AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`
+    : Prisma.sql``;
 
   const result = await prisma.$queryRaw<
     {
@@ -118,11 +120,7 @@ const getProtocolUsersNestedPrisma = async ({
         txs
       WHERE
         contract_call_contract_id IN (SELECT contract_address FROM protocol_contracts)
-        ${
-          dateCondition
-            ? Prisma.sql`AND block_time >= ${dateCondition}`
-            : Prisma.sql``
-        }
+        ${dateCondition}
         AND canonical = TRUE
         AND microblock_canonical = TRUE
     )
