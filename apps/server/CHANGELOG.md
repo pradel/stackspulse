@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.20.4
+
+### Patch Changes
+
+- dc7e3b1: Add logs for query time.
+
 ## 0.20.3
 
 ### Patch Changes
