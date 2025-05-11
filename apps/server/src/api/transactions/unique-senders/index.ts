@@ -2,6 +2,7 @@ import { protocols } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 
 const transactionUniqueSendersRouteSchema = z.object({
@@ -19,6 +20,7 @@ export default defineCachedEventHandler(async (event) => {
     transactionUniqueSendersRouteSchema,
   );
 
+  const queryStartTime = Date.now();
   const result = await sql`
 WITH monthly_blocks AS (
     SELECT
@@ -81,6 +83,13 @@ GROUP BY
 ORDER BY
   mb.month ASC
   `;
+
+  const queryEndTime = Date.now();
+  consola.debug(
+    `TransactionUniqueSendersRoute: Query executed in ${
+      queryEndTime - queryStartTime
+    }ms`,
+  );
 
   const stats: TransactionUniqueSendersRouteResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"

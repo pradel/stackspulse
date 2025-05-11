@@ -3,6 +3,7 @@ import { type Protocol, protocols } from "@stackspulse/protocols";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 import { stacksClient } from "~/lib/stacks";
 
@@ -22,6 +23,7 @@ export default defineCachedEventHandler(async (event) => {
     protocolCondition = `AND dapps.id = '${query.protocol}'`;
   }
 
+  const queryStartTime = Date.now();
   const result = await sql<
     {
       protocol: Protocol;
@@ -45,6 +47,11 @@ ORDER BY
     tx_index DESC
 LIMIT 50
   `;
+
+  const queryEndTime = Date.now();
+  consola.debug(
+    `TransactionsRoute: Query executed in ${queryEndTime - queryStartTime}ms`,
+  );
 
   const formattedResult = result.map((r) => ({
     protocol: r.protocol,

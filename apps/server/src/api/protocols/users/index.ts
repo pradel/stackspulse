@@ -3,6 +3,7 @@ import type postgres from "postgres";
 import { z } from "zod";
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 import { getValidatedQueryZod } from "~/lib/nitro";
 
 const protocolUsersRouteSchema = z.object({
@@ -92,6 +93,7 @@ const getProtocolUsersNested = async ({
     dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`;
   }
 
+  const queryStartTime = Date.now();
   const result = await sql`
 WITH protocol_contracts AS (
     SELECT id, UNNEST(contracts) AS contract_address
@@ -146,6 +148,11 @@ ORDER BY
     unique_senders DESC
 LIMIT ${limit};
   `;
+
+  const queryEndTime = Date.now();
+  consola.debug(
+    `ProtocolUsersRoute: Query executed in ${queryEndTime - queryStartTime}ms`,
+  );
 
   return result;
 };

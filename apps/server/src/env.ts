@@ -15,6 +15,7 @@ export const env = createEnv({
     TWITTER_API_SECRET_KEY: z.string().min(1),
     TWITTER_ACCESS_TOKEN: z.string().min(1),
     TWITTER_ACCESS_TOKEN_SECRET: z.string().min(1),
+    CONSOLA_LEVEL: z.coerce.number().optional(),
   },
 
   runtimeEnv: process.env,

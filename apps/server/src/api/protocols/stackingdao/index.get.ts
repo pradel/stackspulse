@@ -1,5 +1,6 @@
 import { sql } from "~/db/db";
 import { apiCacheConfig } from "~/lib/api";
+import { consola } from "~/lib/consola";
 
 type StackingDAOProtocolStatsResponse = {
   month: string;
@@ -7,7 +8,8 @@ type StackingDAOProtocolStatsResponse = {
   withdrawals: number;
 }[];
 
-export default defineCachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async () => {
+  const queryStartTime = Date.now();
   const result = await sql`
 WITH monthly_blocks AS (
     SELECT
@@ -26,16 +28,16 @@ deposits AS (
     SELECT
         mb.month,
         SUM(se.amount) AS deposits
-    FROM 
+    FROM
         monthly_blocks mb
-    JOIN 
+    JOIN
         stx_events se ON se.block_height BETWEEN mb.min_block_height AND mb.max_block_height
     WHERE
         se.recipient = 'SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.reserve-v1'
         AND se.sender NOT LIKE 'SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG%'
         AND canonical = TRUE
         AND microblock_canonical = TRUE
-    GROUP BY 
+    GROUP BY
         mb.month
 ),
 
@@ -69,6 +71,13 @@ WHERE
 ORDER BY
     month ASC
   `;
+
+  const queryEndTime = Date.now();
+  consola.debug(
+    `StackingDAOProtocolStats: Query executed in ${
+      queryEndTime - queryStartTime
+    }ms`,
+  );
 
   const stats: StackingDAOProtocolStatsResponse = result.map((row) => ({
     // format of the month is "2021-08-01 00:00:00+00"
