@@ -1,5 +1,11 @@
 # @stackspulse/server
 
+## 0.20.5
+
+### Patch Changes
+
+- d87108e: Format time log with ms/s.
+
 ## 0.20.4
 
 ### Patch Changes
