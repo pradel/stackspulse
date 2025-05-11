@@ -19,7 +19,7 @@
     "@t3-oss/env-core": "0.13.4",
     "better-sqlite3": "11.10.0",
     "consola": "3.4.2",
-    "db0": "0.2.4",
+    "db0": "0.3.2",
     "drizzle-orm": "0.39.3",
     "h3": "1.15.3",
     "nitro-cors": "0.7.1",
