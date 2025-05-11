@@ -1,5 +1,5 @@
+import { Prisma } from "@prisma/client";
 import type { Protocol } from "@stackspulse/protocols";
-import type postgres from "postgres";
 import { z } from "zod";
 import { apiCacheConfig } from "~/lib/api";
 import { getValidatedQueryZod } from "~/lib/nitro";
@@ -58,8 +58,8 @@ const getProtocolUsersDirectPrisma = async ({
   daysToSubtract,
 }: QueryParams) => {
   const dateCondition = daysToSubtract
-    ? new Date(Date.now() - daysToSubtract * 24 * 60 * 60 * 1000)
-    : undefined;
+    ? Prisma.sql`AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`
+    : Prisma.sql``;
 
   const result = await prisma.$queryRaw<
     {
@@ -74,11 +74,9 @@ const getProtocolUsersDirectPrisma = async ({
       txs
     WHERE
       type_id = 2
-      ${dateCondition ? Prisma.sql`AND block_time >= ${dateCondition}` : Prisma.sql``}
-      AND canonical = TRUE
-      AND microblock_canonical = TRUE
+      ${dateCondition}
     GROUP BY
-      contract_call_contract_id
+      dapps.id
     ORDER BY
       unique_senders DESC
     LIMIT ${limit}
@@ -120,7 +118,11 @@ const getProtocolUsersNestedPrisma = async ({
         txs
       WHERE
         contract_call_contract_id IN (SELECT contract_address FROM protocol_contracts)
-        ${dateCondition ? Prisma.sql`AND block_time >= ${dateCondition}` : Prisma.sql``}
+        ${
+          dateCondition
+            ? Prisma.sql`AND block_time >= ${dateCondition}`
+            : Prisma.sql``
+        }
         AND canonical = TRUE
         AND microblock_canonical = TRUE
     )
