@@ -19,6 +19,8 @@
       - ufw
       - unattended-upgrades
       - vim
+      # Used by stacks-blockchain-docker to download big files faster during initial sync
+      - aria2
     state: latest
     update_cache: yes
     autoremove: yes
