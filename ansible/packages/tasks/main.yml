@@ -1,16 +1,29 @@
 ---
+- name: Ensure apt key is not present in trusted.gpg.d
+  ansible.builtin.file:
+    path: /etc/apt/trusted.gpg.d/docker.asc
+    state: absent
+
+- name: Ensure the repo referencing the previous trusted.gpg.d key is not present
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: absent
+    filename: "docker"
+    update_cache: true
+
 - name: Upgrade packages
-  apt:
-    update_cache: yes
-    upgrade: yes
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: true
 
 - name: Install packages
-  apt:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - build-essential
       - ca-certificates
       - curl
+      - duf
       - fail2ban
       - git
       - gnupg
@@ -22,9 +35,17 @@
       # Used by stacks-blockchain-docker to download big files faster during initial sync
       - aria2
     state: latest
-    update_cache: yes
-    autoremove: yes
-    autoclean: yes
+    update_cache: true
+    autoremove: true
+    autoclean: true
   notify:
-    - start ntp
-    - start fail2ban
+    - Start ntp
+    - Start fail2ban
+
+- name: Remove snap
+  ansible.builtin.apt:
+    name:
+      - snapd
+      - snap
+    state: absent
+    purge: true
