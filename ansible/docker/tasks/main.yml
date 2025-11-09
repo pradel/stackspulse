@@ -28,9 +28,13 @@
     mode: "0644"
     force: false
 
+- name: Get DEB architecture
+  shell: dpkg --print-architecture
+  register: deb_architecture
+
 - name: Add Docker repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    repo: "deb [arch={{ deb_architecture.stdout }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
     filename: docker
     update_cache: true
