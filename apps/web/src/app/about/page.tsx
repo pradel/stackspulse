@@ -12,14 +12,14 @@ export default async function AboutPage() {
   return (
     <Container size="2" className="px-4 pt-10">
       <Heading as="h1" size="5">
-        stackpulse
+        stackspulse
       </Heading>
 
       <div className="mt-5 space-y-2">
         <Text as="p" size="3" color="gray">
           This project aims to provide a real-time view of Stacks DeFi ecosystem
           by aggregating public blockchain data and making it accessible through
-          a easy to use interface.
+          an easy to use interface.
         </Text>
         <Text as="p" size="3" color="gray">
           Give us a star on{" "}
