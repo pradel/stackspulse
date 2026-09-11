@@ -13,10 +13,7 @@ type TokensTransactionVolumeRouteResponse = {
 }[];
 
 export default defineCachedEventHandler(async (event) => {
-  const query = await getValidatedQueryZod(
-    event,
-    tokensTransactionVolumeRouteSchema,
-  );
+  const query = await getValidatedQueryZod(event, tokensTransactionVolumeRouteSchema);
 
   const result = await sql`
 SELECT

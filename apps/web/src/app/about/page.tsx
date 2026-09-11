@@ -17,9 +17,8 @@ export default async function AboutPage() {
 
       <div className="mt-5 space-y-2">
         <Text as="p" size="3" color="gray">
-          This project aims to provide a real-time view of Stacks DeFi ecosystem
-          by aggregating public blockchain data and making it accessible through
-          an easy to use interface.
+          This project aims to provide a real-time view of Stacks DeFi ecosystem by aggregating
+          public blockchain data and making it accessible through an easy to use interface.
         </Text>
         <Text as="p" size="3" color="gray">
           Give us a star on{" "}
@@ -42,8 +41,8 @@ export default async function AboutPage() {
           Data
         </Heading>
         <Text as="p" size="3" color="gray">
-          Data is extracted from a self-hosted Stacks blockchain node and
-          aggregated using PostgreSQL.
+          Data is extracted from a self-hosted Stacks blockchain node and aggregated using
+          PostgreSQL.
         </Text>
         <Text as="p" size="3" color="gray">
           Token prices and volume is provided by{" "}

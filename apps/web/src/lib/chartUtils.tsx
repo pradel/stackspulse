@@ -44,10 +44,7 @@ export const constructCategoryColors = (
   return categoryColors;
 };
 
-export const getColorClassName = (
-  color: AvailableChartColorsKeys,
-  type: ColorUtility,
-): string => {
+export const getColorClassName = (color: AvailableChartColorsKeys, type: ColorUtility): string => {
   const fallbackColor = {
     bg: "bg-gray-9",
     stroke: "stroke-gray-9",

@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
@@ -35,8 +35,8 @@ jobs:
         with:
           version: pnpm run version
           publish: pnpm run release
-          commit: 'chore: release'
-          title: 'chore: create new release'
+          commit: "chore: release"
+          title: "chore: create new release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

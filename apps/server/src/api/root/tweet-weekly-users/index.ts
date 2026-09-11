@@ -41,9 +41,7 @@ export default defineEventHandler(async () => {
   params.append("title", "Last 7 Days Unique Users");
   params.append("data", JSON.stringify(dataNested));
 
-  const imageUrlNested = `${
-    env.WEB_URL
-  }/api/images/weekly-users?${params.toString()}`;
+  const imageUrlNested = `${env.WEB_URL}/api/images/weekly-users?${params.toString()}`;
 
   let messageNested = "📈 Last 7 days unique users:\n\n";
   for (const stat of statsNested) {
@@ -63,9 +61,7 @@ export default defineEventHandler(async () => {
   params.set("title", "Last 7 Days Direct Unique Users");
   params.set("data", JSON.stringify(dataDirect));
 
-  const imageUrlDirect = `${
-    env.WEB_URL
-  }/api/images/weekly-users?${params.toString()}`;
+  const imageUrlDirect = `${env.WEB_URL}/api/images/weekly-users?${params.toString()}`;
 
   let messageDirect =
     "📈 Last 7 days unique users that interacted directly with the protocols:\n\n";

@@ -8,19 +8,15 @@ interface TransactionActionVelarProps {
   transaction: TransactionsRouteResponse[number];
 }
 
-export const TransactionActionVelar = ({
-  transaction,
-}: TransactionActionVelarProps) => {
+export const TransactionActionVelar = ({ transaction }: TransactionActionVelarProps) => {
   if (
-    transaction.contract_call.function_name ===
-      "swap-exact-tokens-for-tokens" &&
+    transaction.contract_call.function_name === "swap-exact-tokens-for-tokens" &&
     transaction.tx_status === "success"
   ) {
     const eventLog = transaction.events.find(
       (event) =>
         event.event_type === "smart_contract_log" &&
-        event.contract_log.contract_id ===
-          "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-core",
+        event.contract_log.contract_id === "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-core",
     ) as TransactionEventSmartContractLog;
     if (eventLog) {
       const data = cvToJSON(hexToCV(eventLog.contract_log.value.hex)).value;

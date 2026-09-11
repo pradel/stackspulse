@@ -27,9 +27,8 @@ export const DefaultTransactionSwap = ({
   }
   return (
     <>
-      <Text color="gray">Swap</Text>{" "}
-      {displayPrice(tokenXAmount, tokenXInfo.decimals || 6)} {tokenXInfo.symbol}{" "}
-      <Text color="gray">for</Text>{" "}
+      <Text color="gray">Swap</Text> {displayPrice(tokenXAmount, tokenXInfo.decimals || 6)}{" "}
+      {tokenXInfo.symbol} <Text color="gray">for</Text>{" "}
       {displayPrice(tokenYAmount, tokenYInfo.decimals || 6)} {tokenYInfo.symbol}
     </>
   );

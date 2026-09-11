@@ -11,12 +11,7 @@ export const HomeStats = async () => {
   return (
     <div className="mt-10 grid grid-cols-2 gap-5">
       <Card size="2">
-        <Text
-          className="flex items-center gap-1"
-          as="div"
-          size="2"
-          color="gray"
-        >
+        <Text className="flex items-center gap-1" as="div" size="2" color="gray">
           Total Transactions
           <Tooltip content="Total number of transactions that interacted with the protocols supported by stackspulse">
             <IconInfoCircle size={14} />
@@ -27,12 +22,7 @@ export const HomeStats = async () => {
         </Text>
       </Card>
       <Card size="2">
-        <Text
-          className="flex items-center gap-1"
-          as="div"
-          size="2"
-          color="gray"
-        >
+        <Text className="flex items-center gap-1" as="div" size="2" color="gray">
           Unique addresses
           <Tooltip content="Total number of unique addresses that interacted with the protocols supported by stackspulse">
             <IconInfoCircle size={14} />

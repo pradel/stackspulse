@@ -1,7 +1,4 @@
-export const displayPrice = (
-  price: bigint | number | string,
-  decimals: number,
-): string => {
+export const displayPrice = (price: bigint | number | string, decimals: number): string => {
   const priceNumber = Number(price) / 10 ** decimals;
   // For amounts < 1 (eg: BTC) we want to display 6 decimal places
   // otherwise we want to display 2 decimal places

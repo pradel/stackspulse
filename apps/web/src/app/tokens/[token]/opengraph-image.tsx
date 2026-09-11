@@ -18,16 +18,13 @@ interface PageProps {
 }
 
 export default async function Image({ params }: PageProps) {
-  const metadata = await tokenMetadataClient.GET(
-    "/metadata/v1/ft/{principal}",
-    {
-      params: {
-        path: {
-          principal: params.token,
-        },
+  const metadata = await tokenMetadataClient.GET("/metadata/v1/ft/{principal}", {
+    params: {
+      path: {
+        principal: params.token,
       },
     },
-  );
+  });
   const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();

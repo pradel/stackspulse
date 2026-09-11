@@ -8,9 +8,7 @@ interface TransactionActionAlexProps {
   transaction: TransactionsRouteResponse[number];
 }
 
-export const TransactionActionAlex = ({
-  transaction,
-}: TransactionActionAlexProps) => {
+export const TransactionActionAlex = ({ transaction }: TransactionActionAlexProps) => {
   if (
     transaction.contract_call.function_name === "swap-helper" &&
     transaction.tx_status === "success"

@@ -5,9 +5,7 @@ interface DefaultTransactionActionProps {
   transaction: TransactionsRouteResponse[number];
 }
 
-export const DefaultTransactionAction = ({
-  transaction,
-}: DefaultTransactionActionProps) => {
+export const DefaultTransactionAction = ({ transaction }: DefaultTransactionActionProps) => {
   return (
     <>
       <Text color="gray">Call</Text> {transaction.contract_call.function_name}

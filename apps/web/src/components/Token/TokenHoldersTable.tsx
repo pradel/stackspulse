@@ -33,9 +33,7 @@ export const TokenHoldersTable = ({ tokenInfo }: TokenHoldersTableProps) => {
           <Table.Row>
             <Table.ColumnHeaderCell>Rank</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Address</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="right">
-              Balance
-            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell align="right">Balance</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell align="right" className="whitespace-nowrap">
               % of Supply
             </Table.ColumnHeaderCell>
@@ -65,8 +63,7 @@ export const TokenHoldersTable = ({ tokenInfo }: TokenHoldersTableProps) => {
               <Table.Cell align="right">
                 <Text size="2">
                   {(
-                    Number(holder.balance) /
-                    Number(10 ** (tokenInfo.decimals ?? 0))
+                    Number(holder.balance) / Number(10 ** (tokenInfo.decimals ?? 0))
                   ).toLocaleString("en-US")}
                 </Text>
               </Table.Cell>

@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "ready": "vp fmt && vp lint && vp run -r test && vp run -r build",
     "build": "pnpm turbo run build",
@@ -17,5 +16,6 @@
     "@changesets/cli": "3.0.2",
     "turbo": "2.5.3",
     "vite-plus": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@11.24.0"
 }

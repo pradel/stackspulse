@@ -10,9 +10,7 @@ interface ProtocolTransactionsProps {
   protocol: Protocol;
 }
 
-export const ProtocolTransactions = ({
-  protocol,
-}: ProtocolTransactionsProps) => {
+export const ProtocolTransactions = ({ protocol }: ProtocolTransactionsProps) => {
   const { data: transactions } = useGetTransactions({
     protocol,
   });

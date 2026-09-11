@@ -33,12 +33,7 @@ import { Separator, Text } from "@radix-ui/themes";
 function deepEqual<T>(obj1: T, obj2: T): boolean {
   if (obj1 === obj2) return true;
 
-  if (
-    typeof obj1 !== "object" ||
-    typeof obj2 !== "object" ||
-    obj1 === null ||
-    obj2 === null
-  ) {
+  if (typeof obj1 !== "object" || typeof obj2 !== "object" || obj1 === null || obj2 === null) {
     return false;
   }
 
@@ -97,12 +92,7 @@ interface LegendItemProps {
   activeLegend?: string;
 }
 
-const LegendItem = ({
-  name,
-  color,
-  onClick,
-  activeLegend,
-}: LegendItemProps) => {
+const LegendItem = ({ name, color, onClick, activeLegend }: LegendItemProps) => {
   const hasOnValueChange = !!onClick;
   return (
     <li
@@ -132,8 +122,7 @@ const LegendItem = ({
           "truncate whitespace-nowrap text-1",
           // text color
           "text-gray-700 dark:text-gray-300",
-          hasOnValueChange &&
-            "group-hover:text-gray-900 dark:group-hover:text-gray-50",
+          hasOnValueChange && "group-hover:text-gray-900 dark:group-hover:text-gray-50",
           activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
         )}
       >
@@ -235,8 +224,7 @@ const Legend = React.forwardRef<HTMLOListElement, LegendProps>((props, ref) => {
     if (!scrollable) return;
 
     const hasLeftScroll = scrollable.scrollLeft > 0;
-    const hasRightScroll =
-      scrollable.scrollWidth - scrollable.clientWidth > scrollable.scrollLeft;
+    const hasRightScroll = scrollable.scrollWidth - scrollable.clientWidth > scrollable.scrollLeft;
 
     setHasScroll({ left: hasLeftScroll, right: hasRightScroll });
   }, [setHasScroll]);
@@ -310,11 +298,7 @@ const Legend = React.forwardRef<HTMLOListElement, LegendProps>((props, ref) => {
   }, [checkScroll, enableLegendSlider]);
 
   return (
-    <ol
-      ref={ref}
-      className={cx("relative overflow-hidden", className)}
-      {...other}
-    >
+    <ol ref={ref} className={cx("relative overflow-hidden", className)} {...other}>
       <div
         ref={scrollableRef}
         tabIndex={0}
@@ -385,15 +369,13 @@ const ChartLegend = (
   const legendRef = React.useRef<HTMLDivElement>(null);
 
   useOnWindowResize(() => {
-    const calculateHeight = (height: number | undefined) =>
-      height ? Number(height) + 15 : 60;
+    const calculateHeight = (height: number | undefined) => (height ? Number(height) + 15 : 60);
     setLegendHeight(calculateHeight(legendRef.current?.clientHeight));
   });
 
   const filteredPayload = payload.filter((item: any) => item.type !== "none");
 
-  const paddingLeft =
-    legendPosition === "left" && yAxisWidth ? yAxisWidth - 8 : 0;
+  const paddingLeft = legendPosition === "left" && yAxisWidth ? yAxisWidth - 8 : 0;
 
   return (
     <div
@@ -410,9 +392,7 @@ const ChartLegend = (
     >
       <Legend
         categories={filteredPayload.map((entry: any) => entry.value)}
-        colors={filteredPayload.map((entry: any) =>
-          categoryColors.get(entry.value),
-        )}
+        colors={filteredPayload.map((entry: any) => categoryColors.get(entry.value))}
         onClickLegendItem={onClick}
         activeLegend={activeLegend}
         enableLegendSlider={enableLegendSlider}
@@ -441,12 +421,7 @@ interface ChartTooltipProps {
   valueFormatter: (value: number) => string;
 }
 
-const ChartTooltip = ({
-  active,
-  payload,
-  label,
-  valueFormatter,
-}: ChartTooltipProps) => {
+const ChartTooltip = ({ active, payload, label, valueFormatter }: ChartTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div
@@ -470,10 +445,7 @@ const ChartTooltip = ({
             <div key={`id-${index}`} className="flex items-center space-x-2">
               <span
                 aria-hidden="true"
-                className={cx(
-                  "size-2 shrink-0 rounded-full",
-                  getColorClassName(color, "bg"),
-                )}
+                className={cx("size-2 shrink-0 rounded-full", getColorClassName(color, "bg"))}
               />
               <Text as="div" size="2" color="gray">
                 {category}:{" "}
@@ -531,331 +503,301 @@ interface BarChartProps extends React.HTMLAttributes<HTMLDivElement> {
   customTooltip?: React.ComponentType<TooltipProps>;
 }
 
-const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
-  (props, forwardedRef) => {
-    const {
-      data = [],
-      categories = [],
-      index,
-      colors = AvailableChartColors,
-      valueFormatter = (value: number) => value.toString(),
-      startEndOnly = false,
-      showXAxis = true,
-      showYAxis = true,
-      showGridLines = true,
-      yAxisWidth = 56,
-      intervalType = "equidistantPreserveStart",
-      showTooltip = true,
-      showLegend = true,
-      autoMinValue = false,
-      minValue,
-      maxValue,
-      allowDecimals = true,
-      className,
-      onValueChange,
-      enableLegendSlider = false,
-      barCategoryGap,
-      tickGap = 5,
-      xAxisLabel,
-      yAxisLabel,
-      layout = "horizontal",
-      type = "default",
-      legendPosition = "right",
-      tooltipCallback,
-      customTooltip,
-      ...other
-    } = props;
-    const CustomTooltip = customTooltip;
-    const paddingValue =
-      (!showXAxis && !showYAxis) || (startEndOnly && !showYAxis) ? 0 : 20;
-    const [legendHeight, setLegendHeight] = React.useState(60);
-    const [activeLegend, setActiveLegend] = React.useState<string | undefined>(
-      undefined,
-    );
-    const categoryColors = constructCategoryColors(categories, colors);
-    const [activeBar, setActiveBar] = React.useState<any | undefined>(
-      undefined,
-    );
-    const yAxisDomain = getYAxisDomain(autoMinValue, minValue, maxValue);
-    const hasOnValueChange = !!onValueChange;
-    const stacked = type === "stacked" || type === "percent";
+const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>((props, forwardedRef) => {
+  const {
+    data = [],
+    categories = [],
+    index,
+    colors = AvailableChartColors,
+    valueFormatter = (value: number) => value.toString(),
+    startEndOnly = false,
+    showXAxis = true,
+    showYAxis = true,
+    showGridLines = true,
+    yAxisWidth = 56,
+    intervalType = "equidistantPreserveStart",
+    showTooltip = true,
+    showLegend = true,
+    autoMinValue = false,
+    minValue,
+    maxValue,
+    allowDecimals = true,
+    className,
+    onValueChange,
+    enableLegendSlider = false,
+    barCategoryGap,
+    tickGap = 5,
+    xAxisLabel,
+    yAxisLabel,
+    layout = "horizontal",
+    type = "default",
+    legendPosition = "right",
+    tooltipCallback,
+    customTooltip,
+    ...other
+  } = props;
+  const CustomTooltip = customTooltip;
+  const paddingValue = (!showXAxis && !showYAxis) || (startEndOnly && !showYAxis) ? 0 : 20;
+  const [legendHeight, setLegendHeight] = React.useState(60);
+  const [activeLegend, setActiveLegend] = React.useState<string | undefined>(undefined);
+  const categoryColors = constructCategoryColors(categories, colors);
+  const [activeBar, setActiveBar] = React.useState<any | undefined>(undefined);
+  const yAxisDomain = getYAxisDomain(autoMinValue, minValue, maxValue);
+  const hasOnValueChange = !!onValueChange;
+  const stacked = type === "stacked" || type === "percent";
 
-    const prevActiveRef = React.useRef<boolean | undefined>(undefined);
-    const prevLabelRef = React.useRef<string | undefined>(undefined);
+  const prevActiveRef = React.useRef<boolean | undefined>(undefined);
+  const prevLabelRef = React.useRef<string | undefined>(undefined);
 
-    function valueToPercent(value: number) {
-      return `${(value * 100).toFixed(0)}%`;
-    }
+  function valueToPercent(value: number) {
+    return `${(value * 100).toFixed(0)}%`;
+  }
 
-    function onBarClick(data: any, _: any, event: React.MouseEvent) {
-      event.stopPropagation();
-      if (!onValueChange) return;
-      if (deepEqual(activeBar, { ...data.payload, value: data.value })) {
-        setActiveLegend(undefined);
-        setActiveBar(undefined);
-        onValueChange?.(null);
-      } else {
-        setActiveLegend(data.tooltipPayload?.[0]?.dataKey);
-        setActiveBar({
-          ...data.payload,
-          value: data.value,
-        });
-        onValueChange?.({
-          eventType: "bar",
-          categoryClicked: data.tooltipPayload?.[0]?.dataKey,
-          ...data.payload,
-        });
-      }
-    }
-
-    function onCategoryClick(dataKey: string) {
-      if (!hasOnValueChange) return;
-      if (dataKey === activeLegend && !activeBar) {
-        setActiveLegend(undefined);
-        onValueChange?.(null);
-      } else {
-        setActiveLegend(dataKey);
-        onValueChange?.({
-          eventType: "category",
-          categoryClicked: dataKey,
-        });
-      }
+  function onBarClick(data: any, _: any, event: React.MouseEvent) {
+    event.stopPropagation();
+    if (!onValueChange) return;
+    if (deepEqual(activeBar, { ...data.payload, value: data.value })) {
+      setActiveLegend(undefined);
       setActiveBar(undefined);
+      onValueChange?.(null);
+    } else {
+      setActiveLegend(data.tooltipPayload?.[0]?.dataKey);
+      setActiveBar({
+        ...data.payload,
+        value: data.value,
+      });
+      onValueChange?.({
+        eventType: "bar",
+        categoryClicked: data.tooltipPayload?.[0]?.dataKey,
+        ...data.payload,
+      });
     }
+  }
 
-    return (
-      <div
-        ref={forwardedRef}
-        className={cx("h-80 w-full", className)}
-        tremor-id="tremor-raw"
-        {...other}
-      >
-        <ResponsiveContainer>
-          <RechartsBarChart
-            data={data}
-            onClick={
-              hasOnValueChange && (activeLegend || activeBar)
-                ? () => {
-                    setActiveBar(undefined);
-                    setActiveLegend(undefined);
-                    onValueChange?.(null);
-                  }
-                : undefined
-            }
-            margin={{
-              bottom: xAxisLabel ? 30 : undefined,
-              left: yAxisLabel ? 20 : undefined,
-              right: yAxisLabel ? 5 : undefined,
-              top: 5,
-            }}
-            stackOffset={type === "percent" ? "expand" : undefined}
-            layout={layout}
-            barCategoryGap={barCategoryGap}
-          >
-            {showGridLines ? (
-              <CartesianGrid
-                className="stroke-gray-11 stroke-1"
-                horizontal={layout !== "vertical"}
-                vertical={layout === "vertical"}
-              />
-            ) : null}
-            <XAxis
-              hide={!showXAxis}
-              tick={{
-                transform:
-                  layout !== "vertical" ? "translate(0, 6)" : undefined,
-              }}
-              fill=""
-              stroke=""
-              className={cx(
-                // base
-                "text-1",
-                // text fill
-                "fill-gray-11",
-                { "mt-4": layout !== "vertical" },
-              )}
-              tickLine={false}
-              axisLine={false}
-              minTickGap={tickGap}
-              {...(layout !== "vertical"
-                ? {
-                    padding: {
-                      left: paddingValue,
-                      right: paddingValue,
-                    },
-                    dataKey: index,
-                    interval: startEndOnly ? "preserveStartEnd" : intervalType,
-                    ticks: startEndOnly
-                      ? [data[0][index], data[data.length - 1][index]]
-                      : undefined,
-                  }
-                : {
-                    type: "number",
-                    domain: yAxisDomain as AxisDomain,
-                    tickFormatter:
-                      type === "percent" ? valueToPercent : valueFormatter,
-                    allowDecimals: allowDecimals,
-                  })}
-            >
-              {xAxisLabel && (
-                <Label
-                  position="insideBottom"
-                  offset={-20}
-                  className="fill-gray-10 text-1 font-medium"
-                >
-                  {xAxisLabel}
-                </Label>
-              )}
-            </XAxis>
-            <YAxis
-              width={yAxisWidth}
-              hide={!showYAxis}
-              axisLine={false}
-              tickLine={false}
-              fill=""
-              stroke=""
-              className={cx(
-                // base
-                "text-1",
-                // text fill
-                "fill-gray-11",
-              )}
-              tick={{
-                transform:
-                  layout !== "vertical"
-                    ? "translate(-3, 0)"
-                    : "translate(0, 0)",
-              }}
-              {...(layout !== "vertical"
-                ? {
-                    type: "number",
-                    domain: yAxisDomain as AxisDomain,
-                    tickFormatter:
-                      type === "percent" ? valueToPercent : valueFormatter,
-                    allowDecimals: allowDecimals,
-                  }
-                : {
-                    dataKey: index,
-                    ticks: startEndOnly
-                      ? [data[0][index], data[data.length - 1][index]]
-                      : undefined,
-                    type: "category",
-                    interval: "equidistantPreserveStart",
-                  })}
-            >
-              {yAxisLabel && (
-                <Label
-                  position="insideLeft"
-                  style={{ textAnchor: "middle" }}
-                  angle={-90}
-                  offset={-15}
-                  className="fill-gray-10 text-1 font-medium"
-                >
-                  {yAxisLabel}
-                </Label>
-              )}
-            </YAxis>
-            <Tooltip
-              wrapperStyle={{ outline: "none" }}
-              isAnimationActive={true}
-              animationDuration={100}
-              cursor={{ fill: "#d1d5db", opacity: "0.15" }}
-              offset={20}
-              position={{
-                y: layout === "horizontal" ? 0 : undefined,
-                x: layout === "horizontal" ? undefined : yAxisWidth + 20,
-              }}
-              content={({ active, payload, label }) => {
-                const cleanPayload: TooltipProps["payload"] = payload
-                  ? payload.map((item: any) => ({
-                      category: item.dataKey,
-                      value: item.value,
-                      index: item.payload[index],
-                      color: categoryColors.get(
-                        item.dataKey,
-                      ) as AvailableChartColorsKeys,
-                      type: item.type,
-                      payload: item.payload,
-                    }))
-                  : [];
+  function onCategoryClick(dataKey: string) {
+    if (!hasOnValueChange) return;
+    if (dataKey === activeLegend && !activeBar) {
+      setActiveLegend(undefined);
+      onValueChange?.(null);
+    } else {
+      setActiveLegend(dataKey);
+      onValueChange?.({
+        eventType: "category",
+        categoryClicked: dataKey,
+      });
+    }
+    setActiveBar(undefined);
+  }
 
-                if (
-                  tooltipCallback &&
-                  (active !== prevActiveRef.current ||
-                    label !== prevLabelRef.current)
-                ) {
-                  tooltipCallback({ active, payload: cleanPayload, label });
-                  prevActiveRef.current = active;
-                  prevLabelRef.current = label;
+  return (
+    <div
+      ref={forwardedRef}
+      className={cx("h-80 w-full", className)}
+      tremor-id="tremor-raw"
+      {...other}
+    >
+      <ResponsiveContainer>
+        <RechartsBarChart
+          data={data}
+          onClick={
+            hasOnValueChange && (activeLegend || activeBar)
+              ? () => {
+                  setActiveBar(undefined);
+                  setActiveLegend(undefined);
+                  onValueChange?.(null);
                 }
-
-                return showTooltip && active ? (
-                  CustomTooltip ? (
-                    <CustomTooltip
-                      active={active}
-                      payload={cleanPayload}
-                      label={label}
-                    />
-                  ) : (
-                    <ChartTooltip
-                      active={active}
-                      payload={cleanPayload}
-                      label={label}
-                      valueFormatter={valueFormatter}
-                    />
-                  )
-                ) : null;
-              }}
+              : undefined
+          }
+          margin={{
+            bottom: xAxisLabel ? 30 : undefined,
+            left: yAxisLabel ? 20 : undefined,
+            right: yAxisLabel ? 5 : undefined,
+            top: 5,
+          }}
+          stackOffset={type === "percent" ? "expand" : undefined}
+          layout={layout}
+          barCategoryGap={barCategoryGap}
+        >
+          {showGridLines ? (
+            <CartesianGrid
+              className="stroke-gray-11 stroke-1"
+              horizontal={layout !== "vertical"}
+              vertical={layout === "vertical"}
             />
-            {showLegend ? (
-              <RechartsLegend
-                verticalAlign="top"
-                height={legendHeight}
-                content={({ payload }) =>
-                  ChartLegend(
-                    { payload },
-                    categoryColors,
-                    setLegendHeight,
-                    activeLegend,
-                    hasOnValueChange
-                      ? (clickedLegendItem: string) =>
-                          onCategoryClick(clickedLegendItem)
-                      : undefined,
-                    enableLegendSlider,
-                    legendPosition,
-                    yAxisWidth,
-                  )
+          ) : null}
+          <XAxis
+            hide={!showXAxis}
+            tick={{
+              transform: layout !== "vertical" ? "translate(0, 6)" : undefined,
+            }}
+            fill=""
+            stroke=""
+            className={cx(
+              // base
+              "text-1",
+              // text fill
+              "fill-gray-11",
+              { "mt-4": layout !== "vertical" },
+            )}
+            tickLine={false}
+            axisLine={false}
+            minTickGap={tickGap}
+            {...(layout !== "vertical"
+              ? {
+                  padding: {
+                    left: paddingValue,
+                    right: paddingValue,
+                  },
+                  dataKey: index,
+                  interval: startEndOnly ? "preserveStartEnd" : intervalType,
+                  ticks: startEndOnly ? [data[0][index], data[data.length - 1][index]] : undefined,
                 }
-              />
-            ) : null}
-            {categories.map((category) => (
-              <Bar
-                className={cx(
-                  getColorClassName(
-                    categoryColors.get(category) as AvailableChartColorsKeys,
-                    "fill",
-                  ),
-                  onValueChange ? "cursor-pointer" : "",
-                )}
-                key={category}
-                name={category}
-                type="linear"
-                dataKey={category}
-                stackId={stacked ? "stack" : undefined}
-                isAnimationActive={false}
-                fill=""
-                shape={(props: any) =>
-                  renderShape(props, activeBar, activeLegend, layout)
+              : {
+                  type: "number",
+                  domain: yAxisDomain as AxisDomain,
+                  tickFormatter: type === "percent" ? valueToPercent : valueFormatter,
+                  allowDecimals: allowDecimals,
+                })}
+          >
+            {xAxisLabel && (
+              <Label
+                position="insideBottom"
+                offset={-20}
+                className="fill-gray-10 text-1 font-medium"
+              >
+                {xAxisLabel}
+              </Label>
+            )}
+          </XAxis>
+          <YAxis
+            width={yAxisWidth}
+            hide={!showYAxis}
+            axisLine={false}
+            tickLine={false}
+            fill=""
+            stroke=""
+            className={cx(
+              // base
+              "text-1",
+              // text fill
+              "fill-gray-11",
+            )}
+            tick={{
+              transform: layout !== "vertical" ? "translate(-3, 0)" : "translate(0, 0)",
+            }}
+            {...(layout !== "vertical"
+              ? {
+                  type: "number",
+                  domain: yAxisDomain as AxisDomain,
+                  tickFormatter: type === "percent" ? valueToPercent : valueFormatter,
+                  allowDecimals: allowDecimals,
                 }
-                onClick={onBarClick}
-              />
-            ))}
-          </RechartsBarChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  },
-);
+              : {
+                  dataKey: index,
+                  ticks: startEndOnly ? [data[0][index], data[data.length - 1][index]] : undefined,
+                  type: "category",
+                  interval: "equidistantPreserveStart",
+                })}
+          >
+            {yAxisLabel && (
+              <Label
+                position="insideLeft"
+                style={{ textAnchor: "middle" }}
+                angle={-90}
+                offset={-15}
+                className="fill-gray-10 text-1 font-medium"
+              >
+                {yAxisLabel}
+              </Label>
+            )}
+          </YAxis>
+          <Tooltip
+            wrapperStyle={{ outline: "none" }}
+            isAnimationActive={true}
+            animationDuration={100}
+            cursor={{ fill: "#d1d5db", opacity: "0.15" }}
+            offset={20}
+            position={{
+              y: layout === "horizontal" ? 0 : undefined,
+              x: layout === "horizontal" ? undefined : yAxisWidth + 20,
+            }}
+            content={({ active, payload, label }) => {
+              const cleanPayload: TooltipProps["payload"] = payload
+                ? payload.map((item: any) => ({
+                    category: item.dataKey,
+                    value: item.value,
+                    index: item.payload[index],
+                    color: categoryColors.get(item.dataKey) as AvailableChartColorsKeys,
+                    type: item.type,
+                    payload: item.payload,
+                  }))
+                : [];
+
+              if (
+                tooltipCallback &&
+                (active !== prevActiveRef.current || label !== prevLabelRef.current)
+              ) {
+                tooltipCallback({ active, payload: cleanPayload, label });
+                prevActiveRef.current = active;
+                prevLabelRef.current = label;
+              }
+
+              return showTooltip && active ? (
+                CustomTooltip ? (
+                  <CustomTooltip active={active} payload={cleanPayload} label={label} />
+                ) : (
+                  <ChartTooltip
+                    active={active}
+                    payload={cleanPayload}
+                    label={label}
+                    valueFormatter={valueFormatter}
+                  />
+                )
+              ) : null;
+            }}
+          />
+          {showLegend ? (
+            <RechartsLegend
+              verticalAlign="top"
+              height={legendHeight}
+              content={({ payload }) =>
+                ChartLegend(
+                  { payload },
+                  categoryColors,
+                  setLegendHeight,
+                  activeLegend,
+                  hasOnValueChange
+                    ? (clickedLegendItem: string) => onCategoryClick(clickedLegendItem)
+                    : undefined,
+                  enableLegendSlider,
+                  legendPosition,
+                  yAxisWidth,
+                )
+              }
+            />
+          ) : null}
+          {categories.map((category) => (
+            <Bar
+              className={cx(
+                getColorClassName(categoryColors.get(category) as AvailableChartColorsKeys, "fill"),
+                onValueChange ? "cursor-pointer" : "",
+              )}
+              key={category}
+              name={category}
+              type="linear"
+              dataKey={category}
+              stackId={stacked ? "stack" : undefined}
+              isAnimationActive={false}
+              fill=""
+              shape={(props: any) => renderShape(props, activeBar, activeLegend, layout)}
+              onClick={onBarClick}
+            />
+          ))}
+        </RechartsBarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+});
 
 BarChart.displayName = "BarChart";
 

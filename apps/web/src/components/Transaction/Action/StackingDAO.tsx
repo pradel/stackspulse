@@ -15,8 +15,7 @@ export const TransactionActionStackingDAO = ({
     transaction.tx_status === "success"
   ) {
     const stxAmount =
-      transaction.events.find((event) => event.event_type === "stx_asset")
-        ?.asset.amount || "0";
+      transaction.events.find((event) => event.event_type === "stx_asset")?.asset.amount || "0";
     return (
       <>
         <Text color="gray">Deposit</Text> {displayPrice(stxAmount, 6)} STX
@@ -29,8 +28,7 @@ export const TransactionActionStackingDAO = ({
     transaction.tx_status === "success"
   ) {
     const stxAmount =
-      transaction.events.find((event) => event.event_type === "stx_asset")
-        ?.asset.amount || "0";
+      transaction.events.find((event) => event.event_type === "stx_asset")?.asset.amount || "0";
     return (
       <>
         <Text color="gray">Withdraw</Text> {displayPrice(stxAmount, 6)} STX
