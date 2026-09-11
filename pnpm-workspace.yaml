@@ -18,7 +18,7 @@ catalog:
   "@vitest/coverage-v8": 4.1.11
 
 minimumReleaseAgeExclude:
-  - stacksindex@0.0.3
+  - stacksindex@0.0.4
   - zod@4.6.2
 
 overrides:

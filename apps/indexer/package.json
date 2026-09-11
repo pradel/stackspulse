@@ -14,7 +14,7 @@
     "@electric-sql/pglite": "0.5.8",
     "drizzle-orm": "0.45.2",
     "pg": "8.23.0",
-    "stacksindex": "0.0.3",
+    "stacksindex": "0.0.4",
     "zod": "4.6.2"
   },
   "devDependencies": {
