@@ -1,26 +1,21 @@
 {
-  "name": "root",
+  "name": "stackspulse-root",
+  "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@9.7.0",
+  "type": "module",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
+    "ready": "vp fmt && vp lint && vp run -r test && vp run -r build",
     "build": "pnpm turbo run build",
-    "format": "biome check --write --no-errors-on-unmatched",
-    "version": "pnpm changeset version && node scripts/create-release.mjs",
-    "release": "pnpm changeset publish",
-    "prepare": "husky"
-  },
-  "dependencies": {
-    "husky": "9.1.7"
+    "prepare": "vp config",
+    "changeset": "changeset",
+    "version": "changeset version && vp check --fix && node scripts/create-release.mjs",
+    "release": "vp run build && changeset publish"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "2.29.3",
-    "lint-staged": "15.5.2",
-    "turbo": "2.5.3"
-  },
-  "lint-staged": {
-    "*": [
-      "biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true"
-    ]
+    "@changesets/changelog-github": "1.0.1",
+    "@changesets/cli": "3.0.2",
+    "turbo": "2.5.3",
+    "vite-plus": "catalog:"
   }
 }
