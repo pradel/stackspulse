@@ -17,6 +17,10 @@ catalog:
   vite-plus: 0.3.1
   "@vitest/coverage-v8": 4.1.11
 
+minimumReleaseAgeExclude:
+  - stacksindex@0.0.3
+  - zod@4.6.2
+
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"
