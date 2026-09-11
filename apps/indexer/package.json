@@ -6,10 +6,21 @@
   "scripts": {
     "dev": "pnpm build && node --env-file-if-exists=.env dist/index.mjs",
     "build": "vp pack",
-    "test": "vp test"
+    "test": "vp test",
+    "generate": "drizzle-kit generate",
+    "studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "drizzle-orm": "0.45.2",
+    "pg": "8.23.0",
+    "stacksindex": "0.0.3",
+    "zod": "4.6.2"
   },
   "devDependencies": {
-    "@types/node": "22.15.17",
+    "@types/node": "22.20.2",
+    "@types/pg": "8.23.1",
+    "drizzle-kit": "0.31.10",
     "typescript": "7.0.2",
     "vite-plus": "catalog:"
   }

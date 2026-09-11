@@ -1,0 +1,187 @@
+{
+  "id": "60debf12-6fea-4308-be94-1058663d1e4c",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.deposit": {
+      "name": "deposit",
+      "schema": "",
+      "columns": {
+        "tx_id": {
+          "name": "tx_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chain_id": {
+          "name": "chain_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_index": {
+          "name": "event_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_id": {
+          "name": "contract_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stacker": {
+          "name": "stacker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stx_amount": {
+          "name": "stx_amount",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ststx_amount": {
+          "name": "ststx_amount",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pool": {
+          "name": "pool",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_height": {
+          "name": "block_height",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "block_time": {
+          "name": "block_time",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "deposit_tx_id_chain_id_event_index_pk": {
+          "name": "deposit_tx_id_chain_id_event_index_pk",
+          "columns": ["tx_id", "chain_id", "event_index"]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.withdraw": {
+      "name": "withdraw",
+      "schema": "",
+      "columns": {
+        "tx_id": {
+          "name": "tx_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chain_id": {
+          "name": "chain_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_index": {
+          "name": "event_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_id": {
+          "name": "contract_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "action": {
+          "name": "action",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stacker": {
+          "name": "stacker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nft_id": {
+          "name": "nft_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ststx_amount": {
+          "name": "ststx_amount",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stx_amount": {
+          "name": "stx_amount",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_height": {
+          "name": "block_height",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "block_time": {
+          "name": "block_time",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "withdraw_tx_id_chain_id_event_index_pk": {
+          "name": "withdraw_tx_id_chain_id_event_index_pk",
+          "columns": ["tx_id", "chain_id", "event_index"]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
