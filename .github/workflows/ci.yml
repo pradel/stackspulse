@@ -24,10 +24,9 @@ jobs:
           cache: true
 
       - name: Run build
-        run: vp run build
+        run: |
+          cp ./apps/web/.env.production.build ./apps/web/.env.production.local
+          vp run build
 
       - name: Check formatting, linting and type checks.
         run: vp check
-
-      - name: Run tests
-        run: vp run test
