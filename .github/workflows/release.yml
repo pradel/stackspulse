@@ -15,28 +15,33 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
 
-      - name: Setup Node.js 22
-        uses: actions/setup-node@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
         with:
-          node-version: 22
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - name: Create Release Pull Request
+      - name: Create Release Pull Request or Publish
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          version: pnpm run version
-          publish: pnpm run release
-          commit: 'chore: release'
-          title: 'chore: create new release'
+          version-script: pnpm run version
+          publish-script: pnpm run release
+          commit-message: "chore: release"
+          pr-title: "chore: create new release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

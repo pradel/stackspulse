@@ -30,9 +30,7 @@ export default async function ProtocolPage() {
             <Table.ColumnHeaderCell>Token</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell align="right">Price</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell align="right">24h</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="right">
-              Market Cap
-            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell align="right">Market Cap</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -51,9 +49,7 @@ export default async function ProtocolPage() {
                   <Text size="2">{market.name}</Text>
                 ) : (
                   <Link color="gray" highContrast size="2" asChild>
-                    <NextLink href={`/tokens/resolve/${market.id}`}>
-                      {market.name}
-                    </NextLink>
+                    <NextLink href={`/tokens/resolve/${market.id}`}>{market.name}</NextLink>
                   </Link>
                 )}
               </Table.Cell>
@@ -68,26 +64,20 @@ export default async function ProtocolPage() {
                 <Text
                   size="2"
                   color={
-                    market.price_change_percentage_24h &&
-                    market.price_change_percentage_24h >= 0
+                    market.price_change_percentage_24h && market.price_change_percentage_24h >= 0
                       ? "green"
                       : "red"
                   }
                 >
                   {market.price_change_percentage_24h
-                    ? `${market.price_change_percentage_24h.toLocaleString(
-                        "en-US",
-                        {
-                          maximumFractionDigits: 2,
-                        },
-                      )}%`
+                    ? `${market.price_change_percentage_24h.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                      })}%`
                     : ""}
                 </Text>
               </Table.Cell>
               <Table.Cell align="right">
-                {market.market_cap
-                  ? `$${market.market_cap.toLocaleString("en-US")}`
-                  : ""}
+                {market.market_cap ? `$${market.market_cap.toLocaleString("en-US")}` : ""}
               </Table.Cell>
             </Table.Row>
           ))}

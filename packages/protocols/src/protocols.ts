@@ -117,8 +117,7 @@ export const protocolsInfo: {
   },
   stackingdao: {
     name: "StackingDAO",
-    description:
-      "Liquid stacking on Stacks. Earn 10% APY on STX with instant liquidity 📈",
+    description: "Liquid stacking on Stacks. Earn 10% APY on STX with instant liquidity 📈",
     website: "https://www.stackingdao.com/",
     x: "https://twitter.com/StackingDao",
     contracts: [
@@ -130,8 +129,7 @@ export const protocolsInfo: {
   },
   stackswap: {
     name: "StackSwap",
-    description:
-      "Stackswap is a combination of DEX and token launchpad on Stacks blockchain.",
+    description: "Stackswap is a combination of DEX and token launchpad on Stacks blockchain.",
     website: "https://app.stackswap.org/",
     x: "https://twitter.com/Stackswap_BTC",
     contracts: ["SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.stackswap-swap-v5k"],
@@ -231,9 +229,7 @@ export const protocolsInfo: {
     description: "Liquid Stacking Protocol on Stacks.",
     website: "https://www.lisalab.io/",
     x: "https://twitter.com/LisaLab_BTC",
-    contracts: [
-      "SM3KNVZS30WM7F89SXKVVFY4SN9RMPZZ9FX929N0V.lqstx-mint-endpoint-v2-01",
-    ],
+    contracts: ["SM3KNVZS30WM7F89SXKVVFY4SN9RMPZZ9FX929N0V.lqstx-mint-endpoint-v2-01"],
   },
   hermetica: {
     name: "Hermetica",

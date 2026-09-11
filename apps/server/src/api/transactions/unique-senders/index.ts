@@ -16,10 +16,7 @@ type TransactionUniqueSendersRouteResponse = {
 }[];
 
 export default defineCachedEventHandler(async (event) => {
-  const query = await getValidatedQueryZod(
-    event,
-    transactionUniqueSendersRouteSchema,
-  );
+  const query = await getValidatedQueryZod(event, transactionUniqueSendersRouteSchema);
 
   const queryStartTime = Date.now();
   const result = await sql`

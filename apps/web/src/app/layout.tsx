@@ -32,10 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        suppressHydrationWarning
-        className={`${font.variable} font-sans antialiased`}
-      >
+      <body suppressHydrationWarning className={`${font.variable} font-sans antialiased`}>
         <Providers>
           <Theme appearance="dark" accentColor="orange" grayColor="sand">
             <Header />

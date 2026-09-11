@@ -39,10 +39,7 @@
     state: present
     mode: "0644"
   loop:
-    - {
-        key: "Unattended-Upgrade::Automatic-Reboot",
-        value: "{{ security_autoupdate_reboot }}",
-      }
+    - { key: "Unattended-Upgrade::Automatic-Reboot", value: "{{ security_autoupdate_reboot }}" }
     - {
         key: "Unattended-Upgrade::Automatic-Reboot-Time",
         value: "{{ security_autoupdate_reboot_time }}",

@@ -20,13 +20,7 @@ export const TokenStats = ({ tokenInfo }: TokenStatsProps) => {
         <Text as="div" size="2" color="gray">
           Supply
         </Text>
-        <Text
-          as="div"
-          mt="2"
-          size="5"
-          weight="medium"
-          title={data.total_supply}
-        >
+        <Text as="div" mt="2" size="5" weight="medium" title={data.total_supply}>
           {Number(
             Number(data.total_supply) / Number(10 ** (tokenInfo.decimals ?? 0)),
           ).toLocaleString("en-US")}

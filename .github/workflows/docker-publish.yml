@@ -2,11 +2,11 @@ name: Docker
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     # Publish semver tags as releases.
-    tags: [ 'stackspulse@*.*.*' ]
+    tags: ["stackspulse@*.*.*"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 concurrency:
@@ -63,7 +63,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  
+
   build-server:
     runs-on: ubuntu-latest
 

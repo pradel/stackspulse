@@ -1,18 +1,8 @@
 "use client";
 import { appConfig } from "@/appConfig";
-import {
-  Container,
-  DropdownMenu,
-  IconButton,
-  Link,
-  Separator,
-} from "@radix-ui/themes";
+import { Container, DropdownMenu, IconButton, Link, Separator } from "@radix-ui/themes";
 import { type Protocol, protocolsInfo } from "@stackspulse/protocols";
-import {
-  IconBrandGithub,
-  IconBrandX,
-  IconChevronDown,
-} from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandX, IconChevronDown } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { IconLogo } from "../icons/IconLogo";

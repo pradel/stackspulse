@@ -1,15 +1,8 @@
 import { env } from "@/env";
-import type {
-  ProtocolUsersRouteQuery,
-  ProtocolUsersRouteResponse,
-} from "@/lib/api";
+import type { ProtocolUsersRouteQuery, ProtocolUsersRouteResponse } from "@/lib/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-export const useGetProtocolsUsers = ({
-  mode,
-  date,
-  limit,
-}: ProtocolUsersRouteQuery) => {
+export const useGetProtocolsUsers = ({ mode, date, limit }: ProtocolUsersRouteQuery) => {
   return useSuspenseQuery<ProtocolUsersRouteResponse>({
     queryKey: ["get-protocols-users", mode, date, limit],
     queryFn: async () => {

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: vite-plus setup
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version-file: ".node-version"
+          cache: true
+
+      - name: Run build
+        run: |
+          cp ./apps/web/.env.production.build ./apps/web/.env.production.local
+          vp run build
+
+      - name: Check formatting, linting and type checks.
+        run: vp check

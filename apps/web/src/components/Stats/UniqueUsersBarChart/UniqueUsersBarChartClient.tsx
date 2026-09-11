@@ -12,10 +12,7 @@ interface UniqueUsersBarChartProps {
   }[];
 }
 
-export const UniqueUsersBarChartClient = ({
-  protocol,
-  data,
-}: UniqueUsersBarChartProps) => {
+export const UniqueUsersBarChartClient = ({ protocol, data }: UniqueUsersBarChartProps) => {
   const formattedData: {
     date: string;
   }[] = data.map((d) => ({

@@ -51,9 +51,7 @@ LIMIT 50
 
   const queryEndTime = Date.now();
   consola.debug(
-    `TransactionsRoute: Query executed in ${formatElapsedTime(
-      queryEndTime - queryStartTime,
-    )}ms`,
+    `TransactionsRoute: Query executed in ${formatElapsedTime(queryEndTime - queryStartTime)}ms`,
   );
 
   const formattedResult = result.map((r) => ({
@@ -73,9 +71,7 @@ LIMIT 50
 
   const transactionsWithDetails: TransactionsRouteResponse = formattedResult
     .map((r) =>
-      data[r.tx_id].found === true
-        ? { protocol: r.protocol, ...data[r.tx_id].result }
-        : null,
+      data[r.tx_id].found === true ? { protocol: r.protocol, ...data[r.tx_id].result } : null,
     )
     .filter((tx) => tx !== null);
 

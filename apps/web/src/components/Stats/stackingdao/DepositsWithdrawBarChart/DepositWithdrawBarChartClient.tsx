@@ -11,9 +11,7 @@ interface DepositWithdrawBarChartClientProps {
   }[];
 }
 
-export const DepositWithdrawBarChartClient = ({
-  data,
-}: DepositWithdrawBarChartClientProps) => {
+export const DepositWithdrawBarChartClient = ({ data }: DepositWithdrawBarChartClientProps) => {
   return (
     <Card size="2" className="mt-5">
       <Text as="div" size="2" weight="medium" color="gray" highContrast>

@@ -16,16 +16,13 @@ interface PageProps {
 
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const params = await props.params;
-  const metadata = await tokenMetadataClient.GET(
-    "/metadata/v1/ft/{principal}",
-    {
-      params: {
-        path: {
-          principal: params.token,
-        },
+  const metadata = await tokenMetadataClient.GET("/metadata/v1/ft/{principal}", {
+    params: {
+      path: {
+        principal: params.token,
       },
     },
-  );
+  });
   const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();
@@ -42,16 +39,13 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
 export default async function ProtocolPage(props: PageProps) {
   const params = await props.params;
-  const metadata = await tokenMetadataClient.GET(
-    "/metadata/v1/ft/{principal}",
-    {
-      params: {
-        path: {
-          principal: params.token,
-        },
+  const metadata = await tokenMetadataClient.GET("/metadata/v1/ft/{principal}", {
+    params: {
+      path: {
+        principal: params.token,
       },
     },
-  );
+  });
   const tokenInfo = metadata?.data;
   if (!tokenInfo) {
     notFound();

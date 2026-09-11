@@ -7,10 +7,8 @@ import { Suspense, useState } from "react";
 import { TopProtocolsBarListQuery } from "./TopProtocolsBarListQuery";
 
 export const TopProtocolsBarList = () => {
-  const [dateFilter, setDateFilter] =
-    useState<ProtocolUsersRouteQuery["date"]>("all");
-  const [modeFilter, setModeFilter] =
-    useState<ProtocolUsersRouteQuery["mode"]>("nested");
+  const [dateFilter, setDateFilter] = useState<ProtocolUsersRouteQuery["date"]>("all");
+  const [modeFilter, setModeFilter] = useState<ProtocolUsersRouteQuery["mode"]>("nested");
 
   return (
     <Card size="2" className="mt-5">
@@ -101,10 +99,7 @@ export const TopProtocolsBarList = () => {
           />
         }
       >
-        <TopProtocolsBarListQuery
-          dateFilter={dateFilter}
-          modeFilter={modeFilter}
-        />
+        <TopProtocolsBarListQuery dateFilter={dateFilter} modeFilter={modeFilter} />
       </Suspense>
     </Card>
   );

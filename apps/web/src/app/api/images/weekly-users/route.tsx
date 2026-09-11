@@ -32,10 +32,7 @@ export async function GET(req: NextRequest) {
   });
 
   if (!params.success) {
-    return Response.json(
-      { success: false, message: "Invalid parameters" },
-      { status: 400 },
-    );
+    return Response.json({ success: false, message: "Invalid parameters" }, { status: 400 });
   }
 
   const title = params.data.title;
@@ -83,10 +80,7 @@ export async function GET(req: NextRequest) {
 
           <div tw="flex min-w-min text-right flex-col" style={{ gap: rowGap }}>
             {data.map((item) => (
-              <div
-                key={item.name}
-                tw={cn("flex justify-end items-center", rowHeight)}
-              >
+              <div key={item.name} tw={cn("flex justify-end items-center", rowHeight)}>
                 {item.value.toLocaleString("en-US")}
               </div>
             ))}

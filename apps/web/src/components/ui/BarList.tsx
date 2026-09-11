@@ -55,11 +55,7 @@ export const BarList = ({ className, data }: BarListProps) => {
           >
             <div className="absolute left-2 flex max-w-full">
               <Text size="2" asChild>
-                {item.href ? (
-                  <Link href={item.href}>{item.name}</Link>
-                ) : (
-                  item.name
-                )}
+                {item.href ? <Link href={item.href}>{item.name}</Link> : item.name}
               </Text>
             </div>
           </div>

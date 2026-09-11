@@ -55,10 +55,7 @@ interface QueryParams {
   daysToSubtract?: number;
 }
 
-const getProtocolUsersDirect = async ({
-  limit,
-  daysToSubtract,
-}: QueryParams) => {
+const getProtocolUsersDirect = async ({ limit, daysToSubtract }: QueryParams) => {
   let dateCondition = "";
   if (daysToSubtract) {
     dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`;
@@ -85,10 +82,7 @@ const getProtocolUsersDirect = async ({
   return result;
 };
 
-const getProtocolUsersNested = async ({
-  limit,
-  daysToSubtract,
-}: QueryParams) => {
+const getProtocolUsersNested = async ({ limit, daysToSubtract }: QueryParams) => {
   let dateCondition = "";
   if (daysToSubtract) {
     dateCondition = `AND txs.block_time >= EXTRACT(EPOCH FROM (NOW() - INTERVAL '${daysToSubtract} days'))`;
@@ -152,9 +146,7 @@ LIMIT ${limit};
 
   const queryEndTime = Date.now();
   consola.debug(
-    `ProtocolUsersRoute: Query executed in ${formatElapsedTime(
-      queryEndTime - queryStartTime,
-    )}ms`,
+    `ProtocolUsersRoute: Query executed in ${formatElapsedTime(queryEndTime - queryStartTime)}ms`,
   );
 
   return result;

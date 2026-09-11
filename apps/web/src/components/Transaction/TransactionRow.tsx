@@ -18,14 +18,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <IconButton
-        className="order-1"
-        size="1"
-        variant="ghost"
-        color="gray"
-        radius="full"
-        asChild
-      >
+      <IconButton className="order-1" size="1" variant="ghost" color="gray" radius="full" asChild>
         <Link href={`/protocols/${transaction.protocol}`}>
           <Image
             className="rounded-full"
@@ -68,13 +61,7 @@ export const TransactionRow = ({ transaction }: TransactionRowProps) => {
         </Text>
       </Tooltip>
 
-      <IconButton
-        className="order-4 md:order-5"
-        size="1"
-        color="gray"
-        variant="ghost"
-        asChild
-      >
+      <IconButton className="order-4 md:order-5" size="1" color="gray" variant="ghost" asChild>
         <a
           href={`https://explorer.hiro.so/txid/${transaction.tx_id}?chain=mainnet`}
           target="_blank"

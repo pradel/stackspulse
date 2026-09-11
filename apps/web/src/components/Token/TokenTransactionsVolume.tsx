@@ -19,8 +19,7 @@ export const TokenTransactionsVolume = ({ tokenInfo }: TokenStatsProps) => {
   const formattedData = useMemo(() => {
     return data.map((d) => ({
       date: d.date,
-      daily_volume:
-        Number(d.daily_volume) / Number(10 ** (tokenInfo.decimals ?? 0)),
+      daily_volume: Number(d.daily_volume) / Number(10 ** (tokenInfo.decimals ?? 0)),
     }));
   }, [data, tokenInfo.decimals]);
 
