@@ -1,0 +1,16 @@
+{
+  "name": "indexer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm build && node --env-file-if-exists=.env dist/index.mjs",
+    "build": "vp pack",
+    "test": "vp test"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.17",
+    "typescript": "7.0.2",
+    "vite-plus": "catalog:"
+  }
+}
