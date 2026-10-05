@@ -1,7 +1,7 @@
 CREATE TABLE "deposit" (
-	"tx_id" text NOT NULL,
-	"chain_id" bigint NOT NULL,
-	"event_index" integer NOT NULL,
+	"tx_id" text,
+	"chain_id" bigint,
+	"event_index" integer,
 	"contract_id" text NOT NULL,
 	"stacker" text NOT NULL,
 	"stx_amount" bigint,
@@ -10,13 +10,13 @@ CREATE TABLE "deposit" (
 	"pool" text,
 	"block_height" bigint NOT NULL,
 	"block_time" bigint NOT NULL,
-	CONSTRAINT "deposit_tx_id_chain_id_event_index_pk" PRIMARY KEY("tx_id","chain_id","event_index")
+	CONSTRAINT "deposit_pkey" PRIMARY KEY("tx_id","chain_id","event_index")
 );
 --> statement-breakpoint
 CREATE TABLE "withdraw" (
-	"tx_id" text NOT NULL,
-	"chain_id" bigint NOT NULL,
-	"event_index" integer NOT NULL,
+	"tx_id" text,
+	"chain_id" bigint,
+	"event_index" integer,
 	"contract_id" text NOT NULL,
 	"action" text NOT NULL,
 	"stacker" text NOT NULL,
@@ -25,5 +25,5 @@ CREATE TABLE "withdraw" (
 	"stx_amount" bigint,
 	"block_height" bigint NOT NULL,
 	"block_time" bigint NOT NULL,
-	CONSTRAINT "withdraw_tx_id_chain_id_event_index_pk" PRIMARY KEY("tx_id","chain_id","event_index")
+	CONSTRAINT "withdraw_pkey" PRIMARY KEY("tx_id","chain_id","event_index")
 );
