@@ -17,6 +17,13 @@ catalog:
   vite-plus: 0.3.1
   "@vitest/coverage-v8": 4.1.11
 
+minimumReleaseAgeExclude:
+  - stacksindex@0.0.7
+  - effect@4.0.0
+  - drizzle-orm@1.0.0-rc.5-5935859
+  - drizzle-kit@1.0.0-rc.5-5935859
+  - zod@4.6.2
+
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"
