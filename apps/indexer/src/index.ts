@@ -60,6 +60,11 @@ const program = Effect.gen(function* () {
       startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V5],
       handler: stackingDaoHandler,
     },
+    {
+      contractId: STACKINGDAO_CONTRACTS.CORE_V6,
+      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V6],
+      handler: stackingDaoHandler,
+    },
   ];
 
   yield* Effect.logInfo("Starting StackingDAO historical indexer").pipe(
