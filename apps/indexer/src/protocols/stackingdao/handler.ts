@@ -4,8 +4,7 @@ import {
   type HandlerContext,
   type HandlerEvent,
   type IndexerDb,
-  type Logger,
-} from "stacksindex";
+} from "stacksindex/effect";
 
 import { depositTable, withdrawTable } from "../../schema.ts";
 import { CHAIN_ID } from "./contracts.ts";
@@ -20,13 +19,11 @@ export type StackingDaoEventHandler = (
 
 export interface CreateStackingDaoHandlerOptions {
   db: AppDatabase;
-  logger: Logger;
   chainId?: bigint;
 }
 
 export function createStackingDaoHandler({
   db,
-  logger,
   chainId = CHAIN_ID,
 }: CreateStackingDaoHandlerOptions): StackingDaoEventHandler {
   return (event) =>
@@ -39,22 +36,24 @@ export function createStackingDaoHandler({
       );
 
       if (Option.isNone(decoded)) {
-        logger.debug({
-          msg: "Failed to decode Clarity log value",
-          contractId: event.contract_log.contract_id,
-          txId: event.tx_id,
-        });
+        yield* Effect.logDebug("Failed to decode Clarity log value").pipe(
+          Effect.annotateLogs({
+            contractId: event.contract_log.contract_id,
+            txId: event.tx_id,
+          }),
+        );
         return;
       }
 
       const parsed = Schema.decodeUnknownOption(stackingDaoLogSchema)(decoded.value);
 
       if (Option.isNone(parsed)) {
-        logger.trace({
-          msg: "Non-matching StackingDAO log event",
-          contractId: event.contract_log.contract_id,
-          txId: event.tx_id,
-        });
+        yield* Effect.logTrace("Non-matching StackingDAO log event").pipe(
+          Effect.annotateLogs({
+            contractId: event.contract_log.contract_id,
+            txId: event.tx_id,
+          }),
+        );
         return;
       }
 
@@ -78,14 +77,15 @@ export function createStackingDaoHandler({
           })
           .onConflictDoNothing();
 
-        logger.debug({
-          msg: "StackingDAO deposit indexed",
-          txId: event.tx_id,
-          stacker: log.stacker,
-          ststxAmount: log.ststxAmount,
-          stxAmount: log.stxAmount,
-          contractId: event.contract_log.contract_id,
-        });
+        yield* Effect.logDebug("StackingDAO deposit indexed").pipe(
+          Effect.annotateLogs({
+            txId: event.tx_id,
+            stacker: log.stacker,
+            ststxAmount: log.ststxAmount,
+            stxAmount: log.stxAmount,
+            contractId: event.contract_log.contract_id,
+          }),
+        );
       } else {
         yield* db
           .insert(withdrawTable)
@@ -104,15 +104,16 @@ export function createStackingDaoHandler({
           })
           .onConflictDoNothing();
 
-        logger.debug({
-          msg: "StackingDAO withdraw indexed",
-          action: log.action,
-          txId: event.tx_id,
-          stacker: log.stacker,
-          ststxAmount: log.ststxAmount,
-          stxAmount: log.stxAmount,
-          contractId: event.contract_log.contract_id,
-        });
+        yield* Effect.logDebug("StackingDAO withdraw indexed").pipe(
+          Effect.annotateLogs({
+            action: log.action,
+            txId: event.tx_id,
+            stacker: log.stacker,
+            ststxAmount: log.ststxAmount,
+            stxAmount: log.stxAmount,
+            contractId: event.contract_log.contract_id,
+          }),
+        );
       }
     });
 }

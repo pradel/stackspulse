@@ -49,8 +49,8 @@ importers:
         specifier: 8.23.0
         version: 8.23.0
       stacksindex:
-        specifier: 0.0.6
-        version: 0.0.6(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
+        specifier: 0.0.7
+        version: 0.0.7(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
     devDependencies:
       '@types/node':
         specifier: 22.20.2
@@ -3086,6 +3086,7 @@ packages:
 
   '@stacks/stacks-blockchain-api-types@7.14.1':
     resolution: {integrity: sha512-65hvhXxC+EUqHJAQsqlBCqXB+zwfxZICSKYJugdg6BCp9I9qniyfz5XyQeC4RMVo0tgEoRdS/b5ZCFo5kLWmxA==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@stacks/transactions@7.0.6':
     resolution: {integrity: sha512-qRGo4tNwOh+avUv/u4JGqqUWQ8xW/iUWtJV0o3BxpMyRxqDXmj+m+yeAEVYf9jRDouOo+NaWmwtRmWc0URZPdw==}
@@ -7475,8 +7476,8 @@ packages:
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
-  stacksindex@0.0.6:
-    resolution: {integrity: sha512-F0MiP58+gwXql9PyJBKOXxmLa0gkgWruwxhfYYWmS6NQ/EVnUFqNp5xcb1C5dbpwYOKYg7l0jexW+EJioVyNNQ==}
+  stacksindex@0.0.7:
+    resolution: {integrity: sha512-4F1gL4DThcmsavHnJK97E+AWF9Vv2gdrtsVAREhjxZN1TAJfFDQl9dbK+wEjshYj33uO/F3EHtYYjZtcOO+tsQ==}
     peerDependencies:
       '@electric-sql/pglite': ^0.5.0
       drizzle-orm: ^1.0.0-rc.5-5935859
@@ -15496,7 +15497,7 @@ snapshots:
 
   stackback@0.0.2: {}
 
-  stacksindex@0.0.6(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
+  stacksindex@0.0.7(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
     dependencies:
       '@effect/sql-pg': 4.0.0(effect@4.0.0)
       '@effect/sql-pglite': 4.0.0(effect@4.0.0)
@@ -15504,7 +15505,6 @@ snapshots:
       '@stacks/codec': 2.1.0
       '@stacks/transactions': 7.6.0
       clarity-abitype: 0.7.1(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2)
-      consola: 3.4.2
       drizzle-orm: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
       effect: 4.0.0
     optionalDependencies:

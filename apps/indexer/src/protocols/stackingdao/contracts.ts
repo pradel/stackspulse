@@ -5,6 +5,7 @@ export const STACKINGDAO_CONTRACTS = {
   CORE_V2: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v2",
   CORE_V3: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v3",
   CORE_V4: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v4",
+  // TODO add v5 etc
 } as const;
 
 export const STACKINGDAO_START_BLOCKS: Record<string, number> = {

@@ -18,7 +18,7 @@ catalog:
   "@vitest/coverage-v8": 4.1.11
 
 minimumReleaseAgeExclude:
-  - stacksindex@0.0.6
+  - stacksindex@0.0.7
   - effect@4.0.0
   - drizzle-orm@1.0.0-rc.5-5935859
   - drizzle-kit@1.0.0-rc.5-5935859

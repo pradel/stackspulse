@@ -2,22 +2,14 @@ import { fileURLToPath } from "node:url";
 
 import { eq } from "drizzle-orm";
 import { Effect, Option, Schema } from "effect";
-import type { HandlerContext, HandlerEvent, Logger } from "stacksindex";
-import { decodeClarityWithSchema, makeDatabase } from "stacksindex";
+import type { HandlerContext, HandlerEvent } from "stacksindex/effect";
+import { decodeClarityWithSchema, makeDatabase } from "stacksindex/effect";
 import { describe, expect, it } from "vitest";
 
 import { depositTable, withdrawTable } from "../../schema.ts";
 import { STACKINGDAO_CONTRACTS } from "./contracts.ts";
 import { depositLogSchema, stackingDaoLogSchema, withdrawLogSchema } from "./event-schemas.ts";
 import { createStackingDaoHandler } from "./handler.ts";
-
-const mockLogger: Logger = {
-  info: () => {},
-  warn: () => {},
-  error: () => {},
-  debug: () => {},
-  trace: () => {},
-};
 
 describe("StackingDAO event schemas", () => {
   it("parses v1 deposit events", () => {
@@ -179,7 +171,6 @@ describe("StackingDAO event handler with PGlite", () => {
 
       const handler = createStackingDaoHandler({
         db: appDatabase.db,
-        logger: mockLogger,
       });
 
       const context = {
