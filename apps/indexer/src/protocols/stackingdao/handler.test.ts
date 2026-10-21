@@ -157,6 +157,29 @@ describe("StackingDAO event schemas", () => {
     expect(parsed.value.stxAmount).toBe(1050000000n);
   });
 
+  it("parses core-stx withdraw events with stx-user and stx-fee", () => {
+    const raw = {
+      action: "withdraw",
+      data: {
+        stacker: "SP2PN3KB4SMAYG1D9Z79294ZB83NGKB453WSK18JC",
+        "nft-id": 170n,
+        "stx-amount": 20058343814n,
+        "stx-user": 20048314642n,
+        "stx-fee": 10029172n,
+        "ststx-amount": 16878047147n,
+        "block-height": 8720000n,
+      },
+    };
+    const parsed = Schema.decodeUnknownOption(withdrawLogSchema)(raw);
+    expect(Option.isSome(parsed)).toBe(true);
+    if (Option.isNone(parsed)) return;
+
+    expect(parsed.value.action).toBe("withdraw");
+    expect(parsed.value.nftId).toBe(170n);
+    expect(parsed.value.ststxAmount).toBe(16878047147n);
+    expect(parsed.value.stxAmount).toBe(20058343814n);
+  });
+
   it("ignores non-matching log events", () => {
     const raw = {
       action: "something-else",

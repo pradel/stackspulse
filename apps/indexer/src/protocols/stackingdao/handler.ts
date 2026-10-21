@@ -74,7 +74,7 @@ export const stackingDaoHandler = (event: PrintEvent<StackingDaoLog>) =>
     }
   });
 
-/** `indexer.layer` handlers: one per StackingDAO core contract name. */
+/** `indexer.layer` handlers: one per StackingDAO contract name. */
 export const STACKINGDAO_HANDLERS = {
   stackingDaoCoreV1: stackingDaoHandler,
   stackingDaoCoreV2: stackingDaoHandler,
@@ -82,4 +82,7 @@ export const STACKINGDAO_HANDLERS = {
   stackingDaoCoreV4: stackingDaoHandler,
   stackingDaoCoreV5: stackingDaoHandler,
   stackingDaoCoreV6: stackingDaoHandler,
+  stackingDaoCoreStxV1: stackingDaoHandler,
+  stackingDaoCoreStxV2: stackingDaoHandler,
+  stackingDaoStstxNftHelperV1: stackingDaoHandler,
 };
