@@ -11,6 +11,7 @@
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@effect/platform-node": "4.0.2",
     "@electric-sql/pglite": "0.5.8",
     "drizzle-orm": "1.0.0-rc.5-5935859",
     "effect": "4.0.2",
