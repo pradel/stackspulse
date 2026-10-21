@@ -2,87 +2,115 @@ import { Effect } from "effect";
 import type { PrintEvent } from "stacksindex/effect";
 
 import { indexer } from "../../indexer.ts";
-import { depositTable, withdrawTable } from "../../schema.ts";
+import { depositTable, type LiquidStackingToken, swapTable, withdrawTable } from "../../schema.ts";
 import { CHAIN_ID } from "./contracts.ts";
-import type { StackingDaoLog } from "./event-schemas.ts";
+import type { LstLog, SwapLog } from "./event-schemas.ts";
 
-/**
- * Handles the prints of every StackingDAO core contract, already parsed by
- * `stackingDaoLogSchema`. Writes go through `indexer.Db`, the batch
- * transaction, and are insert-if-absent so a replayed block is a no-op.
+/*
+ * Writes go through `indexer.Db`, the batch transaction, and are
+ * insert-if-absent so a replayed block is a no-op.
  */
-export const stackingDaoHandler = (event: PrintEvent<StackingDaoLog>) =>
+
+/** Handles the deposits and withdrawals of `token`'s core contracts. */
+export const createLiquidStackingHandler =
+  (token: LiquidStackingToken) => (event: PrintEvent<LstLog>) =>
+    Effect.gen(function* () {
+      const db = yield* indexer.Db;
+      const log = event.data;
+      const row = {
+        txId: event.txId,
+        chainId: CHAIN_ID,
+        eventIndex: event.eventIndex,
+        contractId: event.contractId,
+        token,
+        stacker: log.stacker,
+        tokenAmount: log.tokenAmount,
+        underlyingAmount: log.underlyingAmount,
+        blockHeight: BigInt(event.block.height),
+        blockTime: BigInt(event.block.time),
+      };
+
+      if (log.kind === "deposit") {
+        yield* db
+          .insert(depositTable)
+          .values({ ...row, referrer: log.referrer, pool: log.pool })
+          .onConflictDoNothing();
+      } else {
+        yield* db
+          .insert(withdrawTable)
+          .values({
+            ...row,
+            action: log.action,
+            nftId: log.nftId,
+            underlyingUserAmount: log.underlyingUserAmount,
+            feeAmount: log.feeAmount,
+          })
+          .onConflictDoNothing();
+      }
+
+      yield* Effect.logDebug(`StackingDAO ${token} ${log.kind} indexed`).pipe(
+        Effect.annotateLogs({
+          txId: event.txId,
+          contractId: event.contractId,
+          stacker: log.stacker,
+          tokenAmount: log.tokenAmount,
+          underlyingAmount: log.underlyingAmount,
+        }),
+      );
+    });
+
+/** Handles stSTX ⇄ stSTXbtc swaps. */
+export const swapHandler = (event: PrintEvent<SwapLog>) =>
   Effect.gen(function* () {
     const db = yield* indexer.Db;
     const log = event.data;
 
-    if (log.kind === "deposit") {
-      yield* db
-        .insert(depositTable)
-        .values({
-          txId: event.txId,
-          chainId: CHAIN_ID,
-          eventIndex: event.eventIndex,
-          contractId: event.contractId,
-          stacker: log.stacker,
-          stxAmount: log.stxAmount,
-          ststxAmount: log.ststxAmount,
-          referrer: log.referrer,
-          pool: log.pool,
-          blockHeight: BigInt(event.block.height),
-          blockTime: BigInt(event.block.time),
-        })
-        .onConflictDoNothing();
+    yield* db
+      .insert(swapTable)
+      .values({
+        txId: event.txId,
+        chainId: CHAIN_ID,
+        eventIndex: event.eventIndex,
+        contractId: event.contractId,
+        action: log.action,
+        user: log.user,
+        ststxAmount: log.ststxAmount,
+        ststxbtcAmount: log.ststxbtcAmount,
+        blockHeight: BigInt(event.block.height),
+        blockTime: BigInt(event.block.time),
+      })
+      .onConflictDoNothing();
 
-      yield* Effect.logDebug("StackingDAO deposit indexed").pipe(
-        Effect.annotateLogs({
-          txId: event.txId,
-          stacker: log.stacker,
-          ststxAmount: log.ststxAmount,
-          stxAmount: log.stxAmount,
-          contractId: event.contractId,
-        }),
-      );
-    } else {
-      yield* db
-        .insert(withdrawTable)
-        .values({
-          txId: event.txId,
-          chainId: CHAIN_ID,
-          eventIndex: event.eventIndex,
-          contractId: event.contractId,
-          action: log.action,
-          stacker: log.stacker,
-          nftId: log.nftId,
-          ststxAmount: log.ststxAmount,
-          stxAmount: log.stxAmount,
-          blockHeight: BigInt(event.block.height),
-          blockTime: BigInt(event.block.time),
-        })
-        .onConflictDoNothing();
-
-      yield* Effect.logDebug("StackingDAO withdraw indexed").pipe(
-        Effect.annotateLogs({
-          action: log.action,
-          txId: event.txId,
-          stacker: log.stacker,
-          ststxAmount: log.ststxAmount,
-          stxAmount: log.stxAmount,
-          contractId: event.contractId,
-        }),
-      );
-    }
+    yield* Effect.logDebug("StackingDAO swap indexed").pipe(
+      Effect.annotateLogs({
+        txId: event.txId,
+        action: log.action,
+        ststxAmount: log.ststxAmount,
+        ststxbtcAmount: log.ststxbtcAmount,
+      }),
+    );
   });
+
+const ststxHandler = createLiquidStackingHandler("ststx");
+const ststxbtcHandler = createLiquidStackingHandler("ststxbtc");
 
 /** `indexer.layer` handlers: one per StackingDAO contract name. */
 export const STACKINGDAO_HANDLERS = {
-  stackingDaoCoreV1: stackingDaoHandler,
-  stackingDaoCoreV2: stackingDaoHandler,
-  stackingDaoCoreV3: stackingDaoHandler,
-  stackingDaoCoreV4: stackingDaoHandler,
-  stackingDaoCoreV5: stackingDaoHandler,
-  stackingDaoCoreV6: stackingDaoHandler,
-  stackingDaoCoreStxV1: stackingDaoHandler,
-  stackingDaoCoreStxV2: stackingDaoHandler,
-  stackingDaoStstxNftHelperV1: stackingDaoHandler,
+  stackingDaoCoreV1: ststxHandler,
+  stackingDaoCoreV2: ststxHandler,
+  stackingDaoCoreV3: ststxHandler,
+  stackingDaoCoreV4: ststxHandler,
+  stackingDaoCoreV5: ststxHandler,
+  stackingDaoCoreV6: ststxHandler,
+  stackingDaoCoreStxV1: ststxHandler,
+  stackingDaoCoreStxV2: ststxHandler,
+  stackingDaoStstxNftHelperV1: ststxHandler,
+  stackingDaoCoreBtcV1: ststxbtcHandler,
+  stackingDaoCoreBtcV2: ststxbtcHandler,
+  stackingDaoCoreBtcV3: ststxbtcHandler,
+  stackingDaoCoreStstxbtcV1: ststxbtcHandler,
+  stackingDaoCoreStstxbtcV2: ststxbtcHandler,
+  stackingDaoCoreStbtcV1: createLiquidStackingHandler("stbtc"),
+  stackingDaoSwapStstxStstxbtcV4: swapHandler,
+  stackingDaoSwapStstxStstxbtcV5: swapHandler,
 };
