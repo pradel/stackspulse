@@ -1,6 +1,5 @@
 import { fileURLToPath } from "node:url";
 
-import { eq } from "drizzle-orm";
 import { Effect, Option, Schema } from "effect";
 import { decodeHex } from "stacksindex/clarity";
 import { pglite, type PrintEvent } from "stacksindex/effect";
@@ -322,8 +321,7 @@ describe("StackingDAO handlers with PGlite", () => {
           feeAmount: 5n,
         },
       ]);
-      // The table also holds the swap-v1 / v2 history loaded by migration.
-      expect(yield* db.select().from(swapTable).where(eq(swapTable.txId, "0x03"))).toMatchObject([
+      expect(yield* db.select().from(swapTable)).toMatchObject([
         {
           txId: "0x03",
           action: "swap-ststxbtc-for-ststx",

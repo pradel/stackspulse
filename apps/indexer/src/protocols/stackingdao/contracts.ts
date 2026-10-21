@@ -18,7 +18,7 @@ export const CHAIN_ID = 1n;
  * - stSTXbtc: `core-btc-v1` … `core-btc-v3`, then `core-ststxbtc-v1`, `core-ststxbtc-v2`.
  * - stBTC: `core-stbtc-v1`.
  * - stSTX ⇄ stSTXbtc swaps: `swap-ststx-ststxbtc-v4`, `-v5`. The v1 / v2 swaps
- *   print nothing; their history is loaded by a data migration.
+ *   print nothing and are not indexed.
  */
 export const STACKINGDAO_CONTRACTS = {
   CORE_V1: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-v1",
