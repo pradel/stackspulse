@@ -6,6 +6,6 @@ export default defineConfig({
   dialect: "postgresql",
   driver: "pglite",
   dbCredentials: {
-    url: "./data/app.db",
+    url: "./data/indexer.db",
   },
 });

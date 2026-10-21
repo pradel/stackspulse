@@ -1,3 +1,5 @@
+import { stackingDaoLogSchema } from "./event-schemas.ts";
+
 export const CHAIN_ID = 1n;
 
 export const STACKINGDAO_CONTRACTS = {
@@ -16,4 +18,25 @@ export const STACKINGDAO_START_BLOCKS: Record<string, number> = {
   [STACKINGDAO_CONTRACTS.CORE_V4]: 489238,
   [STACKINGDAO_CONTRACTS.CORE_V5]: 1491546,
   [STACKINGDAO_CONTRACTS.CORE_V6]: 2197089,
+};
+
+/**
+ * Every core print is parsed with `stackingDaoLogSchema`; prints it does not
+ * match are logged and skipped by the indexer (`onInvalid: "skip"`).
+ */
+const coreContract = (id: string) => ({
+  id,
+  startBlock: STACKINGDAO_START_BLOCKS[id],
+  print: stackingDaoLogSchema,
+  onInvalid: "skip" as const,
+});
+
+/** `defineIndexer` contract definitions, keyed by contract name. */
+export const STACKINGDAO_INDEXER_CONTRACTS = {
+  stackingDaoCoreV1: coreContract(STACKINGDAO_CONTRACTS.CORE_V1),
+  stackingDaoCoreV2: coreContract(STACKINGDAO_CONTRACTS.CORE_V2),
+  stackingDaoCoreV3: coreContract(STACKINGDAO_CONTRACTS.CORE_V3),
+  stackingDaoCoreV4: coreContract(STACKINGDAO_CONTRACTS.CORE_V4),
+  stackingDaoCoreV5: coreContract(STACKINGDAO_CONTRACTS.CORE_V5),
+  stackingDaoCoreV6: coreContract(STACKINGDAO_CONTRACTS.CORE_V6),
 };

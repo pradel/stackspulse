@@ -13,9 +13,9 @@
   "dependencies": {
     "@electric-sql/pglite": "0.5.8",
     "drizzle-orm": "1.0.0-rc.5-5935859",
-    "effect": "4.0.0",
+    "effect": "4.0.2",
     "pg": "8.23.0",
-    "stacksindex": "0.0.7"
+    "stacksindex": "0.1.0"
   },
   "devDependencies": {
     "@types/node": "22.20.2",

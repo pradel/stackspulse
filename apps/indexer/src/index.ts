@@ -4,13 +4,10 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 import { Cause, Effect, Exit, Fiber } from "effect";
-import { HistoricalRuntime, loggerLayer, makeDatabase } from "stacksindex/effect";
+import { Indexer, pglite } from "stacksindex/effect";
 
-import {
-  createStackingDaoHandler,
-  STACKINGDAO_CONTRACTS,
-  STACKINGDAO_START_BLOCKS,
-} from "./protocols/stackingdao/index.ts";
+import { indexer } from "./indexer.ts";
+import { STACKINGDAO_HANDLERS } from "./protocols/stackingdao/index.ts";
 
 export * from "./schema.ts";
 export * from "./protocols/stackingdao/index.ts";
@@ -19,71 +16,35 @@ const apiKey = process.env.HIRO_API_KEY;
 const dataDir = process.env.DATA_DIR ?? "./data";
 const migrationsFolder = fileURLToPath(new URL("../drizzle", import.meta.url));
 
+fs.mkdirSync(dataDir, { recursive: true });
+
 const program = Effect.gen(function* () {
-  yield* Effect.sync(() => {
-    fs.mkdirSync(dataDir, { recursive: true });
-  });
-
-  const appDatabase = yield* makeDatabase({
-    kind: "pglite",
-    directory: path.join(dataDir, "app.db"),
-  });
-
-  yield* appDatabase.migrate({ migrationsFolder });
-
-  const runtime = yield* HistoricalRuntime;
-  const stackingDaoHandler = createStackingDaoHandler({ db: appDatabase.db });
-
-  const contracts = [
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V1,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V1],
-      handler: stackingDaoHandler,
-    },
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V2,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V2],
-      handler: stackingDaoHandler,
-    },
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V3,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V3],
-      handler: stackingDaoHandler,
-    },
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V4,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V4],
-      handler: stackingDaoHandler,
-    },
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V5,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V5],
-      handler: stackingDaoHandler,
-    },
-    {
-      contractId: STACKINGDAO_CONTRACTS.CORE_V6,
-      startBlock: STACKINGDAO_START_BLOCKS[STACKINGDAO_CONTRACTS.CORE_V6],
-      handler: stackingDaoHandler,
-    },
-  ];
+  const app = yield* Indexer;
 
   yield* Effect.logInfo("Starting StackingDAO historical indexer").pipe(
     Effect.annotateLogs({
-      contracts: contracts.map((c) => ({ contractId: c.contractId, startBlock: c.startBlock })),
+      contracts: Object.values(indexer.contracts).map(({ id, startBlock }) => ({ id, startBlock })),
     }),
   );
 
-  yield* runtime.run(contracts);
+  yield* app.run;
 });
 
 const fiber = Effect.runFork(
-  Effect.scoped(program).pipe(
+  program.pipe(
     Effect.provide(
-      HistoricalRuntime.layerWithDatabase({
-        database: { kind: "pglite", directory: path.join(dataDir, "indexer.db") },
-        network: "mainnet",
+      /*
+       * One database holds the indexer's tables (`stacksindex` schema) and the
+       * app's tables (`public`, from the `../drizzle` migrations), so handler
+       * writes through `indexer.Db` commit with the indexing checkpoint.
+       */
+      indexer.layer({
+        database: pglite(path.join(dataDir, "indexer.db")),
+        migrations: migrationsFolder,
+        chain: "mainnet",
         api: { apiKey },
         logLevel: "Info",
+        handlers: STACKINGDAO_HANDLERS,
       }),
     ),
   ),
@@ -115,14 +76,7 @@ process.on("SIGTERM", () => {
 const exit = await Effect.runPromise(Fiber.await(fiber));
 
 if (Exit.isFailure(exit) && !Cause.hasInterruptsOnly(exit.cause)) {
-  const error = Cause.squash(exit.cause);
-
-  Effect.runSync(
-    Effect.logError(
-      "Error running historical sync",
-      error instanceof Error ? error : new Error(String(error)),
-    ).pipe(Effect.provide(loggerLayer({ level: "Info" }))),
-  );
+  Effect.runSync(Effect.logError("Error running historical sync", Cause.squash(exit.cause)));
 
   await shutdown(1);
 } else {

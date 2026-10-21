@@ -41,16 +41,16 @@ importers:
         version: 0.5.8
       drizzle-orm:
         specifier: 1.0.0-rc.5-5935859
-        version: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
+        version: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
       effect:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.0.2
+        version: 4.0.2
       pg:
         specifier: 8.23.0
         version: 8.23.0
       stacksindex:
-        specifier: 0.0.7
-        version: 0.0.7(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
+        specifier: 0.1.0
+        version: 0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
     devDependencies:
       '@types/node':
         specifier: 22.20.2
@@ -455,15 +455,15 @@ packages:
     peerDependencies:
       '@noble/ciphers': ^1.0.0
 
-  '@effect/sql-pg@4.0.0':
-    resolution: {integrity: sha512-w0sRMA08Tgz73aReYpFSxD+nz2LUKYhH/4zaRpo4G5b5YG+eqiAL7XYhqIjvGZ8MZacazbG71Jhprv6ccz9HDg==}
+  '@effect/sql-pg@4.0.2':
+    resolution: {integrity: sha512-i2N5F0L5s1S8Nx2I8V7k+awBinP26b5xiiHL1zn5b6RALNnloiU7FK1yS4dAkmqG9B0EcOVxvJrIpoMWwrB4hw==}
     peerDependencies:
-      effect: ^4.0.0
+      effect: ^4.0.2
 
-  '@effect/sql-pglite@4.0.0':
-    resolution: {integrity: sha512-BTlCPSipKMHZJEoJ94rR4f8Gx8cv8tLpZeHc3sajg2ko/2GY8s6CyycSra3Z6GLFUhcivRTYQ9Zc5LThz64qfQ==}
+  '@effect/sql-pglite@4.0.2':
+    resolution: {integrity: sha512-WVuNSNSsYsY/tG0ZKIuG1GeHjTIo8clqdZG/kUGDBfBldtTKfHgmq/pOI5zidWif9n4BaW4gB8DwJR3P8rtmkw==}
     peerDependencies:
-      effect: ^4.0.0
+      effect: ^4.0.2
 
   '@electric-sql/pglite@0.5.8':
     resolution: {integrity: sha512-n9tsbUOhwx2epK1V0ZG9Ar4SHWUju04dhmzZXiSBXwBoleOvIfals33NAaWgagQVAL4Rbvx/Ptsu3P+pA09f6Q==}
@@ -1549,6 +1549,7 @@ packages:
   '@opentelemetry/sdk-trace-base@1.30.1':
     resolution: {integrity: sha512-jVPgBbH1gCy2Lb7X0AVQ8XAfgg0pJ4nvl8/IiQA6nxOsPvS+0zMJaFSs2ltXe0J6C8dqjcnpyqINDJmU30+uOg==}
     engines: {node: '>=14'}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
@@ -3071,8 +3072,8 @@ packages:
   '@stacks/blockchain-api-client@8.10.0':
     resolution: {integrity: sha512-e4se2QjRF4R6tBSFSanMvtK8YpxOd54NoQRwH4SD6dt+IWP5jMDwztup2jCNbuUFDEPlID/TErOUMh4mU0NBCA==}
 
-  '@stacks/blockchain-api-client@9.2.0':
-    resolution: {integrity: sha512-CCSGzjrKMx1k4g8ZJfUD43DwDyZybzAIpq17mig5TcevGgpI3ieEFnHqCAS6FVggW9CcTDkcl49M2D98e6IT+w==}
+  '@stacks/blockchain-api-client@9.5.0':
+    resolution: {integrity: sha512-uij+O+H9ZUu+sKCYA5ZWrwwShZKC1+y9PrX/JXiDcMrDnqsgM6LJ7iIqbYS3Pe+bt6bZf+ea6DXPwN72YqS3dw==}
 
   '@stacks/codec@2.1.0':
     resolution: {integrity: sha512-RzI3UQ5oNXjcO1we2e6qq5/27+SosrmX2gZZxSi6VPTB26bTUxBY1/z1wxnJ820xu7xTg6Bhf8ssNkkZlcsz0A==}
@@ -4335,8 +4336,9 @@ packages:
   cjs-module-lexer@1.4.3:
     resolution: {integrity: sha512-9z8TZaGM1pfswYeXrUpzPrkx8UnWYdhJclsiYMm6x/w5+nN+8Tf/LnAgfLGQCm59qAOxU8WwHEq2vNwF6i4j+Q==}
 
-  clarity-abitype@0.7.1:
-    resolution: {integrity: sha512-0ToR38l5cK8tf5FbftUlG43NS1HnnEjgKUt8pPgSUM3nCg64B2PdzdOf3OfJKPi0LA9MAJCRMeYslt4qaB6pzQ==}
+  clarity-abitype@0.8.0:
+    resolution: {integrity: sha512-hKFYWfOP6JobIt2LiG1fWX7TF7FcNdWKSowCul6ZwehxNkCXrYh2Fe82EJ5qJswzjm2Meb97W72aVOgDYgzgww==}
+    hasBin: true
     peerDependencies:
       '@stacks/clarinet-sdk': '>= 3.0.0'
       '@stacks/connect': '>= 8.0.0'
@@ -5127,8 +5129,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  effect@4.0.0:
-    resolution: {integrity: sha512-ooc1TG5t+FfzgYnFz2ff6BBKyZ7EwBRVXC7c4RhQUAD6/TZ2gTXXMeb4WX7a19ozQo4J73/QW+S00YAIresoMQ==}
+  effect@4.0.2:
+    resolution: {integrity: sha512-YeYnLqSFrL4+tCOXRrfNP03w8FILoF/wDl+ukraJAGzXrjcS383W7LAAvGBbLatEyktmLxRq+9xJinx7QzXW5A==}
 
   electron-to-chromium@1.5.426:
     resolution: {integrity: sha512-2Gcq6inCQs/AqfHP3f5ftCzk+pqeW2VlA1LgmPqEj2hfBO8HiZRspNYkD4HzFBe4u6lGqca4BspFr6Ix4Q400g==}
@@ -7476,8 +7478,9 @@ packages:
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
-  stacksindex@0.0.7:
-    resolution: {integrity: sha512-4F1gL4DThcmsavHnJK97E+AWF9Vv2gdrtsVAREhjxZN1TAJfFDQl9dbK+wEjshYj33uO/F3EHtYYjZtcOO+tsQ==}
+  stacksindex@0.1.0:
+    resolution: {integrity: sha512-1v78X/P1DujKnqlSq8neyp6UPItTnwId9A37tlqzZS7jc2gqUbSb3dfVIiP5iWiBoV5lcystKwBAAEf5aN7Dog==}
+    engines: {node: '>=22'}
     peerDependencies:
       '@electric-sql/pglite': ^0.5.0
       drizzle-orm: ^1.0.0-rc.5-5935859
@@ -8544,14 +8547,14 @@ snapshots:
     dependencies:
       '@noble/ciphers': 1.3.0
 
-  '@effect/sql-pg@4.0.0(effect@4.0.0)':
+  '@effect/sql-pg@4.0.2(effect@4.0.2)':
     dependencies:
-      effect: 4.0.0
+      effect: 4.0.2
 
-  '@effect/sql-pglite@4.0.0(effect@4.0.0)':
+  '@effect/sql-pglite@4.0.2(effect@4.0.2)':
     dependencies:
       '@electric-sql/pglite': 0.5.8
-      effect: 4.0.0
+      effect: 4.0.2
 
   '@electric-sql/pglite@0.5.8': {}
 
@@ -10884,9 +10887,8 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stacks/blockchain-api-client@9.2.0':
+  '@stacks/blockchain-api-client@9.5.0':
     dependencies:
-      '@types/node': 20.14.14
       eventemitter3: 4.0.7
       jsonrpc-lite: 2.2.0
       openapi-fetch: 0.10.6
@@ -12204,7 +12206,9 @@ snapshots:
 
   cjs-module-lexer@1.4.3: {}
 
-  clarity-abitype@0.7.1(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2):
+  clarity-abitype@0.8.0(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2):
+    dependencies:
+      cac: 7.0.0
     optionalDependencies:
       '@stacks/network': 7.6.0
       '@stacks/transactions': 7.6.0
@@ -12599,16 +12603,16 @@ snapshots:
       prisma: 6.7.0(supports-color@10.2.2)(typescript@5.8.3)
     optional: true
 
-  drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2):
+  drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2):
     optionalDependencies:
-      '@effect/sql-pg': 4.0.0(effect@4.0.0)
-      '@effect/sql-pglite': 4.0.0(effect@4.0.0)
+      '@effect/sql-pg': 4.0.2(effect@4.0.2)
+      '@effect/sql-pglite': 4.0.2(effect@4.0.2)
       '@electric-sql/pglite': 0.5.8
       '@opentelemetry/api': 1.9.1
       '@types/pg': 8.23.1
       arktype: 2.2.3
       better-sqlite3: 11.10.0
-      effect: 4.0.0
+      effect: 4.0.2
       pg: 8.23.0
       postgres: 3.4.5
       zod: 4.6.2
@@ -12632,7 +12636,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  effect@4.0.0: {}
+  effect@4.0.2: {}
 
   electron-to-chromium@1.5.426: {}
 
@@ -15497,16 +15501,16 @@ snapshots:
 
   stackback@0.0.2: {}
 
-  stacksindex@0.0.7(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
+  stacksindex@0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
     dependencies:
-      '@effect/sql-pg': 4.0.0(effect@4.0.0)
-      '@effect/sql-pglite': 4.0.0(effect@4.0.0)
-      '@stacks/blockchain-api-client': 9.2.0
+      '@effect/sql-pg': 4.0.2(effect@4.0.2)
+      '@effect/sql-pglite': 4.0.2(effect@4.0.2)
+      '@stacks/blockchain-api-client': 9.5.0
       '@stacks/codec': 2.1.0
       '@stacks/transactions': 7.6.0
-      clarity-abitype: 0.7.1(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2)
-      drizzle-orm: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.0(effect@4.0.0))(@effect/sql-pglite@4.0.0(effect@4.0.0))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.0)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
-      effect: 4.0.0
+      clarity-abitype: 0.8.0(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2)
+      drizzle-orm: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
+      effect: 4.0.2
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
       pg: 8.23.0

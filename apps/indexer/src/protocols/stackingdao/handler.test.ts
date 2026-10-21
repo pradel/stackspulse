@@ -2,14 +2,20 @@ import { fileURLToPath } from "node:url";
 
 import { eq } from "drizzle-orm";
 import { Effect, Option, Schema } from "effect";
-import type { HandlerContext, HandlerEvent } from "stacksindex/effect";
-import { decodeClarityWithSchema, makeDatabase } from "stacksindex/effect";
+import { decodeHex } from "stacksindex/clarity";
+import { pglite, type PrintEvent } from "stacksindex/effect";
 import { describe, expect, it } from "vitest";
 
+import { indexer } from "../../indexer.ts";
 import { depositTable, withdrawTable } from "../../schema.ts";
 import { STACKINGDAO_CONTRACTS } from "./contracts.ts";
-import { depositLogSchema, stackingDaoLogSchema, withdrawLogSchema } from "./event-schemas.ts";
-import { createStackingDaoHandler } from "./handler.ts";
+import {
+  depositLogSchema,
+  type StackingDaoLog,
+  stackingDaoLogSchema,
+  withdrawLogSchema,
+} from "./event-schemas.ts";
+import { STACKINGDAO_HANDLERS, stackingDaoHandler } from "./handler.ts";
 
 describe("StackingDAO event schemas", () => {
   it("parses v1 deposit events", () => {
@@ -161,101 +167,91 @@ describe("StackingDAO event schemas", () => {
   });
 });
 
+/** A core print as the indexer hands it over: decoded from Clarity, then parsed by the contract's `print` schema. */
+function printEvent(options: {
+  hex: string;
+  txId: string;
+  blockHeight: number;
+  blockTime: number;
+}): PrintEvent<StackingDaoLog> {
+  return {
+    type: "print",
+    contract: "stackingDaoCoreV1",
+    contractId: STACKINGDAO_CONTRACTS.CORE_V1,
+    txId: options.txId,
+    eventIndex: 0,
+    data: Schema.decodeUnknownSync(stackingDaoLogSchema)(decodeHex(options.hex)),
+    raw: { hex: options.hex, repr: "", topic: "print" },
+    block: {
+      height: options.blockHeight,
+      time: options.blockTime,
+      hash: "0x00",
+      indexBlockHash: "0x00",
+    },
+    tx: { index: 0, sender: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG" },
+  };
+}
+
 describe("StackingDAO event handler with PGlite", () => {
   it("inserts deposit and withdraw rows into database", async () => {
     const program = Effect.gen(function* () {
-      const appDatabase = yield* makeDatabase({ kind: "pglite" });
+      const db = yield* indexer.Db;
 
-      const migrationsFolder = fileURLToPath(new URL("../../../drizzle", import.meta.url));
-      yield* appDatabase.migrate({ migrationsFolder });
-
-      const handler = createStackingDaoHandler({
-        db: appDatabase.db,
+      const depositEvent = printEvent({
+        hex: "0x0c0000000206616374696f6e0d000000076465706f73697404646174610c0000000406616d6f756e7401000000000000000000000000000013880c626c6f636b2d68656967687401000000000000000000000000000204680872656665727265720907737461636b657205162b78161ee235efdc923b7ffc2aa09440628e8334",
+        txId: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+        blockHeight: 132200,
+        blockTime: 1700000000,
       });
 
-      const context = {
-        db: appDatabase.db,
-        client: {},
-        decode: <A>(schema: Schema.Schema<A>, hex: string) => decodeClarityWithSchema(schema)(hex),
-      } as unknown as HandlerContext;
+      yield* stackingDaoHandler(depositEvent);
 
-      const mockDepositEvent: HandlerEvent = {
-        event_type: "smart_contract_log",
-        contract_log: {
-          contract_id: STACKINGDAO_CONTRACTS.CORE_V1,
-          topic: "print",
-          value: {
-            hex: "0x0c0000000206616374696f6e0d000000076465706f73697404646174610c0000000406616d6f756e7401000000000000000000000000000013880c626c6f636b2d68656967687401000000000000000000000000000204680872656665727265720907737461636b657205162b78161ee235efdc923b7ffc2aa09440628e8334",
-            repr: '(tuple (action "deposit") (data (tuple (amount u5000) (block-height u132200) (referrer none) (stacker \'SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG))))',
-          },
-        },
-        tx_id: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-        event_index: 0,
-        block_height: 132200,
-        block_time: 1700000000,
-        tx_index: 1,
-        sender_address: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG",
-      };
-
-      yield* handler(mockDepositEvent, context);
-
-      const deposits = yield* appDatabase.db
+      const deposits = yield* db
         .select()
         .from(depositTable)
-        .where(eq(depositTable.txId, mockDepositEvent.tx_id));
+        .where(eq(depositTable.txId, depositEvent.txId));
       expect(deposits.length).toBe(1);
-      expect(deposits[0].txId).toBe(mockDepositEvent.tx_id);
+      expect(deposits[0].txId).toBe(depositEvent.txId);
       expect(deposits[0].contractId).toBe(STACKINGDAO_CONTRACTS.CORE_V1);
       expect(deposits[0].ststxAmount).toBe(5000n);
       expect(deposits[0].stxAmount).toBeNull();
       expect(deposits[0].blockHeight).toBe(132200n);
 
-      yield* handler(mockDepositEvent, context);
-      const depositsAfterSecond = yield* appDatabase.db.select().from(depositTable);
+      yield* stackingDaoHandler(depositEvent);
+      const depositsAfterSecond = yield* db.select().from(depositTable);
       expect(depositsAfterSecond.length).toBe(1);
 
-      const mockWithdrawEvent: HandlerEvent = {
-        event_type: "smart_contract_log",
-        contract_log: {
-          contract_id: STACKINGDAO_CONTRACTS.CORE_V1,
-          topic: "print",
-          value: {
-            hex: "0x0c0000000206616374696f6e0d00000008776974686472617704646174610c0000000306616d6f756e7401000000000000000000000000000009c40c626c6f636b2d686569676874010000000000000000000000000002078807737461636b657205162b78161ee235efdc923b7ffc2aa09440628e8334",
-            repr: '(tuple (action "withdraw") (data (tuple (amount u2500) (block-height u133000) (stacker \'SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG))))',
-          },
-        },
-        tx_id: "0x9876543210abcdef9876543210abcdef9876543210abcdef9876543210abcdef",
-        event_index: 0,
-        block_height: 133000,
-        block_time: 1700100000,
-        tx_index: 2,
-        sender_address: "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG",
-      };
+      const withdrawEvent = printEvent({
+        hex: "0x0c0000000206616374696f6e0d00000008776974686472617704646174610c0000000306616d6f756e7401000000000000000000000000000009c40c626c6f636b2d686569676874010000000000000000000000000002078807737461636b657205162b78161ee235efdc923b7ffc2aa09440628e8334",
+        txId: "0x9876543210abcdef9876543210abcdef9876543210abcdef9876543210abcdef",
+        blockHeight: 133000,
+        blockTime: 1700100000,
+      });
 
-      yield* handler(mockWithdrawEvent, context);
+      yield* stackingDaoHandler(withdrawEvent);
 
-      const withdrawals = yield* appDatabase.db
+      const withdrawals = yield* db
         .select()
         .from(withdrawTable)
-        .where(eq(withdrawTable.txId, mockWithdrawEvent.tx_id));
+        .where(eq(withdrawTable.txId, withdrawEvent.txId));
       expect(withdrawals.length).toBe(1);
       expect(withdrawals[0].action).toBe("withdraw");
       expect(withdrawals[0].contractId).toBe(STACKINGDAO_CONTRACTS.CORE_V1);
       expect(withdrawals[0].ststxAmount).toBe(2500n);
       expect(withdrawals[0].stxAmount).toBeNull();
       expect(withdrawals[0].nftId).toBeNull();
-
-      const invalidEvent: HandlerEvent = {
-        ...mockDepositEvent,
-        contract_log: {
-          ...mockDepositEvent.contract_log,
-          value: { hex: "0xdeadbeefinvalid", repr: "invalid" },
-        },
-      };
-
-      yield* handler(invalidEvent, context);
     });
 
-    await Effect.runPromise(Effect.scoped(program));
+    await Effect.runPromise(
+      program.pipe(
+        Effect.provide(
+          indexer.layer({
+            database: pglite(),
+            migrations: fileURLToPath(new URL("../../../drizzle", import.meta.url)),
+            handlers: STACKINGDAO_HANDLERS,
+          }),
+        ),
+      ),
+    );
   });
 });
