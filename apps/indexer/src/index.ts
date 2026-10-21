@@ -1,11 +1,15 @@
 import fs from "node:fs";
+import { createServer } from "node:http";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-import { Cause, Effect, Exit, Fiber } from "effect";
+import { NodeHttpServer, NodeRuntime } from "@effect/platform-node";
+import { Config, Effect, Layer } from "effect";
+import { HttpRouter } from "effect/http";
 import { Indexer, pglite } from "stacksindex/effect";
 
+import { ApiLayer } from "./api/server.ts";
 import { indexer } from "./indexer.ts";
 import { STACKINGDAO_HANDLERS } from "./protocols/stackingdao/index.ts";
 
@@ -18,67 +22,42 @@ const migrationsFolder = fileURLToPath(new URL("../drizzle", import.meta.url));
 
 fs.mkdirSync(dataDir, { recursive: true });
 
+const HttpServerLayer = HttpRouter.serve(ApiLayer).pipe(
+  Layer.provide(
+    NodeHttpServer.layerConfig(createServer, {
+      port: Config.Port("PORT").pipe(Config.withDefault(3001)),
+    }),
+  ),
+);
+
+/** Follows the chain and serves the API until interrupted; either failing stops both. */
 const program = Effect.gen(function* () {
   const app = yield* Indexer;
 
-  yield* Effect.logInfo("Starting StackingDAO historical indexer").pipe(
+  yield* Effect.logInfo("Starting StackingDAO indexer and API").pipe(
     Effect.annotateLogs({
       contracts: Object.values(indexer.contracts).map(({ id, startBlock }) => ({ id, startBlock })),
     }),
   );
 
-  yield* app.run;
+  yield* Effect.all([app.live, Layer.launch(HttpServerLayer)], { concurrency: "unbounded" });
 });
 
-const fiber = Effect.runFork(
-  program.pipe(
-    Effect.provide(
-      /*
-       * One database holds the indexer's tables (`stacksindex` schema) and the
-       * app's tables (`public`, from the `../drizzle` migrations), so handler
-       * writes through `indexer.Db` commit with the indexing checkpoint.
-       */
-      indexer.layer({
-        database: pglite(path.join(dataDir, "indexer.db")),
-        migrations: migrationsFolder,
-        chain: "mainnet",
-        api: { apiKey },
-        logLevel: "Info",
-        handlers: STACKINGDAO_HANDLERS,
-      }),
-    ),
+program.pipe(
+  Effect.provide(
+    /*
+     * One database holds the indexer's tables (`stacksindex` schema) and the
+     * app's tables (`public`, from the `../drizzle` migrations), so handler
+     * writes through `indexer.Db` commit with the indexing checkpoint.
+     */
+    indexer.layer({
+      database: pglite(path.join(dataDir, "indexer.db")),
+      migrations: migrationsFolder,
+      chain: "mainnet",
+      api: { apiKey },
+      logLevel: "Info",
+      handlers: STACKINGDAO_HANDLERS,
+    }),
   ),
+  NodeRuntime.runMain,
 );
-
-let isShuttingDown = false;
-
-async function shutdown(code: number) {
-  if (isShuttingDown) {
-    return;
-  }
-
-  isShuttingDown = true;
-
-  await Effect.runPromise(Fiber.interrupt(fiber));
-  process.exit(code);
-}
-
-process.on("SIGINT", () => {
-  // oxlint-disable-next-line eslint/no-void
-  void shutdown(0);
-});
-
-process.on("SIGTERM", () => {
-  // oxlint-disable-next-line eslint/no-void
-  void shutdown(0);
-});
-
-const exit = await Effect.runPromise(Fiber.await(fiber));
-
-if (Exit.isFailure(exit) && !Cause.hasInterruptsOnly(exit.cause)) {
-  Effect.runSync(Effect.logError("Error running historical sync", Cause.squash(exit.cause)));
-
-  await shutdown(1);
-} else {
-  await shutdown(0);
-}

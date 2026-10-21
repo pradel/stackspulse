@@ -27,6 +27,9 @@ minimumReleaseAgeExclude:
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"
+  # @effect/platform-node 4.0.2 accepts ^4.0.2, but 4.0.5 needs effect 4.0.5;
+  # stacksindex pins effect 4.0.2, and two effect copies break service identity.
+  "@effect/platform-node-shared": 4.0.2
 peerDependencyRules:
   allowAny:
     - vite
