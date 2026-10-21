@@ -41,7 +41,7 @@ importers:
         version: 0.5.8
       drizzle-orm:
         specifier: 1.0.0-rc.5-5935859
-        version: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
+        version: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@13.0.3)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
       effect:
         specifier: 4.0.2
         version: 4.0.2
@@ -50,7 +50,7 @@ importers:
         version: 8.23.0
       stacksindex:
         specifier: 0.1.0
-        version: 0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
+        version: 0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@13.0.3)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2)
     devDependencies:
       '@types/node':
         specifier: 22.20.2
@@ -92,17 +92,17 @@ importers:
         specifier: 0.13.4
         version: 0.13.4(arktype@2.2.3)(typescript@5.9.3)(zod@3.24.4)
       better-sqlite3:
-        specifier: 11.10.0
-        version: 11.10.0
+        specifier: 13.0.3
+        version: 13.0.3
       consola:
         specifier: 3.4.2
         version: 3.4.2
       db0:
         specifier: 0.3.2
-        version: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
+        version: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
       drizzle-orm:
         specifier: 0.39.3
-        version: 0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))
+        version: 0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))
       h3:
         specifier: 1.15.3
         version: 1.15.3
@@ -117,7 +117,7 @@ importers:
         version: 1.18.2
       unstorage:
         specifier: 1.16.0
-        version: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2))
+        version: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2))
       zod:
         specifier: 3.24.4
         version: 3.24.4
@@ -127,7 +127,7 @@ importers:
     devDependencies:
       nitropack:
         specifier: 2.11.11
-        version: 2.11.11(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))(supports-color@10.2.2)
+        version: 2.11.11(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))(supports-color@10.2.2)
       prisma:
         specifier: 6.7.0
         version: 6.7.0(supports-color@10.2.2)(typescript@5.9.3)
@@ -208,7 +208,7 @@ importers:
         version: 1.0.7(tailwindcss@3.4.15)
       unstorage:
         specifier: 1.16.0
-        version: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))))(ioredis@5.11.1(supports-color@10.2.2))
+        version: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))))(ioredis@5.11.1(supports-color@10.2.2))
       zod:
         specifier: 3.24.4
         version: 3.24.4
@@ -4186,8 +4186,9 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  better-sqlite3@11.10.0:
-    resolution: {integrity: sha512-EwhOpyXiOEL/lKzHz9AW1msWFNzGc/z+LzeB3/jnFJpxu+th2yqvzsSWas1v9jgs9+xiXJcD5A8CJxAG2TaghQ==}
+  better-sqlite3@13.0.3:
+    resolution: {integrity: sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ==}
+    engines: {node: '>=22'}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -4195,9 +4196,6 @@ packages:
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
-
-  bl@4.1.0:
-    resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
   body-parser@2.3.0:
     resolution: {integrity: sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw==}
@@ -4231,9 +4229,6 @@ packages:
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
-
-  buffer@5.7.1:
-    resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
@@ -4315,9 +4310,6 @@ packages:
   chokidar@5.0.0:
     resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
     engines: {node: '>= 20.19.0'}
-
-  chownr@1.1.4:
-    resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
@@ -4657,14 +4649,6 @@ packages:
 
   decimal.js-light@2.5.1:
     resolution: {integrity: sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==}
-
-  decompress-response@6.0.0:
-    resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
-    engines: {node: '>=10'}
-
-  deep-extend@0.6.0:
-    resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
-    engines: {node: '>=4.0.0'}
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -5427,10 +5411,6 @@ packages:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
 
-  expand-template@2.0.3:
-    resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
-    engines: {node: '>=6'}
-
   expect-type@1.4.0:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
@@ -5581,9 +5561,6 @@ packages:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
 
-  fs-constants@1.0.0:
-    resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
-
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
@@ -5655,9 +5632,6 @@ packages:
   giget@3.3.1:
     resolution: {integrity: sha512-r+mvuDjrjMpsdw46Kmeydb8bdHm7wOKw8wNBtTndkjbPjgAp5oUJUxRE76wZFknxIPokfWvep2qSXK37aXE6zg==}
     hasBin: true
-
-  github-from-package@0.0.0:
-    resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -5818,9 +5792,6 @@ packages:
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
-
-  ini@1.3.8:
-    resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
 
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
@@ -6354,10 +6325,6 @@ packages:
     resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
     engines: {node: '>=12'}
 
-  mimic-response@3.1.0:
-    resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
-    engines: {node: '>=10'}
-
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
     engines: {node: 18 || 20 || >=22}
@@ -6447,9 +6414,6 @@ packages:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
     engines: {node: '>= 18'}
 
-  mkdirp-classic@0.5.3:
-    resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
-
   mlly@1.8.2:
     resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
 
@@ -6475,9 +6439,6 @@ packages:
     resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  napi-build-utils@2.0.0:
-    resolution: {integrity: sha512-GEbrYkbfF7MoNaoh2iGG84Mnf/WZfB0GdGEsM8wz7Expx/LlWf5U8t9nvJKXSp3qr5IsEbK04cBGhol/KwOsWA==}
 
   napi-postinstall@0.3.4:
     resolution: {integrity: sha512-PHI5f1O0EP5xJ9gQmFGMS6IZcrVvTjpXjz7Na41gTE7eE2hK11lg04CECCYEEjdc17EV4DO+fkGEtt7TpTaTiQ==}
@@ -6533,9 +6494,9 @@ packages:
       xml2js:
         optional: true
 
-  node-abi@3.96.0:
-    resolution: {integrity: sha512-rebQ/lz7i0EkoLzUVSrKRzA69zMkwLp95kKMWoMDkkM00Suxz0D7zEQPwRml5fQum24mj7bPvmlgLAmu2JCiYg==}
-    engines: {node: '>=10'}
+  node-addon-api@8.9.2:
+    resolution: {integrity: sha512-VijLXbi3UACN69I0JVXJsX4tjACjNoQDgv2gTF6sx2wWEi8tkSg2eX8p5gSIFi8z2+DL3oHmY6OyKce38SDolg==}
+    engines: {node: ^18 || ^20 || >= 21}
 
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
@@ -6970,12 +6931,6 @@ packages:
     resolution: {integrity: sha512-cDWgoah1Gez9rN3H4165peY9qfpEo+SA61oQv65O3cRUE1pOEoJWwddwcqKE8XZYjbblOJlYDlLV4h67HrEVDg==}
     engines: {node: '>=12'}
 
-  prebuild-install@7.1.3:
-    resolution: {integrity: sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug==}
-    engines: {node: '>=10'}
-    deprecated: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
-    hasBin: true
-
   precinct@12.3.2:
     resolution: {integrity: sha512-JbJevI1K80z8e/WIyDt/4vUN/4qcfBSKKqOjJA4mosPPPb7zODKRJQV7YN7apVWN3k58nZYm/vEsLgEGYmnxwg==}
     engines: {node: '>=18'}
@@ -7076,10 +7031,6 @@ packages:
 
   rc9@3.1.0:
     resolution: {integrity: sha512-ufjkNVzbRHKcCOmTahZkmVsyc3W+MSk3jY03m+a7tGHkIsdVMG9l10/3HvFbWkkKzY5VFp3pkRsIo/UYgmFL7Q==}
-
-  rc@1.2.8:
-    resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
-    hasBin: true
 
   react-dom@19.1.0:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
@@ -7406,12 +7357,6 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-concat@1.0.1:
-    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
-
-  simple-get@4.0.1:
-    resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
-
   simple-swizzle@0.2.4:
     resolution: {integrity: sha512-nAu1WFPQSMNr2Zn9PGSZK9AGn4t/y97lEm+MXTtUDwfP0ksAIX4nO+6ruD9Jwut4C49SB1Ws+fbXsm/yScWOHw==}
 
@@ -7576,10 +7521,6 @@ packages:
     resolution: {integrity: sha512-dOESqjYr96iWYylGObzd39EuNTa5VJxyvVAEm5Jnh7KGo75V43Hk1odPQkNDyXNmUR6k+gEiDVXnjB8HJ3crXw==}
     engines: {node: '>=12'}
 
-  strip-json-comments@2.0.1:
-    resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
-    engines: {node: '>=0.10.0'}
-
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
@@ -7636,13 +7577,6 @@ packages:
 
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
-    engines: {node: '>=6'}
-
-  tar-fs@2.1.5:
-    resolution: {integrity: sha512-OboTd8mmMhZDNPV+UjQcK9yKAatXu2aJ+r1w4im1Otd4M4fl2hwvdoXUxIYHFTHWK/3y3FarBP70v3vwmGlOxw==}
-
-  tar-stream@2.2.0:
-    resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
 
   tar-stream@3.2.1:
@@ -7747,9 +7681,6 @@ packages:
     resolution: {integrity: sha512-BL5MGkRln6aDYhb0xbQlEAGw743BaZYWdbWtdJOBriYJboKgUUYCadFp2/FpBBZquBC/ezNBn7wMMPx7FDZUDw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-
-  tunnel-agent@0.6.0:
-    resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
 
   turbo-darwin-64@2.5.3:
     resolution: {integrity: sha512-YSItEVBUIvAGPUDpAB9etEmSqZI3T6BHrkBkeSErvICXn3dfqXUfeLx35LfptLDEbrzFUdwYFNmt8QXOwe9yaw==}
@@ -12031,22 +11962,15 @@ snapshots:
 
   baseline-browser-mapping@2.11.21: {}
 
-  better-sqlite3@11.10.0:
+  better-sqlite3@13.0.3:
     dependencies:
-      bindings: 1.5.0
-      prebuild-install: 7.1.3
+      node-addon-api: 8.9.2
 
   binary-extensions@2.3.0: {}
 
   bindings@1.5.0:
     dependencies:
       file-uri-to-path: 1.0.0
-
-  bl@4.1.0:
-    dependencies:
-      buffer: 5.7.1
-      inherits: 2.0.4
-      readable-stream: 3.6.2
 
   body-parser@2.3.0(supports-color@10.2.2):
     dependencies:
@@ -12092,11 +12016,6 @@ snapshots:
   buffer-crc32@1.0.0: {}
 
   buffer-from@1.1.2: {}
-
-  buffer@5.7.1:
-    dependencies:
-      base64-js: 1.5.1
-      ieee754: 1.2.1
 
   buffer@6.0.3:
     dependencies:
@@ -12191,8 +12110,6 @@ snapshots:
   chokidar@5.0.0:
     dependencies:
       readdirp: 5.1.1
-
-  chownr@1.1.4: {}
 
   chownr@3.0.0: {}
 
@@ -12426,17 +12343,17 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))):
+  db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))):
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
-      better-sqlite3: 11.10.0
-      drizzle-orm: 0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))
+      better-sqlite3: 13.0.3
+      drizzle-orm: 0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))
 
-  db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))):
+  db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))):
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
-      better-sqlite3: 11.10.0
-      drizzle-orm: 0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))
+      better-sqlite3: 13.0.3
+      drizzle-orm: 0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))
     optional: true
 
   debug@3.2.7(supports-color@10.2.2):
@@ -12456,12 +12373,6 @@ snapshots:
       callsite: 1.0.0
 
   decimal.js-light@2.5.1: {}
-
-  decompress-response@6.0.0:
-    dependencies:
-      mimic-response: 3.1.0
-
-  deep-extend@0.6.0: {}
 
   deep-is@0.1.4: {}
 
@@ -12582,28 +12493,28 @@ snapshots:
       get-tsconfig: 4.14.3
       jiti: 2.7.0
 
-  drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)):
+  drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)):
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
       '@opentelemetry/api': 1.9.1
       '@types/pg': 8.23.1
-      better-sqlite3: 11.10.0
+      better-sqlite3: 13.0.3
       pg: 8.23.0
       postgres: 3.4.5
       prisma: 6.7.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3)):
+  drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3)):
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
       '@opentelemetry/api': 1.9.1
       '@types/pg': 8.23.1
-      better-sqlite3: 11.10.0
+      better-sqlite3: 13.0.3
       pg: 8.23.0
       postgres: 3.4.5
       prisma: 6.7.0(supports-color@10.2.2)(typescript@5.8.3)
     optional: true
 
-  drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2):
+  drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@13.0.3)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2):
     optionalDependencies:
       '@effect/sql-pg': 4.0.2(effect@4.0.2)
       '@effect/sql-pglite': 4.0.2(effect@4.0.2)
@@ -12611,7 +12522,7 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@types/pg': 8.23.1
       arktype: 2.2.3
-      better-sqlite3: 11.10.0
+      better-sqlite3: 13.0.3
       effect: 4.0.2
       pg: 8.23.0
       postgres: 3.4.5
@@ -13161,8 +13072,6 @@ snapshots:
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
 
-  expand-template@2.0.3: {}
-
   expect-type@1.4.0: {}
 
   express-rate-limit@8.7.0(express@5.2.1(supports-color@10.2.2))(supports-color@10.2.2):
@@ -13343,8 +13252,6 @@ snapshots:
 
   fresh@2.0.0: {}
 
-  fs-constants@1.0.0: {}
-
   fs.realpath@1.0.0: {}
 
   fsevents@2.3.3:
@@ -13418,8 +13325,6 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   giget@3.3.1: {}
-
-  github-from-package@0.0.0: {}
 
   glob-parent@5.1.2:
     dependencies:
@@ -13592,8 +13497,6 @@ snapshots:
   index-to-position@1.2.0: {}
 
   inherits@2.0.4: {}
-
-  ini@1.3.8: {}
 
   internal-slot@1.1.0:
     dependencies:
@@ -14067,8 +13970,6 @@ snapshots:
 
   mimic-fn@4.0.0: {}
 
-  mimic-response@3.1.0: {}
-
   minimatch@10.2.6:
     dependencies:
       brace-expansion: 5.0.9
@@ -14112,8 +14013,6 @@ snapshots:
     dependencies:
       minipass: 7.1.3
 
-  mkdirp-classic@0.5.3: {}
-
   mlly@1.8.2:
     dependencies:
       acorn: 8.18.0
@@ -14139,8 +14038,6 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.18: {}
-
-  napi-build-utils@2.0.0: {}
 
   napi-postinstall@0.3.4: {}
 
@@ -14192,7 +14089,7 @@ snapshots:
       h3: 1.15.3
       ufo: 1.6.4
 
-  nitropack@2.11.11(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))(supports-color@10.2.2):
+  nitropack@2.11.11(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))(supports-color@10.2.2):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
       '@netlify/functions': 3.1.10(rollup@4.63.1)(supports-color@10.2.2)
@@ -14214,7 +14111,7 @@ snapshots:
       cookie-es: 2.0.1
       croner: 9.1.0
       crossws: 0.3.5
-      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
+      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
       defu: 6.1.7
       destr: 2.0.5
       dot-prop: 9.0.0
@@ -14260,7 +14157,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       unimport: 5.7.0
       unplugin-utils: 0.2.5
-      unstorage: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2))
+      unstorage: 1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2))
       untyped: 2.0.0
       unwasm: 0.3.11
       youch: 4.1.1
@@ -14297,9 +14194,7 @@ snapshots:
       - supports-color
       - uploadthing
 
-  node-abi@3.96.0:
-    dependencies:
-      semver: 7.8.5
+  node-addon-api@8.9.2: {}
 
   node-domexception@1.0.0: {}
 
@@ -14779,21 +14674,6 @@ snapshots:
 
   postgres@3.4.5: {}
 
-  prebuild-install@7.1.3:
-    dependencies:
-      detect-libc: 2.1.2
-      expand-template: 2.0.3
-      github-from-package: 0.0.0
-      minimist: 1.2.8
-      mkdirp-classic: 0.5.3
-      napi-build-utils: 2.0.0
-      node-abi: 3.96.0
-      pump: 3.0.4
-      rc: 1.2.8
-      simple-get: 4.0.1
-      tar-fs: 2.1.5
-      tunnel-agent: 0.6.0
-
   precinct@12.3.2(supports-color@10.2.2):
     dependencies:
       '@dependents/detective-less': 5.0.3
@@ -14966,13 +14846,6 @@ snapshots:
     dependencies:
       defu: 6.1.7
       destr: 2.0.5
-
-  rc@1.2.8:
-    dependencies:
-      deep-extend: 0.6.0
-      ini: 1.3.8
-      minimist: 1.2.8
-      strip-json-comments: 2.0.1
 
   react-dom@19.1.0(react@19.1.0):
     dependencies:
@@ -15426,14 +15299,6 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-concat@1.0.1: {}
-
-  simple-get@4.0.1:
-    dependencies:
-      decompress-response: 6.0.0
-      once: 1.4.0
-      simple-concat: 1.0.1
-
   simple-swizzle@0.2.4:
     dependencies:
       is-arrayish: 0.3.4
@@ -15501,7 +15366,7 @@ snapshots:
 
   stackback@0.0.2: {}
 
-  stacksindex@0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
+  stacksindex@0.1.0(@electric-sql/pglite@0.5.8)(@stacks/network@7.6.0)(drizzle-orm@1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@13.0.3)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2))(pg@8.23.0)(typescript@7.0.2):
     dependencies:
       '@effect/sql-pg': 4.0.2(effect@4.0.2)
       '@effect/sql-pglite': 4.0.2(effect@4.0.2)
@@ -15509,7 +15374,7 @@ snapshots:
       '@stacks/codec': 2.1.0
       '@stacks/transactions': 7.6.0
       clarity-abitype: 0.8.0(@stacks/network@7.6.0)(@stacks/transactions@7.6.0)(typescript@7.0.2)
-      drizzle-orm: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@11.10.0)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
+      drizzle-orm: 1.0.0-rc.5-5935859(@effect/sql-pg@4.0.2(effect@4.0.2))(@effect/sql-pglite@4.0.2(effect@4.0.2))(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(arktype@2.2.3)(better-sqlite3@13.0.3)(effect@4.0.2)(pg@8.23.0)(postgres@3.4.5)(zod@4.6.2)
       effect: 4.0.2
     optionalDependencies:
       '@electric-sql/pglite': 0.5.8
@@ -15637,8 +15502,6 @@ snapshots:
 
   strip-final-newline@3.0.0: {}
 
-  strip-json-comments@2.0.1: {}
-
   strip-json-comments@3.1.1: {}
 
   strip-literal@3.1.0:
@@ -15708,21 +15571,6 @@ snapshots:
       - ts-node
 
   tapable@2.3.3: {}
-
-  tar-fs@2.1.5:
-    dependencies:
-      chownr: 1.1.4
-      mkdirp-classic: 0.5.3
-      pump: 3.0.4
-      tar-stream: 2.2.0
-
-  tar-stream@2.2.0:
-    dependencies:
-      bl: 4.1.0
-      end-of-stream: 1.4.5
-      fs-constants: 1.0.0
-      inherits: 2.0.4
-      readable-stream: 3.6.2
 
   tar-stream@3.2.1:
     dependencies:
@@ -15835,10 +15683,6 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
     optional: true
-
-  tunnel-agent@0.6.0:
-    dependencies:
-      safe-buffer: 5.2.1
 
   turbo-darwin-64@2.5.3:
     optional: true
@@ -16051,7 +15895,7 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.12.2
       '@unrs/resolver-binding-win32-x64-msvc': 1.12.2
 
-  unstorage@1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2)):
+  unstorage@1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3))))(ioredis@5.11.1(supports-color@10.2.2)):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -16062,10 +15906,10 @@ snapshots:
       ofetch: 1.5.1
       ufo: 1.6.4
     optionalDependencies:
-      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
+      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.39.3(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.9.3)))
       ioredis: 5.11.1(supports-color@10.2.2)
 
-  unstorage@1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))))(ioredis@5.11.1(supports-color@10.2.2)):
+  unstorage@1.16.0(db0@0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3))))(ioredis@5.11.1(supports-color@10.2.2)):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -16076,7 +15920,7 @@ snapshots:
       ofetch: 1.5.1
       ufo: 1.6.4
     optionalDependencies:
-      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@11.10.0)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@11.10.0)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3)))
+      db0: 0.3.2(@electric-sql/pglite@0.5.8)(better-sqlite3@13.0.3)(drizzle-orm@0.45.2(@electric-sql/pglite@0.5.8)(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(better-sqlite3@13.0.3)(pg@8.23.0)(postgres@3.4.5)(prisma@6.7.0(supports-color@10.2.2)(typescript@5.8.3)))
       ioredis: 5.11.1(supports-color@10.2.2)
 
   untun@0.2.2: {}

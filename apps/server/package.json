@@ -16,7 +16,7 @@
     "@stacks/stacks-blockchain-api-types": "7.14.1",
     "@stackspulse/protocols": "workspace:*",
     "@t3-oss/env-core": "0.13.4",
-    "better-sqlite3": "11.10.0",
+    "better-sqlite3": "13.0.3",
     "consola": "3.4.2",
     "db0": "0.3.2",
     "drizzle-orm": "0.39.3",
