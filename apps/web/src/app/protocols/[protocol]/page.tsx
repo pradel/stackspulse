@@ -2,7 +2,13 @@ import { ProtocolStats } from "@/components/Protocol/ProtocolStats";
 import { ProtocolTransactions } from "@/components/Protocol/ProtocolTransactions";
 import { StackingDAORef } from "@/components/Protocol/StackingDAO/StackingDAORef";
 import { UniqueUsersBarChart } from "@/components/Stats/UniqueUsersBarChart";
-import { DepositWithdrawBarChart } from "@/components/Stats/stackingdao/DepositsWithdrawBarChart";
+import { Activity } from "@/components/Stats/stackingdao/Activity";
+import { FlowsChart } from "@/components/Stats/stackingdao/FlowsChart";
+import { StackingDAOOverview } from "@/components/Stats/stackingdao/StackingDAOOverview";
+import { StakersChart } from "@/components/Stats/stackingdao/StakersChart";
+import { SwapsChart } from "@/components/Stats/stackingdao/SwapsChart";
+import { WithdrawalsChart } from "@/components/Stats/stackingdao/WithdrawalsChart";
+import { YieldChart } from "@/components/Stats/stackingdao/YieldChart";
 import { isProtocol } from "@stackspulse/protocols";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -20,10 +26,44 @@ export default async function ProtocolPage(props: PageProps) {
     notFound();
   }
 
+  if (protocol === "stackingdao") {
+    return (
+      <>
+        <StackingDAORef />
+
+        <Suspense>
+          <StackingDAOOverview />
+        </Suspense>
+
+        <Suspense>
+          <FlowsChart />
+        </Suspense>
+
+        <Suspense>
+          <YieldChart />
+        </Suspense>
+
+        <Suspense>
+          <StakersChart />
+        </Suspense>
+
+        <Suspense>
+          <WithdrawalsChart />
+        </Suspense>
+
+        <Suspense>
+          <SwapsChart />
+        </Suspense>
+
+        <Suspense>
+          <Activity />
+        </Suspense>
+      </>
+    );
+  }
+
   return (
     <>
-      {protocol === "stackingdao" ? <StackingDAORef /> : null}
-
       <Suspense>
         <ProtocolStats protocol={protocol} />
       </Suspense>
@@ -31,12 +71,6 @@ export default async function ProtocolPage(props: PageProps) {
       <Suspense>
         <UniqueUsersBarChart protocol={protocol} />
       </Suspense>
-
-      {protocol === "stackingdao" ? (
-        <Suspense>
-          <DepositWithdrawBarChart />
-        </Suspense>
-      ) : null}
 
       <Suspense>
         <ProtocolTransactions protocol={protocol} />

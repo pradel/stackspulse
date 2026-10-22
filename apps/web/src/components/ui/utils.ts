@@ -26,6 +26,17 @@ export const constructCategoryColors = (
   });
   return categoryColors;
 };
+export const getWidthsFromValues = (dataValues: number[]) => {
+  let maxValue = Number.NEGATIVE_INFINITY;
+  for (const value of dataValues) {
+    maxValue = Math.max(maxValue, value);
+  }
+
+  return dataValues.map((value) => {
+    if (value === 0) return 0;
+    return Math.max((value / maxValue) * 100, 1);
+  });
+};
 
 export const defaultValueFormatter = (value: number | string) => {
   return value.toString();

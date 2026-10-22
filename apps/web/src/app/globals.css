@@ -1,17 +1,17 @@
-@layer tw_base, radix_ui, tw_components_utils, utils;
-@import "@radix-ui/themes/styles.css" layer(radix_ui);
+@layer theme, base, radix-themes, components, utilities;
 
-@layer tw_base {
-  @tailwind base;
+@import "tailwindcss";
+@import "@radix-ui/themes/styles.css" layer(radix-themes);
+@import "./radix-theme-reset.css";
+@import "radix-themes-tw/theme.css";
+
+@theme {
+  /* radix-themes-tw 1.1.0 ships `--font-weight-medium: 700`; use Radix's weights. */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
 }
 
-@layer tw_components_utils {
-  @tailwind components;
-  @tailwind utilities;
-}
-
-@layer utils {
-  .radix-themes {
-    --default-font-family: var(--font-inter);
-  }
+.radix-themes {
+  --default-font-family: var(--font-inter);
 }

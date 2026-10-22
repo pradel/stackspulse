@@ -3,8 +3,6 @@ import { tokenMetadataClient } from "@/lib/stacks";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 export const alt = "About Protocol";
 export const size = {
   width: 1012,
@@ -14,10 +12,11 @@ export const size = {
 export const contentType = "image/png";
 
 interface PageProps {
-  params: { token: string };
+  params: Promise<{ token: string }>;
 }
 
-export default async function Image({ params }: PageProps) {
+export default async function Image(props: PageProps) {
+  const params = await props.params;
   const metadata = await tokenMetadataClient.GET("/metadata/v1/ft/{principal}", {
     params: {
       path: {
@@ -48,7 +47,6 @@ export default async function Image({ params }: PageProps) {
       }}
     >
       <div tw="flex items-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           tw="mr-4"
           src={tokenInfo.image_thumbnail_uri || tokenInfo.image_uri}

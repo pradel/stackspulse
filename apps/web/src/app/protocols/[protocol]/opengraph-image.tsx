@@ -2,8 +2,6 @@ import { env } from "@/env";
 import { type Protocol, protocolsInfo } from "@stackspulse/protocols";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 export const alt = "About Protocol";
 export const size = {
   width: 1012,
@@ -13,10 +11,11 @@ export const size = {
 export const contentType = "image/png";
 
 interface PageProps {
-  params: { protocol: string };
+  params: Promise<{ protocol: string }>;
 }
 
-export default async function Image({ params }: PageProps) {
+export default async function Image(props: PageProps) {
+  const params = await props.params;
   const protocol = params.protocol as Protocol;
 
   return new ImageResponse(
@@ -37,7 +36,6 @@ export default async function Image({ params }: PageProps) {
       }}
     >
       <div tw="flex items-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           tw="mr-4"
           src={`${env.NEXT_PUBLIC_BASE_URL}/protocols/${protocol}.png`}

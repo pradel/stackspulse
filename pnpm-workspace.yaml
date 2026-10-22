@@ -30,6 +30,9 @@ overrides:
   # @effect/platform-node 4.0.2 accepts ^4.0.2, but 4.0.5 needs effect 4.0.5;
   # stacksindex pins effect 4.0.2, and two effect copies break service identity.
   "@effect/platform-node-shared": 4.0.2
+  # recharts 2 unwraps children with react-is; 18.x does not recognize React 19
+  # elements, so fragment-wrapped series (Tremor AreaChart) never render.
+  "recharts>react-is": 19.3.1
 peerDependencyRules:
   allowAny:
     - vite

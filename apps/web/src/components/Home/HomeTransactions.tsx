@@ -13,7 +13,7 @@ export const HomeTransactions = () => {
       <Heading as="h2" size="3" color="gray" highContrast>
         Transactions
       </Heading>
-      <div className="mt-4 md:space-y-4">
+      <div className="mt-4 md:flex md:flex-col md:gap-4">
         {transactions.map((transaction) => (
           <Fragment key={transaction.tx_id}>
             <TransactionRow key={transaction.tx_id} transaction={transaction} />
