@@ -1,5 +1,9 @@
 # @stackspulse/server
 
+## 0.20.6
+
+No changes in this release.
+
 ## 0.20.5
 
 ### Patch Changes
