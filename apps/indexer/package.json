@@ -19,7 +19,7 @@
     "stacksindex": "0.1.0"
   },
   "devDependencies": {
-    "@types/node": "22.20.2",
+    "@types/node": "26.6.5",
     "@types/pg": "8.23.1",
     "drizzle-kit": "1.0.0-rc.5-5935859",
     "typescript": "7.0.2",

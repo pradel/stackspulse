@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22
+ARG NODE_VERSION=26
 FROM node:${NODE_VERSION}-alpine as base
 
 WORKDIR /app
@@ -6,14 +6,17 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 ENV APP_NAME="stackspulse"
+# No git in the image: keep the root `prepare` script (`vp config`) from installing hooks
+ENV VP_GIT_HOOKS=0
 
 # Install pnpm
 ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
+ENV PATH="$PNPM_HOME/bin:$PATH"
 COPY --link ./package.json ./
-RUN corepack enable && corepack install
+# Node 25+ no longer ships corepack; pnpm switches itself to the `packageManager` pin.
+RUN npm install --global --allow-scripts=pnpm pnpm@12
 RUN pnpm install turbo@^2 --global
-RUN pnpm install @dotenvx/dotenvx@^1 --global
+RUN pnpm install @dotenvx/dotenvx@^2 --global
 
 # --- Turbo stage ---
 

@@ -17,7 +17,7 @@ const schema = z.object({
   data: z.array(
     z.object({
       name: z.string().min(1).max(50),
-      value: z.number().int().min(0),
+      value: z.int().min(0),
     }),
   ),
 });

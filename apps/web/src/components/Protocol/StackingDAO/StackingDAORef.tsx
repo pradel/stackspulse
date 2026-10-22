@@ -13,7 +13,7 @@ export const StackingDAORef = () => {
       <div>
         <Button variant="outline" asChild>
           <a
-            href="https://app.stackingdao.com/stack?referral=SP3VCX5NFQ8VCHFS9M6N40ZJNVTRT4HZ62WFH5C4Q"
+            href="https://app.stackingdao.com?referral=SP3VCX5NFQ8VCHFS9M6N40ZJNVTRT4HZ62WFH5C4Q"
             target="_blank"
             rel="noreferrer"
           >
