@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import { Effect, Option, Schema } from "effect";
 import { decodeHex } from "stacksindex/clarity";
 import { pglite, type PrintEvent } from "stacksindex/effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { indexer } from "../../indexer.ts";
 import { depositTable, swapTable, withdrawTable } from "../../schema.ts";
