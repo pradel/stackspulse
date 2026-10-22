@@ -4,19 +4,7 @@
 import { cn } from "@/lib/cn";
 import { Spinner, Text } from "@radix-ui/themes";
 import Link from "next/link";
-import { themeColors } from "./utils";
-
-export const getWidthsFromValues = (dataValues: number[]) => {
-  let maxValue = Number.NEGATIVE_INFINITY;
-  for (const value of dataValues) {
-    maxValue = Math.max(maxValue, value);
-  }
-
-  return dataValues.map((value) => {
-    if (value === 0) return 0;
-    return Math.max((value / maxValue) * 100, 1);
-  });
-};
+import { getWidthsFromValues, themeColors } from "./utils";
 
 interface Bar {
   value: number;
@@ -36,7 +24,7 @@ export const BarList = ({ className, data }: BarListProps) => {
   const rowHeight = "h-9";
 
   return (
-    <div className={cn("flex justify-between space-x-6", className)}>
+    <div className={cn("flex justify-between gap-6", className)}>
       <div className="relative w-full">
         {data.map((item, idx) => (
           <div
@@ -84,7 +72,7 @@ export const BarList = ({ className, data }: BarListProps) => {
 export const BarListSkeleton = ({ data, className }: BarListProps) => {
   return (
     <div className="relative">
-      <div className="blur-sm">
+      <div className="blur-xs">
         <BarList className={className} data={data} />
       </div>
       <Spinner className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />

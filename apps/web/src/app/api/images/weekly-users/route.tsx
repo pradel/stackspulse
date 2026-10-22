@@ -1,11 +1,10 @@
-import { getWidthsFromValues } from "@/components/ui/BarList";
+import { getWidthsFromValues } from "@/components/ui/utils";
 import { env } from "@/env";
 import { cn } from "@/lib/cn";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 
-export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 const size = {

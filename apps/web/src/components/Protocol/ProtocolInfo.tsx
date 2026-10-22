@@ -27,13 +27,13 @@ export const ProtocolInfo = ({ protocol }: ProtocolInfoProps) => {
         <Text className="mt-1" as="p" size="2" color="gray">
           {protocolInfo.description}
         </Text>
-        <div className="mt-2 space-x-2">
+        <div className="mt-2">
           <IconButton size="1" variant="ghost" color="gray" asChild>
             <a href={protocolInfo.website} target="_blank" rel="noreferrer">
               <IconWorld size={14} />
             </a>
           </IconButton>
-          <IconButton size="1" variant="ghost" color="gray" asChild>
+          <IconButton ml="3" size="1" variant="ghost" color="gray" asChild>
             <a href={protocolInfo.x} target="_blank" rel="noreferrer">
               <IconBrandX size={14} />
             </a>

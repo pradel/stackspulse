@@ -65,7 +65,7 @@ const ActivityDescription = ({ item }: { item: StackingDAOActivityItem }) => {
 
 export const ActivityList = ({ items }: { items: StackingDAOActivityItem[] }) => {
   return (
-    <div className="mt-4 md:space-y-4">
+    <div className="mt-4 md:flex md:flex-col md:gap-4">
       {items.map((item) => {
         const timestamp = new Date(item.blockTime * 1000);
         return (

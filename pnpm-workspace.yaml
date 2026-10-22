@@ -32,7 +32,7 @@ overrides:
   "@effect/platform-node-shared": 4.0.2
   # recharts 2 unwraps children with react-is; 18.x does not recognize React 19
   # elements, so fragment-wrapped series (Tremor AreaChart) never render.
-  "recharts>react-is": 19.1.0
+  "recharts>react-is": 19.3.1
 peerDependencyRules:
   allowAny:
     - vite

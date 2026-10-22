@@ -1,0 +1,14 @@
+/*
+ * radix-themes-tw v1 adds Radix tokens on top of Tailwind's default scales.
+ * Drop the defaults it overlaps so these utilities only resolve to Radix values
+ * (e.g. `gray-1`..`gray-12`, `text-1`..`text-9`, `rounded-1`..`rounded-6`).
+ * Must be imported after "tailwindcss" and before "radix-themes-tw/theme.css".
+ */
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --text-*: initial;
+  --font-weight-*: initial;
+  --breakpoint-*: initial;
+}

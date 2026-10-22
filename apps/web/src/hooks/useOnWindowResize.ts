@@ -1,4 +1,4 @@
-// Tremor useOnWindowResize [v0.0.0]
+// Tremor useOnWindowResize [v0.0.2]
 
 import * as React from "react";
 

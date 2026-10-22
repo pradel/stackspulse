@@ -1,4 +1,4 @@
-// Tremor BarChart [v0.2.1]
+// Tremor BarChart [v1.0.0]
 
 "use client";
 
@@ -15,12 +15,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AxisDomain } from "recharts/types/util/types";
+import type { AxisDomain } from "recharts/types/util/types";
 
 import { useOnWindowResize } from "@/hooks/useOnWindowResize";
 import {
   AvailableChartColors,
-  AvailableChartColorsKeys,
+  type AvailableChartColorsKeys,
   constructCategoryColors,
   getColorClassName,
   getYAxisDomain,
@@ -98,7 +98,7 @@ const LegendItem = ({ name, color, onClick, activeLegend }: LegendItemProps) => 
     <li
       className={cx(
         // base
-        "group inline-flex flex-nowrap items-center gap-1.5 whitespace-nowrap rounded px-2 py-1 transition",
+        "group inline-flex flex-nowrap items-center gap-1.5 rounded-sm px-2 py-1 whitespace-nowrap transition",
         hasOnValueChange
           ? "cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
           : "cursor-default",
@@ -166,7 +166,7 @@ const ScrollButton = ({ icon, onClick, disabled }: ScrollButtonProps) => {
       type="button"
       className={cx(
         // base
-        "group inline-flex size-5 items-center truncate rounded transition",
+        "group inline-flex size-5 items-center truncate rounded-sm transition",
         disabled
           ? "cursor-not-allowed text-gray-400 dark:text-gray-600"
           : "cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-50",
@@ -306,7 +306,7 @@ const Legend = React.forwardRef<HTMLOListElement, LegendProps>((props, ref) => {
           "flex h-full",
           enableLegendSlider
             ? hasScroll?.right || hasScroll?.left
-              ? "snap-mandatory items-center overflow-auto pl-4 pr-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              ? "snap-mandatory items-center overflow-auto pr-12 pl-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               : ""
             : "flex-wrap",
         )}
@@ -326,7 +326,7 @@ const Legend = React.forwardRef<HTMLOListElement, LegendProps>((props, ref) => {
           <div
             className={cx(
               // base
-              "absolute bottom-0 right-0 top-0 flex h-full items-center justify-center pr-1",
+              "absolute top-0 right-0 bottom-0 flex h-full items-center justify-center pr-1",
               // background color
               "bg-white dark:bg-gray-950",
             )}
